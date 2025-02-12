@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Paperless H/B Maquinado" company="Daido Metal México" webLink="http://" view-date="2025-01-28" view-index="0" gantt-divider-location="515" resource-divider-location="300" version="3.3.3311" locale="es_ES">
+<?xml version="1.0" encoding="UTF-8"?><project name="Paperless H/B Maquinado" company="Daido Metal México" webLink="http://" view-date="2025-01-30" view-index="0" gantt-divider-location="498" resource-divider-location="300" version="3.3.3311" locale="es_ES">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Nombre" width="249" order="0"/>
-        <field id="tpd4" name="Fecha de inicio" width="122" order="1"/>
-        <field id="tpd5" name="Fecha de fin" width="127" order="2"/>
+        <field id="tpd3" name="Nombre" width="240" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="118" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="123" order="2"/>
         <field id="tpd15" name="Notas" width="20" order="3"/>
         <option id="taskLabelUp" value=""/>
         <option id="filter.completedTasks" value="false"/>
@@ -127,9 +127,9 @@
             <task id="52" uid="224ef8b29f154723823827de23ee7227" name="Validar pruebas para la aplicación" color="#9966ff" meeting="false" start="2025-02-07" duration="1" complete="50" expand="true"/>
             <task id="63" uid="7a0570343bf84ca5b6e5ca62efd337ba" name="Asistir a reunión semanal de avances" color="#00ff66" meeting="false" start="2025-02-07" duration="1" complete="100" expand="true"/>
         </task>
-        <task id="20" uid="683e0bb7803e4bcfaf36883c2c2811c9" name="Complementar documentación del proyecto" meeting="false" start="2025-02-10" duration="4" complete="0" expand="true">
+        <task id="20" uid="683e0bb7803e4bcfaf36883c2c2811c9" name="Complementar documentación del proyecto" meeting="false" start="2025-02-10" duration="4" complete="17" expand="true">
             <depend id="26" type="2" difference="0" hardness="Strong"/>
-            <task id="21" uid="29b664b8a16640e89f4c24f41706174d" name="Generar documento IEEE830" color="#ffff00" meeting="false" start="2025-02-10" duration="2" complete="0" expand="true"/>
+            <task id="21" uid="29b664b8a16640e89f4c24f41706174d" name="Generar documento IEEE830" color="#ffff00" meeting="false" start="2025-02-10" duration="2" complete="80" expand="true"/>
             <task id="22" uid="65d7db1c385e4d4ea747f60d198912da" name="Crear casos de uso" color="#ffff00" meeting="false" start="2025-02-10" duration="1" complete="0" expand="true"/>
             <task id="24" uid="1a93758de14c4643bcdb94755f7455ae" name="Validar casos de uso" color="#ffff00" meeting="false" start="2025-02-12" duration="1" complete="0" expand="true"/>
             <task id="54" uid="d6a8c5a8bed24ccea65e55e64e160bc8" name="Comprender procesos de operación" color="#ffff00" meeting="false" start="2025-02-12" duration="3" complete="0" expand="true"/>
