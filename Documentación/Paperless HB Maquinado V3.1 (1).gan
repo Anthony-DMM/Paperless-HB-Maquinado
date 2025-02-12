@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Paperless H/B Maquinado" company="Daido Metal México" webLink="http://" view-date="2025-01-30" view-index="0" gantt-divider-location="497" resource-divider-location="300" version="3.3.3311" locale="es_ES">
+    <description/>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Nombre" width="240" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="118" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="123" order="2"/>
+        <field id="tpd15" name="Notas" width="20" order="3"/>
+        <option id="taskLabelUp" value=""/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="filter.dueTodayTasks" value="false"/>
+        <option id="filter.overdueTasks" value="false"/>
+        <option id="filter.inProgressTodayTasks" value="false"/>
+        <option id="color.recent"><![CDATA[#ff0099 #ffff00 #9966ff #6666ff #00ff66 #009999 #00cccc #000000 #339900 #cccc00]]></option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nombre" width="209" order="0"/>
+        <field id="1" name="Función" width="85" order="1"/>
+    </view>
+    <!-- -->
+    <calendars base-id="mx">
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+        <date year="" month="1" date="1" type="HOLIDAY"><![CDATA[New Year's Day]]></date>
+        <date year="" month="5" date="1" type="HOLIDAY"><![CDATA[Labour Day]]></date>
+        <date year="" month="9" date="16" type="HOLIDAY"><![CDATA[Independence Day]]></date>
+        <date year="" month="11" date="1" type="NEUTRAL"><![CDATA[All Saints Day]]></date>
+        <date year="" month="11" date="2" type="NEUTRAL"><![CDATA[Day of the Dead]]></date>
+        <date year="" month="12" date="12" type="HOLIDAY"><![CDATA[Day of the Virgin of Guadalupe]]></date>
+        <date year="" month="12" date="25" type="HOLIDAY"><![CDATA[Christmas Day]]></date>
+        <date year="2022" month="2" date="7" type="HOLIDAY"><![CDATA[Constitution Day]]></date>
+        <date year="2022" month="3" date="21" type="HOLIDAY"><![CDATA[Benito Juárez's Birthday]]></date>
+        <date year="2022" month="4" date="14" type="HOLIDAY"><![CDATA[Maundy Thursday]]></date>
+        <date year="2022" month="4" date="15" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2022" month="11" date="21" type="HOLIDAY"><![CDATA[Revolution Day]]></date>
+        <date year="2016" month="2" date="1" type="HOLIDAY"><![CDATA[Constitution Day]]></date>
+        <date year="2016" month="3" date="14" type="HOLIDAY"><![CDATA[Birthday of Benito Juárez]]></date>
+        <date year="2016" month="3" date="24" type="HOLIDAY"><![CDATA[Maundy Thursday]]></date>
+        <date year="2016" month="3" date="25" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2016" month="11" date="21" type="HOLIDAY"><![CDATA[Revolution Day]]></date>
+        <date year="2017" month="1" date="2" type="HOLIDAY"><![CDATA[New Year's Holiday]]></date>
+        <date year="2017" month="2" date="6" type="HOLIDAY"><![CDATA[Constitution Day]]></date>
+        <date year="2017" month="3" date="20" type="HOLIDAY"><![CDATA[Day off for Benito Juárez's Birthday Memorial]]></date>
+        <date year="2017" month="3" date="21" type="HOLIDAY"><![CDATA[Benito Juárez's Birthday Memorial]]></date>
+        <date year="2017" month="4" date="13" type="HOLIDAY"><![CDATA[Maundy Thursday]]></date>
+        <date year="2017" month="4" date="14" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2017" month="11" date="20" type="HOLIDAY"><![CDATA[Revolution Day]]></date>
+        <date year="2018" month="2" date="5" type="HOLIDAY"><![CDATA[Constitution Day]]></date>
+        <date year="2018" month="3" date="19" type="HOLIDAY"><![CDATA[Benito Juárez's Birthday]]></date>
+        <date year="2018" month="3" date="29" type="HOLIDAY"><![CDATA[Maundy Thursday]]></date>
+        <date year="2018" month="3" date="30" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2018" month="11" date="19" type="HOLIDAY"><![CDATA[Revolution Day]]></date>
+        <date year="2018" month="12" date="1" type="HOLIDAY"><![CDATA[New President of Mexico]]></date>
+        <date year="2019" month="2" date="4" type="HOLIDAY"><![CDATA[Constitution Day]]></date>
+        <date year="2019" month="3" date="18" type="HOLIDAY"><![CDATA[Benito Juárez's Birthday]]></date>
+        <date year="2019" month="4" date="18" type="HOLIDAY"><![CDATA[Maundy Thursday]]></date>
+        <date year="2019" month="4" date="19" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2019" month="11" date="18" type="HOLIDAY"><![CDATA[Revolution Day]]></date>
+        <date year="2020" month="2" date="3" type="HOLIDAY"><![CDATA[Constitution Day]]></date>
+        <date year="2020" month="3" date="16" type="HOLIDAY"><![CDATA[Benito Juárez's Birthday]]></date>
+        <date year="2020" month="4" date="9" type="HOLIDAY"><![CDATA[Maundy Thursday]]></date>
+        <date year="2020" month="4" date="10" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2020" month="11" date="16" type="HOLIDAY"><![CDATA[Revolution Day]]></date>
+        <date year="2021" month="2" date="1" type="HOLIDAY"><![CDATA[Constitution Day]]></date>
+        <date year="2021" month="3" date="15" type="HOLIDAY"><![CDATA[Benito Juárez's Birthday]]></date>
+        <date year="2021" month="4" date="1" type="HOLIDAY"><![CDATA[Maundy Thursday]]></date>
+        <date year="2021" month="4" date="2" type="HOLIDAY"><![CDATA[Good Friday]]></date>
+        <date year="2021" month="11" date="16" type="HOLIDAY"><![CDATA[Revolution Day]]></date>
+        <date year="2025" month="1" date="29" type="HOLIDAY" color="#ffccff"><![CDATA[Revisión Memoria Técnica]]></date>
+        <date year="2025" month="2" date="11" type="HOLIDAY" color="#ffccff"><![CDATA[Revisión Memoria Técnica]]></date>
+        <date year="2025" month="2" date="25" type="HOLIDAY" color="#ffccff"><![CDATA[Revisión Memoria Técnica]]></date>
+        <date year="2025" month="3" date="11" type="HOLIDAY" color="#ffccff"><![CDATA[Revisión Memoria Técnica]]></date>
+        <date year="2025" month="3" date="18" type="HOLIDAY" color="#ffccff"><![CDATA[Revisión Memoria Técnica]]></date>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" uid="289a0875106a45afb8457f60c73c1db2" name="Tomar curso de inducción" meeting="false" start="2025-01-21" duration="4" complete="100" expand="false">
+            <task id="1" uid="cbb36702dbb74408aac571d2e013578f" name="Recibir curso de inducción" color="#66ccff" meeting="false" start="2025-01-21" duration="1" complete="100" expand="true"/>
+            <task id="2" uid="d7d795f2f5cc48529bcb3c5a7717c92a" name="Investigar herramientas, procesos y estándares de desarrollo" color="#66ccff" meeting="false" start="2025-01-22" duration="3" complete="100" expand="true">
+                <depend id="5" type="2" difference="0" hardness="Rubber"/>
+            </task>
+        </task>
+        <task id="4" uid="9f842479aebd465d8d6421be0859641d" name="Planificar el proyecto" meeting="false" start="2025-01-27" duration="4" complete="100" expand="false">
+            <task id="5" uid="b56c06a259724d7db26a4f8223029f6c" name="Realizar propuesta de planeación general del proyecto" color="#ff9933" meeting="false" start="2025-01-27" duration="2" complete="100" expand="true">
+                <depend id="6" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="6" uid="dfb9342d143b416185eedddda87a18f2" name="Presentar planeación general del proyecto" color="#ff9933" meeting="false" start="2025-01-30" duration="1" complete="100" expand="true">
+                <depend id="7" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="7" uid="c0acbde0c1b64da0a4b12f2ead6d7c7c" name="Realizar modificaciones a planeación general" color="#ff9933" meeting="false" start="2025-01-31" duration="1" complete="100" expand="true"/>
+            <task id="8" uid="ab6c872a041e4ee38bfbc5fa17248df6" name="Presentar nueva propuesta de planeación general" color="#ff9933" meeting="false" start="2025-01-31" duration="1" complete="100" expand="true"/>
+        </task>
+        <task id="51" uid="2ba80e8fa91a4bedafc2439e036fdeca" name="Asistir a reunión semanal de avances" color="#00ff66" meeting="false" start="2025-01-31" duration="1" complete="100" expand="true"/>
+        <task id="11" uid="3553ede686844d3d85ebc3e015fca7d0" name="Realizar levantamiento de requerimientos" meeting="false" start="2025-01-27" duration="9" complete="74" expand="true">
+            <task id="10" uid="901da2cfabda4586b87c98786c29bfd8" name="Consultar con equipo interno" color="#9966ff" meeting="false" start="2025-01-27" duration="4" complete="100" expand="true">
+                <depend id="16" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="12" uid="8ab1452337c5458183c083936c5e7f9b" name="Revisar antecedentes del proyecto" meeting="false" start="2025-01-28" duration="7" complete="68" expand="true">
+                <task id="13" uid="8b8e2d579d6b441b8201f1901f6e576f" name="Revisar documentación existente" color="#9999ff" meeting="false" start="2025-01-28" duration="7" complete="100" expand="true"/>
+                <task id="14" uid="d755540b5429448fac8012ddd995439c" name="Analizar código funcional" color="#9999ff" meeting="false" start="2025-01-28" duration="7" complete="5" expand="true"/>
+                <task id="15" uid="16eaf29b67ad4f3aa3a2ec1c200a575e" name="Realizar pruebas de la aplicación demo" color="#9999ff" meeting="false" start="2025-01-28" duration="7" complete="100" expand="true"/>
+            </task>
+            <task id="16" uid="1d0c79e3c3324b0c9eda86e10d0078b7" name="Sintetizar información recopilada" color="#9966ff" meeting="false" start="2025-02-03" duration="2" complete="100" expand="true">
+                <depend id="17" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="17" uid="4352ee94c96c4ce996559f4e42544a63" name="Hacer borrador de requerimientos" color="#9966ff" meeting="false" start="2025-02-05" duration="1" complete="100" expand="true">
+                <depend id="18" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="53" uid="ef1501fb7a17423691cec2e6d80fae64" name="Diseñar pruebas para la aplicación" color="#9966ff" meeting="false" start="2025-02-05" duration="2" complete="35" expand="true"/>
+            <task id="18" uid="317e804dd3e44d1d9733e0bdfd9e28bd" name="Validar requerimientos" color="#9966ff" meeting="false" start="2025-02-06" duration="1" complete="100" expand="true"/>
+            <task id="52" uid="224ef8b29f154723823827de23ee7227" name="Validar pruebas para la aplicación" color="#9966ff" meeting="false" start="2025-02-07" duration="1" complete="50" expand="true"/>
+            <task id="63" uid="7a0570343bf84ca5b6e5ca62efd337ba" name="Asistir a reunión semanal de avances" color="#00ff66" meeting="false" start="2025-02-07" duration="1" complete="100" expand="true"/>
+        </task>
+        <task id="20" uid="683e0bb7803e4bcfaf36883c2c2811c9" name="Complementar documentación del proyecto" meeting="false" start="2025-02-10" duration="4" complete="18" expand="true">
+            <depend id="26" type="2" difference="0" hardness="Strong"/>
+            <task id="21" uid="29b664b8a16640e89f4c24f41706174d" name="Generar documento IEEE830" color="#ffff00" meeting="false" start="2025-02-10" duration="2" complete="80" expand="true"/>
+            <task id="22" uid="65d7db1c385e4d4ea747f60d198912da" name="Crear casos de uso" color="#ffff00" meeting="false" start="2025-02-10" duration="1" complete="10" expand="true"/>
+            <task id="24" uid="1a93758de14c4643bcdb94755f7455ae" name="Validar casos de uso" color="#ffff00" meeting="false" start="2025-02-12" duration="1" complete="0" expand="true"/>
+            <task id="54" uid="d6a8c5a8bed24ccea65e55e64e160bc8" name="Comprender procesos de operación" color="#ffff00" meeting="false" start="2025-02-12" duration="3" complete="0" expand="true"/>
+            <task id="23" uid="7a73819246514631bc4b3aebd8b81de3" name="Realizar diagramas de casos de uso" color="#ffff00" meeting="false" start="2025-02-13" duration="1" complete="0" expand="true">
+                <depend id="25" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="25" uid="738fefb8549340238a80b77fb4a128e5" name="Validar diagramas de caso de uso" color="#ffff00" meeting="false" start="2025-02-14" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="55" uid="4de2c6dcf3ea4991957f7f3bf6c8071d" name="Asistir a reunión semanal de avances" color="#00ff66" meeting="false" start="2025-02-14" duration="1" complete="0" expand="true"/>
+        <task id="26" uid="ef28b40e6b67486abe2ebf54d72f0be1" name="Implementar proyecto" meeting="false" start="2025-02-18" duration="13" complete="0" expand="true">
+            <depend id="39" type="1" difference="0" hardness="Rubber"/>
+            <task id="56" uid="3e95da87b3574673932dec83f2d5dca5" name="Desarrollar funcionalidad para registro de datos en DAS" color="#ff0099" meeting="false" start="2025-02-18" duration="3" complete="0" expand="true"/>
+            <task id="61" uid="111a7a72817b433aa00f3b54a375cbdf" name="Asistir a reunión semanal de avances" color="#00ff66" meeting="false" start="2025-02-21" duration="1" complete="0" expand="true"/>
+            <task id="57" uid="70b4584485cd4e90bd74914eca51b089" name="Desarrollar funcionalidad de &quot;RBP&quot;" color="#ff0099" meeting="false" start="2025-02-21" duration="2" complete="0" expand="true"/>
+            <task id="27" uid="e5acb83e714744e1ae8a60adcc6fc3e2" name="Desarrollar apartado &quot;Registro de Scrap&quot;" color="#000000" meeting="false" start="2025-02-26" duration="3" complete="0" expand="true">
+                <depend id="30" type="2" difference="0" hardness="Rubber"/>
+                <task id="28" uid="13d228f172ca42b2ae62fd8a511d551a" name="Ajustar diseño de interfaz" color="#ff6666" meeting="false" start="2025-02-26" duration="1" complete="0" expand="true"/>
+                <task id="29" uid="a4cdf560bc8f4736bb352e389066b36b" name="Crear modelo y controlador" color="#ff6666" meeting="false" start="2025-02-26" duration="3" complete="0" expand="true"/>
+                <task id="62" uid="3dc2e4da1d38493bb7d7da7e854587a0" name="Asistir a reunión semanal de avances" color="#00ff66" meeting="false" start="2025-02-28" duration="1" complete="0" expand="true"/>
+            </task>
+            <task id="30" uid="07fc82d63e554b3cabb2e9ce84a0ba10" name="Desarrollar apartado &quot;Visualización final de RBP&quot;" color="#000000" meeting="false" start="2025-03-03" duration="3" complete="0" expand="true">
+                <task id="31" uid="599b230730e0434d94c2a2efadf64c07" name="Ajustar diseño de interfaz" color="#ff6666" meeting="false" start="2025-03-03" duration="1" complete="0" expand="true"/>
+                <task id="32" uid="8521be54a19d4f6398aa9d70214fba2b" name="Crear modelo y controlador" color="#ff6666" meeting="false" start="2025-03-03" duration="3" complete="0" expand="true"/>
+            </task>
+            <task id="33" uid="b139c9b2ebde4e64ad8bec15f58203ca" name="Desarrollar apartado &quot;Visualización final de DAS&quot;" color="#000000" meeting="false" start="2025-03-05" duration="3" complete="0" expand="true">
+                <task id="34" uid="788af7646f7e437fbfa7cb120960f9ab" name="Ajustar diseño de interfaz" color="#ff6666" meeting="false" start="2025-03-05" duration="1" complete="0" expand="true"/>
+                <task id="35" uid="6c7133ae78934eed9dd4630ffe0b07a5" name="Crear modelo y controlador" color="#ff6666" meeting="false" start="2025-03-05" duration="3" complete="0" expand="true"/>
+            </task>
+            <task id="36" uid="68ce788154a3411eb30bf31f017c7262" name="Añadir función &quot;Inserción de datos al escanear&quot;" color="#ff6666" meeting="false" start="2025-03-07" duration="1" complete="0" expand="true"/>
+            <task id="64" uid="2aabcd95c80c4d2fa1390fd0b435a3b3" name="Asistir a reunión semanal de avances" color="#00ff66" meeting="false" start="2025-03-07" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="39" uid="b595278f8435426bbb2b6939939a6967" name="Realizar pruebas manuales del sistema" color="#ff00ff" meeting="false" start="2025-02-18" duration="13" complete="0" expand="true"/>
+        <task id="58" uid="f81ce54f6b1845adbf34c8e40ff710c5" name="Tener reunión kick off" meeting="false" start="2025-03-07" duration="1" complete="0" expand="true"/>
+        <task id="41" uid="76ec7730f56145ac8d10438ee61972e9" name="Implantar proyecto" color="#000000" meeting="false" start="2025-03-10" duration="4" complete="0" expand="true">
+            <depend id="44" type="1" difference="0" hardness="Rubber"/>
+            <task id="42" uid="7b8c826cb4cb49cf98033f6a20376eda" name="Dar entrenamiento a personal de operación" color="#00cccc" meeting="false" start="2025-03-10" duration="4" complete="0" expand="true"/>
+            <task id="43" uid="1cec3d0d0da14246b9b28ef589b52227" name="Corregir posibles errores del sistema" color="#00cccc" meeting="false" start="2025-03-10" duration="4" complete="0" expand="true"/>
+            <task id="65" uid="3a8fe5b6bbe0445fa3808a05e316415c" name="Asistir a reunión semanal de avances" color="#00ff66" meeting="false" start="2025-03-14" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="40" uid="b5af8a0d3d7644728150633fb682567e" name="Realizar reuniones para validación del sistema" color="#339900" meeting="false" start="2025-03-17" duration="4" complete="0" expand="true"/>
+        <task id="44" uid="9dac4f45cb1344c6889ce1a287544f6d" name="Elaborar documentación final" meeting="false" start="2025-03-10" duration="8" complete="0" expand="true">
+            <task id="45" uid="52aecdddc1cb4d33a5ed77cc4d64252f" name="Generar manual de usuario" color="#6666ff" meeting="false" start="2025-03-10" duration="2" complete="0" expand="true"/>
+            <task id="46" uid="48755f48c2164b6b8d629d9fd4be1efa" name="Generar manual técnico" color="#6666ff" meeting="false" start="2025-03-10" duration="8" complete="0" expand="true"/>
+        </task>
+        <task id="59" uid="9ddf1371654042e49bd4832724652337" name="Tener reunión final judgement" meeting="false" start="2025-03-24" duration="1" complete="0" expand="true"/>
+    </tasks>
+    <resources>
+        <resource id="0" name="Anthony Martinez Arellano" function="SoftwareDevelopment:2" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="7" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="5" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="6" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="8" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>
