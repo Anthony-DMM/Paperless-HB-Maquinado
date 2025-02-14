@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Paperless H/B Maquinado" company="Daido Metal México" webLink="http://" view-date="2025-01-24" view-index="0" gantt-divider-location="482" resource-divider-location="300" version="3.3.3312" locale="es_ES">
+<?xml version="1.0" encoding="UTF-8"?><project name="Paperless H/B Maquinado" company="Daido Metal México" webLink="http://" view-date="2025-01-28" view-index="0" gantt-divider-location="467" resource-divider-location="300" version="3.3.3312" locale="es_ES">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Nombre" width="232" order="0"/>
-        <field id="tpd4" name="Fecha de inicio" width="114" order="1"/>
-        <field id="tpd5" name="Fecha de fin" width="120" order="2"/>
+        <field id="tpd3" name="Nombre" width="225" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="110" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="116" order="2"/>
         <field id="tpd15" name="Notas" width="20" order="3"/>
         <option id="filter.completedTasks" value="false"/>
         <option id="filter.dueTodayTasks" value="false"/>
@@ -106,13 +106,13 @@
             <task id="8" uid="ab6c872a041e4ee38bfbc5fa17248df6" name="Presentar nueva propuesta de planeación general" color="#ff9933" meeting="false" start="2025-01-31" duration="1" complete="100" expand="true"/>
         </task>
         <task id="51" uid="2ba80e8fa91a4bedafc2439e036fdeca" name="Asistir a reunión semanal de avances" color="#00ff66" meeting="false" start="2025-01-31" duration="1" complete="100" expand="true"/>
-        <task id="11" uid="3553ede686844d3d85ebc3e015fca7d0" name="Realizar levantamiento de requerimientos" meeting="false" start="2025-01-27" duration="9" complete="74" expand="true">
+        <task id="11" uid="3553ede686844d3d85ebc3e015fca7d0" name="Realizar levantamiento de requerimientos" meeting="false" start="2025-01-27" duration="9" complete="94" expand="true">
             <task id="10" uid="901da2cfabda4586b87c98786c29bfd8" name="Consultar con equipo interno" color="#9966ff" meeting="false" start="2025-01-27" duration="4" complete="100" expand="true">
                 <depend id="16" type="2" difference="0" hardness="Rubber"/>
             </task>
-            <task id="12" uid="8ab1452337c5458183c083936c5e7f9b" name="Revisar antecedentes del proyecto" meeting="false" start="2025-01-28" duration="7" complete="68" expand="true">
+            <task id="12" uid="8ab1452337c5458183c083936c5e7f9b" name="Revisar antecedentes del proyecto" meeting="false" start="2025-01-28" duration="7" complete="100" expand="true">
                 <task id="13" uid="8b8e2d579d6b441b8201f1901f6e576f" name="Revisar documentación existente" color="#9999ff" meeting="false" start="2025-01-28" duration="7" complete="100" expand="true"/>
-                <task id="14" uid="d755540b5429448fac8012ddd995439c" name="Analizar código funcional" color="#9999ff" meeting="false" start="2025-01-28" duration="7" complete="5" expand="true"/>
+                <task id="14" uid="d755540b5429448fac8012ddd995439c" name="Analizar código funcional" color="#9999ff" meeting="false" start="2025-01-28" duration="7" complete="100" expand="true"/>
                 <task id="15" uid="16eaf29b67ad4f3aa3a2ec1c200a575e" name="Realizar pruebas de la aplicación demo" color="#9999ff" meeting="false" start="2025-01-28" duration="7" complete="100" expand="true"/>
             </task>
             <task id="16" uid="1d0c79e3c3324b0c9eda86e10d0078b7" name="Sintetizar información recopilada" color="#9966ff" meeting="false" start="2025-02-03" duration="2" complete="100" expand="true">
@@ -126,13 +126,12 @@
             <task id="52" uid="224ef8b29f154723823827de23ee7227" name="Validar pruebas para la aplicación" color="#9966ff" meeting="false" start="2025-02-07" duration="1" complete="50" expand="true"/>
             <task id="63" uid="7a0570343bf84ca5b6e5ca62efd337ba" name="Asistir a reunión semanal de avances" color="#00ff66" meeting="false" start="2025-02-07" duration="1" complete="100" expand="true"/>
         </task>
-        <task id="20" uid="683e0bb7803e4bcfaf36883c2c2811c9" name="Complementar documentación del proyecto" meeting="false" start="2025-02-10" duration="4" complete="17" expand="true">
+        <task id="20" uid="683e0bb7803e4bcfaf36883c2c2811c9" name="Complementar documentación del proyecto" meeting="false" start="2025-02-10" duration="4" complete="66" expand="true">
             <depend id="26" type="2" difference="0" hardness="Strong"/>
-            <task id="21" uid="29b664b8a16640e89f4c24f41706174d" name="Generar documento IEEE830" color="#ffff00" meeting="false" start="2025-02-10" duration="2" complete="80" expand="true"/>
-            <task id="22" uid="65d7db1c385e4d4ea747f60d198912da" name="Crear casos de uso" color="#ffff00" meeting="false" start="2025-02-10" duration="1" complete="0" expand="true"/>
+            <task id="21" uid="29b664b8a16640e89f4c24f41706174d" name="Generar documento IEEE830" color="#ffff00" meeting="false" start="2025-02-10" duration="2" complete="100" expand="true"/>
+            <task id="22" uid="65d7db1c385e4d4ea747f60d198912da" name="Crear casos de uso" color="#ffff00" meeting="false" start="2025-02-10" duration="1" complete="100" expand="true"/>
             <task id="24" uid="1a93758de14c4643bcdb94755f7455ae" name="Validar casos de uso" color="#ffff00" meeting="false" start="2025-02-12" duration="1" complete="0" expand="true"/>
-            <task id="54" uid="d6a8c5a8bed24ccea65e55e64e160bc8" name="Comprender procesos de operación" color="#ffff00" meeting="false" start="2025-02-12" duration="3" complete="0" expand="true"/>
-            <task id="23" uid="7a73819246514631bc4b3aebd8b81de3" name="Realizar diagramas de casos de uso" color="#ffff00" meeting="false" start="2025-02-13" duration="1" complete="0" expand="true">
+            <task id="23" uid="7a73819246514631bc4b3aebd8b81de3" name="Realizar diagramas de casos de uso" color="#ffff00" meeting="false" start="2025-02-13" duration="1" complete="100" expand="true">
                 <depend id="25" type="2" difference="0" hardness="Rubber"/>
             </task>
             <task id="25" uid="738fefb8549340238a80b77fb4a128e5" name="Validar diagramas de caso de uso" color="#ffff00" meeting="false" start="2025-02-14" duration="1" complete="0" expand="true"/>
