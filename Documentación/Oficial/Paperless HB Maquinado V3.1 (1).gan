@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Paperless H/B Maquinado" company="Daido Metal México" webLink="http://" view-date="2025-01-30" view-index="0" gantt-divider-location="498" resource-divider-location="300" version="3.3.3311" locale="es_ES">
+<?xml version="1.0" encoding="UTF-8"?><project name="Paperless H/B Maquinado" company="Daido Metal México" webLink="http://" view-date="2025-01-24" view-index="0" gantt-divider-location="482" resource-divider-location="300" version="3.3.3312" locale="es_ES">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Nombre" width="240" order="0"/>
-        <field id="tpd4" name="Fecha de inicio" width="118" order="1"/>
-        <field id="tpd5" name="Fecha de fin" width="123" order="2"/>
+        <field id="tpd3" name="Nombre" width="232" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="114" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="120" order="2"/>
         <field id="tpd15" name="Notas" width="20" order="3"/>
-        <option id="taskLabelUp" value=""/>
         <option id="filter.completedTasks" value="false"/>
         <option id="filter.dueTodayTasks" value="false"/>
         <option id="filter.overdueTasks" value="false"/>
@@ -13,8 +12,8 @@
         <option id="color.recent"><![CDATA[#ff0099 #ffff00 #9966ff #6666ff #00ff66 #009999 #00cccc #000000 #339900 #cccc00]]></option>
     </view>
     <view id="resource-table">
-        <field id="0" name="Nombre" width="209" order="0"/>
-        <field id="1" name="Función" width="85" order="1"/>
+        <field id="0" name="Nombre" width="210" order="0"/>
+        <field id="1" name="Función" width="86" order="1"/>
     </view>
     <!-- -->
     <calendars base-id="mx">
