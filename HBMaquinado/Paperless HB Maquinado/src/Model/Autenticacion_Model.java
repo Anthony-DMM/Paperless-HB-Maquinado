@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class Autenticacion_Model {
     public String validar_supervisor(String user, Autenticacion autenticacion, DBConexion conexion){
+        String acceso = null;
         Connection con;
         con=conexion.conexionMySQL();
         try {
@@ -27,18 +28,20 @@ public class Autenticacion_Model {
             pst.setString(1, user);
             pst.setString(2, "Supervisor");  
             pst.executeQuery();
-            System.out.println(pst);
             ResultSet rs = pst.executeQuery();
+           
             if (rs.next()) {
+                acceso = rs.getString("nombre_empleado");
                 System.out.println("Acceso concedido");
             } else {
                 System.out.println("Acceso denegado");
             }
+            
             autenticacion.txt_codigo_supervisor.setText(null);
             con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Autenticacion_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return acceso;
     }
 }
