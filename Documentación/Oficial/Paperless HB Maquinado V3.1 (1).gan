@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Paperless H/B Maquinado" company="Daido Metal México" webLink="http://" view-date="2025-01-28" view-index="0" gantt-divider-location="467" resource-divider-location="300" version="3.3.3312" locale="es_ES">
+<?xml version="1.0" encoding="UTF-8"?><project name="Paperless H/B Maquinado" company="Daido Metal México" webLink="http://" view-date="2025-02-15" view-index="0" gantt-divider-location="452" resource-divider-location="300" version="3.3.3312" locale="es_ES">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Nombre" width="225" order="0"/>
-        <field id="tpd4" name="Fecha de inicio" width="110" order="1"/>
-        <field id="tpd5" name="Fecha de fin" width="116" order="2"/>
+        <field id="tpd3" name="Nombre" width="218" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="106" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="112" order="2"/>
         <field id="tpd15" name="Notas" width="20" order="3"/>
         <option id="filter.completedTasks" value="false"/>
         <option id="filter.dueTodayTasks" value="false"/>
@@ -136,7 +136,7 @@
             </task>
             <task id="25" uid="738fefb8549340238a80b77fb4a128e5" name="Validar diagramas de caso de uso" color="#ffff00" meeting="false" start="2025-02-14" duration="1" complete="0" expand="true"/>
         </task>
-        <task id="55" uid="4de2c6dcf3ea4991957f7f3bf6c8071d" name="Asistir a reunión semanal de avances" color="#00ff66" meeting="false" start="2025-02-14" duration="1" complete="0" expand="true"/>
+        <task id="55" uid="4de2c6dcf3ea4991957f7f3bf6c8071d" name="Asistir a reunión semanal de avances" color="#00ff66" meeting="false" start="2025-02-14" duration="1" complete="100" expand="true"/>
         <task id="26" uid="ef28b40e6b67486abe2ebf54d72f0be1" name="Implementar proyecto" meeting="false" start="2025-02-18" duration="13" complete="0" expand="true">
             <depend id="39" type="1" difference="0" hardness="Rubber"/>
             <task id="56" uid="3e95da87b3574673932dec83f2d5dca5" name="Desarrollar funcionalidad para registro de datos en DAS" color="#ff0099" meeting="false" start="2025-02-18" duration="3" complete="0" expand="true"/>

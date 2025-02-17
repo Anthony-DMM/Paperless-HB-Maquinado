@@ -53,6 +53,11 @@ public class Login extends javax.swing.JFrame {
         jButtonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/salirr.png"))); // NOI18N
         jButtonSalir.setBorderPainted(false);
         jButtonSalir.setContentAreaFilled(false);
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         txt_user.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         txt_user.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -115,6 +120,10 @@ public class Login extends javax.swing.JFrame {
     private void txt_userKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_userKeyTyped
        
     }//GEN-LAST:event_txt_userKeyTyped
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSalirActionPerformed
 
     /**
      * @param args the command line arguments
