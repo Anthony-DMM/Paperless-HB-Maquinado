@@ -4,6 +4,11 @@
  */
 package paperless.hb.maquinado;
 
+import Controller.Autenticacion_Controller;
+import Model.Autenticacion_Model;
+import Model.DBConexion;
+import View.Autenticacion;
+
 /**
  *
  * @author ANTHONY-MARTINEZ
@@ -15,6 +20,18 @@ public class PaperlessHBMaquinado {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Autenticacion autenticacion = new Autenticacion();
+        autenticacion.setVisible(true);
+        
+        
+        //Model
+        DBConexion conexion = new DBConexion();
+        Autenticacion_Model autenticacion_Model = new Autenticacion_Model();
+        
+        
+        
+        //Controller
+        Autenticacion_Controller autenticacion_Controller = new Autenticacion_Controller(autenticacion, autenticacion_Model, conexion);
     }
     
 }
