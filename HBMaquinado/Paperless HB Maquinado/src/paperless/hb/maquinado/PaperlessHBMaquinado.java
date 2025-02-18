@@ -8,6 +8,7 @@ import Controller.Autenticacion_Controller;
 import Model.Autenticacion_Model;
 import Model.DBConexion;
 import View.Autenticacion;
+import View.Opciones;
 
 /**
  *
@@ -21,7 +22,8 @@ public class PaperlessHBMaquinado {
     public static void main(String[] args) {
         // TODO code application logic here
         Autenticacion autenticacion = new Autenticacion();
-        autenticacion.setVisible(true);
+        Opciones opciones = new Opciones();
+        opciones.setVisible(true);
         
         
         //Model
