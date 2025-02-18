@@ -25,12 +25,12 @@ public class PaperlessHBMaquinado {
         Autenticacion autenticacion = new Autenticacion();
         Opciones opciones = new Opciones();
         Captura_Linea capturaLinea = new Captura_Linea();
-        capturaLinea.setVisible(true);
+        autenticacion.setVisible(true);
         
         
         //Model
         DBConexion conexion = new DBConexion();
-        Autenticacion_Model autenticacion_Model = new Autenticacion_Model();
+        Autenticacion_Model autenticacion_Model = new Autenticacion_Model(conexion);
         
         
         

@@ -18,58 +18,36 @@ import javax.swing.JOptionPane;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Autenticacion_Controller implements ActionListener, KeyListener {
+
+public class Autenticacion_Controller implements ActionListener {
     Autenticacion autenticacion;
     Autenticacion_Model autenticacion_model;
-    DBConexion conexion;
-    String codigo;
-    
-    
-    public Autenticacion_Controller(Autenticacion autenticacion, Autenticacion_Model autenticacion_Model, DBConexion conexion) {
+
+    public Autenticacion_Controller(Autenticacion autenticacion, Autenticacion_Model autenticacion_model, DBConexion conexion) {
         this.autenticacion = autenticacion;
-        this.autenticacion_model = autenticacion_Model;
-        this.conexion = conexion;
+        this.autenticacion_model = autenticacion_model;
 
-        autenticacion.txt_codigo_supervisor.addActionListener(this);
-        autenticacion.btn_ingresar.addActionListener(this);
-        autenticacion.btn_salir.addActionListener(this);
-        autenticacion.txt_codigo_supervisor.addKeyListener(this);
+        autenticacion.getBtn_ingresar().addActionListener(this);
+        autenticacion.getBtn_salir().addActionListener(this);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().getClass().toString().equals("class javax.swing.JButton")) {
-            JButton bt = (JButton) e.getSource();
-            if (bt.equals(autenticacion.btn_ingresar)) {
-                String codigo_supervisor = autenticacion.txt_codigo_supervisor.getText();
-                if (codigo_supervisor.equals("") || codigo_supervisor == null) {
-                   JOptionPane.showMessageDialog(null, "Debes ingresar el código de supervisor de área");
+        if (e.getSource() == autenticacion.getBtn_ingresar()) {
+            String codigoSupervisor = autenticacion.getTxt_codigo_supervisor().getText();
+            if (codigoSupervisor.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debes ingresar el código de supervisor de área");
+            } else {
+                String areaSupervisor = autenticacion_model.validar_supervisor(codigoSupervisor);
+                if (areaSupervisor == null) {
+                    JOptionPane.showMessageDialog(null, "Datos incorrectos, favor de verificar");
                 } else {
-                    codigo = autenticacion_model.validar_supervisor(codigo_supervisor, autenticacion, conexion);
-                    if (codigo == null) {
-                        JOptionPane.showMessageDialog(null, "Datos incorrectos, favor de verificar");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Acceso concedido");
-                    }
+                    JOptionPane.showMessageDialog(null, "Acceso concedido");
                 }
+                autenticacion.getTxt_codigo_supervisor().setText(null);
             }
-
-            if (bt.equals(autenticacion.btn_salir)) {
-                System.exit(0);
-            }
+        } else if (e.getSource() == autenticacion.getBtn_salir()) {
+            System.exit(0);
         }
-
-       
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
     }
 }

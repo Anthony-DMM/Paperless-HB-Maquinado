@@ -19,29 +19,28 @@ import javax.swing.JOptionPane;
  * @author ANTHONY-MARTINEZ
  */
 public class Autenticacion_Model {
-    public String validar_supervisor(String user, Autenticacion autenticacion, DBConexion conexion){
-        String acceso = null;
+    
+    private DBConexion conexion;
+
+    public Autenticacion_Model(DBConexion conexion) {
+        this.conexion = conexion;
+    }
+    
+    public String validar_supervisor(String codigoSupervisor){
+        String areaSupervisor = null;
         Connection con;
         con=conexion.conexionMySQL();
         try {
-            PreparedStatement pst = con.prepareStatement("SELECT * FROM empleado WHERE codigo = ? AND tipo_usuario = ?");
-            pst.setString(1, user);
-            pst.setString(2, "Supervisor");  
-            pst.executeQuery();
-            ResultSet rs = pst.executeQuery();
-           
-            if (rs.next()) {
-                acceso = rs.getString("nombre_empleado");
-                System.out.println("Acceso concedido");
-            } else {
-                System.out.println("Acceso denegado");
-            }
-            
-            autenticacion.txt_codigo_supervisor.setText(null);
+            CallableStatement cst = con.prepareCall("{call login(?,?,?)}");
+            cst.setString(1, codigoSupervisor);
+            cst.registerOutParameter(2, java.sql.Types.INTEGER);
+            cst.registerOutParameter(3, java.sql.Types.VARCHAR);
+            cst.executeQuery();
+            areaSupervisor=cst.getString(3);
             con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Autenticacion_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return acceso;
+        return areaSupervisor;
     }
 }

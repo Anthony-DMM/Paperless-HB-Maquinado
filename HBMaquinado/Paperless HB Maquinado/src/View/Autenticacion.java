@@ -5,6 +5,8 @@
 package View;
 
 import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -122,6 +124,35 @@ public class Autenticacion extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+
+    public JButton getBtn_ingresar() {
+        return btn_ingresar;
+    }
+
+    public void setBtn_ingresar(JButton btn_ingresar) {
+        this.btn_ingresar = btn_ingresar;
+    }
+
+    public JButton getBtn_salir() {
+        return btn_salir;
+    }
+
+    public void setBtn_salir(JButton btn_salir) {
+        this.btn_salir = btn_salir;
+    }
+
+    public JPasswordField getTxt_codigo_supervisor() {
+        return txt_codigo_supervisor;
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public void setTxt_codigo_supervisor(JPasswordField txt_codigo_supervisor) {
+        this.txt_codigo_supervisor = txt_codigo_supervisor;
+    }
+    
+    
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_ingresar;
