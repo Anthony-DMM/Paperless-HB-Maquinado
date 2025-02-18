@@ -21,21 +21,22 @@ public class PaperlessHBMaquinado {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Vistas
         Autenticacion autenticacion = new Autenticacion();
         Opciones opciones = new Opciones();
         Captura_Linea capturaLinea = new Captura_Linea();
+        
         autenticacion.setVisible(true);
         
         
-        //Model
+        // Model
         DBConexion conexion = new DBConexion();
         Autenticacion_Model autenticacion_Model = new Autenticacion_Model(conexion);
         
         
         
-        //Controller
-        Autenticacion_Controller autenticacion_Controller = new Autenticacion_Controller(autenticacion, autenticacion_Model, conexion);
+        // Controller
+        Autenticacion_Controller autenticacion_Controller = new Autenticacion_Controller(autenticacion, autenticacion_Model, opciones, conexion);
     }
     
 }

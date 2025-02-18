@@ -68,7 +68,7 @@ public class Opciones extends javax.swing.JFrame {
 
         btn_salir.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btn_salir.setForeground(new java.awt.Color(255, 255, 255));
-        btn_salir.setText("Salir");
+        btn_salir.setText("Regresar");
         btn_salir.setToolTipText("");
         btn_salir.setPreferredSize(new java.awt.Dimension(700, 70));
 
