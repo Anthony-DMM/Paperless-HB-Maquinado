@@ -19,23 +19,14 @@ import javax.swing.JOptionPane;
  * @author ANTHONY-MARTINEZ
  */
 public class Autenticacion_Controller implements ActionListener, KeyListener {
-    //Vistas
     Autenticacion autenticacion;
-    //First_windowRBP firts_window;
-    //ChoiceWindow choice_window;
-    //Metodos
     Autenticacion_Model autenticacion_model;
     DBConexion conexion;
-    //Metods metods;
-    //Variables
-    //String lineName;
     String codigo;
     
     
     public Autenticacion_Controller(Autenticacion autenticacion, Autenticacion_Model autenticacion_Model, DBConexion conexion) {
         this.autenticacion = autenticacion;
-        //this.firts_window = firts_window;
-        //this.choice_window = choice_window;
         this.autenticacion_model = autenticacion_Model;
         this.conexion = conexion;
 
@@ -59,21 +50,6 @@ public class Autenticacion_Controller implements ActionListener, KeyListener {
                     } else {
                         JOptionPane.showMessageDialog(null, "Acceso concedido");
                     }
-                    //int li = Integer.parseInt(line);
-                    /*lineName = login_window.get_line(line, choice_window, login, metods);
-                    if (lineName == null) {
-                        JOptionPane.showMessageDialog(null, "Datos incorrectos CC");
-                    } else {
-                        choice_window.jLabelProcess.setText(lineName);
-                        firts_window.jLabelProc.setText(lineName);
-                        if (lineName.equals("MAQUINADO")) {
-                            firts_window.jLabelProcess.setText("TH:");
-                        }
-                        
-                    }*/
-                    //metods.setLn(lineName);
-                    //choice_window.jLabelProcess.setText(lineName);
-                    //firts_window.jLabelProc.setText(lineName);
                 }
             }
 
@@ -84,14 +60,6 @@ public class Autenticacion_Controller implements ActionListener, KeyListener {
 
        
     }
-
-    /*public String getLineName() {
-        return lineName;
-    }
-
-    public void setLineName(String lineName) {
-        this.lineName = lineName;
-    }*/
 
     @Override
     public void keyTyped(KeyEvent e) {
