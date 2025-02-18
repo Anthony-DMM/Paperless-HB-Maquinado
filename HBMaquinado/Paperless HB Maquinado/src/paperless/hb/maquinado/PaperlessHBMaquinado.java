@@ -8,6 +8,7 @@ import Controller.Autenticacion_Controller;
 import Model.Autenticacion_Model;
 import Model.DBConexion;
 import View.Autenticacion;
+import View.Captura_Linea;
 import View.Opciones;
 
 /**
@@ -23,7 +24,8 @@ public class PaperlessHBMaquinado {
         // TODO code application logic here
         Autenticacion autenticacion = new Autenticacion();
         Opciones opciones = new Opciones();
-        opciones.setVisible(true);
+        Captura_Linea capturaLinea = new Captura_Linea();
+        capturaLinea.setVisible(true);
         
         
         //Model

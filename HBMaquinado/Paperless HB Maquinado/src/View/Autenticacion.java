@@ -40,7 +40,6 @@ public class Autenticacion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 1600));
-        setPreferredSize(new java.awt.Dimension(900, 1600));
         setResizable(false);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 1500));

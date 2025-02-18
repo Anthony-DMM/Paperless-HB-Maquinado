@@ -9,14 +9,16 @@ package Interfaces;
  * @author ANTHONY-MARTINEZ
  */
 public class MOG {
-    String mog, descripcion, no_dibujo, proceso, no_parte;
+    String mog, descripcion, no_dibujo, no_parte, std;
+    int cantidad_planeada;
 
-    public MOG(String mog, String descripcion, String no_dibujo, String proceso, String no_parte) {
+    public MOG(String mog, String descripcion, String no_dibujo, String no_parte, String std, int cantidad_planeada) {
         this.mog = mog;
         this.descripcion = descripcion;
         this.no_dibujo = no_dibujo;
-        this.proceso = proceso;
         this.no_parte = no_parte;
+        this.std = std;
+        this.cantidad_planeada = cantidad_planeada;
     }
 
     public String getMog() {
@@ -43,14 +45,6 @@ public class MOG {
         this.no_dibujo = no_dibujo;
     }
 
-    public String getProceso() {
-        return proceso;
-    }
-
-    public void setProceso(String proceso) {
-        this.proceso = proceso;
-    }
-
     public String getNo_parte() {
         return no_parte;
     }
@@ -58,6 +52,21 @@ public class MOG {
     public void setNo_parte(String no_parte) {
         this.no_parte = no_parte;
     }
-    
+
+    public String getStd() {
+        return std;
+    }
+
+    public void setStd(String std) {
+        this.std = std;
+    }
+
+    public int getCantidad_planeada() {
+        return cantidad_planeada;
+    }
+
+    public void setCantidad_planeada(int cantidad_planeada) {
+        this.cantidad_planeada = cantidad_planeada;
+    }
     
 }
