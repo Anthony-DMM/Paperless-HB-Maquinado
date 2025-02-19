@@ -10,6 +10,7 @@ import Model.DBConexion;
 import View.Autenticacion;
 import View.Captura_Linea;
 import View.Opciones;
+import View.Registro_Paro_Proceso;
 import View.Registro_RBP;
 
 /**
@@ -27,8 +28,9 @@ public class PaperlessHBMaquinado {
         Opciones opciones = new Opciones();
         Captura_Linea capturaLinea = new Captura_Linea();
         Registro_RBP registro_RBP = new Registro_RBP();
+        Registro_Paro_Proceso registro_Paro_Proceso = new Registro_Paro_Proceso(); 
         
-        registro_RBP.setVisible(true);
+        registro_Paro_Proceso.setVisible(true);
         
         
         // Model
