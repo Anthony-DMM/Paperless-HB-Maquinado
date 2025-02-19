@@ -8,6 +8,7 @@ import Controller.Autenticacion_Controller;
 import Model.Autenticacion_Model;
 import Model.DBConexion;
 import View.Autenticacion;
+import View.Cambio_MOG;
 import View.Captura_Linea;
 import View.Opciones;
 import View.Registro_Paro_Proceso;
@@ -27,10 +28,11 @@ public class PaperlessHBMaquinado {
         Autenticacion autenticacion = new Autenticacion();
         Opciones opciones = new Opciones();
         Captura_Linea capturaLinea = new Captura_Linea();
-        Registro_RBP registro_RBP = new Registro_RBP();
-        Registro_Paro_Proceso registro_Paro_Proceso = new Registro_Paro_Proceso(); 
+        Registro_RBP registroRBP = new Registro_RBP();
+        Cambio_MOG cambioMOG = new Cambio_MOG();
+        Registro_Paro_Proceso registroParoProceso = new Registro_Paro_Proceso(); 
         
-        registro_Paro_Proceso.setVisible(true);
+        capturaLinea.setVisible(true);
         
         
         // Model

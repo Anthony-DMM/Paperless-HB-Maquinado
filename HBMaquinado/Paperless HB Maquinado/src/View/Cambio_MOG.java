@@ -44,7 +44,7 @@ public class Cambio_MOG extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 1500));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 80)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 80)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Cambio de MOG");
