@@ -5,6 +5,7 @@
 package View;
 
 import java.awt.Color;
+import javax.swing.JTextField;
 
 /**
  *
@@ -36,9 +37,9 @@ public class Captura_Linea extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_linea_produccion = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_supervisor_asignado = new javax.swing.JTextField();
         lbl_orden_manufactura = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -69,15 +70,15 @@ public class Captura_Linea extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
         jLabel2.setText("Supervisor:");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 0));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txt_linea_produccion.setBackground(new java.awt.Color(255, 255, 0));
+        txt_linea_produccion.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
         jLabel3.setText("Línea:");
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txt_supervisor_asignado.setEditable(false);
+        txt_supervisor_asignado.setBackground(new java.awt.Color(204, 204, 204));
+        txt_supervisor_asignado.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
         lbl_orden_manufactura.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         lbl_orden_manufactura.setPreferredSize(new java.awt.Dimension(303, 100));
@@ -94,7 +95,7 @@ public class Captura_Linea extends javax.swing.JFrame {
         jTextField4.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
-        jLabel5.setText("Modelo:");
+        jLabel5.setText("Descripción:");
 
         jTextField5.setEditable(false);
         jTextField5.setBackground(new java.awt.Color(204, 204, 204));
@@ -149,11 +150,11 @@ public class Captura_Linea extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txt_linea_produccion, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txt_supervisor_asignado, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(lbl_orden_manufactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -199,11 +200,11 @@ public class Captura_Linea extends javax.swing.JFrame {
                 .addGap(80, 80, 80)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(txt_linea_produccion))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2))
+                    .addComponent(txt_supervisor_asignado))
                 .addGap(150, 150, 150)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbl_orden_manufactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -294,6 +295,24 @@ public class Captura_Linea extends javax.swing.JFrame {
         });
     }
 
+    public JTextField getTxt_linea_produccion() {
+        return txt_linea_produccion;
+    }
+
+    public void setTxt_linea_produccion(JTextField txt_linea_produccion) {
+        this.txt_linea_produccion = txt_linea_produccion;
+    }
+
+    public JTextField getTxt_supervisor_asignado() {
+        return txt_supervisor_asignado;
+    }
+
+    public void setTxt_supervisor_asignado(JTextField txt_supervisor_asignado) {
+        this.txt_supervisor_asignado = txt_supervisor_asignado;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_salir;
     private javax.swing.JButton btn_siguiente;
@@ -306,8 +325,6 @@ public class Captura_Linea extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
@@ -317,5 +334,7 @@ public class Captura_Linea extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lbl_cantidad_planeada;
     private javax.swing.JLabel lbl_orden_manufactura;
+    public javax.swing.JTextField txt_linea_produccion;
+    public javax.swing.JTextField txt_supervisor_asignado;
     // End of variables declaration//GEN-END:variables
 }
