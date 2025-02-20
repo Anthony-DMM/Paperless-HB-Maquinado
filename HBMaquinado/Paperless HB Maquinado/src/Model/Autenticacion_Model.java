@@ -54,7 +54,7 @@ public class Autenticacion_Model {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
-            Logger.getLogger(Captura_Linea_Model.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Captura_MOG_Model.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }

@@ -15,11 +15,11 @@ import javax.swing.JOptionPane;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Captura_Linea_Model {
+public class Captura_MOG_Model {
     
     private DBConexion conexion;
 
-    public Captura_Linea_Model(DBConexion conexion) {
+    public Captura_MOG_Model(DBConexion conexion) {
         this.conexion = conexion;
     }
     
@@ -37,7 +37,7 @@ public class Captura_Linea_Model {
             con.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
-            Logger.getLogger(Captura_Linea_Model.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Captura_MOG_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
         return supervisorAsignado;
     }

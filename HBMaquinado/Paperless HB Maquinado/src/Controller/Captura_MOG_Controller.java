@@ -4,8 +4,8 @@
  */
 package Controller;
 
-import Model.Captura_Linea_Model;
-import View.Captura_Linea;
+import Model.Captura_MOG_Model;
+import View.Captura_MOG;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,12 +20,12 @@ import java.awt.event.KeyListener;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Captura_Linea_Controller implements ActionListener, KeyListener{
+public class Captura_MOG_Controller implements ActionListener, KeyListener{
     String proceso = "MAQUINADO";
-    Captura_Linea_Model captura_Linea_Model;
-    Captura_Linea captura_Linea;
+    Captura_MOG_Model captura_Linea_Model;
+    Captura_MOG captura_Linea;
 
-    public Captura_Linea_Controller(Captura_Linea_Model captura_Linea_Model, Captura_Linea captura_Linea) {
+    public Captura_MOG_Controller(Captura_MOG_Model captura_Linea_Model, Captura_MOG captura_Linea) {
         this.captura_Linea_Model = captura_Linea_Model;
         this.captura_Linea = captura_Linea;
         
