@@ -41,19 +41,19 @@ public class Captura_MOG extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txt_supervisor_asignado = new javax.swing.JTextField();
         lbl_orden_manufactura = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_mog_capturada = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txt_mog = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_modelo = new javax.swing.JTextField();
         lbl_cantidad_planeada = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txt_cantidad_planeada = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txt_dibujo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txt_parte = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        txt_proceso = new javax.swing.JTextField();
         btn_salir = new javax.swing.JButton();
         btn_siguiente = new javax.swing.JButton();
 
@@ -83,51 +83,51 @@ public class Captura_MOG extends javax.swing.JFrame {
         lbl_orden_manufactura.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         lbl_orden_manufactura.setPreferredSize(new java.awt.Dimension(303, 100));
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 0));
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextField3.setPreferredSize(new java.awt.Dimension(6, 70));
+        txt_mog_capturada.setBackground(new java.awt.Color(255, 255, 0));
+        txt_mog_capturada.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txt_mog_capturada.setPreferredSize(new java.awt.Dimension(6, 70));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
         jLabel4.setText("MOG:");
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txt_mog.setEditable(false);
+        txt_mog.setBackground(new java.awt.Color(204, 204, 204));
+        txt_mog.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
-        jLabel5.setText("Descripción:");
+        jLabel5.setText("Modelo:");
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txt_modelo.setEditable(false);
+        txt_modelo.setBackground(new java.awt.Color(204, 204, 204));
+        txt_modelo.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
         lbl_cantidad_planeada.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         lbl_cantidad_planeada.setPreferredSize(new java.awt.Dimension(303, 100));
 
-        jTextField6.setEditable(false);
-        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField6.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txt_cantidad_planeada.setEditable(false);
+        txt_cantidad_planeada.setBackground(new java.awt.Color(204, 204, 204));
+        txt_cantidad_planeada.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
         jLabel7.setText("No. Dibujo:");
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField7.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txt_dibujo.setEditable(false);
+        txt_dibujo.setBackground(new java.awt.Color(204, 204, 204));
+        txt_dibujo.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
         jLabel8.setText("No. Parte:");
 
-        jTextField8.setEditable(false);
-        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField8.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txt_parte.setEditable(false);
+        txt_parte.setBackground(new java.awt.Color(204, 204, 204));
+        txt_parte.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
         jLabel9.setText("Proceso:");
 
-        jTextField9.setEditable(false);
-        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField9.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txt_proceso.setEditable(false);
+        txt_proceso.setBackground(new java.awt.Color(204, 204, 204));
+        txt_proceso.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
         btn_salir.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btn_salir.setForeground(new java.awt.Color(255, 255, 255));
@@ -158,23 +158,23 @@ public class Captura_MOG extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(lbl_orden_manufactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txt_mog_capturada, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txt_mog, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txt_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txt_dibujo, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txt_proceso, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,14 +182,14 @@ public class Captura_MOG extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txt_parte, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbl_cantidad_planeada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_cantidad_planeada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_siguiente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -208,31 +208,31 @@ public class Captura_MOG extends javax.swing.JFrame {
                 .addGap(150, 150, 150)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbl_orden_manufactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txt_mog_capturada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_mog, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbl_cantidad_planeada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField6))
+                    .addComponent(txt_cantidad_planeada))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_dibujo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_parte, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_proceso, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,6 +311,64 @@ public class Captura_MOG extends javax.swing.JFrame {
     public void setTxt_supervisor_asignado(JTextField txt_supervisor_asignado) {
         this.txt_supervisor_asignado = txt_supervisor_asignado;
     }
+
+    public JTextField getTxt_cantidad_planeada() {
+        return txt_cantidad_planeada;
+    }
+
+    public void setTxt_cantidad_planeada(JTextField txt_cantidad_planeada) {
+        this.txt_cantidad_planeada = txt_cantidad_planeada;
+    }
+
+    public JTextField getTxt_descripcion() {
+        return txt_modelo;
+    }
+
+    public void setTxt_descripcion(JTextField txt_descripcion) {
+        this.txt_modelo = txt_descripcion;
+    }
+
+    public JTextField getTxt_dibujo() {
+        return txt_dibujo;
+    }
+
+    public void setTxt_dibujo(JTextField txt_dibujo) {
+        this.txt_dibujo = txt_dibujo;
+    }
+
+    public JTextField getTxt_mog() {
+        return txt_mog;
+    }
+
+    public void setTxt_mog(JTextField txt_mog) {
+        this.txt_mog = txt_mog;
+    }
+
+    public JTextField getTxt_mog_capturada() {
+        return txt_mog_capturada;
+    }
+
+    public void setTxt_mog_capturada(JTextField txt_mog_capturada) {
+        this.txt_mog_capturada = txt_mog_capturada;
+    }
+
+    public JTextField getTxt_parte() {
+        return txt_parte;
+    }
+
+    public void setTxt_parte(JTextField txt_parte) {
+        this.txt_parte = txt_parte;
+    }
+
+    public JTextField getTxt_proceso() {
+        return txt_proceso;
+    }
+
+    public void setTxt_proceso(JTextField txt_proceso) {
+        this.txt_proceso = txt_proceso;
+    }
+    
+    
     
     
 
@@ -326,16 +384,16 @@ public class Captura_MOG extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lbl_cantidad_planeada;
     private javax.swing.JLabel lbl_orden_manufactura;
+    public javax.swing.JTextField txt_cantidad_planeada;
+    public javax.swing.JTextField txt_dibujo;
     public javax.swing.JTextField txt_linea_produccion;
+    public javax.swing.JTextField txt_modelo;
+    public javax.swing.JTextField txt_mog;
+    public javax.swing.JTextField txt_mog_capturada;
+    public javax.swing.JTextField txt_parte;
+    public javax.swing.JTextField txt_proceso;
     public javax.swing.JTextField txt_supervisor_asignado;
     // End of variables declaration//GEN-END:variables
 }

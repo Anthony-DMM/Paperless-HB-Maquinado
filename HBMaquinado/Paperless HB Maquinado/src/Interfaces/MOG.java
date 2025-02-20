@@ -4,13 +4,17 @@
  */
 package Interfaces;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
  *
  * @author ANTHONY-MARTINEZ
  */
-@Data public class MOG {
-    String mog, descripcion, no_dibujo, no_parte, std;
-    int cantidad_planeada;
+@Data
+@Builder
+public class MOG {
+    String mog, modelo, orden_manufactura, descripcion, no_dibujo, no_parte, std, tm;
+    double peso;
+    int cantidad_planeada, sequ;
 }

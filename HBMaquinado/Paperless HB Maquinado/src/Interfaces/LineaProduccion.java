@@ -14,5 +14,5 @@ import lombok.Data;
 @Data
 @Builder
 public class LineaProduccion {
-    String proceso, supervisor;
+    String linea, proceso, supervisor;
 }

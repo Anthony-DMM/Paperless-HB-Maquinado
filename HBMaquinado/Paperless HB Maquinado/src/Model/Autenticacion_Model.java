@@ -47,6 +47,7 @@ public class Autenticacion_Model {
                 return null;
             } else {
                 return LineaProduccion.builder()
+                        .linea(lineaProduccion)
                         .supervisor(supervisorAsignado)
                         .proceso(procesoMaquina)
                         .build();
