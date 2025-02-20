@@ -36,9 +36,9 @@ public class Captura_Linea_Model {
             supervisorAsignado=cst.getString(3);
             con.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "NO SE ENCONTRO NINGÚN SUPERVISOR ASIGNADO");
+            JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
             Logger.getLogger(Captura_Linea_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
         return supervisorAsignado;
-     }
+    }
 }

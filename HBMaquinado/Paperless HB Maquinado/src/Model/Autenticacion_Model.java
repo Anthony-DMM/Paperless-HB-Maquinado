@@ -4,6 +4,7 @@
  */
 package Model;
 
+import Interfaces.LineaProduccion;
 import View.Autenticacion;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -19,28 +20,43 @@ import javax.swing.JOptionPane;
  * @author ANTHONY-MARTINEZ
  */
 public class Autenticacion_Model {
-    
+
+    public LineaProduccion datosLinea;
     private DBConexion conexion;
 
     public Autenticacion_Model(DBConexion conexion) {
         this.conexion = conexion;
     }
-    
-    public String validar_supervisor(String codigoSupervisor){
-        String areaSupervisor = null;
+
+    public LineaProduccion validarLinea(String lineaProduccion, String procesoEsperado) {
+        String supervisorAsignado = null, procesoMaquina = null;
         Connection con;
-        con=conexion.conexionMySQL();
+        con = conexion.conexionMySQL();
         try {
-            CallableStatement cst = con.prepareCall("{call login(?,?,?)}");
-            cst.setString(1, codigoSupervisor);
-            cst.registerOutParameter(2, java.sql.Types.INTEGER);
+            CallableStatement cst = con.prepareCall("{call Supervisorname(?,?,?,?)}");
+            cst.setString(1, lineaProduccion);
+            cst.setString(2, procesoEsperado);
             cst.registerOutParameter(3, java.sql.Types.VARCHAR);
+            cst.registerOutParameter(4, java.sql.Types.VARCHAR);
             cst.executeQuery();
-            areaSupervisor=cst.getString(3);
+            supervisorAsignado = cst.getString(3);
+            procesoMaquina = cst.getString(4);
             con.close();
+
+            if (procesoMaquina == null) {
+                return null;
+            } else {
+                return LineaProduccion.builder()
+                        .supervisor(supervisorAsignado)
+                        .proceso(procesoMaquina)
+                        .build();
+            }
+
         } catch (SQLException ex) {
-            Logger.getLogger(Autenticacion_Model.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
+            Logger.getLogger(Captura_Linea_Model.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        return areaSupervisor;
     }
+
 }

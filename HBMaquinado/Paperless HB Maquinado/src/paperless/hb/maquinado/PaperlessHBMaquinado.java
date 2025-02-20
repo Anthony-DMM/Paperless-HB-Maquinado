@@ -34,7 +34,7 @@ public class PaperlessHBMaquinado {
         Cambio_MOG cambioMOG = new Cambio_MOG();
         Registro_Paro_Proceso registroParoProceso = new Registro_Paro_Proceso(); 
         
-        capturaLinea.setVisible(true);
+        autenticacion.setVisible(true);
         
         
         // Model

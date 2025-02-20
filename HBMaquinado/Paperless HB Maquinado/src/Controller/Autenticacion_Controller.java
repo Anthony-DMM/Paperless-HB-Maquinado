@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Interfaces.LineaProduccion;
 import Model.Autenticacion_Model;
 import Model.DBConexion;
 import View.Autenticacion;
@@ -37,19 +38,17 @@ public class Autenticacion_Controller implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == autenticacion.getBtn_ingresar()) {
-            String codigoSupervisor = autenticacion.getTxt_codigo_supervisor().getText();
-            if (codigoSupervisor.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Debes ingresar el código de supervisor de área");
+            String lineaProduccion = autenticacion.getTxt_linea_produccion().getText();
+            if (lineaProduccion.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar la línea de producción");
             } else {
-                String areaSupervisor = autenticacion_model.validar_supervisor(codigoSupervisor);
-                if (areaSupervisor == null) {
-                    JOptionPane.showMessageDialog(null, "Datos incorrectos, favor de verificar");
+                LineaProduccion linea = autenticacion_model.validarLinea(lineaProduccion, "MAQUINADO");
+                if (linea == null) {
+                    JOptionPane.showMessageDialog(null, "La línea de producción no existe o no pertenece al área de MAQUINADO.");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Acceso concedido");
-                    opciones.setVisible(true);
-                    autenticacion.setVisible(false);
+                    JOptionPane.showMessageDialog(null, "La línea de producción SI pertenece al área de MAQUINADO");
                 }
-                autenticacion.getTxt_codigo_supervisor().setText(null);
+                autenticacion.getTxt_linea_produccion().setText(null);
             }
         } else if (e.getSource() == autenticacion.getBtn_salir()) {
             System.exit(0);

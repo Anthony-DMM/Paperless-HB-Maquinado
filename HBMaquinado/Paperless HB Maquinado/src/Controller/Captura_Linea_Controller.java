@@ -40,7 +40,7 @@ public class Captura_Linea_Controller implements ActionListener, KeyListener{
                 String lineaProduccionIngresada = captura_Linea.txt_linea_produccion.getText();
                 String supervisorAsignado = captura_Linea_Model.validarLinea(lineaProduccionIngresada, proceso);
                 if (lineaProduccionIngresada.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Ingresa la línea de producción");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una línea de producción");
                 } else {
                     if (supervisorAsignado == null) {
                         JOptionPane.showMessageDialog(null, "No se ha encontrado la linea de producción");

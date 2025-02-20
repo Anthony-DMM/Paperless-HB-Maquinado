@@ -7,6 +7,7 @@ package View;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -36,9 +37,9 @@ public class Autenticacion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lbl_bienvenido = new javax.swing.JLabel();
         lbl_codigo_supervisor = new javax.swing.JLabel();
-        txt_codigo_supervisor = new javax.swing.JPasswordField();
         btn_ingresar = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
+        txt_linea_produccion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 1600));
@@ -46,24 +47,20 @@ public class Autenticacion extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 1500));
 
-        lbl_bienvenido.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        lbl_bienvenido.setFont(new java.awt.Font("Arial", 1, 80)); // NOI18N
+        lbl_bienvenido.setForeground(new java.awt.Color(0, 102, 0));
         lbl_bienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_bienvenido.setText("Bienvenido");
+        lbl_bienvenido.setText("MAQUINADO");
         lbl_bienvenido.setPreferredSize(new java.awt.Dimension(700, 50));
 
-        lbl_codigo_supervisor.setFont(new java.awt.Font("Arial", 1, 40)); // NOI18N
-        lbl_codigo_supervisor.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_codigo_supervisor.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         lbl_codigo_supervisor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_codigo_supervisor.setText("Ingrese el código de supervisor");
+        lbl_codigo_supervisor.setText("Línea de producción");
         lbl_codigo_supervisor.setPreferredSize(new java.awt.Dimension(700, 50));
-
-        txt_codigo_supervisor.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        txt_codigo_supervisor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_codigo_supervisor.setPreferredSize(new java.awt.Dimension(700, 70));
 
         btn_ingresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btn_ingresar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_ingresar.setText("Ingresar");
+        btn_ingresar.setText("Continuar");
         btn_ingresar.setPreferredSize(new java.awt.Dimension(700, 70));
 
         btn_salir.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
@@ -71,34 +68,44 @@ public class Autenticacion extends javax.swing.JFrame {
         btn_salir.setText("Salir");
         btn_salir.setPreferredSize(new java.awt.Dimension(700, 70));
 
+        txt_linea_produccion.setBackground(new java.awt.Color(255, 255, 0));
+        txt_linea_produccion.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
+        txt_linea_produccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_linea_produccion.setPreferredSize(new java.awt.Dimension(6, 70));
+        txt_linea_produccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_linea_produccionKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_codigo_supervisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_codigo_supervisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_ingresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_bienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_codigo_supervisor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_linea_produccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(50, 50, 50))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(300, 300, 300)
-                .addComponent(lbl_bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(lbl_codigo_supervisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(txt_codigo_supervisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
+                .addComponent(lbl_bienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(57, 57, 57)
+                .addComponent(lbl_codigo_supervisor, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(txt_linea_produccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(134, 134, 134)
                 .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(635, Short.MAX_VALUE))
+                .addGap(685, 685, 685))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,6 +128,13 @@ public class Autenticacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txt_linea_produccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_linea_produccionKeyTyped
+        if(txt_linea_produccion.getText().length() >= 4)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_linea_produccionKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -141,16 +155,15 @@ public class Autenticacion extends javax.swing.JFrame {
         this.btn_salir = btn_salir;
     }
 
-    public JPasswordField getTxt_codigo_supervisor() {
-        return txt_codigo_supervisor;
+    public JTextField getTxt_linea_produccion() {
+        return txt_linea_produccion;
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public void setTxt_codigo_supervisor(JPasswordField txt_codigo_supervisor) {
-        this.txt_codigo_supervisor = txt_codigo_supervisor;
+    public void setTxt_linea_produccion(JTextField txt_linea_produccion) {
+        this.txt_linea_produccion = txt_linea_produccion;
     }
+    
+    
     
     
    
@@ -160,6 +173,6 @@ public class Autenticacion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_bienvenido;
     private javax.swing.JLabel lbl_codigo_supervisor;
-    public javax.swing.JPasswordField txt_codigo_supervisor;
+    private javax.swing.JTextField txt_linea_produccion;
     // End of variables declaration//GEN-END:variables
 }
