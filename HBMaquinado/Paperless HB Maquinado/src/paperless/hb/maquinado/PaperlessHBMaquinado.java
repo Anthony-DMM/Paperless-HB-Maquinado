@@ -46,7 +46,7 @@ public class PaperlessHBMaquinado {
         
         // Controller
         Captura_Linea_Controller captura_Linea_Controller = new Captura_Linea_Controller(captura_Linea_Model, capturaLinea);
-        Autenticacion_Controller autenticacion_Controller = new Autenticacion_Controller(autenticacion, autenticacion_Model, opciones, conexion);
+        Autenticacion_Controller autenticacion_Controller = new Autenticacion_Controller(autenticacion, autenticacion_Model, capturaLinea, conexion);
     }
     
 }

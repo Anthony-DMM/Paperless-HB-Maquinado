@@ -131,7 +131,7 @@ public class Captura_Linea extends javax.swing.JFrame {
 
         btn_salir.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btn_salir.setForeground(new java.awt.Color(255, 255, 255));
-        btn_salir.setText("Salir");
+        btn_salir.setText("Regresar");
         btn_salir.setMaximumSize(new java.awt.Dimension(120, 60));
         btn_salir.setMinimumSize(new java.awt.Dimension(120, 60));
         btn_salir.setPreferredSize(new java.awt.Dimension(350, 80));

@@ -8,6 +8,7 @@ import Interfaces.LineaProduccion;
 import Model.Autenticacion_Model;
 import Model.DBConexion;
 import View.Autenticacion;
+import View.Captura_Linea;
 import View.Opciones;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,12 +25,12 @@ import javax.swing.JOptionPane;
 public class Autenticacion_Controller implements ActionListener {
     Autenticacion autenticacion;
     Autenticacion_Model autenticacion_model;
-    Opciones opciones;
+    Captura_Linea capturaLinea;
 
-    public Autenticacion_Controller(Autenticacion autenticacion, Autenticacion_Model autenticacion_model, Opciones opciones, DBConexion conexion) {
+    public Autenticacion_Controller(Autenticacion autenticacion, Autenticacion_Model autenticacion_model, Captura_Linea captura_Linea, DBConexion conexion) {
         this.autenticacion = autenticacion;
         this.autenticacion_model = autenticacion_model;
-        this.opciones = opciones;
+        this.capturaLinea = captura_Linea;
 
         autenticacion.getBtn_ingresar().addActionListener(this);
         autenticacion.getBtn_salir().addActionListener(this);
@@ -46,7 +47,8 @@ public class Autenticacion_Controller implements ActionListener {
                 if (linea == null) {
                     JOptionPane.showMessageDialog(null, "La línea de producción no existe o no pertenece al área de MAQUINADO.");
                 } else {
-                    JOptionPane.showMessageDialog(null, "La línea de producción SI pertenece al área de MAQUINADO");
+                    capturaLinea.setVisible(true);
+                    autenticacion.setVisible(false);
                 }
                 autenticacion.getTxt_linea_produccion().setText(null);
             }
