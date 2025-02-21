@@ -5,7 +5,7 @@
 package Model;
 
 import Interfaces.LineaProduccion;
-import View.Autenticacion;
+import View.Validar_Linea;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,11 +19,11 @@ import javax.swing.JOptionPane;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Autenticacion_Model {
+public class Validar_Linea_Model {
     
     private DBConexion conexion;
 
-    public Autenticacion_Model(DBConexion conexion) {
+    public Validar_Linea_Model(DBConexion conexion) {
         this.conexion = conexion;
     }
 

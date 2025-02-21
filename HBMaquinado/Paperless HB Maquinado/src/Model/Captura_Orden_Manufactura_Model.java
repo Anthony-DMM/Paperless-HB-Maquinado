@@ -42,7 +42,6 @@ public class Captura_Orden_Manufactura_Model {
         while (res.next()) {
             
             MOG datosMOG = MOG.getInstance();
-            System.out.println(res.getString(1));
             String no = res.getString(1);
             String numeroParte = null;
             if (ordenManufactura.contains("HBL")) {

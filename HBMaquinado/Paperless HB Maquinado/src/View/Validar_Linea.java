@@ -13,12 +13,12 @@ import javax.swing.JTextField;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Autenticacion extends javax.swing.JFrame {
+public class Validar_Linea extends javax.swing.JFrame {
 
     /**
      * Creates new form Autenticacion
      */
-    public Autenticacion() {
+    public Validar_Linea() {
         initComponents();
         setLocationRelativeTo(null);
         btn_ingresar.setBackground(Color.black);
