@@ -20,8 +20,7 @@ import javax.swing.JOptionPane;
  * @author ANTHONY-MARTINEZ
  */
 public class Autenticacion_Model {
-
-    public LineaProduccion datosLinea;
+    
     private DBConexion conexion;
 
     public Autenticacion_Model(DBConexion conexion) {
@@ -46,7 +45,7 @@ public class Autenticacion_Model {
             if (procesoMaquina == null) {
                 return null;
             } else {
-                LineaProduccion linea = LineaProduccion.getInstance(); // Obtener la instancia única
+                LineaProduccion linea = LineaProduccion.getInstance();
                 linea.setLinea(lineaProduccion);
                 linea.setSupervisor(supervisorAsignado);
                 linea.setProceso(procesoMaquina);

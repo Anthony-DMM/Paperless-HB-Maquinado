@@ -6,8 +6,8 @@ package Controller;
 
 import Interfaces.LineaProduccion;
 import Interfaces.MOG;
-import Model.Captura_MOG_Model;
-import View.Captura_MOG;
+import Model.Captura_Orden_Manufactura_Model;
+import View.Captura_Orden_Manufactura;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,14 +22,11 @@ import java.awt.event.KeyListener;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Captura_MOG_Controller implements ActionListener, KeyListener{
-    String proceso = "MAQUINADO";
-    Captura_MOG_Model captura_Linea_Model;
-    LineaProduccion lineaProduccion;
-    Captura_MOG capturaMOG;
-    MOG mog;
+public class Captura_Orden_Manufactura_Controller implements ActionListener, KeyListener{
+    Captura_Orden_Manufactura_Model captura_Linea_Model;
+    Captura_Orden_Manufactura capturaMOG;
 
-    public Captura_MOG_Controller(Captura_MOG_Model captura_Linea_Model, Captura_MOG captura_Linea) {
+    public Captura_Orden_Manufactura_Controller(Captura_Orden_Manufactura_Model captura_Linea_Model, Captura_Orden_Manufactura captura_Linea) {
         this.captura_Linea_Model = captura_Linea_Model;
         this.capturaMOG = captura_Linea;
         
@@ -62,17 +59,18 @@ public class Captura_MOG_Controller implements ActionListener, KeyListener{
                 } else {
                     try {
                         captura_Linea_Model.obtenerDatosOrden(ordenIngresada);
-                         
-                        //LLENADO DE LOS CAMPOS DE LA ORDEN DE MANUFACTURA
-                        capturaMOG.txt_mog.setText(mog.getMog());
-                        capturaMOG.txt_modelo.setText(mog.getModelo());
-                        capturaMOG.txt_dibujo.setText(mog.getNo_dibujo());
-                        capturaMOG.txt_cantidad_planeada.setText(Integer.toString(mog.getCantidad_planeada()));
-                        capturaMOG.txt_parte.setText(mog.getNo_parte());
-                        capturaMOG.txt_proceso.setText(lineaProduccion.getProceso());
+                        MOG datosMOG = MOG.getInstance();
+                        LineaProduccion datosLinea = LineaProduccion.getInstance();
+
+                        capturaMOG.txt_mog.setText(datosMOG.getMog());
+                        capturaMOG.txt_modelo.setText(datosMOG.getModelo());
+                        capturaMOG.txt_dibujo.setText(datosMOG.getNo_dibujo());
+                        capturaMOG.txt_cantidad_planeada.setText(Integer.toString(datosMOG.getCantidad_planeada()));
+                        capturaMOG.txt_parte.setText(datosMOG.getNo_parte());
+                        capturaMOG.txt_proceso.setText(datosLinea.getProceso());
 
                     } catch (SQLException ex) {
-                        Logger.getLogger(Captura_MOG_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Captura_Orden_Manufactura_Controller.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }

@@ -14,7 +14,20 @@ import lombok.Data;
 @Data
 @Builder
 public class MOG {
-    String mog, modelo, orden_manufactura, descripcion, no_dibujo, no_parte, std, tm;
-    double peso;
-    int cantidad_planeada, sequ;
+    private static MOG instance;
+    
+    private String mog, modelo, orden_manufactura, descripcion, no_dibujo, no_parte, std, tm;
+    private double peso;
+    private int cantidad_planeada, sequ;
+    
+    public static MOG getInstance() {
+        if (instance == null) {
+            instance = MOG.builder().build();
+        }
+        return instance;
+    }
+    
+    public static void setInstance(MOG mog) {
+        instance = mog;
+    }
 }
