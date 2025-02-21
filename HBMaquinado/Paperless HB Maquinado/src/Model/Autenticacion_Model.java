@@ -46,16 +46,16 @@ public class Autenticacion_Model {
             if (procesoMaquina == null) {
                 return null;
             } else {
-                return LineaProduccion.builder()
-                        .linea(lineaProduccion)
-                        .supervisor(supervisorAsignado)
-                        .proceso(procesoMaquina)
-                        .build();
+                LineaProduccion linea = LineaProduccion.getInstance(); // Obtener la instancia única
+                linea.setLinea(lineaProduccion);
+                linea.setSupervisor(supervisorAsignado);
+                linea.setProceso(procesoMaquina);
+                return linea;
             }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
-            Logger.getLogger(Captura_MOG_Model.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Captura_Orden_Manufactura_Model.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }

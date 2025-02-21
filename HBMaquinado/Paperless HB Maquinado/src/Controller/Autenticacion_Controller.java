@@ -8,7 +8,7 @@ import Interfaces.LineaProduccion;
 import Model.Autenticacion_Model;
 import Model.DBConexion;
 import View.Autenticacion;
-import View.Captura_MOG;
+import View.Captura_Orden_Manufactura;
 import View.Opciones;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,9 +25,9 @@ import javax.swing.JOptionPane;
 public class Autenticacion_Controller implements ActionListener {
     Autenticacion autenticacion;
     Autenticacion_Model autenticacion_model;
-    Captura_MOG capturaLinea;
+    Captura_Orden_Manufactura capturaLinea;
 
-    public Autenticacion_Controller(Autenticacion autenticacion, Autenticacion_Model autenticacion_model, Captura_MOG captura_Linea, DBConexion conexion) {
+    public Autenticacion_Controller(Autenticacion autenticacion, Autenticacion_Model autenticacion_model, Captura_Orden_Manufactura captura_Linea, DBConexion conexion) {
         this.autenticacion = autenticacion;
         this.autenticacion_model = autenticacion_model;
         this.capturaLinea = captura_Linea;
