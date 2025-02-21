@@ -72,7 +72,13 @@ public class Captura_Orden_Manufactura_Controller implements ActionListener, Key
                     JOptionPane.showMessageDialog(null, "Debe ingresar un código de supervisor");
                 } else {
                     try {
-                        captura_Linea_Model.validarSupervisor(codigoIngresado);
+                        // Verificar si la consulta es válida
+                        if (captura_Linea_Model.validarSupervisor(codigoIngresado)) {
+                            LineaProduccion datosLinea = LineaProduccion.getInstance();
+
+                            // Actualizar la interfaz de usuario con el supervisor obtenido
+                            capturaOrdenManufactura.txt_supervisor_asignado.setText(datosLinea.getSupervisor());
+                        }
                     } catch (Exception ex) {
                         Logger.getLogger(Captura_Orden_Manufactura_Controller.class.getName()).log(Level.SEVERE, null, ex);
                     }

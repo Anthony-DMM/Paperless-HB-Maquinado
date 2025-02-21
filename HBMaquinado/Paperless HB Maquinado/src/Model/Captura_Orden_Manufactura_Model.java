@@ -6,11 +6,14 @@ package Model;
 
 import Interfaces.LineaProduccion;
 import Interfaces.MOG;
+import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -70,38 +73,54 @@ public class Captura_Orden_Manufactura_Model {
         cone.close();
     }
     
-    public String validarSupervisor(String codigo_supervisor){
+    public boolean validarSupervisor(String codigo_supervisor) throws SQLException {
         String linea_produccion = LineaProduccion.getInstance().getLinea();
-        Connection con;
-        con=conexion.conexionMySQL();
-        try {
-            PreparedStatement pst = con.prepareStatement("SELECT nombre_empleado, apellido, codigo_maquina, nombre_work_center\n" +
-                                                    "FROM empleado\n" +
-                                                    "INNER JOIN empleado_supervisor ON empleado_supervisor.empleado_id_empleado = empleado.id_empleado\n" +
-                                                    "INNER JOIN work_center_maquina ON work_center_maquina.empleado_supervisor_id_empleado_supervisor = empleado_supervisor.id_empleado_supervisor\n" +
-                                                    "WHERE empleado_supervisor.empleado_id_empleado = " + codigo_supervisor + " AND work_center_maquina.codigo_maquina = '" + linea_produccion + "';");
-            ResultSet rs = pst.executeQuery();
-            /*cst.setString(1, linea_produccion);
-            cst.setString(2, proceso);
-            cst.registerOutParameter(3, java.sql.Types.VARCHAR);
-            cst.executeQuery();*/
-            while (rs.next()) {
-                String nombreEmpleado = rs.getString("nombre_empleado");
-                String apellido = rs.getString("apellido");
-                String codigoMaquina = rs.getString("codigo_maquina");
-                String nombreWorkCenter = rs.getString("nombre_work_center");
+        String linea_obtenida = null, supervisor_obtenido = null;
 
-                // Imprimir los resultados
-                System.out.println("Nombre: " + nombreEmpleado + " " + apellido);
-                System.out.println("Código Máquina: " + codigoMaquina);
-                System.out.println("Work Center: " + nombreWorkCenter);
-                System.out.println("-----------------------------");
+        try (Connection con = conexion.conexionMySQL();
+             CallableStatement cst = con.prepareCall("{call ObtenerSupervisorAsignado(?,?,?,?,?)}")) {
+
+            // Establecer parámetros de entrada
+            cst.setString(1, codigo_supervisor);
+            cst.setString(2, linea_produccion);
+
+            // Registrar parámetros de salida
+            cst.registerOutParameter(3, java.sql.Types.VARCHAR); // nombre_completo
+            cst.registerOutParameter(4, java.sql.Types.VARCHAR); // codigo_maquina
+            cst.registerOutParameter(5, java.sql.Types.VARCHAR); // nombre_work_center
+
+            // Ejecutar el procedimiento almacenado
+            cst.execute();
+
+            // Obtener los valores de los parámetros de salida
+            supervisor_obtenido = cst.getString(3);
+            linea_obtenida = cst.getString(4);
+
+            // Verificar si los valores son nulos
+            if (supervisor_obtenido == null || linea_obtenida == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
+                return false; // La consulta no es válida
             }
-            con.close();
+
+            // Comparar los valores obtenidos
+            if (!linea_obtenida.equals(linea_produccion)) {
+                JOptionPane.showMessageDialog(null, "El supervisor pertenece a otra línea de producción");
+                return false; // La consulta no es válida
+            } else if (!supervisor_obtenido.equals(LineaProduccion.getInstance().getSupervisor())) {
+                JOptionPane.showMessageDialog(null, "El supervisor no coincide con el esperado");
+                return false; // La consulta no es válida
+            } else {
+                // La consulta es válida
+                JOptionPane.showMessageDialog(null, "Supervisor válido");
+                // Actualizar la instancia de LineaProduccion con el supervisor obtenido
+                LineaProduccion.getInstance().setSupervisor(supervisor_obtenido);
+                return true; // La consulta es válida
+            }
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
+            JOptionPane.showMessageDialog(null, "Error al validar el supervisor: " + ex.getMessage());
             Logger.getLogger(Captura_Orden_Manufactura_Model.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex; // Relanzar la excepción para manejarla en el controlador
         }
-        return linea_produccion;
     }
 }
