@@ -86,6 +86,11 @@ public class Captura_Orden_Manufactura extends javax.swing.JFrame {
         txt_mog_capturada.setBackground(new java.awt.Color(255, 255, 0));
         txt_mog_capturada.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         txt_mog_capturada.setPreferredSize(new java.awt.Dimension(6, 70));
+        txt_mog_capturada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_mog_capturadaKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
         jLabel4.setText("MOG:");
@@ -259,6 +264,13 @@ public class Captura_Orden_Manufactura extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txt_mog_capturadaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_mog_capturadaKeyTyped
+        if(txt_mog_capturada.getText().length() >= 9)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_mog_capturadaKeyTyped
 
     /**
      * @param args the command line arguments

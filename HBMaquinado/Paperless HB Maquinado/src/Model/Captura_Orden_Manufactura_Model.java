@@ -31,7 +31,7 @@ public class Captura_Orden_Manufactura_Model {
         cone = conexion.oracle();
         sen = cone.createStatement();
         
-        // Sentencia de consulta en ERP
+        // Consulta en ERP
         sen.executeUpdate("ALTER SESSION SET CURRENT_SCHEMA = BAANLN");
         res = sen.executeQuery("SELECT ttcibd001500.T$ITEM, ttidms602500.T$RPNO,ttcibd001500.T$SEAK,\n"
                 + "ttidms602500.T$PDNO,ttidms602500.T$OQTY,ttcibd001500.T$SEAB, ttcibd001500.T$WGHT,"
@@ -42,44 +42,16 @@ public class Captura_Orden_Manufactura_Model {
         while (res.next()) {
             
             MOG datosMOG = MOG.getInstance();
-            
+            System.out.println(res.getString(1));
             String no = res.getString(1);
             String numeroParte = null;
-            if (ordenManufactura.contains("BHL")) {
-                numeroParte = no.replace("-TB", "");
+            if (ordenManufactura.contains("HBL")) {
+                numeroParte = no.replace("-TH", "");
                 numeroParte = numeroParte.trim();
                 datosMOG.setNo_parte(numeroParte);
                 
             } else {
-                if (ordenManufactura.contains("BCO")) {
-                    numeroParte = no.replace("-TCO", "");
-                    numeroParte = numeroParte.trim();
-                    datosMOG.setNo_parte(numeroParte);
-                } else {
-                    if (ordenManufactura.contains("BCH")) {
-                        numeroParte = no.replace("-TCH", "");
-                        numeroParte = numeroParte.trim();
-                        datosMOG.setNo_parte(numeroParte);
-                    } else {
-                        if (ordenManufactura.contains("BGR")) {
-                            numeroParte = no.replace("-TGR", "");
-                            numeroParte = numeroParte.trim();
-                            datosMOG.setNo_parte(numeroParte);
-                        } else {
-                            if (ordenManufactura.contains("PCK")) {
-                                numeroParte = no.replace("-MX", "");
-                                numeroParte = numeroParte.trim();
-                                datosMOG.setNo_parte(numeroParte);
-                            } else {
-                                if (ordenManufactura.contains("ASL")) {
-                                    numeroParte = no.replace("-MX", "");
-                                    numeroParte = numeroParte.trim();
-                                    datosMOG.setNo_parte(numeroParte);
-                                }
-                            }
-                        }
-                    }
-                }
+                datosMOG.setNo_parte(numeroParte);
             }
             
             datosMOG.setMog(res.getString(2));

@@ -39,19 +39,6 @@ public class Captura_Orden_Manufactura_Controller implements ActionListener, Key
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().getClass().toString().equals("class javax.swing.JTextField")) {
             JTextField text_field = (JTextField) e.getSource();
-            /*if (text_field.equals(capturaMOG.txt_linea_produccion)) {
-                String lineaProduccionIngresada = capturaMOG.txt_linea_produccion.getText();
-                String supervisorAsignado = captura_Linea_Model.validarLinea(lineaProduccionIngresada, proceso);
-                if (lineaProduccionIngresada.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una línea de producción");
-                } else {
-                    if (supervisorAsignado == null) {
-                        JOptionPane.showMessageDialog(null, "No se ha encontrado la linea de producción");
-                    } else {
-                        capturaMOG.getTxt_supervisor_asignado().setText(supervisorAsignado);
-                    }
-                }
-            }*/
             if (text_field.equals(capturaMOG.txt_mog_capturada)) {
                 String ordenIngresada = capturaMOG.txt_mog_capturada.getText();
                 if (ordenIngresada.isEmpty()) {
