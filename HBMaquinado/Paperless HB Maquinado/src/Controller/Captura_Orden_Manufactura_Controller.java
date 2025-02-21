@@ -66,6 +66,17 @@ public class Captura_Orden_Manufactura_Controller implements ActionListener, Key
                         Logger.getLogger(Captura_Orden_Manufactura_Controller.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            } else if (text_field.equals(capturaOrdenManufactura.txt_codigo_supervisor)) {
+                String codigoIngresado = capturaOrdenManufactura.txt_codigo_supervisor.getText();
+                if (codigoIngresado.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Debe ingresar un código de supervisor");
+                } else {
+                    try {
+                        captura_Linea_Model.validarSupervisor(codigoIngresado);
+                    } catch (Exception ex) {
+                        Logger.getLogger(Captura_Orden_Manufactura_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         }
         else if (e.getSource().getClass().toString().equals("class javax.swing.JButton")) {

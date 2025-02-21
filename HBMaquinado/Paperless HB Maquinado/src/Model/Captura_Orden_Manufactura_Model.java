@@ -4,8 +4,10 @@
  */
 package Model;
 
+import Interfaces.LineaProduccion;
 import Interfaces.MOG;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -68,23 +70,38 @@ public class Captura_Orden_Manufactura_Model {
         cone.close();
     }
     
-    
-    /*public String validarLinea(String linea_produccion, String proceso){
-        String supervisorAsignado = null;
+    public String validarSupervisor(String codigo_supervisor){
+        String linea_produccion = LineaProduccion.getInstance().getLinea();
         Connection con;
         con=conexion.conexionMySQL();
         try {
-            CallableStatement cst = con.prepareCall("{call Supervisorname(?,?,?)}");
-            cst.setString(1, linea_produccion);
+            PreparedStatement pst = con.prepareStatement("SELECT nombre_empleado, apellido, codigo_maquina, nombre_work_center\n" +
+                                                    "FROM empleado\n" +
+                                                    "INNER JOIN empleado_supervisor ON empleado_supervisor.empleado_id_empleado = empleado.id_empleado\n" +
+                                                    "INNER JOIN work_center_maquina ON work_center_maquina.empleado_supervisor_id_empleado_supervisor = empleado_supervisor.id_empleado_supervisor\n" +
+                                                    "WHERE empleado_supervisor.empleado_id_empleado = " + codigo_supervisor + " AND work_center_maquina.codigo_maquina = '" + linea_produccion + "';");
+            ResultSet rs = pst.executeQuery();
+            /*cst.setString(1, linea_produccion);
             cst.setString(2, proceso);
             cst.registerOutParameter(3, java.sql.Types.VARCHAR);
-            cst.executeQuery();
-            supervisorAsignado=cst.getString(3);
+            cst.executeQuery();*/
+            while (rs.next()) {
+                String nombreEmpleado = rs.getString("nombre_empleado");
+                String apellido = rs.getString("apellido");
+                String codigoMaquina = rs.getString("codigo_maquina");
+                String nombreWorkCenter = rs.getString("nombre_work_center");
+
+                // Imprimir los resultados
+                System.out.println("Nombre: " + nombreEmpleado + " " + apellido);
+                System.out.println("Código Máquina: " + codigoMaquina);
+                System.out.println("Work Center: " + nombreWorkCenter);
+                System.out.println("-----------------------------");
+            }
             con.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
             Logger.getLogger(Captura_Orden_Manufactura_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return supervisorAsignado;
-    }*/
+        return linea_produccion;
+    }
 }
