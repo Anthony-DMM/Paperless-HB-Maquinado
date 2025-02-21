@@ -7,25 +7,31 @@ WHERE empleado_supervisor.empleado_id_empleado = 2 AND work_center_maquina.codig
 DELIMITER $$
 
 CREATE PROCEDURE ObtenerSupervisorAsignado(
-	IN p_codigo_supervisor INT,
-    IN p_codigo_maquina VARCHAR
+    IN p_codigo_supervisor INT,
+    IN p_codigo_maquina VARCHAR(80),
+    OUT p_nombre_completo VARCHAR(160),
+    OUT p_codigo_maquina_out VARCHAR(80),
+    OUT p_nombre_work_center VARCHAR(80)
 )
 BEGIN
-	SELECT
-    	CONCAT(nombre_empleado, ' ', apellido) AS nombre_completo,
+    -- Realizar la consulta y asignar los valores a los parámetros OUT
+    SELECT 
+        CONCAT(nombre_empleado, ' ', apellido),
         codigo_maquina,
         nombre_work_center
-    FROM
-    	empleado
+    INTO
+        p_nombre_completo,
+        p_codigo_maquina_out,
+        p_nombre_work_center
+    FROM 
+        empleado
     INNER JOIN 
-    	empleado_supervisor ON empleado_supervisor.empleado_id_empleado = empleado.id_empleado
-    INNER JOIN
-    	work_center_maquina ON work_center_maquina.empleado_supervisor_id_empleado_supervisor = empleado_supervisor.id_empleado_supervisor
-    WHERE
-    	empleado_supervisor.empleado_id_empleado = p_codigo_supervisor
-    AND
-    	work_center_maquina.codigo_maquina = p_codigo_maquina;
+        empleado_supervisor ON empleado_supervisor.empleado_id_empleado = empleado.id_empleado
+    INNER JOIN 
+        work_center_maquina ON work_center_maquina.empleado_supervisor_id_empleado_supervisor = empleado_supervisor.id_empleado_supervisor
+    WHERE 
+        empleado_supervisor.empleado_id_empleado = p_codigo_supervisor 
+        AND work_center_maquina.codigo_maquina = p_codigo_maquina;
 END$$
-
 
 DELIMITER ;

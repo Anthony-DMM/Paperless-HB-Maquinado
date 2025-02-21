@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-02-2025 a las 12:23:38
+-- Tiempo de generación: 21-02-2025 a las 14:26:27
 -- Versión del servidor: 10.3.13-MariaDB
 -- Versión de PHP: 7.3.7
 
@@ -2179,6 +2179,26 @@ end if;
 
 END$$
 
+CREATE DEFINER=`adminpaperless`@`%` PROCEDURE `ObtenerSupervisorAsignado` (IN `p_codigo_supervisor` INT, IN `p_codigo_maquina` VARCHAR(80), OUT `p_nombre_completo` VARCHAR(160), OUT `p_codigo_maquina_out` VARCHAR(80), OUT `p_nombre_work_center` VARCHAR(80))   BEGIN
+    SELECT 
+        CONCAT(nombre_empleado, ' ', apellido),
+        codigo_maquina,
+        nombre_work_center
+    INTO
+        p_nombre_completo,
+        p_codigo_maquina_out,
+        p_nombre_work_center
+    FROM 
+        empleado
+    INNER JOIN 
+        empleado_supervisor ON empleado_supervisor.empleado_id_empleado = empleado.id_empleado
+    INNER JOIN 
+        work_center_maquina ON work_center_maquina.empleado_supervisor_id_empleado_supervisor = empleado_supervisor.id_empleado_supervisor
+    WHERE 
+        empleado_supervisor.empleado_id_empleado = p_codigo_supervisor 
+        AND work_center_maquina.codigo_maquina = p_codigo_maquina;
+END$$
+
 CREATE DEFINER=`adminpaperless`@`%` PROCEDURE `ordenAprobadas` (IN `mogg` VARCHAR(20))  NO SQL SELECT piezas_procesadas_fg.id_piezas_procesadas_fg, piezas_procesadas_fg.total_piezas_aprobadas, registro_rbp.orden_manufactura FROM piezas_procesadas_fg INNER JOIN registro_rbp ON registro_rbp.id_registro_rbp=piezas_procesadas_fg.registro_rbp_id_registro_rbp INNER JOIN mog ON mog.id_mog=registro_rbp.mog_id_mog WHERE mog.mog=mogg ORDER BY id_piezas_procesadas_fg$$
 
 CREATE DEFINER=`adminpaperless`@`%` PROCEDURE `ordenarMaquina` (IN `line` VARCHAR(20))  NO SQL BEGIN
@@ -3245,7 +3265,7 @@ SELECT SUM(sobrante) AS sobrantetotal,SUM(sobrante_inicial) AS sobranteinicial, 
 FROM piezas_procesadas WHERE registro_rbp_id_registro_rbp = id_registro;
 END$$
 
-CREATE DEFINER=`adminpaperless`@`%` PROCEDURE `Supervisorname` (IN `codeline` VARCHAR(50), IN `proce` VARCHAR(20), OUT `sis` VARCHAR(30))  NO SQL BEGIN
+CREATE DEFINER=`adminpaperless`@`%` PROCEDURE `Supervisorname` (IN `codeline` VARCHAR(50), IN `proce` VARCHAR(20), OUT `sis` VARCHAR(30), OUT `proceso_maquina` VARCHAR(25))  NO SQL BEGIN
 DECLARE nom varchar(30);
 
 SET nom=(SELECT CONCAT(empleado.nombre_empleado,' ',empleado.apellido) from empleado INNER JOIN 
@@ -3256,6 +3276,9 @@ where work_center_maquina.codigo_maquina=codeline and procesos.descripcion=proce
 if(nom is null) then
 SET sis=NULL;
 ELSE
+SET proceso_maquina=(select work_center_maquina.nombre_work_center
+                     from work_center_maquina
+                     where work_center_maquina.codigo_maquina=codeline);                     
 SET sis=nom;
 END IF;
 
@@ -3716,6 +3739,13 @@ ELSE
 SET exis=1;
 END IF;
 
+END$$
+
+CREATE DEFINER=`adminpaperless`@`%` PROCEDURE `validar_linea` (IN `no_linea` VARCHAR(20), OUT `area` VARCHAR(20), OUT `codigo_supervisor` VARCHAR(30), OUT `nombre_supervisor` VARCHAR(30))   BEGIN
+    -- Asigna el valor de w.area a la variable de salida `area`
+    SELECT w.area INTO area
+    FROM work_center_maquina AS w
+    WHERE w.codigo_maquina = no_linea;
 END$$
 
 DELIMITER ;
@@ -5668,7 +5698,26 @@ INSERT INTO `corriendoactualmente` (`id_corriendo`, `linea`, `ordenActual`, `mog
 (416, 'TP11', 'PRS048525', 'MOG073254', '14:36:29', '2024-02-12', 1),
 (417, 'TP11', 'PRS048525', 'MOG073254', '14:38:29', '2024-02-12', 1),
 (418, 'TP11', 'PRS048525', 'MOG073254', '14:39:59', '2024-02-12', 1),
-(419, 'TP11', 'PRS048525', 'MOG073254', '14:42:51', '2024-02-12', 1);
+(419, 'TP11', 'PRS048525', 'MOG073254', '14:42:51', '2024-02-12', 1),
+(420, 'TP08', 'PRS054689', 'MOG083559', '11:51:38', '2025-02-20', 1),
+(421, 'TP08', 'MOG083559', 'MOG083559', '07:20:06', '2025-02-21', 1),
+(422, 'TP05', 'MOG083559', 'MOG083559', '07:21:23', '2025-02-21', 1),
+(423, 'TP09', 'MOG083559', 'MOG083559', '07:56:22', '2025-02-21', 1),
+(424, 'TP08', 'MOG083559', 'MOG083559', '08:40:30', '2025-02-21', 1),
+(425, 'TP08', 'MOG083559', 'MOG083559', '08:42:17', '2025-02-21', 1),
+(426, 'TP08', 'MOG083559', 'MOG083559', '08:43:43', '2025-02-21', 1),
+(427, 'TP05', 'MOG083559', 'MOG083559', '08:52:02', '2025-02-21', 1),
+(428, 'TP08', 'MOG083559', 'MOG083559', '09:46:01', '2025-02-21', 1),
+(429, 'TP08', 'MOG083559', 'MOG083559', '09:51:00', '2025-02-21', 1),
+(430, 'TP05', 'MOG083559', 'MOG083559', '10:00:05', '2025-02-21', 1),
+(431, 'TP05', 'MOG083559', 'MOG083559', '10:01:25', '2025-02-21', 1),
+(432, 'TP05', 'MOG083559', 'MOG083559', '10:40:40', '2025-02-21', 1),
+(433, 'TP05', 'MOG083559', 'MOG083559', '10:45:08', '2025-02-21', 1),
+(434, 'TP05', 'MOG083559', 'MOG083559', '10:54:56', '2025-02-21', 1),
+(435, 'TP05', 'MOG083559', 'MOG083559', '14:16:12', '2025-02-21', 1),
+(436, 'TP05', 'MOG083559', 'MOG083559', '14:17:11', '2025-02-21', 1),
+(437, 'TP08', 'MOG083559', 'MOG083559', '14:22:14', '2025-02-21', 1),
+(438, 'TP05', 'MOG083559', 'MOG083559', '14:24:01', '2025-02-21', 1);
 
 -- --------------------------------------------------------
 
@@ -9084,7 +9133,8 @@ INSERT INTO `mog` (`id_mog`, `mog`, `descripcion`, `num_dibujo`, `no_parte`, `mo
 (210, 'MOG012518', 'HB I4 C/R STD 1', 'A-291339-01', '8E5G6211AA', 'I4 C/R STD 1', 'STD 1', 20000, 16.4, 1.1),
 (211, 'MOG056355', 'HB CSS M/N L STD W', 'A-223060-4', '12663477', 'CSS M/N L STD W', 'STD W', 15000, 30.8, 1.1),
 (212, 'MOG073253', 'HB ZH2 C/R STD 3', 'A-156042-00', '12111 9FT3A', 'ZH2 C/R STD 3', 'STD 3', 5000, 18.4, 1.1),
-(213, 'MOG073254', 'HB ZH2 C/R STD 1', 'A-156042-00', '12111 9FT1A', 'ZH2 C/R STD 1', 'STD 1', 10000, 18.4, 1.1);
+(213, 'MOG073254', 'HB ZH2 C/R STD 1', 'A-156042-00', '12111 9FT1A', 'ZH2 C/R STD 1', 'STD 1', 10000, 18.4, 1.1),
+(216, 'MOG083559', 'HB 122Y B/M STD 2', 'A-146209-1', '11911-F0010-02-TP', '122Y B/M STD 2', 'STD 2', 30000, 10.8, 1.1);
 
 -- --------------------------------------------------------
 
@@ -10305,7 +10355,8 @@ INSERT INTO `registro_rbp` (`id_registro_rbp`, `orden_manufactura`, `proceso`, `
 (212, 'PRS038253', NULL, 1, 1, 1, 211, 10, NULL, NULL),
 (213, 'PRS048524', 'PRENSA', 1, 1, 1, 212, 10, 'TM323121594', NULL),
 (214, 'PRS048525', 'PRENSA', 1, 1, 1, 213, 10, 'TM323121599', NULL),
-(215, 'HBL050114', 'MAQUINADO', 1, 1, 1, 213, 20, 'TM323121600', NULL);
+(215, 'HBL050114', 'MAQUINADO', 1, 1, 1, 213, 20, 'TM323121600', NULL),
+(218, 'PRS054689', 'PRENSA', 1, 1, 1, 216, 10, 'TM325012130', NULL);
 
 -- --------------------------------------------------------
 
@@ -11267,7 +11318,7 @@ ALTER TABLE `coiling_material_a`
 -- AUTO_INCREMENT de la tabla `corriendoactualmente`
 --
 ALTER TABLE `corriendoactualmente`
-  MODIFY `id_corriendo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=420;
+  MODIFY `id_corriendo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=439;
 
 --
 -- AUTO_INCREMENT de la tabla `das`
@@ -11387,7 +11438,7 @@ ALTER TABLE `lote_coil`
 -- AUTO_INCREMENT de la tabla `mog`
 --
 ALTER TABLE `mog`
-  MODIFY `id_mog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=214;
+  MODIFY `id_mog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
 
 --
 -- AUTO_INCREMENT de la tabla `ordenes_abiertas_asupervisor`
@@ -11459,7 +11510,7 @@ ALTER TABLE `registrocausasparoslitter`
 -- AUTO_INCREMENT de la tabla `registro_rbp`
 --
 ALTER TABLE `registro_rbp`
-  MODIFY `id_registro_rbp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
+  MODIFY `id_registro_rbp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
 
 --
 -- AUTO_INCREMENT de la tabla `registro_x_hora`
