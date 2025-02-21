@@ -8,6 +8,7 @@ import Interfaces.LineaProduccion;
 import Interfaces.MOG;
 import Model.Captura_Orden_Manufactura_Model;
 import View.Captura_Orden_Manufactura;
+import View.Validar_Linea;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -24,23 +26,27 @@ import java.awt.event.KeyListener;
  */
 public class Captura_Orden_Manufactura_Controller implements ActionListener, KeyListener{
     Captura_Orden_Manufactura_Model captura_Linea_Model;
-    Captura_Orden_Manufactura capturaMOG;
+    Captura_Orden_Manufactura capturaOrdenManufactura;
+    Validar_Linea validarLinea;
 
     public Captura_Orden_Manufactura_Controller(Captura_Orden_Manufactura_Model captura_Linea_Model, Captura_Orden_Manufactura captura_Linea) {
         this.captura_Linea_Model = captura_Linea_Model;
-        this.capturaMOG = captura_Linea;
+        this.capturaOrdenManufactura = Captura_Orden_Manufactura.getInstance();
+        this.validarLinea = Validar_Linea.getInstance();
         
-        capturaMOG.getTxt_linea_produccion().addActionListener(this);
-        capturaMOG.getTxt_linea_produccion().addKeyListener(this);
-        capturaMOG.getTxt_mog_capturada().addActionListener(this);
-        capturaMOG.getTxt_mog_capturada().addKeyListener(this);
+        capturaOrdenManufactura.getTxt_linea_produccion().addActionListener(this);
+        capturaOrdenManufactura.getTxt_linea_produccion().addKeyListener(this);
+        capturaOrdenManufactura.getTxt_mog_capturada().addActionListener(this);
+        capturaOrdenManufactura.getTxt_mog_capturada().addKeyListener(this);
+        capturaOrdenManufactura.getBtn_siguiente().addActionListener(this);
+        capturaOrdenManufactura.getBtn_regresar().addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().getClass().toString().equals("class javax.swing.JTextField")) {
             JTextField text_field = (JTextField) e.getSource();
-            if (text_field.equals(capturaMOG.txt_mog_capturada)) {
-                String ordenIngresada = capturaMOG.txt_mog_capturada.getText();
+            if (text_field.equals(capturaOrdenManufactura.txt_mog_capturada)) {
+                String ordenIngresada = capturaOrdenManufactura.txt_mog_capturada.getText();
                 if (ordenIngresada.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Debe ingresar una orden de manufactura");
                 } else {
@@ -49,17 +55,26 @@ public class Captura_Orden_Manufactura_Controller implements ActionListener, Key
                         MOG datosMOG = MOG.getInstance();
                         LineaProduccion datosLinea = LineaProduccion.getInstance();
 
-                        capturaMOG.txt_mog.setText(datosMOG.getMog());
-                        capturaMOG.txt_modelo.setText(datosMOG.getModelo());
-                        capturaMOG.txt_dibujo.setText(datosMOG.getNo_dibujo());
-                        capturaMOG.txt_cantidad_planeada.setText(Integer.toString(datosMOG.getCantidad_planeada()));
-                        capturaMOG.txt_parte.setText(datosMOG.getNo_parte());
-                        capturaMOG.txt_proceso.setText(datosLinea.getProceso());
+                        capturaOrdenManufactura.txt_mog.setText(datosMOG.getMog());
+                        capturaOrdenManufactura.txt_modelo.setText(datosMOG.getModelo());
+                        capturaOrdenManufactura.txt_dibujo.setText(datosMOG.getNo_dibujo());
+                        capturaOrdenManufactura.txt_cantidad_planeada.setText(Integer.toString(datosMOG.getCantidad_planeada()));
+                        capturaOrdenManufactura.txt_parte.setText(datosMOG.getNo_parte());
+                        capturaOrdenManufactura.txt_proceso.setText(datosLinea.getProceso());
 
                     } catch (SQLException ex) {
                         Logger.getLogger(Captura_Orden_Manufactura_Controller.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            }
+        }
+        else if (e.getSource().getClass().toString().equals("class javax.swing.JButton")) {
+            JButton button = (JButton) e.getSource();
+            if (button.equals(capturaOrdenManufactura.btn_siguiente)){
+                
+            } else if (button.equals(capturaOrdenManufactura.btn_regresar)) {
+                validarLinea.setVisible(true);
+                capturaOrdenManufactura.setVisible(false);
             }
         }
     }

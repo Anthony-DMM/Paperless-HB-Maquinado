@@ -26,10 +26,11 @@ public class PaperlessHBMaquinado {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         // Vistas
-        Validar_Linea validarLinea = new Validar_Linea();
+        Validar_Linea validarLinea = Validar_Linea.getInstance();
         Opciones opciones = new Opciones();
-        Captura_Orden_Manufactura capturaOrdenManufactura = new Captura_Orden_Manufactura();
+        Captura_Orden_Manufactura capturaOrdenManufactura = Captura_Orden_Manufactura.getInstance();
         Registro_RBP registroRBP = new Registro_RBP();
         Cambio_MOG cambioMOG = new Cambio_MOG();
         Registro_Paro_Proceso registroParoProceso = new Registro_Paro_Proceso(); 

@@ -23,23 +23,23 @@ import javax.swing.JOptionPane;
  */
 
 public class Validar_Linea_Controller implements ActionListener {
-    Validar_Linea autenticacion;
+    Validar_Linea validarLinea;
     Validar_Linea_Model autenticacion_model;
     Captura_Orden_Manufactura capturaLinea;
 
-    public Validar_Linea_Controller(Validar_Linea autenticacion, Validar_Linea_Model autenticacion_model, Captura_Orden_Manufactura captura_Linea, DBConexion conexion) {
-        this.autenticacion = autenticacion;
+    public Validar_Linea_Controller(Validar_Linea validarLinea, Validar_Linea_Model autenticacion_model, Captura_Orden_Manufactura captura_Linea, DBConexion conexion) {
+        this.validarLinea = Validar_Linea.getInstance();
         this.autenticacion_model = autenticacion_model;
         this.capturaLinea = captura_Linea;
 
-        autenticacion.getBtn_ingresar().addActionListener(this);
-        autenticacion.getBtn_salir().addActionListener(this);
+        validarLinea.getBtn_ingresar().addActionListener(this);
+        validarLinea.getBtn_salir().addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == autenticacion.getBtn_ingresar()) {
-            String lineaProduccion = autenticacion.getTxt_linea_produccion().getText();
+        if (e.getSource() == validarLinea.getBtn_ingresar()) {
+            String lineaProduccion = validarLinea.getTxt_linea_produccion().getText();
             if (lineaProduccion.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar la línea de producción");
             } else {
@@ -48,11 +48,11 @@ public class Validar_Linea_Controller implements ActionListener {
                     JOptionPane.showMessageDialog(null, "La línea de producción no existe o no pertenece al área de MAQUINADO.");
                 } else {
                     capturaLinea.setVisible(true);
-                    autenticacion.setVisible(false);
+                    validarLinea.setVisible(false);
                 }
-                autenticacion.getTxt_linea_produccion().setText(null);
+                validarLinea.getTxt_linea_produccion().setText(null);
             }
-        } else if (e.getSource() == autenticacion.getBtn_salir()) {
+        } else if (e.getSource() == validarLinea.getBtn_salir()) {
             System.exit(0);
         }
     }
