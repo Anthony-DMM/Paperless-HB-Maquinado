@@ -6,6 +6,7 @@ package View;
 
 import Interfaces.VistaSingleton;
 import java.awt.Color;
+import javax.swing.JButton;
 
 /**
  *
@@ -19,9 +20,9 @@ public class Opciones extends javax.swing.JFrame {
     private Opciones() {
         initComponents();
         setLocationRelativeTo(null);
-        btn_cambio_modelo.setBackground(Color.black);
-        btn_produccion.setBackground(Color.black);
-        btn_salir.setBackground(Color.black);
+        btn_cambiar_modelo.setBackground(Color.black);
+        btn_registrar.setBackground(Color.black);
+        btn_regresar.setBackground(Color.black);
     }
     
     public static Opciones getInstance() {
@@ -40,9 +41,9 @@ public class Opciones extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btn_produccion = new javax.swing.JButton();
-        btn_cambio_modelo = new javax.swing.JButton();
-        btn_salir = new javax.swing.JButton();
+        btn_registrar = new javax.swing.JButton();
+        btn_cambiar_modelo = new javax.swing.JButton();
+        btn_regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,23 +60,23 @@ public class Opciones extends javax.swing.JFrame {
         jLabel2.setText("Seleccione una opción");
         jLabel2.setPreferredSize(new java.awt.Dimension(700, 14));
 
-        btn_produccion.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_produccion.setForeground(new java.awt.Color(255, 255, 255));
-        btn_produccion.setText("Registrar producción");
-        btn_produccion.setToolTipText("");
-        btn_produccion.setPreferredSize(new java.awt.Dimension(700, 70));
+        btn_registrar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btn_registrar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_registrar.setText("Registrar producción");
+        btn_registrar.setToolTipText("");
+        btn_registrar.setPreferredSize(new java.awt.Dimension(700, 70));
 
-        btn_cambio_modelo.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_cambio_modelo.setForeground(new java.awt.Color(255, 255, 255));
-        btn_cambio_modelo.setText("Cambio de modelo");
-        btn_cambio_modelo.setToolTipText("");
-        btn_cambio_modelo.setPreferredSize(new java.awt.Dimension(700, 70));
+        btn_cambiar_modelo.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btn_cambiar_modelo.setForeground(new java.awt.Color(255, 255, 255));
+        btn_cambiar_modelo.setText("Cambio de modelo");
+        btn_cambiar_modelo.setToolTipText("");
+        btn_cambiar_modelo.setPreferredSize(new java.awt.Dimension(700, 70));
 
-        btn_salir.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_salir.setForeground(new java.awt.Color(255, 255, 255));
-        btn_salir.setText("Regresar");
-        btn_salir.setToolTipText("");
-        btn_salir.setPreferredSize(new java.awt.Dimension(700, 70));
+        btn_regresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btn_regresar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_regresar.setText("Regresar");
+        btn_regresar.setToolTipText("");
+        btn_regresar.setPreferredSize(new java.awt.Dimension(700, 70));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -84,9 +85,9 @@ public class Opciones extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cambio_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_produccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cambiar_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
@@ -99,11 +100,11 @@ public class Opciones extends javax.swing.JFrame {
                 .addGap(70, 70, 70)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
-                .addComponent(btn_produccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(btn_cambio_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_cambiar_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(591, Short.MAX_VALUE))
         );
 
@@ -163,10 +164,36 @@ public class Opciones extends javax.swing.JFrame {
         });
     }
 
+    public JButton getBtn_cambiar_modelo() {
+        return btn_cambiar_modelo;
+    }
+
+    public void setBtn_cambiar_modelo(JButton btn_cambiar_modelo) {
+        this.btn_cambiar_modelo = btn_cambiar_modelo;
+    }
+
+    public JButton getBtn_registrar() {
+        return btn_registrar;
+    }
+
+    public void setBtn_registrar(JButton btn_registrar) {
+        this.btn_registrar = btn_registrar;
+    }
+
+    public JButton getBtn_regresar() {
+        return btn_regresar;
+    }
+
+    public void setBtn_regresar(JButton btn_regresar) {
+        this.btn_regresar = btn_regresar;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btn_cambio_modelo;
-    public javax.swing.JButton btn_produccion;
-    public javax.swing.JButton btn_salir;
+    public javax.swing.JButton btn_cambiar_modelo;
+    public javax.swing.JButton btn_registrar;
+    public javax.swing.JButton btn_regresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -4,6 +4,7 @@
  */
 package View;
 
+import Interfaces.VistaSingleton;
 import java.awt.Color;
 
 /**
@@ -15,11 +16,15 @@ public class Cambio_MOG extends javax.swing.JFrame {
     /**
      * Creates new form Cambio_MOG
      */
-    public Cambio_MOG() {
+    private Cambio_MOG() {
         initComponents();
         setLocationRelativeTo(null);
         btn_confirmar.setBackground(Color.black);
         btn_regresar.setBackground(Color.black);
+    }
+    
+    public static Cambio_MOG getInstance() {
+        return VistaSingleton.getInstance(Cambio_MOG.class);
     }
 
     /**

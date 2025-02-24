@@ -6,6 +6,7 @@ package paperless.hb.maquinado;
 
 import Controller.Validar_Linea_Controller;
 import Controller.Captura_Orden_Manufactura_Controller;
+import Controller.Opciones_Controller;
 import Model.Validar_Linea_Model;
 import Model.Captura_Orden_Manufactura_Model;
 import Model.DBConexion;
@@ -32,7 +33,7 @@ public class PaperlessHBMaquinado {
         Opciones opciones = Opciones.getInstance();
         Captura_Orden_Manufactura capturaOrdenManufactura = Captura_Orden_Manufactura.getInstance();
         Registro_RBP registroRBP = Registro_RBP.getInstance();
-        Cambio_MOG cambioMOG = new Cambio_MOG();
+        Cambio_MOG cambioMOG = Cambio_MOG.getInstance();
         Registro_Paro_Proceso registroParoProceso = new Registro_Paro_Proceso(); 
         
         validarLinea.setVisible(true);
@@ -46,8 +47,9 @@ public class PaperlessHBMaquinado {
         
         
         // Controller
-        Captura_Orden_Manufactura_Controller capturaOrdenManufacturaController = new Captura_Orden_Manufactura_Controller(capturaOrdenManufacturaModel, capturaOrdenManufactura);
         Validar_Linea_Controller validarLineaController = new Validar_Linea_Controller(validarLinea, validarLineaModel, capturaOrdenManufactura, conexion);
+        Captura_Orden_Manufactura_Controller capturaOrdenManufacturaController = new Captura_Orden_Manufactura_Controller(capturaOrdenManufacturaModel, capturaOrdenManufactura);
+        Opciones_Controller opcionesController = new Opciones_Controller(); 
     }
     
 }
