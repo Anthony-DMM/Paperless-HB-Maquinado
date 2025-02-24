@@ -6,6 +6,7 @@ package Model;
 
 import Interfaces.LineaProduccion;
 import Interfaces.MOG;
+import Utils.FechaHora;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -27,8 +28,15 @@ public class Captura_Orden_Manufactura_Model {
         this.conexion = conexion;
     }
     
-    public void obtenerDatosOrden(String ordenManufactura) throws SQLException {
+    public boolean obtenerDatosOrden(String ordenManufactura) throws SQLException {
         String art = "HB";
+        String no = null;
+        String numeroParte = null;
+        int id;
+        String procesoValido = "HBL";
+        boolean ordenEncontrada = false;
+        MOG datosMOG = MOG.getInstance();
+        LineaProduccion lineaProduccion = LineaProduccion.getInstance();
         Statement sen;
         Connection con, cone;
         ResultSet res;
@@ -45,10 +53,8 @@ public class Captura_Orden_Manufactura_Model {
                 + "WHERE ttidms602500.T$PDNO='" + ordenManufactura + "'");
         
         while (res.next()) {
-            
-            MOG datosMOG = MOG.getInstance();
-            String no = res.getString(1);
-            String numeroParte = null;
+            ordenEncontrada = true;
+            no = res.getString(1);
             if (ordenManufactura.contains("HBL")) {
                 numeroParte = no.replace("-TH", "");
                 numeroParte = numeroParte.trim();
@@ -65,12 +71,67 @@ public class Captura_Orden_Manufactura_Model {
             datosMOG.setNo_dibujo(res.getString(6));
             datosMOG.setPeso(res.getDouble(7));
             datosMOG.setSequ(res.getInt(8));
-            datosMOG.setStd(res.getString(9));
             datosMOG.setTm(res.getString(10));
+            
+            String estandar = res.getString(9);
+            String estandarSinColor = estandar.replace("Café", "").replace("CAFE", "").replace("Rojo", "").replace("Azul", "")
+                    .replace("Verde", "").replace("Rosa", "").replace("Amarillo", "").replace("Negro", "")
+                    .replace("Cafe", "").replace("CAFÉ", "").replace("ROJO", "").replace("AZUL", "").replace("VERDE", "")
+                    .replace("ROSA", "").replace("AMARILLO", "").replace("NEGRO", "").replace("YELLOW", "")
+                    .replace("BROWN", "").replace("GREEN", "").replace("MORADO", "").replace("BLUE", "")
+                    .replace("BLANCO", "").replace("PURPLE", "").replace("Purple", "").replace("Blue", "")
+                    .replace("PINK", "").replace("Pink", "").replace("White", "").replace("WHITE", "").replace("RED", "")
+                    .replace("BLACK", "").replace("Black", "").replace("Blanca", "").replace("BLANCA", "")
+                    .replace("Morado", "").replace("-", "");
+            
+            datosMOG.setStd(estandarSinColor.trim());
+        }
+        
+        if (!ordenEncontrada) {
+            JOptionPane.showMessageDialog(null, "No se encontró la orden de manufactura");
+        } else if (numeroParte == null) {
+            JOptionPane.showMessageDialog(null, "La orden de manufactura no pertenece al proceso de MAQUINADO");
+            ordenEncontrada = false;
+        } else {
+            CallableStatement cst = con.prepareCall("{call llenarMog(?,?,?,?,?,?,?,?,?,?)}");
+            cst.setString(1, datosMOG.getMog());
+            cst.setString(2, art + " " + datosMOG.getModelo());
+            cst.setString(3, datosMOG.getNo_dibujo());
+            cst.setString(4, numeroParte);
+            cst.setString(5, datosMOG.getModelo());
+            cst.setString(6, datosMOG.getStd());
+            cst.setInt(7, datosMOG.getCantidad_planeada());
+            cst.registerOutParameter(8, java.sql.Types.INTEGER);
+            cst.setDouble(9, datosMOG.getPeso());
+            cst.setDouble(10, 1.1);
+            cst.execute();
+            id = cst.getInt(8);
+
+            CallableStatement cs = con.prepareCall("{call llenarRBP(?,?,?,?)}");
+            cs.setString(1, datosMOG.getOrden_manufactura());
+            cs.setString(2, lineaProduccion.getProceso());
+            cs.setInt(3, id);
+            cs.setInt(4, datosMOG.getSequ());
+            cs.execute();
+
+            CallableStatement cs1 = con.prepareCall("{call actualizarTM(?,?)}");
+            cs1.setString(1, datosMOG.getOrden_manufactura());
+            cs1.setString(2, datosMOG.getTm());
+            cs1.execute();
+            
+            CallableStatement cst2 = con.prepareCall("call insertarCorriendo(?,?,?,?,?)");
+            cst2.setString(1, datosMOG.getOrden_manufactura());
+            cst2.setString(2, datosMOG.getMog());
+            cst2.setString(3, FechaHora.horaActual());
+            cst2.setString(4, FechaHora.fechaActual());
+            cst2.setString(5, lineaProduccion.getLinea());
+            cst2.execute();
         }
         
         con.close();
         cone.close();
+        
+        return ordenEncontrada;
     }
     
     public boolean validarSupervisor(String codigo_supervisor) throws SQLException {

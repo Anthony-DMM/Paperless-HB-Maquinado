@@ -4,6 +4,7 @@
  */
 package View;
 
+import Interfaces.VistaSingleton;
 import java.awt.Color;
 
 /**
@@ -15,12 +16,16 @@ public class Opciones extends javax.swing.JFrame {
     /**
      * Creates new form Seleccion_opcion
      */
-    public Opciones() {
+    private Opciones() {
         initComponents();
         setLocationRelativeTo(null);
         btn_cambio_modelo.setBackground(Color.black);
         btn_produccion.setBackground(Color.black);
         btn_salir.setBackground(Color.black);
+    }
+    
+    public static Opciones getInstance() {
+        return VistaSingleton.getInstance(Opciones.class);
     }
 
     /**

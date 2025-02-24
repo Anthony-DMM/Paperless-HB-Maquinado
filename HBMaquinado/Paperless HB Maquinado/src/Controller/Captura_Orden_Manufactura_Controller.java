@@ -8,6 +8,8 @@ import Interfaces.LineaProduccion;
 import Interfaces.MOG;
 import Model.Captura_Orden_Manufactura_Model;
 import View.Captura_Orden_Manufactura;
+import View.Opciones;
+import View.Registro_RBP;
 import View.Validar_Linea;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -28,11 +30,13 @@ public class Captura_Orden_Manufactura_Controller implements ActionListener, Key
     Captura_Orden_Manufactura_Model captura_Linea_Model;
     Captura_Orden_Manufactura capturaOrdenManufactura;
     Validar_Linea validarLinea;
+    Opciones opciones;
 
     public Captura_Orden_Manufactura_Controller(Captura_Orden_Manufactura_Model captura_Linea_Model, Captura_Orden_Manufactura captura_Linea) {
         this.captura_Linea_Model = captura_Linea_Model;
         this.capturaOrdenManufactura = Captura_Orden_Manufactura.getInstance();
         this.validarLinea = Validar_Linea.getInstance();
+        this.opciones = Opciones.getInstance();
         
         capturaOrdenManufactura.getTxt_linea_produccion().addActionListener(this);
         capturaOrdenManufactura.getTxt_linea_produccion().addKeyListener(this);
@@ -51,17 +55,17 @@ public class Captura_Orden_Manufactura_Controller implements ActionListener, Key
                     JOptionPane.showMessageDialog(null, "Debe ingresar una orden de manufactura");
                 } else {
                     try {
-                        captura_Linea_Model.obtenerDatosOrden(ordenIngresada);
-                        MOG datosMOG = MOG.getInstance();
-                        LineaProduccion datosLinea = LineaProduccion.getInstance();
+                        if (captura_Linea_Model.obtenerDatosOrden(ordenIngresada)) {
+                            MOG datosMOG = MOG.getInstance();
+                            LineaProduccion datosLinea = LineaProduccion.getInstance();
 
-                        capturaOrdenManufactura.txt_mog.setText(datosMOG.getMog());
-                        capturaOrdenManufactura.txt_modelo.setText(datosMOG.getModelo());
-                        capturaOrdenManufactura.txt_dibujo.setText(datosMOG.getNo_dibujo());
-                        capturaOrdenManufactura.txt_cantidad_planeada.setText(Integer.toString(datosMOG.getCantidad_planeada()));
-                        capturaOrdenManufactura.txt_parte.setText(datosMOG.getNo_parte());
-                        capturaOrdenManufactura.txt_proceso.setText(datosLinea.getProceso());
-
+                            capturaOrdenManufactura.txt_mog.setText(datosMOG.getMog());
+                            capturaOrdenManufactura.txt_modelo.setText(datosMOG.getModelo());
+                            capturaOrdenManufactura.txt_dibujo.setText(datosMOG.getNo_dibujo());
+                            capturaOrdenManufactura.txt_cantidad_planeada.setText(Integer.toString(datosMOG.getCantidad_planeada()));
+                            capturaOrdenManufactura.txt_parte.setText(datosMOG.getNo_parte());
+                            capturaOrdenManufactura.txt_proceso.setText(datosLinea.getProceso());
+                        }
                     } catch (SQLException ex) {
                         Logger.getLogger(Captura_Orden_Manufactura_Controller.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -85,7 +89,12 @@ public class Captura_Orden_Manufactura_Controller implements ActionListener, Key
         else if (e.getSource().getClass().toString().equals("class javax.swing.JButton")) {
             JButton button = (JButton) e.getSource();
             if (button.equals(capturaOrdenManufactura.btn_siguiente)){
-                
+                if (capturaOrdenManufactura.txt_codigo_supervisor.getText().isEmpty() || capturaOrdenManufactura.txt_mog_capturada.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Campos vacíos, favor de completar los datos");
+                } else {
+                    capturaOrdenManufactura.setVisible(false);
+                    opciones.setVisible(true);
+                }
             } else if (button.equals(capturaOrdenManufactura.btn_regresar)) {
                 validarLinea.setVisible(true);
                 capturaOrdenManufactura.setVisible(false);

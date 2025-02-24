@@ -29,9 +29,9 @@ public class PaperlessHBMaquinado {
         
         // Vistas
         Validar_Linea validarLinea = Validar_Linea.getInstance();
-        Opciones opciones = new Opciones();
+        Opciones opciones = Opciones.getInstance();
         Captura_Orden_Manufactura capturaOrdenManufactura = Captura_Orden_Manufactura.getInstance();
-        Registro_RBP registroRBP = new Registro_RBP();
+        Registro_RBP registroRBP = Registro_RBP.getInstance();
         Cambio_MOG cambioMOG = new Cambio_MOG();
         Registro_Paro_Proceso registroParoProceso = new Registro_Paro_Proceso(); 
         

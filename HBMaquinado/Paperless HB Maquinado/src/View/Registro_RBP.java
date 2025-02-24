@@ -4,6 +4,7 @@
  */
 package View;
 
+import Interfaces.VistaSingleton;
 import java.awt.Color;
 
 /**
@@ -15,13 +16,17 @@ public class Registro_RBP extends javax.swing.JFrame {
     /**
      * Creates new form Registro_RBP
      */
-    public Registro_RBP() {
+    private Registro_RBP() {
         initComponents();
         setLocationRelativeTo(null);
         cbox_turno.getEditor().getEditorComponent().setBackground(Color.YELLOW);
         lbl_piezas_fila_wc_incompletos.setText("<html><center>Piezas<br>por fila</center></html");
         lbl_filas_wc_incompletos.setText("<html><center>Filas<br>incompletas</center></html");
         lbl_niveles_completos_wc_incompletos.setText("<html><center>Niveles<br>completos</center></html");
+    }
+    
+    public static Registro_RBP getInstance() {
+        return VistaSingleton.getInstance(Registro_RBP.class);
     }
 
     /**
