@@ -79,6 +79,11 @@ public class Captura_Orden_Manufactura extends javax.swing.JFrame {
 
         txt_codigo_supervisor.setBackground(new java.awt.Color(255, 255, 0));
         txt_codigo_supervisor.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txt_codigo_supervisor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_codigo_supervisorKeyTyped(evt);
+            }
+        });
 
         txt_supervisor_asignado.setEditable(false);
         txt_supervisor_asignado.setBackground(new java.awt.Color(204, 204, 204));
@@ -278,6 +283,13 @@ public class Captura_Orden_Manufactura extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txt_mog_capturadaKeyTyped
+
+    private void txt_codigo_supervisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_codigo_supervisorKeyTyped
+        if(txt_codigo_supervisor.getText().length() >= 12)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_codigo_supervisorKeyTyped
 
     /**
      * @param args the command line arguments

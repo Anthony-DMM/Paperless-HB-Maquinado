@@ -20,13 +20,13 @@ public class DBConexion {
     public Connection conexionMySQL() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(
+            /*con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306"
                         + "/rbppaperlesshalfp?user=root"
-                        + "&password=");
-            /*con = DriverManager.getConnection("jdbc:mysql://192.168.155.16:3306"
+                        + "&password=");*/
+            con = DriverManager.getConnection("jdbc:mysql://192.168.155.16:3306"
                     + "/rbppaperlesshalfp?user=adminpaperless"
-                    + "&password=paperless2018");*/
+                    + "&password=paperless2018");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error de conexión");
             JOptionPane.showMessageDialog(null, "Error de conexion " + e);
