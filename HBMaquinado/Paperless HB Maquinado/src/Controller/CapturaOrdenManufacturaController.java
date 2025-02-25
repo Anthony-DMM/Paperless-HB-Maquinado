@@ -7,6 +7,9 @@ package Controller;
 import Entities.LineaProduccion;
 import Entities.MOG;
 import Model.CapturaOrdenManufacturaModel;
+import Utils.MostrarMensaje;
+import Utils.Navegador;
+import Utils.ValidarCampos;
 import View.CapturaOrdenManufacturaView;
 import View.OpcionesView;
 import View.RegistroRBPView;
@@ -28,27 +31,116 @@ import javax.swing.JPasswordField;
  * @author ANTHONY-MARTINEZ
  */
 public class CapturaOrdenManufacturaController implements ActionListener, KeyListener{
-    CapturaOrdenManufacturaModel captura_Linea_Model;
-    CapturaOrdenManufacturaView capturaOrdenManufactura;
-    ValidarLineaView validarLinea;
-    OpcionesView opciones;
+    CapturaOrdenManufacturaModel capturaOrdenManufacturaModel;
+    CapturaOrdenManufacturaView capturaOrdenManufacturaView;
+    ValidarLineaView validarLineaView;
+    OpcionesView opcionesView;
 
-    public CapturaOrdenManufacturaController(CapturaOrdenManufacturaModel captura_Linea_Model, CapturaOrdenManufacturaView captura_Linea) {
-        this.captura_Linea_Model = captura_Linea_Model;
-        this.capturaOrdenManufactura = CapturaOrdenManufacturaView.getInstance();
-        this.validarLinea = ValidarLineaView.getInstance();
-        this.opciones = OpcionesView.getInstance();
+    public CapturaOrdenManufacturaController(CapturaOrdenManufacturaModel capturaOrdenManufacturaModel, CapturaOrdenManufacturaView capturaOrdenManufacturaView) {
+        this.capturaOrdenManufacturaModel = capturaOrdenManufacturaModel;
+        this.capturaOrdenManufacturaView = CapturaOrdenManufacturaView.getInstance();
+        this.validarLineaView = ValidarLineaView.getInstance();
+        this.opcionesView = OpcionesView.getInstance();
         
-        capturaOrdenManufactura.getTxt_codigo_supervisor().addActionListener(this);
-        capturaOrdenManufactura.getTxt_codigo_supervisor().addKeyListener(this);
-        capturaOrdenManufactura.getTxt_mog_capturada().addKeyListener(this);
-        capturaOrdenManufactura.getTxt_mog_capturada().addActionListener(this);
-        capturaOrdenManufactura.getTxt_mog_capturada().addKeyListener(this);
-        capturaOrdenManufactura.getBtn_siguiente().addActionListener(this);
-        capturaOrdenManufactura.getBtn_regresar().addActionListener(this);
+        capturaOrdenManufacturaView.getTxt_codigo_supervisor().addActionListener(this);
+        capturaOrdenManufacturaView.getTxt_codigo_supervisor().addKeyListener(this);
+        capturaOrdenManufacturaView.getTxt_mog_capturada().addKeyListener(this);
+        capturaOrdenManufacturaView.getTxt_mog_capturada().addActionListener(this);
+        capturaOrdenManufacturaView.getTxt_mog_capturada().addKeyListener(this);
+        capturaOrdenManufacturaView.getBtn_siguiente().addActionListener(this);
+        capturaOrdenManufacturaView.getBtn_regresar().addActionListener(this);
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+
+        if (source instanceof JTextField) {
+            manejarEventoTextField((JTextField) source);
+        } else if (source instanceof JPasswordField) {
+            manejarEventoPasswordField((JPasswordField) source);
+        } else if (source instanceof JButton) {
+            manejarEventoBoton((JButton) source);
+        }
+    }
+    
+    private void manejarEventoTextField(JTextField textField) {
+        if (textField.equals(capturaOrdenManufacturaView.getTxt_mog_capturada())) {
+            String ordenIngresada = textField.getText().trim();
+            if (ValidarCampos.esCampoVacio(textField, "Debe ingresar una orden de manufactura")) {
+                return;
+            }
+            procesarOrdenManufactura(ordenIngresada);
+        }
     }
 
-    public void actionPerformed(ActionEvent e) {
+    private void manejarEventoPasswordField(JPasswordField passwordField) {
+        if (passwordField.equals(capturaOrdenManufacturaView.getTxt_codigo_supervisor())) {
+            String codigoIngresado = new String(passwordField.getPassword()).trim();
+            if (ValidarCampos.esCampoVacio(passwordField, "Debe ingresar un código de supervisor")) {
+                return;
+            }
+            procesarCodigoSupervisor(codigoIngresado);
+        }
+    }
+
+    private void manejarEventoBoton(JButton boton) {
+        if (boton.equals(capturaOrdenManufacturaView.getBtn_siguiente())) {
+            if (validarCampos()) {
+                Navegador.avanzarSiguienteVentana(capturaOrdenManufacturaView, opcionesView);
+            }
+        } else if (boton.equals(capturaOrdenManufacturaView.getBtn_regresar())) {
+            Navegador.regresarVentanaAnterior(capturaOrdenManufacturaView, validarLineaView);
+        }
+    }
+    
+    private void procesarOrdenManufactura(String ordenIngresada) {
+        try {
+            if (capturaOrdenManufacturaModel.obtenerDatosOrden(ordenIngresada)) {
+                MOG datosMOG = MOG.getInstance();
+                LineaProduccion datosLinea = LineaProduccion.getInstance();
+
+                capturaOrdenManufacturaView.getTxt_mog().setText(datosMOG.getMog());
+                capturaOrdenManufacturaView.getTxt_descripcion().setText(datosMOG.getModelo());
+                capturaOrdenManufacturaView.getTxt_dibujo().setText(datosMOG.getNo_dibujo());
+                capturaOrdenManufacturaView.getTxt_cantidad_planeada().setText(Integer.toString(datosMOG.getCantidad_planeada()));
+                capturaOrdenManufacturaView.getTxt_parte().setText(datosMOG.getNo_parte());
+                capturaOrdenManufacturaView.getTxt_proceso().setText(datosLinea.getProceso());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CapturaOrdenManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
+            MostrarMensaje.mostrarError("Error al obtener los datos de la orden de manufactura.");
+        }
+    }
+
+    private void procesarCodigoSupervisor(String codigoIngresado) {
+        try {
+            if (capturaOrdenManufacturaModel.validarSupervisor(codigoIngresado)) {
+                LineaProduccion datosLinea = LineaProduccion.getInstance();
+                capturaOrdenManufacturaView.getTxt_supervisor_asignado().setText(datosLinea.getSupervisor());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(CapturaOrdenManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
+            MostrarMensaje.mostrarError("Error al validar el código del supervisor.");
+        }
+    }
+
+    private boolean validarCampos() {
+        if (ValidarCampos.esCampoVacio(capturaOrdenManufacturaView.getTxt_codigo_supervisor(), "Código de supervisor vacío") ||
+            ValidarCampos.esCampoVacio(capturaOrdenManufacturaView.getTxt_mog_capturada(), "Orden de manufactura vacía") ||
+            ValidarCampos.esCampoVacio(capturaOrdenManufacturaView.getTxt_supervisor_asignado(), "Supervisor no asignado") ||
+            ValidarCampos.esCampoVacio(capturaOrdenManufacturaView.getTxt_mog(), "MOG vacío") ||
+            ValidarCampos.esCampoVacio(capturaOrdenManufacturaView.getTxt_descripcion(), "Modelo vacío") ||
+            ValidarCampos.esCampoVacio(capturaOrdenManufacturaView.getTxt_cantidad_planeada(), "Cantidad planeada vacía") ||
+            ValidarCampos.esCampoVacio(capturaOrdenManufacturaView.getTxt_dibujo(), "Dibujo vacío") ||
+            ValidarCampos.esCampoVacio(capturaOrdenManufacturaView.getTxt_parte(), "Parte vacía") ||
+            ValidarCampos.esCampoVacio(capturaOrdenManufacturaView.getTxt_proceso(), "Proceso vacío")) {
+            return false;
+        }
+        return true;
+    }
+
+    /*public void actionPerformed(ActionEvent e) {
         if (e.getSource().getClass().toString().equals("class javax.swing.JTextField")) {
             JTextField text_field = (JTextField) e.getSource();
             if (text_field.equals(capturaOrdenManufactura.txt_mog_capturada)) {
@@ -108,7 +200,7 @@ public class CapturaOrdenManufacturaController implements ActionListener, KeyLis
                 capturaOrdenManufactura.setVisible(false);
             }
         }
-    }
+    }*/
 
     @Override
     public void keyTyped(KeyEvent e) {
