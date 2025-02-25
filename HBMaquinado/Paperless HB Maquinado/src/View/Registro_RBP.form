@@ -143,7 +143,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="btn_DAS" alignment="0" max="32767" attributes="0"/>
                               <Component id="btn_dibujo" alignment="0" max="32767" attributes="0"/>
@@ -153,7 +153,7 @@
                       </Group>
                       <Component id="jLabelCanastasCom1" alignment="0" min="-2" pref="800" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
               <Component id="jLabelCanastasCom" alignment="1" max="32767" attributes="0"/>
           </Group>
@@ -223,10 +223,12 @@
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btn_dibujo" min="-2" pref="99" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbl_filas_completas_wc_incompletos" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
-                          <Component id="lbl_piezas_fila_wc_incompletos1" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lbl_sobrante" alignment="1" min="-2" pref="99" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbl_filas_completas_wc_incompletos" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
+                              <Component id="lbl_piezas_fila_wc_incompletos1" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>

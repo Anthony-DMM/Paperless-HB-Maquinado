@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -38,8 +39,9 @@ public class Captura_Orden_Manufactura_Controller implements ActionListener, Key
         this.validarLinea = Validar_Linea.getInstance();
         this.opciones = Opciones.getInstance();
         
-        capturaOrdenManufactura.getTxt_linea_produccion().addActionListener(this);
-        capturaOrdenManufactura.getTxt_linea_produccion().addKeyListener(this);
+        capturaOrdenManufactura.getTxt_codigo_supervisor().addActionListener(this);
+        capturaOrdenManufactura.getTxt_codigo_supervisor().addKeyListener(this);
+        capturaOrdenManufactura.getTxt_mog_capturada().addKeyListener(this);
         capturaOrdenManufactura.getTxt_mog_capturada().addActionListener(this);
         capturaOrdenManufactura.getTxt_mog_capturada().addKeyListener(this);
         capturaOrdenManufactura.getBtn_siguiente().addActionListener(this);
@@ -70,7 +72,10 @@ public class Captura_Orden_Manufactura_Controller implements ActionListener, Key
                         Logger.getLogger(Captura_Orden_Manufactura_Controller.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-            } else if (text_field.equals(capturaOrdenManufactura.txt_codigo_supervisor)) {
+            }
+        } else if (e.getSource().getClass().toString().equals("class javax.swing.JPasswordField")) {
+            JPasswordField passwordField = (JPasswordField) e.getSource();
+            if (passwordField.equals(capturaOrdenManufactura.txt_codigo_supervisor)) {
                 String codigoIngresado = capturaOrdenManufactura.txt_codigo_supervisor.getText();
                 if (codigoIngresado.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Debe ingresar un código de supervisor");
@@ -85,11 +90,14 @@ public class Captura_Orden_Manufactura_Controller implements ActionListener, Key
                     }
                 }
             }
-        }
-        else if (e.getSource().getClass().toString().equals("class javax.swing.JButton")) {
+        } else if (e.getSource().getClass().toString().equals("class javax.swing.JButton")) {
             JButton button = (JButton) e.getSource();
             if (button.equals(capturaOrdenManufactura.btn_siguiente)){
-                if (capturaOrdenManufactura.txt_codigo_supervisor.getText().isEmpty() || capturaOrdenManufactura.txt_mog_capturada.getText().isEmpty()) {
+                if (capturaOrdenManufactura.txt_codigo_supervisor.getText().isEmpty() || capturaOrdenManufactura.txt_mog_capturada.getText().isEmpty()
+                        || capturaOrdenManufactura.txt_supervisor_asignado.getText().isEmpty() || capturaOrdenManufactura.txt_mog.getText().isEmpty()
+                        || capturaOrdenManufactura.txt_modelo.getText().isEmpty() || capturaOrdenManufactura.txt_cantidad_planeada.getText().isEmpty()
+                        || capturaOrdenManufactura.txt_dibujo.getText().isEmpty() || capturaOrdenManufactura.txt_parte.getText().isEmpty()
+                        || capturaOrdenManufactura.txt_proceso.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Campos vacíos, favor de completar los datos");
                 } else {
                     capturaOrdenManufactura.setVisible(false);
