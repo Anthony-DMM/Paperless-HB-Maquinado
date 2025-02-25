@@ -4,18 +4,18 @@
  */
 package paperless.hb.maquinado;
 
-import Controller.Validar_Linea_Controller;
-import Controller.Captura_Orden_Manufactura_Controller;
-import Controller.Opciones_Controller;
-import Model.Validar_Linea_Model;
-import Model.Captura_Orden_Manufactura_Model;
+import Controller.ValidarLineaController;
+import Controller.CapturaOrdenManufacturaController;
+import Controller.OpcionesController;
+import Model.ValidarLineaModel;
+import Model.CapturaOrdenManufacturaModel;
 import Model.DBConexion;
-import View.Validar_Linea;
-import View.Cambio_MOG;
-import View.Captura_Orden_Manufactura;
-import View.Opciones;
-import View.Registro_Paro_Proceso;
-import View.Registro_RBP;
+import View.ValidarLineaView;
+import View.CambioMOGView;
+import View.CapturaOrdenManufacturaView;
+import View.OpcionesView;
+import View.RegistroParoProcesoView;
+import View.RegistroRBPView;
 
 /**
  *
@@ -29,27 +29,27 @@ public class PaperlessHBMaquinado {
     public static void main(String[] args) {
         
         // Vistas
-        Validar_Linea validarLinea = Validar_Linea.getInstance();
-        Opciones opciones = Opciones.getInstance();
-        Captura_Orden_Manufactura capturaOrdenManufactura = Captura_Orden_Manufactura.getInstance();
-        Registro_RBP registroRBP = Registro_RBP.getInstance();
-        Cambio_MOG cambioMOG = Cambio_MOG.getInstance();
-        Registro_Paro_Proceso registroParoProceso = new Registro_Paro_Proceso(); 
+        ValidarLineaView validarLineaView = ValidarLineaView.getInstance();
+        OpcionesView opcionesView = OpcionesView.getInstance();
+        CapturaOrdenManufacturaView capturaOrdenManufacturaView = CapturaOrdenManufacturaView.getInstance();
+        RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
+        CambioMOGView cambioMOGView = CambioMOGView.getInstance();
+        RegistroParoProcesoView registroParoProcesoView = new RegistroParoProcesoView(); 
         
-        validarLinea.setVisible(true);
+        validarLineaView.setVisible(true);
         
         
         // Model
         DBConexion conexion = new DBConexion();
-        Captura_Orden_Manufactura_Model capturaOrdenManufacturaModel = new Captura_Orden_Manufactura_Model(conexion);
-        Validar_Linea_Model validarLineaModel = new Validar_Linea_Model(conexion);
+        CapturaOrdenManufacturaModel capturaOrdenManufacturaModel = new CapturaOrdenManufacturaModel(conexion);
+        ValidarLineaModel validarLineaModel = new ValidarLineaModel(conexion);
         
         
         
         // Controller
-        Validar_Linea_Controller validarLineaController = new Validar_Linea_Controller(validarLinea, validarLineaModel, capturaOrdenManufactura, conexion);
-        Captura_Orden_Manufactura_Controller capturaOrdenManufacturaController = new Captura_Orden_Manufactura_Controller(capturaOrdenManufacturaModel, capturaOrdenManufactura);
-        Opciones_Controller opcionesController = new Opciones_Controller(); 
+        ValidarLineaController validarLineaController = new ValidarLineaController(validarLineaView, validarLineaModel, capturaOrdenManufacturaView, conexion);
+        CapturaOrdenManufacturaController capturaOrdenManufacturaController = new CapturaOrdenManufacturaController(capturaOrdenManufacturaModel, capturaOrdenManufacturaView);
+        OpcionesController opcionesController = new OpcionesController(); 
     }
     
 }

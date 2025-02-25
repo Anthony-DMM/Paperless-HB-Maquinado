@@ -4,7 +4,7 @@
  */
 package View;
 
-import Interfaces.VistaSingleton;
+import Config.VistaSingleton;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
@@ -14,20 +14,20 @@ import javax.swing.JTextField;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Validar_Linea extends javax.swing.JFrame {
+public class ValidarLineaView extends javax.swing.JFrame {
 
     /**
      * Creates new form Autenticacion
      */
-    private Validar_Linea() {
+    private ValidarLineaView() {
         initComponents();
         setLocationRelativeTo(null);
         btn_ingresar.setBackground(Color.black);
         btn_salir.setBackground(Color.black);
     }
     
-    public static Validar_Linea getInstance() {
-        return VistaSingleton.getInstance(Validar_Linea.class);
+    public static ValidarLineaView getInstance() {
+        return VistaSingleton.getInstance(ValidarLineaView.class);
     }
 
     /**

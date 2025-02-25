@@ -4,12 +4,12 @@
  */
 package Controller;
 
-import Interfaces.LineaProduccion;
-import Model.Validar_Linea_Model;
+import Entities.LineaProduccion;
+import Model.ValidarLineaModel;
 import Model.DBConexion;
-import View.Validar_Linea;
-import View.Captura_Orden_Manufactura;
-import View.Opciones;
+import View.ValidarLineaView;
+import View.CapturaOrdenManufacturaView;
+import View.OpcionesView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,13 +22,13 @@ import javax.swing.JOptionPane;
  * @author ANTHONY-MARTINEZ
  */
 
-public class Validar_Linea_Controller implements ActionListener {
-    Validar_Linea validarLinea;
-    Validar_Linea_Model autenticacion_model;
-    Captura_Orden_Manufactura capturaLinea;
+public class ValidarLineaController implements ActionListener {
+    ValidarLineaView validarLinea;
+    ValidarLineaModel autenticacion_model;
+    CapturaOrdenManufacturaView capturaLinea;
 
-    public Validar_Linea_Controller(Validar_Linea validarLinea, Validar_Linea_Model autenticacion_model, Captura_Orden_Manufactura captura_Linea, DBConexion conexion) {
-        this.validarLinea = Validar_Linea.getInstance();
+    public ValidarLineaController(ValidarLineaView validarLinea, ValidarLineaModel autenticacion_model, CapturaOrdenManufacturaView captura_Linea, DBConexion conexion) {
+        this.validarLinea = ValidarLineaView.getInstance();
         this.autenticacion_model = autenticacion_model;
         this.capturaLinea = captura_Linea;
 

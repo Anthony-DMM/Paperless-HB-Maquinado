@@ -4,10 +4,10 @@
  */
 package Controller;
 
-import Interfaces.LineaProduccion;
-import View.Captura_Orden_Manufactura;
-import View.Opciones;
-import View.Registro_RBP;
+import Entities.LineaProduccion;
+import View.CapturaOrdenManufacturaView;
+import View.OpcionesView;
+import View.RegistroRBPView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -16,16 +16,16 @@ import javax.swing.JOptionPane;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Opciones_Controller implements ActionListener{
+public class OpcionesController implements ActionListener{
     
-    Registro_RBP registroRBP;
-    Captura_Orden_Manufactura capturaOrdenManufactura;
-    Opciones opciones;
+    RegistroRBPView registroRBP;
+    CapturaOrdenManufacturaView capturaOrdenManufactura;
+    OpcionesView opciones;
 
-    public Opciones_Controller() {
-        this.registroRBP = Registro_RBP.getInstance();
-        this.capturaOrdenManufactura = Captura_Orden_Manufactura.getInstance();
-        this.opciones = Opciones.getInstance();
+    public OpcionesController() {
+        this.registroRBP = RegistroRBPView.getInstance();
+        this.capturaOrdenManufactura = CapturaOrdenManufacturaView.getInstance();
+        this.opciones = OpcionesView.getInstance();
         
         opciones.getBtn_registrar().addActionListener(this);
         opciones.getBtn_cambiar_modelo().addActionListener(this);

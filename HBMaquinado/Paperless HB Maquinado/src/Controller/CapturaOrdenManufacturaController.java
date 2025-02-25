@@ -4,13 +4,13 @@
  */
 package Controller;
 
-import Interfaces.LineaProduccion;
-import Interfaces.MOG;
-import Model.Captura_Orden_Manufactura_Model;
-import View.Captura_Orden_Manufactura;
-import View.Opciones;
-import View.Registro_RBP;
-import View.Validar_Linea;
+import Entities.LineaProduccion;
+import Entities.MOG;
+import Model.CapturaOrdenManufacturaModel;
+import View.CapturaOrdenManufacturaView;
+import View.OpcionesView;
+import View.RegistroRBPView;
+import View.ValidarLineaView;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,17 +27,17 @@ import javax.swing.JPasswordField;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Captura_Orden_Manufactura_Controller implements ActionListener, KeyListener{
-    Captura_Orden_Manufactura_Model captura_Linea_Model;
-    Captura_Orden_Manufactura capturaOrdenManufactura;
-    Validar_Linea validarLinea;
-    Opciones opciones;
+public class CapturaOrdenManufacturaController implements ActionListener, KeyListener{
+    CapturaOrdenManufacturaModel captura_Linea_Model;
+    CapturaOrdenManufacturaView capturaOrdenManufactura;
+    ValidarLineaView validarLinea;
+    OpcionesView opciones;
 
-    public Captura_Orden_Manufactura_Controller(Captura_Orden_Manufactura_Model captura_Linea_Model, Captura_Orden_Manufactura captura_Linea) {
+    public CapturaOrdenManufacturaController(CapturaOrdenManufacturaModel captura_Linea_Model, CapturaOrdenManufacturaView captura_Linea) {
         this.captura_Linea_Model = captura_Linea_Model;
-        this.capturaOrdenManufactura = Captura_Orden_Manufactura.getInstance();
-        this.validarLinea = Validar_Linea.getInstance();
-        this.opciones = Opciones.getInstance();
+        this.capturaOrdenManufactura = CapturaOrdenManufacturaView.getInstance();
+        this.validarLinea = ValidarLineaView.getInstance();
+        this.opciones = OpcionesView.getInstance();
         
         capturaOrdenManufactura.getTxt_codigo_supervisor().addActionListener(this);
         capturaOrdenManufactura.getTxt_codigo_supervisor().addKeyListener(this);
@@ -69,7 +69,7 @@ public class Captura_Orden_Manufactura_Controller implements ActionListener, Key
                             capturaOrdenManufactura.txt_proceso.setText(datosLinea.getProceso());
                         }
                     } catch (SQLException ex) {
-                        Logger.getLogger(Captura_Orden_Manufactura_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(CapturaOrdenManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -86,7 +86,7 @@ public class Captura_Orden_Manufactura_Controller implements ActionListener, Key
                             capturaOrdenManufactura.txt_supervisor_asignado.setText(datosLinea.getSupervisor());
                         }
                     } catch (Exception ex) {
-                        Logger.getLogger(Captura_Orden_Manufactura_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(CapturaOrdenManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }

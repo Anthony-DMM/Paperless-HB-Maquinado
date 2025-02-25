@@ -4,7 +4,7 @@
  */
 package View;
 
-import Interfaces.VistaSingleton;
+import Config.VistaSingleton;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
@@ -14,12 +14,12 @@ import javax.swing.JTextField;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Captura_Orden_Manufactura extends javax.swing.JFrame {
+public class CapturaOrdenManufacturaView extends javax.swing.JFrame {
 
     /**
      * Creates new form Captura_Linea
      */
-    private Captura_Orden_Manufactura() {
+    private CapturaOrdenManufacturaView() {
         initComponents();
         setLocationRelativeTo(null);
         lbl_codigo_supervisor.setText("<html>Código de<br>Supervisor:</html>");
@@ -29,8 +29,8 @@ public class Captura_Orden_Manufactura extends javax.swing.JFrame {
         btn_siguiente.setBackground(Color.black);
     }
     
-    public static Captura_Orden_Manufactura getInstance() {
-        return VistaSingleton.getInstance(Captura_Orden_Manufactura.class);
+    public static CapturaOrdenManufacturaView getInstance() {
+        return VistaSingleton.getInstance(CapturaOrdenManufacturaView.class);
     }
 
     /**
@@ -309,14 +309,18 @@ public class Captura_Orden_Manufactura extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Captura_Orden_Manufactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CapturaOrdenManufacturaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Captura_Orden_Manufactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CapturaOrdenManufacturaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Captura_Orden_Manufactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CapturaOrdenManufacturaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Captura_Orden_Manufactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CapturaOrdenManufacturaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -325,7 +329,7 @@ public class Captura_Orden_Manufactura extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Captura_Orden_Manufactura().setVisible(true);
+                new CapturaOrdenManufacturaView().setVisible(true);
             }
         });
     }

@@ -4,19 +4,19 @@
  */
 package View;
 
-import Interfaces.VistaSingleton;
+import Config.VistaSingleton;
 import java.awt.Color;
 
 /**
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Registro_RBP extends javax.swing.JFrame {
+public class RegistroRBPView extends javax.swing.JFrame {
 
     /**
      * Creates new form Registro_RBP
      */
-    private Registro_RBP() {
+    private RegistroRBPView() {
         initComponents();
         setLocationRelativeTo(null);
         cbox_turno.getEditor().getEditorComponent().setBackground(Color.YELLOW);
@@ -34,8 +34,8 @@ public class Registro_RBP extends javax.swing.JFrame {
         btn_cambio_MOG.setText("<html><center>Cambio<br>de MOG</center></html>");
     }
     
-    public static Registro_RBP getInstance() {
-        return VistaSingleton.getInstance(Registro_RBP.class);
+    public static RegistroRBPView getInstance() {
+        return VistaSingleton.getInstance(RegistroRBPView.class);
     }
 
     /**
@@ -435,20 +435,21 @@ public class Registro_RBP extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Registro_RBP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroRBPView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Registro_RBP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroRBPView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Registro_RBP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroRBPView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Registro_RBP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroRBPView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Registro_RBP().setVisible(true);
+                new RegistroRBPView().setVisible(true);
             }
         });
     }

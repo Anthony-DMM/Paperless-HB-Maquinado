@@ -4,29 +4,27 @@
  */
 package View;
 
-import Interfaces.VistaSingleton;
+import Config.VistaSingleton;
 import java.awt.Color;
-import javax.swing.JButton;
 
 /**
  *
- * @author ANTHONY-MARTINEZ
+ * @author anthony
  */
-public class Opciones extends javax.swing.JFrame {
+public class CambioMOGView extends javax.swing.JFrame {
 
     /**
-     * Creates new form Seleccion_opcion
+     * Creates new form Cambio_MOG
      */
-    private Opciones() {
+    private CambioMOGView() {
         initComponents();
         setLocationRelativeTo(null);
-        btn_cambiar_modelo.setBackground(Color.black);
-        btn_registrar.setBackground(Color.black);
+        btn_confirmar.setBackground(Color.black);
         btn_regresar.setBackground(Color.black);
     }
     
-    public static Opciones getInstance() {
-        return VistaSingleton.getInstance(Opciones.class);
+    public static CambioMOGView getInstance() {
+        return VistaSingleton.getInstance(CambioMOGView.class);
     }
 
     /**
@@ -40,10 +38,12 @@ public class Opciones extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        btn_registrar = new javax.swing.JButton();
-        btn_cambiar_modelo = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
         btn_regresar = new javax.swing.JButton();
+        btn_confirmar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,31 +52,38 @@ public class Opciones extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 80)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MAQUINADO");
+        jLabel1.setText("Cambio de MOG");
         jLabel1.setPreferredSize(new java.awt.Dimension(700, 14));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Seleccione una opción");
-        jLabel2.setPreferredSize(new java.awt.Dimension(700, 14));
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Nueva MOG:");
 
-        btn_registrar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_registrar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_registrar.setText("Registrar producción");
-        btn_registrar.setToolTipText("");
-        btn_registrar.setPreferredSize(new java.awt.Dimension(700, 70));
+        jTextField1.setBackground(new java.awt.Color(255, 255, 0));
+        jTextField1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        btn_cambiar_modelo.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_cambiar_modelo.setForeground(new java.awt.Color(255, 255, 255));
-        btn_cambiar_modelo.setText("Cambio de modelo");
-        btn_cambiar_modelo.setToolTipText("");
-        btn_cambiar_modelo.setPreferredSize(new java.awt.Dimension(700, 70));
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Cantidad de piezas:");
+
+        jTextField2.setBackground(new java.awt.Color(255, 255, 0));
+        jTextField2.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btn_regresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btn_regresar.setForeground(new java.awt.Color(255, 255, 255));
         btn_regresar.setText("Regresar");
-        btn_regresar.setToolTipText("");
-        btn_regresar.setPreferredSize(new java.awt.Dimension(700, 70));
+        btn_regresar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btn_regresar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btn_regresar.setPreferredSize(new java.awt.Dimension(350, 80));
+
+        btn_confirmar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btn_confirmar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_confirmar.setText("Confirmar");
+        btn_confirmar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btn_confirmar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btn_confirmar.setPreferredSize(new java.awt.Dimension(120, 80));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -84,28 +91,34 @@ public class Opciones extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cambiar_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField1)
+                    .addComponent(jTextField2)
+                    .addComponent(btn_confirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(320, 320, 320)
+                .addGap(200, 200, 200)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
-                .addComponent(btn_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(btn_cambiar_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(150, 150, 150)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(200, 200, 200)
+                .addComponent(btn_confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(btn_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(591, Short.MAX_VALUE))
+                .addGap(349, 349, 349))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -145,13 +158,13 @@ public class Opciones extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Opciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CambioMOGView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Opciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CambioMOGView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Opciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CambioMOGView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Opciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CambioMOGView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -159,43 +172,19 @@ public class Opciones extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Opciones().setVisible(true);
+                new CambioMOGView().setVisible(true);
             }
         });
     }
 
-    public JButton getBtn_cambiar_modelo() {
-        return btn_cambiar_modelo;
-    }
-
-    public void setBtn_cambiar_modelo(JButton btn_cambiar_modelo) {
-        this.btn_cambiar_modelo = btn_cambiar_modelo;
-    }
-
-    public JButton getBtn_registrar() {
-        return btn_registrar;
-    }
-
-    public void setBtn_registrar(JButton btn_registrar) {
-        this.btn_registrar = btn_registrar;
-    }
-
-    public JButton getBtn_regresar() {
-        return btn_regresar;
-    }
-
-    public void setBtn_regresar(JButton btn_regresar) {
-        this.btn_regresar = btn_regresar;
-    }
-    
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btn_cambiar_modelo;
-    public javax.swing.JButton btn_registrar;
-    public javax.swing.JButton btn_regresar;
+    private javax.swing.JButton btn_confirmar;
+    private javax.swing.JButton btn_regresar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

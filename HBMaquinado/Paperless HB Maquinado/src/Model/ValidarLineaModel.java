@@ -4,8 +4,8 @@
  */
 package Model;
 
-import Interfaces.LineaProduccion;
-import View.Validar_Linea;
+import Entities.LineaProduccion;
+import View.ValidarLineaView;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,11 +19,11 @@ import javax.swing.JOptionPane;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Validar_Linea_Model {
+public class ValidarLineaModel {
     
     private DBConexion conexion;
 
-    public Validar_Linea_Model(DBConexion conexion) {
+    public ValidarLineaModel(DBConexion conexion) {
         this.conexion = conexion;
     }
 
@@ -54,7 +54,7 @@ public class Validar_Linea_Model {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
-            Logger.getLogger(Captura_Orden_Manufactura_Model.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CapturaOrdenManufacturaModel.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }

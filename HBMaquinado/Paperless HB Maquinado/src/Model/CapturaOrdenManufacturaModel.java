@@ -4,8 +4,8 @@
  */
 package Model;
 
-import Interfaces.LineaProduccion;
-import Interfaces.MOG;
+import Entities.LineaProduccion;
+import Entities.MOG;
 import Utils.FechaHora;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -20,11 +20,11 @@ import java.util.logging.Logger;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class Captura_Orden_Manufactura_Model {
+public class CapturaOrdenManufacturaModel {
     
     private DBConexion conexion;
 
-    public Captura_Orden_Manufactura_Model(DBConexion conexion) {
+    public CapturaOrdenManufacturaModel(DBConexion conexion) {
         this.conexion = conexion;
     }
     
@@ -162,7 +162,7 @@ public class Captura_Orden_Manufactura_Model {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al validar el supervisor: " + ex.getMessage());
-            Logger.getLogger(Captura_Orden_Manufactura_Model.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CapturaOrdenManufacturaModel.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
         return false;
