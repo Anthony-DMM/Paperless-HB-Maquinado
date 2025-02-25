@@ -5,6 +5,7 @@
 package Model;
 
 import Entities.LineaProduccion;
+import Utils.MostrarMensaje;
 import View.ValidarLineaView;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -28,35 +29,62 @@ public class ValidarLineaModel {
     }
 
     public LineaProduccion validarLinea(String lineaProduccion, String procesoEsperado) {
-        String supervisorAsignado = null, procesoMaquina = null;
-        Connection con;
-        con = conexion.conexionMySQL();
+        Connection con = null;
+        CallableStatement cst = null;
+
         try {
-            CallableStatement cst = con.prepareCall("{call Supervisorname(?,?,?,?)}");
+            con = conexion.conexionMySQL();
+            cst = con.prepareCall("{call Supervisorname(?,?,?,?)}");
             cst.setString(1, lineaProduccion);
             cst.setString(2, procesoEsperado);
             cst.registerOutParameter(3, java.sql.Types.VARCHAR);
             cst.registerOutParameter(4, java.sql.Types.VARCHAR);
             cst.executeQuery();
-            supervisorAsignado = cst.getString(3);
-            procesoMaquina = cst.getString(4);
-            con.close();
+
+            String supervisorAsignado = cst.getString(3);
+            String procesoMaquina = cst.getString(4);
 
             if (procesoMaquina == null) {
                 return null;
-            } else {
-                LineaProduccion linea = LineaProduccion.getInstance();
-                linea.setLinea(lineaProduccion);
-                linea.setSupervisor(supervisorAsignado);
-                linea.setProceso(procesoMaquina);
-                return linea;
             }
 
+            return crearLineaProduccion(lineaProduccion, supervisorAsignado, procesoMaquina);
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
-            Logger.getLogger(CapturaOrdenManufacturaModel.class.getName()).log(Level.SEVERE, null, ex);
+            manejarExcepcion(ex);
             return null;
+        } finally {
+            cerrarRecursos(con, cst);
         }
     }
-
+    
+    private LineaProduccion crearLineaProduccion(String lineaProduccion, String supervisorAsignado, String procesoMaquina) {
+        LineaProduccion linea = LineaProduccion.getInstance();
+        linea.setLinea(lineaProduccion);
+        linea.setSupervisor(supervisorAsignado);
+        linea.setProceso(procesoMaquina);
+        return linea;
+    }
+    
+    private void manejarExcepcion(SQLException ex) {
+        Logger.getLogger(ValidarLineaModel.class.getName()).log(Level.SEVERE, "Error al validar la línea de producción", ex);
+        MostrarMensaje.mostrarError("No se encontró ningún supervisor asignado.");
+    }
+    
+    private void cerrarRecursos(Connection con, CallableStatement cst) {
+        if (cst != null) {
+            try {
+                cst.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ValidarLineaModel.class.getName()).log(Level.SEVERE, "Error al cerrar CallableStatement", ex);
+            }
+        }
+        if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ValidarLineaModel.class.getName()).log(Level.SEVERE, "Error al cerrar Connection", ex);
+            }
+        }
+    }
 }

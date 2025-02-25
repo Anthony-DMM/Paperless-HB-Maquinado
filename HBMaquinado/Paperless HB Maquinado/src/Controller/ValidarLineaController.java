@@ -7,6 +7,11 @@ package Controller;
 import Entities.LineaProduccion;
 import Model.ValidarLineaModel;
 import Model.DBConexion;
+import Utils.CerrarAplicacion;
+import Utils.LimpiarCampos;
+import Utils.MostrarMensaje;
+import Utils.Navegador;
+import Utils.ValidarCampos;
 import View.ValidarLineaView;
 import View.CapturaOrdenManufacturaView;
 import View.OpcionesView;
@@ -23,37 +28,43 @@ import javax.swing.JOptionPane;
  */
 
 public class ValidarLineaController implements ActionListener {
-    ValidarLineaView validarLinea;
-    ValidarLineaModel autenticacion_model;
-    CapturaOrdenManufacturaView capturaLinea;
+    ValidarLineaView validarLineaView;
+    ValidarLineaModel validarLineaModel;
+    CapturaOrdenManufacturaView capturaOrdenManufacturaView;
 
-    public ValidarLineaController(ValidarLineaView validarLinea, ValidarLineaModel autenticacion_model, CapturaOrdenManufacturaView captura_Linea, DBConexion conexion) {
-        this.validarLinea = ValidarLineaView.getInstance();
-        this.autenticacion_model = autenticacion_model;
-        this.capturaLinea = captura_Linea;
+    public ValidarLineaController(ValidarLineaView validarLineaView, ValidarLineaModel validarLineaModel, CapturaOrdenManufacturaView capturaOrdenManufacturaView, DBConexion conexion) {
+        this.validarLineaView = ValidarLineaView.getInstance();
+        this.validarLineaModel = validarLineaModel;
+        this.capturaOrdenManufacturaView = capturaOrdenManufacturaView;
 
-        validarLinea.getBtn_ingresar().addActionListener(this);
-        validarLinea.getBtn_salir().addActionListener(this);
+        validarLineaView.getBtn_ingresar().addActionListener(this);
+        validarLineaView.getBtn_salir().addActionListener(this);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == validarLinea.getBtn_ingresar()) {
-            String lineaProduccion = validarLinea.getTxt_linea_produccion().getText();
-            if (lineaProduccion.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar la línea de producción");
-            } else {
-                LineaProduccion linea = autenticacion_model.validarLinea(lineaProduccion, "MAQUINADO");
-                if (linea == null) {
-                    JOptionPane.showMessageDialog(null, "La línea de producción no existe o no pertenece al área de MAQUINADO.");
-                } else {
-                    capturaLinea.setVisible(true);
-                    validarLinea.setVisible(false);
-                }
-                validarLinea.getTxt_linea_produccion().setText(null);
-            }
-        } else if (e.getSource() == validarLinea.getBtn_salir()) {
-            System.exit(0);
+        if (e.getSource() == validarLineaView.getBtn_ingresar()) {
+            validarLinea();
+        } else if (e.getSource() == validarLineaView.getBtn_salir()) {
+            CerrarAplicacion.cerrar();
         }
+    }
+    
+    private void validarLinea() {
+        if (ValidarCampos.esCampoVacio(validarLineaView.getTxt_linea_produccion(), "Debe ingresar la línea de producción")) {
+            return;
+        }
+        
+        String lineaProduccion = validarLineaView.getTxt_linea_produccion().getText().trim();
+        LineaProduccion linea = validarLineaModel.validarLinea(lineaProduccion, "MAQUINADO");
+
+        if (linea == null) {
+            MostrarMensaje.mostrarError("La línea de producción no existe o no pertenece al área de MAQUINADO.");
+        } else {
+            // Navegar a la siguiente ventana
+            Navegador.avanzarSiguienteVentana(validarLineaView, capturaOrdenManufacturaView);
+        }
+        
+        LimpiarCampos.limpiarCampo(validarLineaView.getTxt_linea_produccion());
     }
 }
