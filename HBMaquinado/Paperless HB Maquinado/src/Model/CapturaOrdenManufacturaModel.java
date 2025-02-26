@@ -10,6 +10,7 @@ import Utils.FechaHora;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -21,49 +22,64 @@ import java.util.logging.Logger;
  * @author ANTHONY-MARTINEZ
  */
 public class CapturaOrdenManufacturaModel {
-    
-    private DBConexion conexion;
+
+    private static final Logger LOGGER = Logger.getLogger(CapturaOrdenManufacturaModel.class.getName());
+    private static final String ART = "HB";
+    private static final String PROCESO_VALIDO = "HBL";
+
+    private final DBConexion conexion;
 
     public CapturaOrdenManufacturaModel(DBConexion conexion) {
         this.conexion = conexion;
     }
-    
+
     public boolean obtenerDatosOrden(String ordenManufactura) throws SQLException {
-        String art = "HB";
-        String no = null;
-        String numeroParte = null;
-        int id;
-        String procesoValido = "HBL";
-        boolean ordenEncontrada = false;
         MOG datosMOG = MOG.getInstance();
         LineaProduccion lineaProduccion = LineaProduccion.getInstance();
-        Statement sen;
-        Connection con, cone;
-        ResultSet res;
-        con = conexion.conexionMySQL();
-        cone = conexion.oracle();
-        sen = cone.createStatement();
-        
-        // Consulta en ERP
-        sen.executeUpdate("ALTER SESSION SET CURRENT_SCHEMA = BAANLN");
-        res = sen.executeQuery("SELECT ttcibd001500.T$ITEM, ttidms602500.T$RPNO,ttcibd001500.T$SEAK,\n"
-                + "ttidms602500.T$PDNO,ttidms602500.T$OQTY,ttcibd001500.T$SEAB, ttcibd001500.T$WGHT,"
-                + "ttidms602500.T$SEQN, ttcibd001500.t$dscc, ttidms602500.T$CLOT\n"
-                + "FROM ttcibd001500 INNER JOIN ttidms602500 ON ttidms602500.T$ITEM=ttcibd001500.T$ITEM \n"
-                + "WHERE ttidms602500.T$PDNO='" + ordenManufactura + "'");
-        
+
+        try (Connection cone = conexion.oracle();
+             Statement sen = cone.createStatement()) {
+
+            // Configurar esquema y ejecutar consulta
+            sen.executeUpdate("ALTER SESSION SET CURRENT_SCHEMA = BAANLN");
+            String query = buildQuery(ordenManufactura);
+            ResultSet res = sen.executeQuery(query);
+
+            if (!procesarResultadoConsulta(res, datosMOG, ordenManufactura)) {
+                return false;
+            }
+
+            try (Connection con = conexion.conexionMySQL()) {
+                int id = insertarDatosMog(con, datosMOG);
+                insertarDatosRbp(con, datosMOG, lineaProduccion, id);
+                actualizarTm(con, datosMOG);
+                insertarCorriendo(con, datosMOG, lineaProduccion);
+            }
+
+            return true;
+
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al obtener datos de la orden", ex);
+            throw ex;
+        }
+    }
+
+    private String buildQuery(String ordenManufactura) {
+        return "SELECT ttcibd001500.T$ITEM, ttidms602500.T$RPNO, ttcibd001500.T$SEAK, "
+                + "ttidms602500.T$PDNO, ttidms602500.T$OQTY, ttcibd001500.T$SEAB, ttcibd001500.T$WGHT, "
+                + "ttidms602500.T$SEQN, ttcibd001500.t$dscc, ttidms602500.T$CLOT "
+                + "FROM ttcibd001500 INNER JOIN ttidms602500 ON ttidms602500.T$ITEM=ttcibd001500.T$ITEM "
+                + "WHERE ttidms602500.T$PDNO='" + ordenManufactura + "'";
+    }
+
+    private boolean procesarResultadoConsulta(ResultSet res, MOG datosMOG, String ordenManufactura) throws SQLException {
+        boolean ordenEncontrada = false;
+        String numeroParte = null;
+
         while (res.next()) {
             ordenEncontrada = true;
-            no = res.getString(1);
-            if (ordenManufactura.contains("HBL")) {
-                numeroParte = no.replace("-TH", "");
-                numeroParte = numeroParte.trim();
-                datosMOG.setNo_parte(numeroParte);
-                
-            } else {
-                datosMOG.setNo_parte(numeroParte);
-            }
-            
+            numeroParte = procesarNumeroParte(res.getString(1), ordenManufactura);
+            datosMOG.setNo_parte(numeroParte);
             datosMOG.setMog(res.getString(2));
             datosMOG.setModelo(res.getString(3));
             datosMOG.setOrden_manufactura(res.getString(4));
@@ -72,32 +88,44 @@ public class CapturaOrdenManufacturaModel {
             datosMOG.setPeso(res.getDouble(7));
             datosMOG.setSequ(res.getInt(8));
             datosMOG.setTm(res.getString(10));
-            
-            String estandar = res.getString(9);
-            String estandarSinColor = estandar.replace("Café", "").replace("CAFE", "").replace("Rojo", "").replace("Azul", "")
-                    .replace("Verde", "").replace("Rosa", "").replace("Amarillo", "").replace("Negro", "")
-                    .replace("Cafe", "").replace("CAFÉ", "").replace("ROJO", "").replace("AZUL", "").replace("VERDE", "")
-                    .replace("ROSA", "").replace("AMARILLO", "").replace("NEGRO", "").replace("YELLOW", "")
-                    .replace("BROWN", "").replace("GREEN", "").replace("MORADO", "").replace("BLUE", "")
-                    .replace("BLANCO", "").replace("PURPLE", "").replace("Purple", "").replace("Blue", "")
-                    .replace("PINK", "").replace("Pink", "").replace("White", "").replace("WHITE", "").replace("RED", "")
-                    .replace("BLACK", "").replace("Black", "").replace("Blanca", "").replace("BLANCA", "")
-                    .replace("Morado", "").replace("-", "");
-            
-            datosMOG.setStd(estandarSinColor.trim());
+            datosMOG.setStd(limpiarEstandar(res.getString(9)));
         }
-        
+
         if (!ordenEncontrada) {
             JOptionPane.showMessageDialog(null, "No se encontró la orden de manufactura");
-        } else if (numeroParte == null) {
+            return false;
+        } else if (!ordenManufactura.contains(PROCESO_VALIDO)) {
             JOptionPane.showMessageDialog(null, "La orden de manufactura no pertenece al proceso de MAQUINADO");
-            ordenEncontrada = false;
-        } else {
-            CallableStatement cst = con.prepareCall("{call llenarMog(?,?,?,?,?,?,?,?,?,?)}");
+            return false;
+        }
+
+        return true;
+    }
+
+    private String procesarNumeroParte(String numeroParte, String ordenManufactura) {
+        if (ordenManufactura.contains(PROCESO_VALIDO)) {
+            return numeroParte.replace("-TH", "").trim();
+        }
+        return numeroParte;
+    }
+
+    private String limpiarEstandar(String estandar) {
+        String[] colores = {"Café", "CAFE", "Rojo", "Azul", "Verde", "Rosa", "Amarillo", "Negro", "Cafe", "CAFÉ", 
+                            "ROJO", "AZUL", "VERDE", "ROSA", "AMARILLO", "NEGRO", "YELLOW", "BROWN", "GREEN", 
+                            "MORADO", "BLUE", "BLANCO", "PURPLE", "Purple", "Blue", "PINK", "Pink", "White", 
+                            "WHITE", "RED", "BLACK", "Black", "Blanca", "BLANCA", "Morado", "-"};
+        for (String color : colores) {
+            estandar = estandar.replace(color, "");
+        }
+        return estandar.trim();
+    }
+
+    private int insertarDatosMog(Connection con, MOG datosMOG) throws SQLException {
+        try (CallableStatement cst = con.prepareCall("{call llenarMog(?,?,?,?,?,?,?,?,?,?)}")) {
             cst.setString(1, datosMOG.getMog());
-            cst.setString(2, art + " " + datosMOG.getModelo());
+            cst.setString(2, ART + " " + datosMOG.getModelo());
             cst.setString(3, datosMOG.getNo_dibujo());
-            cst.setString(4, numeroParte);
+            cst.setString(4, datosMOG.getNo_parte());
             cst.setString(5, datosMOG.getModelo());
             cst.setString(6, datosMOG.getStd());
             cst.setInt(7, datosMOG.getCantidad_planeada());
@@ -105,21 +133,30 @@ public class CapturaOrdenManufacturaModel {
             cst.setDouble(9, datosMOG.getPeso());
             cst.setDouble(10, 1.1);
             cst.execute();
-            id = cst.getInt(8);
+            return cst.getInt(8);
+        }
+    }
 
-            CallableStatement cs = con.prepareCall("{call llenarRBP(?,?,?,?)}");
+    private void insertarDatosRbp(Connection con, MOG datosMOG, LineaProduccion lineaProduccion, int id) throws SQLException {
+        try (CallableStatement cs = con.prepareCall("{call llenarRBP(?,?,?,?)}")) {
             cs.setString(1, datosMOG.getOrden_manufactura());
             cs.setString(2, lineaProduccion.getProceso());
             cs.setInt(3, id);
             cs.setInt(4, datosMOG.getSequ());
             cs.execute();
+        }
+    }
 
-            CallableStatement cs1 = con.prepareCall("{call actualizarTM(?,?)}");
+    private void actualizarTm(Connection con, MOG datosMOG) throws SQLException {
+        try (CallableStatement cs1 = con.prepareCall("{call actualizarTM(?,?)}")) {
             cs1.setString(1, datosMOG.getOrden_manufactura());
             cs1.setString(2, datosMOG.getTm());
             cs1.execute();
-            
-            CallableStatement cst2 = con.prepareCall("call insertarCorriendo(?,?,?,?,?)");
+        }
+    }
+
+    private void insertarCorriendo(Connection con, MOG datosMOG, LineaProduccion lineaProduccion) throws SQLException {
+        try (CallableStatement cst2 = con.prepareCall("{call insertarCorriendo(?,?,?,?,?)}")) {
             cst2.setString(1, datosMOG.getOrden_manufactura());
             cst2.setString(2, datosMOG.getMog());
             cst2.setString(3, FechaHora.horaActual());
@@ -127,44 +164,35 @@ public class CapturaOrdenManufacturaModel {
             cst2.setString(5, lineaProduccion.getLinea());
             cst2.execute();
         }
-        
-        con.close();
-        cone.close();
-        
-        return ordenEncontrada;
     }
-    
-    public boolean validarSupervisor(String codigo_supervisor) throws SQLException {
-        int valor;
-        String proceso_obtenido = null;
-        String supervisor_obtenido = null;
 
+    public boolean validarSupervisor(String codigoSupervisor) throws SQLException {
         try (Connection con = conexion.conexionMySQL();
-            CallableStatement cst = con.prepareCall("{call login(?,?,?,?)}")) {
-            cst.setString(1, codigo_supervisor);
+             CallableStatement cst = con.prepareCall("{call login(?,?,?,?)}")) {
+
+            cst.setString(1, codigoSupervisor);
             cst.registerOutParameter(2, java.sql.Types.INTEGER);
             cst.registerOutParameter(3, java.sql.Types.VARCHAR);
             cst.registerOutParameter(4, java.sql.Types.VARCHAR);
             cst.execute();
-            valor = cst.getInt(2);
-            proceso_obtenido = cst.getString(3);
-            supervisor_obtenido = cst.getString(4);
-            
-            if (valor==0) {
+
+            int valor = cst.getInt(2);
+            String procesoObtenido = cst.getString(3);
+            String supervisorObtenido = cst.getString(4);
+
+            if (valor == 0) {
                 JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
                 return false;
-            } else if (!proceso_obtenido.equals(LineaProduccion.getInstance().getProceso())){ 
+            } else if (!procesoObtenido.equals(LineaProduccion.getInstance().getProceso())) {
                 JOptionPane.showMessageDialog(null, "El supervisor no pertenece al área de MAQUINADO");
+                return false;
             } else {
-                LineaProduccion lineaProduccion = LineaProduccion.getInstance();
-                lineaProduccion.setSupervisor(supervisor_obtenido);
+                LineaProduccion.getInstance().setSupervisor(supervisorObtenido);
                 return true;
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al validar el supervisor: " + ex.getMessage());
-            Logger.getLogger(CapturaOrdenManufacturaModel.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "Error al validar el supervisor", ex);
             throw ex;
         }
-        return false;
     }
 }

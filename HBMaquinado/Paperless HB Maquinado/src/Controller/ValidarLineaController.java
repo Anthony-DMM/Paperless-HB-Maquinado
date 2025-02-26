@@ -60,11 +60,9 @@ public class ValidarLineaController implements ActionListener {
 
         if (linea == null) {
             MostrarMensaje.mostrarError("La línea de producción no existe o no pertenece al área de MAQUINADO.");
+            LimpiarCampos.limpiarCampo(validarLineaView.getTxt_linea_produccion());
         } else {
-            // Navegar a la siguiente ventana
             Navegador.avanzarSiguienteVentana(validarLineaView, capturaOrdenManufacturaView);
         }
-        
-        LimpiarCampos.limpiarCampo(validarLineaView.getTxt_linea_produccion());
     }
 }

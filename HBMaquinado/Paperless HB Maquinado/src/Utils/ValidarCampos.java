@@ -5,6 +5,7 @@
 package Utils;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -14,9 +15,21 @@ import javax.swing.JTextField;
 public class ValidarCampos {
     public static boolean esCampoVacio(JTextField campo, String mensajeError) {
         if (campo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+            mostrarError(mensajeError);
             return true;
         }
         return false;
+    }
+    
+    public static boolean esCampoVacio(JPasswordField campo, String mensajeError) {
+        if (new String(campo.getPassword()).trim().isEmpty()) {
+            mostrarError(mensajeError);
+            return true;
+        }
+        return false;
+    }
+    
+    private static void mostrarError(String mensajeError) {
+        JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
