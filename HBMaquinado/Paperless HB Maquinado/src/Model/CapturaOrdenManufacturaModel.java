@@ -26,6 +26,7 @@ public class CapturaOrdenManufacturaModel {
     private static final Logger LOGGER = Logger.getLogger(CapturaOrdenManufacturaModel.class.getName());
     private static final String ART = "HB";
     private static final String PROCESO_VALIDO = "HBL";
+    FechaHora fechaHora = new FechaHora();
 
     private final DBConexion conexion;
 
@@ -157,10 +158,13 @@ public class CapturaOrdenManufacturaModel {
 
     private void insertarCorriendo(Connection con, MOG datosMOG, LineaProduccion lineaProduccion) throws SQLException {
         try (CallableStatement cst2 = con.prepareCall("{call insertarCorriendo(?,?,?,?,?)}")) {
+            String hora = fechaHora.horaActual();
+            String fecha = fechaHora.fechaActual();
+            
             cst2.setString(1, datosMOG.getOrden_manufactura());
             cst2.setString(2, datosMOG.getMog());
-            cst2.setString(3, FechaHora.horaActual());
-            cst2.setString(4, FechaHora.fechaActual());
+            cst2.setString(3, hora);
+            cst2.setString(4, fecha);
             cst2.setString(5, lineaProduccion.getLinea());
             cst2.execute();
         }

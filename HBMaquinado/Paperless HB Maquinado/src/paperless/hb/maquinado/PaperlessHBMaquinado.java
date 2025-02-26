@@ -10,19 +10,22 @@ import Controller.OpcionesController;
 import Model.ValidarLineaModel;
 import Model.CapturaOrdenManufacturaModel;
 import Model.DBConexion;
+import Utils.FechaHora;
 import View.ValidarLineaView;
 import View.CambioMOGView;
 import View.CapturaOrdenManufacturaView;
 import View.OpcionesView;
 import View.RegistroParoProcesoView;
 import View.RegistroRBPView;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author ANTHONY-MARTINEZ
  */
 public class PaperlessHBMaquinado {
-
     /**
      * @param args the command line arguments
      */
@@ -38,12 +41,10 @@ public class PaperlessHBMaquinado {
         
         validarLineaView.setVisible(true);
         
-        
         // Model
         DBConexion conexion = new DBConexion();
         CapturaOrdenManufacturaModel capturaOrdenManufacturaModel = new CapturaOrdenManufacturaModel(conexion);
         ValidarLineaModel validarLineaModel = new ValidarLineaModel(conexion);
-        
         
         
         // Controller
