@@ -15,6 +15,7 @@ import View.ValidarLineaView;
 import View.CambioMOGView;
 import View.CapturaOrdenManufacturaView;
 import View.OpcionesView;
+import View.RegistroDASView;
 import View.RegistroParoProcesoView;
 import View.RegistroRBPView;
 import java.sql.SQLException;
@@ -36,10 +37,11 @@ public class PaperlessHBMaquinado {
         OpcionesView opcionesView = OpcionesView.getInstance();
         CapturaOrdenManufacturaView capturaOrdenManufacturaView = CapturaOrdenManufacturaView.getInstance();
         RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
+        RegistroDASView registroDASView = RegistroDASView.getInstance(); 
         CambioMOGView cambioMOGView = CambioMOGView.getInstance();
         RegistroParoProcesoView registroParoProcesoView = new RegistroParoProcesoView(); 
         
-        validarLineaView.setVisible(true);
+        registroDASView.setVisible(true);
         
         // Model
         DBConexion conexion = new DBConexion();
