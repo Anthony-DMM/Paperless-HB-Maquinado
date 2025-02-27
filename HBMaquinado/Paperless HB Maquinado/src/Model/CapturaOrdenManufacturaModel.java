@@ -144,11 +144,12 @@ public class CapturaOrdenManufacturaModel {
     }
 
     private void insertarDatosRbp(Connection con, MOG datosMOG, LineaProduccion lineaProduccion, int id) throws SQLException {
-        try (CallableStatement cs = con.prepareCall("{call llenarRBP(?,?,?,?)}")) {
+        try (CallableStatement cs = con.prepareCall("{call llenarRBP(?,?,?,?,?)}")) {
             cs.setString(1, datosMOG.getOrden_manufactura());
             cs.setString(2, lineaProduccion.getProceso());
             cs.setInt(3, id);
             cs.setInt(4, datosMOG.getSequ());
+            cs.registerOutParameter(5, java.sql.Types.INTEGER);
             cs.execute();
         }
     }

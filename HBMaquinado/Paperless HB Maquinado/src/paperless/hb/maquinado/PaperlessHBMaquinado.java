@@ -23,6 +23,7 @@ import View.RegistroDASView;
 import View.RegistroParoProcesoView;
 import View.RegistroRBPView;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,7 +35,7 @@ public class PaperlessHBMaquinado {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ParseException {
         
         // Vistas
         ValidarLineaView validarLineaView = ValidarLineaView.getInstance();

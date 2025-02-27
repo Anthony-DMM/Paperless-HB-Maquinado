@@ -9,6 +9,7 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
@@ -62,6 +63,16 @@ public class RegistroDASView extends javax.swing.JFrame {
         return VistaSingleton.getInstance(RegistroDASView.class);
     }
 
+    public JPasswordField getTxtCodigoSoporte() {
+        return txtCodigoSoporte;
+    }
+
+    public void setTxtCodigoSoporte(JPasswordField txtCodigoSoporte) {
+        this.txtCodigoSoporte = txtCodigoSoporte;
+    }
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,16 +103,16 @@ public class RegistroDASView extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtMOG = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtModelo = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txtSTD = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         txtLote = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        txtHora = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         txtAcumulado = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
@@ -165,7 +176,7 @@ public class RegistroDASView extends javax.swing.JFrame {
 
         jTextField3.setEditable(false);
         jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jTextField3.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
@@ -178,11 +189,11 @@ public class RegistroDASView extends javax.swing.JFrame {
 
         jTextField4.setEditable(false);
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jTextField4.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txtCodigoInspector.setBackground(new java.awt.Color(255, 255, 0));
-        txtCodigoInspector.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        txtCodigoInspector.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         txtCodigoInspector.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtCodigoInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,7 +202,7 @@ public class RegistroDASView extends javax.swing.JFrame {
         });
 
         txtCodigoSoporte.setBackground(new java.awt.Color(255, 255, 0));
-        txtCodigoSoporte.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        txtCodigoSoporte.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         txtCodigoSoporte.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtCodigoSoporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,7 +219,7 @@ public class RegistroDASView extends javax.swing.JFrame {
         jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txtNumeroEmpleado.setBackground(new java.awt.Color(255, 255, 0));
-        txtNumeroEmpleado.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        txtNumeroEmpleado.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         txtNumeroEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtNumeroEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +229,7 @@ public class RegistroDASView extends javax.swing.JFrame {
 
         jTextField5.setEditable(false);
         jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jTextField5.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jTextField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 22)); // NOI18N
@@ -228,35 +239,35 @@ public class RegistroDASView extends javax.swing.JFrame {
         jLabel13.setText(" Número de Orden de Producción:");
         jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextField6.setEditable(false);
-        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField6.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jTextField6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtMOG.setEditable(false);
+        txtMOG.setBackground(new java.awt.Color(204, 204, 204));
+        txtMOG.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtMOG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel14.setText(" Modelo:");
         jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField7.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jTextField7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtModelo.setEditable(false);
+        txtModelo.setBackground(new java.awt.Color(204, 204, 204));
+        txtModelo.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtModelo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel15.setText(" STD:");
         jLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextField8.setEditable(false);
-        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField8.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jTextField8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtSTD.setEditable(false);
+        txtSTD.setBackground(new java.awt.Color(204, 204, 204));
+        txtSTD.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtSTD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel16.setText(" Lote:");
         jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txtLote.setBackground(new java.awt.Color(255, 255, 0));
-        txtLote.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        txtLote.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         txtLote.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 22)); // NOI18N
@@ -266,17 +277,17 @@ public class RegistroDASView extends javax.swing.JFrame {
         jLabel20.setText(" Hora:");
         jLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextField12.setEditable(false);
-        jTextField12.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField12.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jTextField12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtHora.setEditable(false);
+        txtHora.setBackground(new java.awt.Color(204, 204, 204));
+        txtHora.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtHora.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel21.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel21.setText(" Acumulado:");
         jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txtAcumulado.setBackground(new java.awt.Color(255, 255, 0));
-        txtAcumulado.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        txtAcumulado.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         txtAcumulado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel22.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
@@ -541,19 +552,19 @@ public class RegistroDASView extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, 0)
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtMOG, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, 0)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, 0)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtSTD, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
-                                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -592,7 +603,7 @@ public class RegistroDASView extends javax.swing.JFrame {
                     .addComponent(txtCodigoInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,15 +617,15 @@ public class RegistroDASView extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6))
+                    .addComponent(txtMOG))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7))
+                    .addComponent(txtModelo))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8))
+                    .addComponent(txtSTD))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -624,7 +635,7 @@ public class RegistroDASView extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField12))
+                    .addComponent(txtHora))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -793,19 +804,19 @@ public class RegistroDASView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     public com.toedter.calendar.JDateChooser jdcFecha;
     private javax.swing.JTable tblHoraxHora;
     private javax.swing.JTextField txtAcumulado;
     private javax.swing.JPasswordField txtCodigoInspector;
-    private javax.swing.JPasswordField txtCodigoSoporte;
+    public javax.swing.JPasswordField txtCodigoSoporte;
+    public javax.swing.JTextField txtHora;
     private javax.swing.JTextField txtLote;
+    public javax.swing.JTextField txtMOG;
+    public javax.swing.JTextField txtModelo;
     private javax.swing.JPasswordField txtNumeroEmpleado;
+    public javax.swing.JTextField txtSTD;
     // End of variables declaration//GEN-END:variables
 }
