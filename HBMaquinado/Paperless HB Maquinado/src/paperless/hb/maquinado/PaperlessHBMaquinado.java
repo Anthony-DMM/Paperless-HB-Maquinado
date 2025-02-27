@@ -7,9 +7,13 @@ package paperless.hb.maquinado;
 import Controller.ValidarLineaController;
 import Controller.CapturaOrdenManufacturaController;
 import Controller.OpcionesController;
+import Controller.RegistroDASController;
+import Controller.RegistroRBPController;
 import Model.ValidarLineaModel;
 import Model.CapturaOrdenManufacturaModel;
 import Model.DBConexion;
+import Model.RegistroDASModel;
+import Model.RegistroRBPModel;
 import Utils.FechaHora;
 import View.ValidarLineaView;
 import View.CambioMOGView;
@@ -34,25 +38,29 @@ public class PaperlessHBMaquinado {
         
         // Vistas
         ValidarLineaView validarLineaView = ValidarLineaView.getInstance();
-        OpcionesView opcionesView = OpcionesView.getInstance();
         CapturaOrdenManufacturaView capturaOrdenManufacturaView = CapturaOrdenManufacturaView.getInstance();
+        OpcionesView opcionesView = OpcionesView.getInstance();
         RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
         RegistroDASView registroDASView = RegistroDASView.getInstance(); 
-        CambioMOGView cambioMOGView = CambioMOGView.getInstance();
         RegistroParoProcesoView registroParoProcesoView = new RegistroParoProcesoView(); 
+        CambioMOGView cambioMOGView = CambioMOGView.getInstance();
         
-        registroDASView.setVisible(true);
+        validarLineaView.setVisible(true);
         
         // Model
         DBConexion conexion = new DBConexion();
-        CapturaOrdenManufacturaModel capturaOrdenManufacturaModel = new CapturaOrdenManufacturaModel(conexion);
         ValidarLineaModel validarLineaModel = new ValidarLineaModel(conexion);
+        CapturaOrdenManufacturaModel capturaOrdenManufacturaModel = new CapturaOrdenManufacturaModel(conexion);
+        RegistroDASModel registroDASModel = new RegistroDASModel(conexion);
+        RegistroRBPModel registroRBPModel = new RegistroRBPModel(conexion); 
         
         
         // Controller
         ValidarLineaController validarLineaController = new ValidarLineaController(validarLineaView, validarLineaModel, capturaOrdenManufacturaView, conexion);
         CapturaOrdenManufacturaController capturaOrdenManufacturaController = new CapturaOrdenManufacturaController(capturaOrdenManufacturaModel, capturaOrdenManufacturaView);
-        OpcionesController opcionesController = new OpcionesController(); 
+        OpcionesController opcionesController = new OpcionesController();
+        RegistroDASController registroDASController = new RegistroDASController(registroDASModel, registroDASView);
+        RegistroRBPController registroRBPController = new RegistroRBPController();
     }
     
 }

@@ -6,6 +6,7 @@ package Model;
 
 import Entities.LineaProduccion;
 import Entities.MOG;
+import Entities.RBP;
 import Utils.FechaHora;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -90,6 +91,10 @@ public class CapturaOrdenManufacturaModel {
             datosMOG.setSequ(res.getInt(8));
             datosMOG.setTm(res.getString(10));
             datosMOG.setStd(limpiarEstandar(res.getString(9)));
+            
+            RBP rbp = RBP.getInstance();
+            String hora = fechaHora.horaActual();
+            rbp.setHora(hora);
         }
 
         if (!ordenEncontrada) {
@@ -159,7 +164,7 @@ public class CapturaOrdenManufacturaModel {
     private void insertarCorriendo(Connection con, MOG datosMOG, LineaProduccion lineaProduccion) throws SQLException {
         try (CallableStatement cst2 = con.prepareCall("{call insertarCorriendo(?,?,?,?,?)}")) {
             String hora = fechaHora.horaActual();
-            String fecha = fechaHora.fechaActual();
+            String fecha = fechaHora.fechaActual("yyyy-MM-dd");
             
             cst2.setString(1, datosMOG.getOrden_manufactura());
             cst2.setString(2, datosMOG.getMog());

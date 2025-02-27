@@ -25,7 +25,7 @@ public class DBConexion {
                         + "/rbppaperlesshalfp?user=root"
                         + "&password=");*/
             con = DriverManager.getConnection("jdbc:mysql://192.168.155.16:3306"
-                    + "/rbppaperlesshalfp?user=adminpaperless"
+                    + "/rbppaperlesshalfpr?user=adminpaperless"
                     + "&password=paperless2018");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error de conexión");

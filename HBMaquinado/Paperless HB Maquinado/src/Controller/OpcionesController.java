@@ -5,8 +5,10 @@
 package Controller;
 
 import Entities.LineaProduccion;
+import Utils.Navegador;
 import View.CapturaOrdenManufacturaView;
 import View.OpcionesView;
+import View.RegistroDASView;
 import View.RegistroRBPView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,13 +20,13 @@ import javax.swing.JOptionPane;
  */
 public class OpcionesController implements ActionListener{
     
-    RegistroRBPView registroRBP;
+    RegistroDASView registroDASView; 
     CapturaOrdenManufacturaView capturaOrdenManufactura;
     OpcionesView opciones;
 
     public OpcionesController() {
-        this.registroRBP = RegistroRBPView.getInstance();
         this.capturaOrdenManufactura = CapturaOrdenManufacturaView.getInstance();
+        this.registroDASView = RegistroDASView.getInstance();
         this.opciones = OpcionesView.getInstance();
         
         opciones.getBtn_registrar().addActionListener(this);
@@ -35,13 +37,11 @@ public class OpcionesController implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == opciones.btn_registrar) {
-            registroRBP.setVisible(true);
-            opciones.setVisible(false);
+            Navegador.avanzarSiguienteVentana(opciones, registroDASView);
         } else if (e.getSource() == opciones.btn_cambiar_modelo) {
             JOptionPane.showMessageDialog(null, "Opción no disponible por el momento");
         } else if (e.getSource() == opciones.btn_regresar) {
-            capturaOrdenManufactura.setVisible(true);
-            opciones.setVisible(false);
+            Navegador.regresarVentanaAnterior(opciones, capturaOrdenManufactura);
         }
     }
     
