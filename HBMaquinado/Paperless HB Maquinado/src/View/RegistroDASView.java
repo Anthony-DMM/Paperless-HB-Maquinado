@@ -117,6 +117,30 @@ public class RegistroDASView extends javax.swing.JFrame {
     public void setTxtNumeroEmpleado(JPasswordField txtNumeroEmpleado) {
         this.txtNumeroEmpleado = txtNumeroEmpleado;
     }
+
+    public JTextField getTxtNombreEmpleado() {
+        return txtNombreEmpleado;
+    }
+
+    public void setTxtNombreEmpleado(JTextField txtNombreEmpleado) {
+        this.txtNombreEmpleado = txtNombreEmpleado;
+    }
+
+    public JTextField getTxtNombreInspector() {
+        return txtNombreInspector;
+    }
+
+    public void setTxtNombreInspector(JTextField txtNombreInspector) {
+        this.txtNombreInspector = txtNombreInspector;
+    }
+
+    public JTextField getTxtNombreSoporteRapido() {
+        return txtNombreSoporteRapido;
+    }
+
+    public void setTxtNombreSoporteRapido(JTextField txtNombreSoporteRapido) {
+        this.txtNombreSoporteRapido = txtNombreSoporteRapido;
+    }
     
     
     
@@ -149,7 +173,7 @@ public class RegistroDASView extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txtNumeroEmpleado = new javax.swing.JPasswordField();
-        jTextField5 = new javax.swing.JTextField();
+        txtNombreEmpleado = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         txtMOG = new javax.swing.JTextField();
@@ -291,10 +315,10 @@ public class RegistroDASView extends javax.swing.JFrame {
             }
         });
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        jTextField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtNombreEmpleado.setEditable(false);
+        txtNombreEmpleado.setBackground(new java.awt.Color(204, 204, 204));
+        txtNombreEmpleado.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtNombreEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 22)); // NOI18N
         jLabel2.setText("Registro de Producción");
@@ -603,7 +627,7 @@ public class RegistroDASView extends javax.swing.JFrame {
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, 0)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtNumeroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
@@ -677,7 +701,7 @@ public class RegistroDASView extends javax.swing.JFrame {
                     .addComponent(txtNumeroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addComponent(txtNombreEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2)
@@ -892,7 +916,6 @@ public class RegistroDASView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField5;
     public com.toedter.calendar.JDateChooser jdcFecha;
     private javax.swing.JTable tblHoraxHora;
     public javax.swing.JTextField txtAcumulado;
@@ -902,6 +925,7 @@ public class RegistroDASView extends javax.swing.JFrame {
     public javax.swing.JTextField txtLote;
     public javax.swing.JTextField txtMOG;
     public javax.swing.JTextField txtModelo;
+    public javax.swing.JTextField txtNombreEmpleado;
     public javax.swing.JTextField txtNombreInspector;
     public javax.swing.JTextField txtNombreSoporteRapido;
     public javax.swing.JPasswordField txtNumeroEmpleado;

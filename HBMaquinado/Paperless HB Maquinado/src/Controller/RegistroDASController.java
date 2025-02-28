@@ -42,10 +42,12 @@ public class RegistroDASController implements ActionListener {
     private static final String INVALID_MOG_MESSAGE = "Ingrese una orden de manufactura";
     private static final String INVALID_SOPORTE_RAPIDO_MESSAGE = "Ingrese un código de soporte rápido";
     private static final String INVALID_INSPECTOR_MESSAGE = "Ingrese un código de inspector";
+    private static final String INVALID_OPERADOR_MESSAGE = "Ingrese un número de empleado";
 
     private RegistroDASModel registroDASModel;
     private RegistroDASView registroDASView;
     private FechaHora fechaHora = new FechaHora();
+    DAS datosLinea = DAS.getInstance();
 
     public RegistroDASController(RegistroDASModel registroDASModel, RegistroDASView registroDASView) {
         this.registroDASModel = registroDASModel;
@@ -97,6 +99,14 @@ public class RegistroDASController implements ActionListener {
                 }
             }
         });
+        registroDASView.getTxtNumeroEmpleado().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    handleNumeroEmpleadoCapturado((JPasswordField) e.getSource());
+                }
+            }
+        });
     }
 
     @Override
@@ -116,13 +126,13 @@ public class RegistroDASController implements ActionListener {
 
         if (codigoSoporteIngresado.isEmpty()) {
             JOptionPane.showMessageDialog(null, INVALID_SOPORTE_RAPIDO_MESSAGE);
+            LimpiarCampos.limpiarCampos(registroDASView.getTxtCodigoSoporte(), registroDASView.getTxtNombreSoporteRapido());
         } else {
             try {
                 if (registroDASModel.validarSoporteRapido(codigoSoporteIngresado)) {
-                    DAS datosLinea = DAS.getInstance();
                     registroDASView.txtNombreSoporteRapido.setText(datosLinea.getSoporteRapido());
                 } else {
-                    LimpiarCampos.limpiarCampo(registroDASView.getTxtCodigoSoporte());
+                    LimpiarCampos.limpiarCampos(registroDASView.getTxtCodigoSoporte(), registroDASView.getTxtNombreSoporteRapido());
                 }
             } catch (Exception ex) {
                 Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
@@ -136,13 +146,33 @@ public class RegistroDASController implements ActionListener {
 
         if (codigoInspectorIngresado.isEmpty()) {
             JOptionPane.showMessageDialog(null, INVALID_INSPECTOR_MESSAGE);
+            LimpiarCampos.limpiarCampos(registroDASView.getTxtCodigoInspector(), registroDASView.getTxtNombreInspector());
         } else {
             try {
                 if (registroDASModel.validarInspector(codigoInspectorIngresado)) {
-                    DAS datosLinea = DAS.getInstance();
                     registroDASView.txtNombreInspector.setText(datosLinea.getInspector());
                 } else {
-                    LimpiarCampos.limpiarCampo(registroDASView.getTxtCodigoInspector());
+                    LimpiarCampos.limpiarCampos(registroDASView.getTxtCodigoInspector(), registroDASView.getTxtNombreInspector());
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    private void handleNumeroEmpleadoCapturado(JPasswordField passwordField) {
+        char[] passwordChars = passwordField.getPassword();
+        String numeroEmpleadoIngresado = new String(passwordChars);
+
+        if (numeroEmpleadoIngresado.isEmpty()) {
+            JOptionPane.showMessageDialog(null, INVALID_OPERADOR_MESSAGE);
+            LimpiarCampos.limpiarCampos(registroDASView.getTxtNumeroEmpleado(), registroDASView.getTxtNombreEmpleado());
+        } else {
+            try {
+                if (registroDASModel.validarOperador(numeroEmpleadoIngresado)) {
+                    registroDASView.txtNombreEmpleado.setText(datosLinea.getEmpleado());
+                } else {
+                    LimpiarCampos.limpiarCampos(registroDASView.getTxtNumeroEmpleado(), registroDASView.getTxtNombreEmpleado());
                 }
             } catch (Exception ex) {
                 Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);

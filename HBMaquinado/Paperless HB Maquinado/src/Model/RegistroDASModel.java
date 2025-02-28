@@ -80,4 +80,32 @@ public class RegistroDASModel {
             throw ex;
         }
     }
+    
+    public boolean validarOperador(String numeroEmpleado) throws SQLException{
+        int proceso = 1;
+        try (Connection con = conexion.conexionMySQL();
+            CallableStatement cst = con.prepareCall("{call traerOperador(?,?,?,?)}")){
+            
+            cst.setString(1, numeroEmpleado);
+            cst.registerOutParameter(2, java.sql.Types.INTEGER);
+            cst.setInt(3, proceso);
+            cst.registerOutParameter(4, java.sql.Types.VARCHAR);
+            cst.executeQuery();
+            
+            int valor = cst.getInt(2);
+            String empleadoEncontrado=cst.getString(4);
+            
+            if (valor == 0) {
+                JOptionPane.showMessageDialog(null, "No se encontró ningún empleado");
+                return false;
+            } else {
+                DAS datosDAS = DAS.getInstance();
+                datosDAS.setEmpleado(empleadoEncontrado);
+                return true;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al obtener datos del empleado", ex);
+            throw ex;
+        }
+    }
 }
