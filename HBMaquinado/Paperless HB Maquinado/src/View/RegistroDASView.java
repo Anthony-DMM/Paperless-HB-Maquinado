@@ -122,7 +122,7 @@ public class RegistroDASView extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtNombreSoporteRapido = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
@@ -205,10 +205,10 @@ public class RegistroDASView extends javax.swing.JFrame {
         jLabel8.setText(" Nombre de Soporte Rápido:");
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtNombreSoporteRapido.setEditable(false);
+        txtNombreSoporteRapido.setBackground(new java.awt.Color(204, 204, 204));
+        txtNombreSoporteRapido.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtNombreSoporteRapido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel9.setText(" Código de Inspector:");
@@ -231,6 +231,11 @@ public class RegistroDASView extends javax.swing.JFrame {
                 txtCodigoInspectorActionPerformed(evt);
             }
         });
+        txtCodigoInspector.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoInspectorKeyTyped(evt);
+            }
+        });
 
         txtCodigoSoporte.setBackground(new java.awt.Color(255, 255, 0));
         txtCodigoSoporte.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
@@ -238,6 +243,11 @@ public class RegistroDASView extends javax.swing.JFrame {
         txtCodigoSoporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoSoporteActionPerformed(evt);
+            }
+        });
+        txtCodigoSoporte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoSoporteKeyTyped(evt);
             }
         });
 
@@ -255,6 +265,11 @@ public class RegistroDASView extends javax.swing.JFrame {
         txtNumeroEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumeroEmpleadoActionPerformed(evt);
+            }
+        });
+        txtNumeroEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroEmpleadoKeyTyped(evt);
             }
         });
 
@@ -535,7 +550,7 @@ public class RegistroDASView extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField1))
-                    .addComponent(jTextField3)
+                    .addComponent(txtNombreSoporteRapido)
                     .addComponent(txtCodigoSoporte)))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -617,7 +632,7 @@ public class RegistroDASView extends javax.swing.JFrame {
                     .addComponent(txtCodigoSoporte))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3))
+                    .addComponent(txtNombreSoporteRapido))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCodigoInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -748,6 +763,27 @@ public class RegistroDASView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void txtCodigoSoporteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoSoporteKeyTyped
+        if(txtCodigoSoporte.getText().length() >= 12)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodigoSoporteKeyTyped
+
+    private void txtCodigoInspectorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoInspectorKeyTyped
+        if(txtCodigoInspector.getText().length() >= 12)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodigoInspectorKeyTyped
+
+    private void txtNumeroEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroEmpleadoKeyTyped
+        if(txtNumeroEmpleado.getText().length() >= 12)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNumeroEmpleadoKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -824,7 +860,6 @@ public class RegistroDASView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     public com.toedter.calendar.JDateChooser jdcFecha;
@@ -836,6 +871,7 @@ public class RegistroDASView extends javax.swing.JFrame {
     public javax.swing.JTextField txtLote;
     public javax.swing.JTextField txtMOG;
     public javax.swing.JTextField txtModelo;
+    public javax.swing.JTextField txtNombreSoporteRapido;
     private javax.swing.JPasswordField txtNumeroEmpleado;
     public javax.swing.JTextField txtSTD;
     // End of variables declaration//GEN-END:variables

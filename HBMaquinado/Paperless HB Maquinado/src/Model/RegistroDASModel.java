@@ -27,26 +27,26 @@ public class RegistroDASModel {
     
     public boolean validarSoporteRapido(String codigoSoporteRapido) throws SQLException{
         int proceso = 1;
-        Connection con;
-        con=conexion.conexionMySQL();
-        try {
-            CallableStatement cst = con.prepareCall("{call traerKeeper(?,?,?,?)}");
+        try (Connection con = conexion.conexionMySQL();
+            CallableStatement cst = con.prepareCall("{call traerKeeper(?,?,?,?)}")){
+            
             cst.setString(1, codigoSoporteRapido);
             cst.registerOutParameter(2, java.sql.Types.INTEGER);
             cst.setInt(3, proceso);
             cst.registerOutParameter(4, java.sql.Types.VARCHAR);
             cst.executeQuery();
             
+            int valor = cst.getInt(2);
             String soporteEncontrado=cst.getString(4);
-            if(soporteEncontrado==null){
+            
+            if (valor == 0) {
+                JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
                 return false;
+            } else {
+                DAS datosDAS = DAS.getInstance();
+                datosDAS.setSoporteRapido(soporteEncontrado);
+                return true;
             }
-            
-            DAS datosDAS = DAS.getInstance();
-            datosDAS.setSoporteRapido(soporteEncontrado);
-            
-            con.close();
-            return true;
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al obtener datos de la orden", ex);
             throw ex;
