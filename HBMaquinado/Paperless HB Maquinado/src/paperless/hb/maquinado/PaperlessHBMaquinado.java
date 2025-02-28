@@ -14,7 +14,6 @@ import Model.CapturaOrdenManufacturaModel;
 import Model.DBConexion;
 import Model.RegistroDASModel;
 import Model.RegistroRBPModel;
-import Utils.FechaHora;
 import View.ValidarLineaView;
 import View.CambioMOGView;
 import View.CapturaOrdenManufacturaView;
@@ -24,8 +23,6 @@ import View.RegistroParoProcesoView;
 import View.RegistroRBPView;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

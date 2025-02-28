@@ -5,10 +5,11 @@
 package View;
 
 import Config.VistaSingleton;
+import Utils.FiltroCampos;
 import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.text.AbstractDocument;
 
 /**
  *
@@ -22,8 +23,10 @@ public class ValidarLineaView extends javax.swing.JFrame {
     private ValidarLineaView() {
         initComponents();
         setLocationRelativeTo(null);
-        btn_ingresar.setBackground(Color.black);
-        btn_salir.setBackground(Color.black);
+        btnIngresar.setBackground(Color.black);
+        btnSalir.setBackground(Color.black);
+        
+        ((AbstractDocument) txtLineaProduccion.getDocument()).setDocumentFilter(new FiltroCampos.FiltroNumerosYLetras());
     }
     
     public static ValidarLineaView getInstance() {
@@ -42,9 +45,9 @@ public class ValidarLineaView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lbl_bienvenido = new javax.swing.JLabel();
         lbl_codigo_supervisor = new javax.swing.JLabel();
-        btn_ingresar = new javax.swing.JButton();
-        btn_salir = new javax.swing.JButton();
-        txt_linea_produccion = new javax.swing.JTextField();
+        btnIngresar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        txtLineaProduccion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 1600));
@@ -63,23 +66,23 @@ public class ValidarLineaView extends javax.swing.JFrame {
         lbl_codigo_supervisor.setText("Línea de producción");
         lbl_codigo_supervisor.setPreferredSize(new java.awt.Dimension(700, 50));
 
-        btn_ingresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_ingresar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_ingresar.setText("Continuar");
-        btn_ingresar.setPreferredSize(new java.awt.Dimension(700, 70));
+        btnIngresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngresar.setText("Continuar");
+        btnIngresar.setPreferredSize(new java.awt.Dimension(700, 70));
 
-        btn_salir.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_salir.setForeground(new java.awt.Color(255, 255, 255));
-        btn_salir.setText("Salir");
-        btn_salir.setPreferredSize(new java.awt.Dimension(700, 70));
+        btnSalir.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir.setText("Salir");
+        btnSalir.setPreferredSize(new java.awt.Dimension(700, 70));
 
-        txt_linea_produccion.setBackground(new java.awt.Color(255, 255, 0));
-        txt_linea_produccion.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        txt_linea_produccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_linea_produccion.setPreferredSize(new java.awt.Dimension(6, 70));
-        txt_linea_produccion.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtLineaProduccion.setBackground(new java.awt.Color(255, 255, 0));
+        txtLineaProduccion.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
+        txtLineaProduccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtLineaProduccion.setPreferredSize(new java.awt.Dimension(6, 70));
+        txtLineaProduccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_linea_produccionKeyTyped(evt);
+                txtLineaProduccionKeyTyped(evt);
             }
         });
 
@@ -90,11 +93,11 @@ public class ValidarLineaView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_ingresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_bienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_codigo_supervisor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_linea_produccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtLineaProduccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(50, 50, 50))
         );
         jPanel1Layout.setVerticalGroup(
@@ -105,11 +108,11 @@ public class ValidarLineaView extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addComponent(lbl_codigo_supervisor, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(txt_linea_produccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtLineaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(134, 134, 134)
-                .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
-                .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(685, 685, 685))
         );
 
@@ -133,12 +136,12 @@ public class ValidarLineaView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_linea_produccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_linea_produccionKeyTyped
-        if(txt_linea_produccion.getText().length() >= 4)
+    private void txtLineaProduccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLineaProduccionKeyTyped
+        if(txtLineaProduccion.getText().length() >= 4)
         {
             evt.consume();
         }
-    }//GEN-LAST:event_txt_linea_produccionKeyTyped
+    }//GEN-LAST:event_txtLineaProduccionKeyTyped
 
     /**
      * @param args the command line arguments
@@ -176,28 +179,28 @@ public class ValidarLineaView extends javax.swing.JFrame {
         });
     }
 
-    public JButton getBtn_ingresar() {
-        return btn_ingresar;
+    public JButton getBtnIngresar() {
+        return btnIngresar;
     }
 
-    public void setBtn_ingresar(JButton btn_ingresar) {
-        this.btn_ingresar = btn_ingresar;
+    public void setBtnIngresar(JButton btn_ingresar) {
+        this.btnIngresar = btn_ingresar;
     }
 
-    public JButton getBtn_salir() {
-        return btn_salir;
+    public JButton getBtnSalir() {
+        return btnSalir;
     }
 
-    public void setBtn_salir(JButton btn_salir) {
-        this.btn_salir = btn_salir;
+    public void setBtnSalir(JButton btn_salir) {
+        this.btnSalir = btn_salir;
     }
 
-    public JTextField getTxt_linea_produccion() {
-        return txt_linea_produccion;
+    public JTextField getTxtLineaProduccion() {
+        return txtLineaProduccion;
     }
 
-    public void setTxt_linea_produccion(JTextField txt_linea_produccion) {
-        this.txt_linea_produccion = txt_linea_produccion;
+    public void setTxtLineaProduccion(JTextField txt_linea_produccion) {
+        this.txtLineaProduccion = txt_linea_produccion;
     }
     
     
@@ -205,11 +208,11 @@ public class ValidarLineaView extends javax.swing.JFrame {
     
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btn_ingresar;
-    public javax.swing.JButton btn_salir;
+    public javax.swing.JButton btnIngresar;
+    public javax.swing.JButton btnSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_bienvenido;
     private javax.swing.JLabel lbl_codigo_supervisor;
-    private javax.swing.JTextField txt_linea_produccion;
+    private javax.swing.JTextField txtLineaProduccion;
     // End of variables declaration//GEN-END:variables
 }
