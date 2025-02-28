@@ -40,7 +40,8 @@ import javax.swing.JTextField;
 public class RegistroDASController implements ActionListener {
     private static final String EMPTY_FIELD_MESSAGE = "Por favor, complete todos los campos antes de continuar";
     private static final String INVALID_MOG_MESSAGE = "Ingrese una orden de manufactura";
-    private static final String INVALID_SUPERVISOR_MESSAGE = "Ingrese un código de supervisor";
+    private static final String INVALID_SOPORTE_RAPIDO_MESSAGE = "Ingrese un código de soporte rápido";
+    private static final String INVALID_INSPECTOR_MESSAGE = "Ingrese un código de inspector";
 
     private RegistroDASModel registroDASModel;
     private RegistroDASView registroDASView;
@@ -88,6 +89,14 @@ public class RegistroDASController implements ActionListener {
                 }
             }
         });
+        registroDASView.getTxtCodigoInspector().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    handleCodigoInspectorCapturado((JPasswordField) e.getSource());
+                }
+            }
+        });
     }
 
     @Override
@@ -101,56 +110,16 @@ public class RegistroDASController implements ActionListener {
         }
     }
 
-    /*private void handleTextFieldAction(JTextField textField) {
-        if (textField.equals(capturaOrdenManufacturaView.getTxtMogCapturada())) {
-            handleMogCapturada();
-        }
-    }
-
-    private void handleButtonAction(JButton button) {
-        if (button.equals(capturaOrdenManufacturaView.getBtnSiguiente())) {
-            handleSiguienteButton();
-        } else if (button.equals(capturaOrdenManufacturaView.getBtnRegresar())) {
-            handleRegresarButton();
-        }
-    }
-
-    private void handleMogCapturada() {
-        String ordenIngresada = capturaOrdenManufacturaView.getTxtMogCapturada().getText();
-        if (ordenIngresada.isEmpty()) {
-            JOptionPane.showMessageDialog(null, INVALID_MOG_MESSAGE);
-        } else {
-            try {
-                if (capturaOrdenManufacturaModel.obtenerDatosOrden(ordenIngresada)) {
-                    MOG datosMOG = MOG.getInstance();
-                    LineaProduccion datosLinea = LineaProduccion.getInstance();
-
-                    capturaOrdenManufacturaView.getTxtMog().setText(datosMOG.getMog());
-                    capturaOrdenManufacturaView.getTxtModelo().setText(datosMOG.getModelo());
-                    capturaOrdenManufacturaView.getTxtDibujo().setText(datosMOG.getNo_dibujo());
-                    capturaOrdenManufacturaView.getTxtCantidadPlaneada().setText(Integer.toString(datosMOG.getCantidad_planeada()));
-                    capturaOrdenManufacturaView.getTxtParte().setText(datosMOG.getNo_parte());
-                    capturaOrdenManufacturaView.getTxtProceso().setText(datosLinea.getProceso());
-                } else {
-                    LimpiarCampos.limpiarCampo(capturaOrdenManufacturaView.getTxtMogCapturada());
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(CapturaOrdenManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }*/
-
     private void handleCodigoSoporteCapturado(JPasswordField passwordField) {
         char[] passwordChars = passwordField.getPassword();
-        String codigoIngresado = new String(passwordChars);
+        String codigoSoporteIngresado = new String(passwordChars);
 
-        if (codigoIngresado.isEmpty()) {
-            JOptionPane.showMessageDialog(null, INVALID_SUPERVISOR_MESSAGE);
+        if (codigoSoporteIngresado.isEmpty()) {
+            JOptionPane.showMessageDialog(null, INVALID_SOPORTE_RAPIDO_MESSAGE);
         } else {
             try {
-                if (registroDASModel.validarSoporteRapido(codigoIngresado)) {
+                if (registroDASModel.validarSoporteRapido(codigoSoporteIngresado)) {
                     DAS datosLinea = DAS.getInstance();
-                    System.out.println(datosLinea.getSoporteRapido());
                     registroDASView.txtNombreSoporteRapido.setText(datosLinea.getSoporteRapido());
                 } else {
                     LimpiarCampos.limpiarCampo(registroDASView.getTxtCodigoSoporte());
@@ -160,31 +129,24 @@ public class RegistroDASController implements ActionListener {
             }
         }
     }
+    
+    private void handleCodigoInspectorCapturado(JPasswordField passwordField) {
+        char[] passwordChars = passwordField.getPassword();
+        String codigoInspectorIngresado = new String(passwordChars);
 
-    /*private void handleSiguienteButton() {
-        if (areFieldsEmpty()) {
-            JOptionPane.showMessageDialog(null, EMPTY_FIELD_MESSAGE);
+        if (codigoInspectorIngresado.isEmpty()) {
+            JOptionPane.showMessageDialog(null, INVALID_INSPECTOR_MESSAGE);
         } else {
-            Navegador.avanzarSiguienteVentana(capturaOrdenManufacturaView, opcionesView);
+            try {
+                if (registroDASModel.validarInspector(codigoInspectorIngresado)) {
+                    DAS datosLinea = DAS.getInstance();
+                    registroDASView.txtNombreInspector.setText(datosLinea.getInspector());
+                } else {
+                    LimpiarCampos.limpiarCampo(registroDASView.getTxtCodigoInspector());
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
-
-    private void handleRegresarButton() {
-        Navegador.regresarVentanaAnterior(capturaOrdenManufacturaView, validarLineaView);
-    }
-
-    private boolean areFieldsEmpty() {
-        char[] passwordChars = capturaOrdenManufacturaView.getTxtCodigoSupervisor().getPassword();
-        String codigoSupervisor = new String(passwordChars);
-
-        return codigoSupervisor.isEmpty() ||
-               capturaOrdenManufacturaView.getTxtMogCapturada().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtSupervisorAsignado().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtMog().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtModelo().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtCantidadPlaneada().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtDibujo().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtParte().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtProceso().getText().isEmpty();
-    }*/
 }

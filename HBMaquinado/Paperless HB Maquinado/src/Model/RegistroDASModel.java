@@ -40,7 +40,7 @@ public class RegistroDASModel {
             String soporteEncontrado=cst.getString(4);
             
             if (valor == 0) {
-                JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
+                JOptionPane.showMessageDialog(null, "No se encontró ningún soporte rápido asignado");
                 return false;
             } else {
                 DAS datosDAS = DAS.getInstance();
@@ -48,7 +48,35 @@ public class RegistroDASModel {
                 return true;
             }
         } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, "Error al obtener datos de la orden", ex);
+            LOGGER.log(Level.SEVERE, "Error al obtener datos del soporte rápido", ex);
+            throw ex;
+        }
+    }
+    
+    public boolean validarInspector(String codigoInspector) throws SQLException{
+        int proceso = 1;
+        try (Connection con = conexion.conexionMySQL();
+            CallableStatement cst = con.prepareCall("{call traerInspector(?,?,?,?)}")){
+            
+            cst.setString(1, codigoInspector);
+            cst.registerOutParameter(2, java.sql.Types.INTEGER);
+            cst.setInt(3, proceso);
+            cst.registerOutParameter(4, java.sql.Types.VARCHAR);
+            cst.executeQuery();
+            
+            int valor = cst.getInt(2);
+            String inspectorEncontrado=cst.getString(4);
+            
+            if (valor == 0) {
+                JOptionPane.showMessageDialog(null, "No se encontró ningún inspector asignado");
+                return false;
+            } else {
+                DAS datosDAS = DAS.getInstance();
+                datosDAS.setInspector(inspectorEncontrado);
+                return true;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al obtener datos del inspector", ex);
             throw ex;
         }
     }

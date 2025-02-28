@@ -16,7 +16,7 @@ import lombok.Data;
 public class DAS {
     private static DAS instance;
     
-    private String soporteRapido;
+    private String soporteRapido, inspector;
     
     public static DAS getInstance() {
         if (instance == null) {
