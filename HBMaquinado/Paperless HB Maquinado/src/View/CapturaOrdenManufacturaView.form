@@ -54,32 +54,32 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="txt_supervisor_asignado" min="-2" pref="407" max="-2" attributes="0"/>
+                  <Component id="txtSupervisorAsignado" min="-2" pref="407" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="lbl_orden_manufactura" min="-2" pref="313" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="txt_mog_capturada" min="-2" pref="407" max="-2" attributes="0"/>
+                  <Component id="txtMogCapturada" min="-2" pref="407" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="txt_mog" min="-2" pref="407" max="-2" attributes="0"/>
+                  <Component id="txtMog" min="-2" pref="407" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="txt_modelo" min="-2" pref="407" max="-2" attributes="0"/>
+                  <Component id="txtModelo" min="-2" pref="407" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="txt_dibujo" min="-2" pref="407" max="-2" attributes="0"/>
+                  <Component id="txtDibujo" min="-2" pref="407" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="txt_proceso" min="-2" pref="407" max="-2" attributes="0"/>
+                  <Component id="txtProceso" min="-2" pref="407" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
@@ -89,23 +89,23 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="txt_parte" min="-2" pref="407" max="-2" attributes="0"/>
+                  <Component id="txtParte" min="-2" pref="407" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lbl_cantidad_planeada" max="32767" attributes="0"/>
-                      <Component id="btn_regresar" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnRegresar" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txt_cantidad_planeada" alignment="1" min="-2" pref="407" max="-2" attributes="0"/>
-                      <Component id="btn_siguiente" alignment="1" min="-2" pref="303" max="-2" attributes="0"/>
+                      <Component id="txtCantidadPlaneada" alignment="1" min="-2" pref="407" max="-2" attributes="0"/>
+                      <Component id="btnSiguiente" alignment="1" min="-2" pref="303" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <Component id="lbl_codigo_supervisor" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="txt_codigo_supervisor" min="-2" pref="407" max="-2" attributes="0"/>
+                  <Component id="txtCodigoSupervisor" min="-2" pref="407" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -117,52 +117,52 @@
                   <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lbl_codigo_supervisor" max="32767" attributes="0"/>
-                      <Component id="txt_codigo_supervisor" max="32767" attributes="0"/>
+                      <Component id="txtCodigoSupervisor" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="24" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel2" max="32767" attributes="0"/>
-                      <Component id="txt_supervisor_asignado" pref="70" max="32767" attributes="0"/>
+                      <Component id="txtSupervisorAsignado" pref="70" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txt_mog_capturada" max="32767" attributes="0"/>
+                      <Component id="txtMogCapturada" max="32767" attributes="0"/>
                       <Component id="lbl_orden_manufactura" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txt_mog" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="txtMog" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txt_modelo" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="txtModelo" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lbl_cantidad_planeada" max="32767" attributes="0"/>
-                      <Component id="txt_cantidad_planeada" max="32767" attributes="0"/>
+                      <Component id="txtCantidadPlaneada" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txt_dibujo" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="txtDibujo" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txt_parte" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="txtParte" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel9" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txt_proceso" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="txtProceso" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btn_regresar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_siguiente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnRegresar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSiguiente" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
@@ -193,7 +193,7 @@
             <Property name="text" type="java.lang.String" value="Supervisor:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_supervisor_asignado">
+        <Component class="javax.swing.JTextField" name="txtSupervisorAsignado">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -217,7 +217,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_mog_capturada">
+        <Component class="javax.swing.JTextField" name="txtMogCapturada">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
@@ -230,7 +230,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_mog_capturadaKeyTyped"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMogCapturadaKeyTyped"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -244,7 +244,7 @@
             <Property name="text" type="java.lang.String" value="MOG:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_mog">
+        <Component class="javax.swing.JTextField" name="txtMog">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -266,7 +266,7 @@
             <Property name="text" type="java.lang.String" value="Modelo:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_modelo">
+        <Component class="javax.swing.JTextField" name="txtModelo">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -290,7 +290,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_cantidad_planeada">
+        <Component class="javax.swing.JTextField" name="txtCantidadPlaneada">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -312,7 +312,7 @@
             <Property name="text" type="java.lang.String" value="No. Dibujo:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_dibujo">
+        <Component class="javax.swing.JTextField" name="txtDibujo">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -334,7 +334,7 @@
             <Property name="text" type="java.lang.String" value="No. Parte:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_parte">
+        <Component class="javax.swing.JTextField" name="txtParte">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -356,7 +356,7 @@
             <Property name="text" type="java.lang.String" value="Proceso:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_proceso">
+        <Component class="javax.swing.JTextField" name="txtProceso">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -370,7 +370,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_regresar">
+        <Component class="javax.swing.JButton" name="btnRegresar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="36" style="0"/>
@@ -393,7 +393,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_siguiente">
+        <Component class="javax.swing.JButton" name="btnSiguiente">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="36" style="0"/>
@@ -426,7 +426,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="txt_codigo_supervisor">
+        <Component class="javax.swing.JPasswordField" name="txtCodigoSupervisor">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
@@ -436,7 +436,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_codigo_supervisorKeyTyped"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodigoSupervisorKeyTyped"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
