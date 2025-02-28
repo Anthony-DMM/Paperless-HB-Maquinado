@@ -41,29 +41,6 @@ public class RegistroDASView extends javax.swing.JFrame {
         ((AbstractDocument) txtAcumulado.getDocument()).setDocumentFilter(new FiltroCampos.FiltroSoloNumeros());
         
         
-        cbxOK.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (cbxOK.isSelected()) {
-                    cbxNG.setEnabled(false);
-                } else {
-                    cbxNG.setEnabled(true);
-                }
-            }
-        });
-
-        cbxNG.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (cbxNG.isSelected()) {
-                    cbxOK.setEnabled(false);
-                } else {
-                    cbxOK.setEnabled(true);
-                }
-            }
-        });
-        
-        
         JTextField dateTextField = (JTextField) jdcFecha.getDateEditor().getUiComponent();
         dateTextField.setDisabledTextColor(Color.BLACK);
         
@@ -354,7 +331,8 @@ public class RegistroDASView extends javax.swing.JFrame {
         jLabel16.setText(" Lote:");
         jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtLote.setBackground(new java.awt.Color(255, 255, 0));
+        txtLote.setEditable(false);
+        txtLote.setBackground(new java.awt.Color(204, 204, 204));
         txtLote.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         txtLote.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -628,9 +606,7 @@ public class RegistroDASView extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtNumeroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                            .addComponent(txtNumeroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -665,9 +641,11 @@ public class RegistroDASView extends javax.swing.JFrame {
                             .addGap(0, 0, 0)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(btnRegistrarProduccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

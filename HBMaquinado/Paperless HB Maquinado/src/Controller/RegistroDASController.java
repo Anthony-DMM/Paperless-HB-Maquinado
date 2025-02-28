@@ -18,6 +18,8 @@ import View.RegistroDASView;
 import View.ValidarLineaView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -37,7 +39,7 @@ import javax.swing.JTextField;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class RegistroDASController implements ActionListener {
+public class RegistroDASController implements ActionListener, ItemListener {
     private static final String EMPTY_FIELD_MESSAGE = "Por favor, complete todos los campos antes de continuar";
     private static final String INVALID_MOG_MESSAGE = "Ingrese una orden de manufactura";
     private static final String INVALID_SOPORTE_RAPIDO_MESSAGE = "Ingrese un código de soporte rápido";
@@ -54,6 +56,8 @@ public class RegistroDASController implements ActionListener {
         this.registroDASView = RegistroDASView.getInstance();
 
         addListeners();
+        registroDASView.cbxOK.addItemListener(this);
+        registroDASView.cbxNG.addItemListener(this);
         
         registroDASView.addWindowListener(new WindowAdapter() {
             @Override
@@ -119,6 +123,23 @@ public class RegistroDASController implements ActionListener {
             //handleButtonAction((JButton) source);
         }
     }
+    
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+       if (e.getSource() == registroDASView.cbxNG){
+           if (e.getStateChange() == ItemEvent.SELECTED){
+               registroDASView.cbxOK.setEnabled(false);
+            }else{
+               registroDASView.cbxOK.setEnabled(true); 
+           } 
+       }else if(e.getSource() == registroDASView.cbxOK){
+            if (e.getStateChange() == ItemEvent.SELECTED){
+               registroDASView.cbxNG.setEnabled(false);
+            }else{
+               registroDASView.cbxNG.setEnabled(true); 
+           }
+       }
+    }
 
     private void handleCodigoSoporteCapturado(JPasswordField passwordField) {
         char[] passwordChars = passwordField.getPassword();
@@ -180,3 +201,4 @@ public class RegistroDASController implements ActionListener {
         }
     }
 }
+
