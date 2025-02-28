@@ -29,18 +29,18 @@ public class OpcionesController implements ActionListener{
         this.registroDASView = RegistroDASView.getInstance();
         this.opciones = OpcionesView.getInstance();
         
-        opciones.getBtn_registrar().addActionListener(this);
-        opciones.getBtn_cambiar_modelo().addActionListener(this);
-        opciones.getBtn_regresar().addActionListener(this);
+        opciones.getBtnRegistrar().addActionListener(this);
+        opciones.getBtnCambiarModelo().addActionListener(this);
+        opciones.getBtnRegresar().addActionListener(this);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == opciones.btn_registrar) {
+        if (e.getSource() == opciones.btnRegistrar) {
             Navegador.avanzarSiguienteVentana(opciones, registroDASView);
-        } else if (e.getSource() == opciones.btn_cambiar_modelo) {
+        } else if (e.getSource() == opciones.btnCambiarModelo) {
             JOptionPane.showMessageDialog(null, "Opción no disponible por el momento");
-        } else if (e.getSource() == opciones.btn_regresar) {
+        } else if (e.getSource() == opciones.btnRegresar) {
             Navegador.regresarVentanaAnterior(opciones, capturaOrdenManufactura);
         }
     }

@@ -20,9 +20,9 @@ public class OpcionesView extends javax.swing.JFrame {
     private OpcionesView() {
         initComponents();
         setLocationRelativeTo(null);
-        btn_cambiar_modelo.setBackground(Color.black);
-        btn_registrar.setBackground(Color.black);
-        btn_regresar.setBackground(Color.black);
+        btnCambiarModelo.setBackground(Color.black);
+        btnRegistrar.setBackground(Color.black);
+        btnRegresar.setBackground(Color.black);
     }
     
     public static OpcionesView getInstance() {
@@ -41,9 +41,9 @@ public class OpcionesView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btn_registrar = new javax.swing.JButton();
-        btn_cambiar_modelo = new javax.swing.JButton();
-        btn_regresar = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
+        btnCambiarModelo = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,23 +60,23 @@ public class OpcionesView extends javax.swing.JFrame {
         jLabel2.setText("Seleccione una opción");
         jLabel2.setPreferredSize(new java.awt.Dimension(700, 14));
 
-        btn_registrar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_registrar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_registrar.setText("Registrar producción");
-        btn_registrar.setToolTipText("");
-        btn_registrar.setPreferredSize(new java.awt.Dimension(700, 70));
+        btnRegistrar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setText("Registrar producción");
+        btnRegistrar.setToolTipText("");
+        btnRegistrar.setPreferredSize(new java.awt.Dimension(700, 70));
 
-        btn_cambiar_modelo.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_cambiar_modelo.setForeground(new java.awt.Color(255, 255, 255));
-        btn_cambiar_modelo.setText("Cambio de modelo");
-        btn_cambiar_modelo.setToolTipText("");
-        btn_cambiar_modelo.setPreferredSize(new java.awt.Dimension(700, 70));
+        btnCambiarModelo.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btnCambiarModelo.setForeground(new java.awt.Color(255, 255, 255));
+        btnCambiarModelo.setText("Cambio de modelo");
+        btnCambiarModelo.setToolTipText("");
+        btnCambiarModelo.setPreferredSize(new java.awt.Dimension(700, 70));
 
-        btn_regresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_regresar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_regresar.setText("Regresar");
-        btn_regresar.setToolTipText("");
-        btn_regresar.setPreferredSize(new java.awt.Dimension(700, 70));
+        btnRegresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresar.setText("Regresar");
+        btnRegresar.setToolTipText("");
+        btnRegresar.setPreferredSize(new java.awt.Dimension(700, 70));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,9 +85,9 @@ public class OpcionesView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cambiar_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCambiarModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
@@ -100,11 +100,11 @@ public class OpcionesView extends javax.swing.JFrame {
                 .addGap(70, 70, 70)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
-                .addComponent(btn_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(btn_cambiar_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCambiarModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(btn_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(591, Short.MAX_VALUE))
         );
 
@@ -166,36 +166,36 @@ public class OpcionesView extends javax.swing.JFrame {
         });
     }
 
-    public JButton getBtn_cambiar_modelo() {
-        return btn_cambiar_modelo;
+    public JButton getBtnCambiarModelo() {
+        return btnCambiarModelo;
     }
 
-    public void setBtn_cambiar_modelo(JButton btn_cambiar_modelo) {
-        this.btn_cambiar_modelo = btn_cambiar_modelo;
+    public void setBtnCambiarModelo(JButton btn_cambiar_modelo) {
+        this.btnCambiarModelo = btn_cambiar_modelo;
     }
 
-    public JButton getBtn_registrar() {
-        return btn_registrar;
+    public JButton getBtnRegistrar() {
+        return btnRegistrar;
     }
 
-    public void setBtn_registrar(JButton btn_registrar) {
-        this.btn_registrar = btn_registrar;
+    public void setBtnRegistrar(JButton btn_registrar) {
+        this.btnRegistrar = btn_registrar;
     }
 
-    public JButton getBtn_regresar() {
-        return btn_regresar;
+    public JButton getBtnRegresar() {
+        return btnRegresar;
     }
 
-    public void setBtn_regresar(JButton btn_regresar) {
-        this.btn_regresar = btn_regresar;
+    public void setBtnRegresar(JButton btn_regresar) {
+        this.btnRegresar = btn_regresar;
     }
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btn_cambiar_modelo;
-    public javax.swing.JButton btn_registrar;
-    public javax.swing.JButton btn_regresar;
+    public javax.swing.JButton btnCambiarModelo;
+    public javax.swing.JButton btnRegistrar;
+    public javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
