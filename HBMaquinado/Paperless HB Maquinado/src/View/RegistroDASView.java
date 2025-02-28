@@ -5,14 +5,18 @@
 package View;
 
 import Config.VistaSingleton;
+import Utils.FiltroCampos;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
+import javax.swing.text.AbstractDocument;
 
 /**
  *
@@ -29,34 +33,61 @@ public class RegistroDASView extends javax.swing.JFrame {
         btnRegistrarProduccion.setBackground(Color.BLACK);
         btnRegresar.setBackground(Color.BLACK);
         btnFinalizarDAS.setBackground(Color.BLACK);
+        
+        ((AbstractDocument) txtCodigoSoporte.getDocument()).setDocumentFilter(new FiltroCampos.FiltroNumerosYSignoNumeral());
+        ((AbstractDocument) txtCodigoInspector.getDocument()).setDocumentFilter(new FiltroCampos.FiltroNumerosYSignoNumeral());
+        ((AbstractDocument) txtNumeroEmpleado.getDocument()).setDocumentFilter(new FiltroCampos.FiltroNumerosYSignoNumeral());
+        ((AbstractDocument) txtLote.getDocument()).setDocumentFilter(new FiltroCampos.FiltroSoloLetras());
+        ((AbstractDocument) txtAcumulado.getDocument()).setDocumentFilter(new FiltroCampos.FiltroSoloNumeros());
+        
+        
+        cbxOK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (cbxOK.isSelected()) {
+                    cbxNG.setEnabled(false);
+                } else {
+                    cbxNG.setEnabled(true);
+                }
+            }
+        });
 
-        // Obtener el JTextField interno del JDateChooser
+        cbxNG.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (cbxNG.isSelected()) {
+                    cbxOK.setEnabled(false);
+                } else {
+                    cbxOK.setEnabled(true);
+                }
+            }
+        });
+        
+        
         JTextField dateTextField = (JTextField) jdcFecha.getDateEditor().getUiComponent();
-
-        // Cambiar el color de la fuente cuando está deshabilitado
-        dateTextField.setDisabledTextColor(Color.BLACK); // Cambia el color a rojo
-
-        // Personalizar el encabezado de la tabla
+        dateTextField.setDisabledTextColor(Color.BLACK);
+        
+        
         JTableHeader header = tblHoraxHora.getTableHeader();
         header.setFont(new Font("Arial", Font.BOLD, 16));
         header.setBackground(Color.WHITE);
         header.setForeground(Color.BLACK);
 
-        // Centrar el texto en los encabezados
+    
         DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) header.getDefaultRenderer();
         headerRenderer.setHorizontalAlignment(JLabel.CENTER);
 
-        // Personalizar el cuerpo de la tabla
+        
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-        renderer.setFont(new Font("Arial", Font.PLAIN, 14)); // Cambiar la fuente
-        renderer.setHorizontalAlignment(JLabel.CENTER); // Centrar el contenido de las celdas
+        renderer.setFont(new Font("Arial", Font.PLAIN, 14));
+        renderer.setHorizontalAlignment(JLabel.CENTER);
 
-        // Aplicar el renderer a todas las columnas de la tabla
+        
         for (int i = 0; i < tblHoraxHora.getColumnCount(); i++) {
             tblHoraxHora.getColumnModel().getColumn(i).setCellRenderer(renderer);
         }
 
-        tblHoraxHora.setRowHeight(35); // Ajustar el alto de las filas
+        tblHoraxHora.setRowHeight(35);
     }
     
     public static RegistroDASView getInstance() {
@@ -330,7 +361,6 @@ public class RegistroDASView extends javax.swing.JFrame {
 
         jPanel3.setPreferredSize(new java.awt.Dimension(800, 60));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
         jButton1.setText("2");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -339,11 +369,9 @@ public class RegistroDASView extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
         jButton2.setText("1");
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
         jButton3.setText("3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -352,7 +380,6 @@ public class RegistroDASView extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
         jButton4.setText("4");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -361,7 +388,6 @@ public class RegistroDASView extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
         jButton5.setText("5");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -370,7 +396,6 @@ public class RegistroDASView extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
         jButton6.setText("6");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -379,7 +404,6 @@ public class RegistroDASView extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
         jButton7.setText("7");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -388,7 +412,6 @@ public class RegistroDASView extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
         jButton8.setText("8");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -397,7 +420,6 @@ public class RegistroDASView extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
         jButton9.setText("9");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -406,7 +428,6 @@ public class RegistroDASView extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(255, 255, 255));
         jButton10.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
         jButton10.setText("0");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -415,7 +436,6 @@ public class RegistroDASView extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setBackground(new java.awt.Color(255, 255, 255));
         jButton11.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton11.setText("<");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -474,7 +494,7 @@ public class RegistroDASView extends javax.swing.JFrame {
 
         tblHoraxHora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"qweqwe", "qwewqe", "qwewqe", "qwqwe", "qwewqe"}
+
             },
             new String [] {
                 "Hora", "Piezas x Hora", "Acumulado", "Ok / Ng", "Nombre"
@@ -570,7 +590,7 @@ public class RegistroDASView extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(btnRegistrarProduccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -809,11 +829,11 @@ public class RegistroDASView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     public com.toedter.calendar.JDateChooser jdcFecha;
     private javax.swing.JTable tblHoraxHora;
-    private javax.swing.JTextField txtAcumulado;
+    public javax.swing.JTextField txtAcumulado;
     private javax.swing.JPasswordField txtCodigoInspector;
     public javax.swing.JPasswordField txtCodigoSoporte;
     public javax.swing.JTextField txtHora;
-    private javax.swing.JTextField txtLote;
+    public javax.swing.JTextField txtLote;
     public javax.swing.JTextField txtMOG;
     public javax.swing.JTextField txtModelo;
     private javax.swing.JPasswordField txtNumeroEmpleado;

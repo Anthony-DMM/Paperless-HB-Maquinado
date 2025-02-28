@@ -38,12 +38,12 @@ public class PaperlessHBMaquinado {
         ValidarLineaView validarLineaView = ValidarLineaView.getInstance();
         CapturaOrdenManufacturaView capturaOrdenManufacturaView = CapturaOrdenManufacturaView.getInstance();
         OpcionesView opcionesView = OpcionesView.getInstance();
-        RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
         RegistroDASView registroDASView = RegistroDASView.getInstance(); 
+        RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
         RegistroParoProcesoView registroParoProcesoView = new RegistroParoProcesoView(); 
         CambioMOGView cambioMOGView = CambioMOGView.getInstance();
         
-        capturaOrdenManufacturaView.setVisible(true);
+        registroDASView.setVisible(true);
         
         // Model
         DBConexion conexion = new DBConexion();
