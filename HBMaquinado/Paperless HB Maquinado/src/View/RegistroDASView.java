@@ -922,7 +922,7 @@ public class RegistroDASView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     public com.toedter.calendar.JDateChooser jdcFecha;
-    private javax.swing.JTable tblHoraxHora;
+    public javax.swing.JTable tblHoraxHora;
     public javax.swing.JTextField txtAcumulado;
     public javax.swing.JPasswordField txtCodigoInspector;
     public javax.swing.JPasswordField txtCodigoSoporte;

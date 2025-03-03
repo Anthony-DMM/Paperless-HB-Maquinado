@@ -5,6 +5,7 @@
 package Model;
 
 import Entities.DAS;
+import Entities.HoraxHora;
 import Entities.LineaProduccion;
 import Entities.MOG;
 import Entities.RBP;
@@ -16,7 +17,9 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -141,7 +144,7 @@ public class RegistroDASModel {
             cst.setString(9, lineaProduccion.getLinea());
 
             cst.executeQuery();
-            obtener_piezas_procesadas_hora();
+            obtenerPiezasProcesadasHora();
             JOptionPane.showMessageDialog(null, "LAS PIEZAS PROCESADAS EN LA HORA: " + hora + " FUERON REGISTRADAS CON ÉXITO");
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al registrar la producción por hora", ex);
@@ -149,7 +152,9 @@ public class RegistroDASModel {
         }
     }
     
-    public void obtener_piezas_procesadas_hora() throws SQLException {
+    public List<HoraxHora> obtenerPiezasProcesadasHora() throws SQLException {
+        List<HoraxHora> piezas = new ArrayList<>();
+
         try (Connection con = conexion.conexionMySQL();
              CallableStatement cst = con.prepareCall("{call obtener_piezas_x_hora_maq(?)}")) {
 
@@ -158,26 +163,30 @@ public class RegistroDASModel {
 
             // Ejecutar la consulta y obtener el ResultSet
             try (ResultSet r = cst.executeQuery()) {
-                // Obtener metadatos del ResultSet
-                ResultSetMetaData metaData = r.getMetaData();
-                int columnCount = metaData.getColumnCount(); // Número de columnas
-
-                // Recorrer el ResultSet e imprimir los resultados
                 while (r.next()) {
-                    // Iterar sobre cada columna
-                    for (int i = 1; i <= columnCount; i++) {
-                        String columnName = metaData.getColumnName(i); // Nombre de la columna
-                        Object columnValue = r.getObject(i); // Valor de la columna
+                    String hora = r.getString("hora");
+                    int piezasXHora = r.getInt("cantidadxhora");
+                    int acumulado = r.getInt("acumulado");
+                    String okNg = r.getString("ok_ng");
+                    String nombre = r.getString("nombre_empleado");
 
-                        // Imprimir el nombre y el valor de la columna
-                        System.out.println(columnName + ": " + columnValue);
-                    }
-                    System.out.println("-----------------------------"); // Separador entre filas
+                    HoraxHora pieza = HoraxHora.builder()
+                        .hora(hora)
+                        .piezasXHora(piezasXHora)
+                        .acumulado(acumulado)
+                        .okNg(okNg)
+                        .nombre(nombre)
+                        .build();
+
+                    // Agregar la instancia a la lista
+                    piezas.add(pieza);
                 }
             }
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al obtener la producción por hora", ex);
             throw ex;
         }
+
+        return piezas;
     }
 }

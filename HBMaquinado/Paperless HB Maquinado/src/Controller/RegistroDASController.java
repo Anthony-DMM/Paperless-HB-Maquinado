@@ -5,6 +5,7 @@
 package Controller;
 
 import Entities.DAS;
+import Entities.HoraxHora;
 import Entities.LineaProduccion;
 import Entities.MOG;
 import Model.CapturaOrdenManufacturaModel;
@@ -28,12 +29,14 @@ import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -153,16 +156,13 @@ public class RegistroDASController implements ActionListener, ItemListener {
     }
     
     private void handleRegistroProduccionButton() {
-        // Obtener el número de empleado desde el campo de texto
         String numero_empleado = registroDASView.txtNumeroEmpleado.getText().trim();
 
-        // Validar que el número de empleado no esté vacío
         if (numero_empleado.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El número de empleado no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Obtener el valor acumulado desde el campo de texto
         int acumulado;
         try {
             acumulado = Integer.parseInt(registroDASView.txtAcumulado.getText().trim());
@@ -171,26 +171,40 @@ public class RegistroDASController implements ActionListener, ItemListener {
             return;
         }
 
-        // Determinar la calidad basada en la selección del usuario
         String calidad;
         if (registroDASView.cbxOK.isSelected()) {
-            calidad = "OK"; // Asignar el valor correspondiente a "OK"
+            calidad = "OK";
         } else if (registroDASView.cbxNG.isSelected()) {
-            calidad = "NG"; // Asignar el valor correspondiente a "NG"
+            calidad = "NG";
         } else {
             JOptionPane.showMessageDialog(null, "Debes seleccionar una calidad (OK o NG).", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Llamar al método para registrar las piezas por hora
         try {
             registroDASModel.registrarPiezasPorHora(numero_empleado, acumulado, calidad);
-            JOptionPane.showMessageDialog(null, "Registro exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            System.out.println("La función se ejecutó correctamente.");
+            List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
+            actualizarTabla(piezas);
         } catch (SQLException | ParseException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar la producción.", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println("Ocurrió un error al ejecutar la función.");
+        }
+    }
+    
+    private void actualizarTabla(List<HoraxHora> piezas) {
+        DefaultTableModel dtm = (DefaultTableModel) registroDASView.tblHoraxHora.getModel();
+        dtm.setRowCount(0); // Limpiar la tabla
+
+        for (HoraxHora pieza : piezas) {
+            Object[] rowData = {
+                pieza.getHora(),
+                pieza.getPiezasXHora(),
+                pieza.getAcumulado(),
+                pieza.getOkNg(),
+                pieza.getNombre()
+            };
+            dtm.addRow(rowData);
         }
     }
 
