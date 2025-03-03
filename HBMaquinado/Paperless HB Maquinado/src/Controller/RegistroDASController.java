@@ -36,6 +36,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -48,6 +49,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
     private static final String INVALID_SOPORTE_RAPIDO_MESSAGE = "Ingrese un código de soporte rápido";
     private static final String INVALID_INSPECTOR_MESSAGE = "Ingrese un código de inspector";
     private static final String INVALID_OPERADOR_MESSAGE = "Ingrese un número de empleado";
+    private Timer timer;
 
     private RegistroDASModel registroDASModel;
     private RegistroDASView registroDASView;
@@ -60,12 +62,31 @@ public class RegistroDASController implements ActionListener, ItemListener {
 
         addListeners();
         
+        timer = new Timer(1000, e -> {
+            try {
+                actualizarHora();
+            } catch (SQLException ex) {
+                Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        timer.start();
+        
         registroDASView.addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
                 cargarDatos();
             }
+            
+            @Override
+            public void windowClosing(WindowEvent e) {
+                timer.stop();
+            }
         });
+    }
+    
+    private void actualizarHora() throws SQLException {
+        String hora = fechaHora.horaActual();
+        registroDASView.txtHora.setText(hora);
     }
     
     private void cargarDatos() {
@@ -79,8 +100,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
             registroDASView.txtSTD.setText(datosMOG.getStd());
             registroDASView.txtLote.setText(datosMOG.getTm());
 
-            String hora = fechaHora.horaActual();
-            registroDASView.txtHora.setText(hora);
+            actualizarHora();
             
             List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
             actualizarTabla(piezas);
@@ -185,18 +205,68 @@ public class RegistroDASController implements ActionListener, ItemListener {
         }
 
         try {
+            // Intentar registrar las piezas
+            registroDASModel.registrarPiezasPorHora(numero_empleado, acumulado, calidad);
+
+            // Si el registro es exitoso, limpiar los campos
+            LimpiarCampos.limpiarCampos(registroDASView.txtNumeroEmpleado, registroDASView.txtNombreEmpleado, registroDASView.txtAcumulado);
+            registroDASView.cbxOK.setSelected(false);
+            registroDASView.cbxNG.setSelected(false);
+
+            // Actualizar la tabla con los nuevos datos
+            List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
+            actualizarTabla(piezas);
+
+            JOptionPane.showMessageDialog(null, "Registro exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            // Manejar errores de validación (acumulado menor que el último acumulado)
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException | ParseException ex) {
+            // Manejar errores de base de datos o parseo
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar la producción.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    /*private void handleRegistroProduccionButton() {
+        String numero_empleado = registroDASView.txtNumeroEmpleado.getText().trim();
+
+        if (numero_empleado.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El número de empleado no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int acumulado;
+        try {
+            acumulado = Integer.parseInt(registroDASView.txtAcumulado.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El valor acumulado debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String calidad;
+        if (registroDASView.cbxOK.isSelected()) {
+            calidad = "OK";
+        } else if (registroDASView.cbxNG.isSelected()) {
+            calidad = "NG";
+        } else {
+            JOptionPane.showMessageDialog(null, "Debes seleccionar una calidad (OK o NG).", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
             registroDASModel.registrarPiezasPorHora(numero_empleado, acumulado, calidad);
             LimpiarCampos.limpiarCampos(registroDASView.txtNumeroEmpleado, registroDASView.txtNombreEmpleado, registroDASView.txtAcumulado);
             registroDASView.cbxNG.setSelected(false);
             registroDASView.cbxOK.setSelected(false);
+
+            // Actualizar la tabla con los nuevos datos
             List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
             actualizarTabla(piezas);
         } catch (SQLException | ParseException ex) {
-            ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar la producción.", "Error", JOptionPane.ERROR_MESSAGE);
-            System.out.println("Ocurrió un error al ejecutar la función.");
         }
-    }
+    }*/
     
     private void actualizarTabla(List<HoraxHora> piezas) {
         DefaultTableModel dtm = (DefaultTableModel) registroDASView.tblHoraxHora.getModel();

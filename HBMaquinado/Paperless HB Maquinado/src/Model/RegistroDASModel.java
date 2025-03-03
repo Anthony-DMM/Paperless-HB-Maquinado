@@ -124,11 +124,29 @@ public class RegistroDASModel {
     public void registrarPiezasPorHora(String numero_empleado, int acumulado, String calidad) throws SQLException, ParseException {
         MOG datosMOG = MOG.getInstance();
         LineaProduccion lineaProduccion = LineaProduccion.getInstance();
-        
+
         String fecha = fechaHora.fechaActual("yyyy-MM-dd");
         Date fechaUtil = fechaHora.stringToDate(fecha, "yyyy-MM-dd");
         java.sql.Date fechaF = new java.sql.Date(fechaUtil.getTime());
         String hora = fechaHora.horaActual();
+
+        // Obtener la lista de piezas procesadas
+        List<HoraxHora> piezas = obtenerPiezasProcesadasHora();
+
+        // Obtener el último acumulado registrado
+        int ultimoAcumulado = 0;
+        if (!piezas.isEmpty()) {
+            HoraxHora ultimaPieza = piezas.get(piezas.size() - 1);
+            ultimoAcumulado = ultimaPieza.getAcumulado();
+        }
+
+        // Validar que el acumulado actual sea igual o mayor que el último acumulado
+        if (acumulado < ultimoAcumulado) {
+            throw new IllegalArgumentException("El acumulado actual no puede ser menor que el último acumulado registrado.");
+        }
+
+        // Calcular las piezas procesadas
+        int piezasProcesadas = acumulado - ultimoAcumulado;
 
         try (Connection con = conexion.conexionMySQL();
              CallableStatement cst = con.prepareCall("{call registro_x_hora_maq(?,?,?,?,?,?,?,?,?)}")) {
@@ -137,15 +155,13 @@ public class RegistroDASModel {
             cst.setString(2, datosMOG.getOrden_manufactura());
             cst.setString(3, numero_empleado);
             cst.setString(4, hora);
-            cst.setInt(5, acumulado);
-            cst.setInt(6, acumulado);
+            cst.setInt(5, piezasProcesadas); // Usar las piezas procesadas calculadas
+            cst.setInt(6, acumulado); // Acumulado actual
             cst.setString(7, calidad);
             cst.setDate(8, fechaF);
             cst.setString(9, lineaProduccion.getLinea());
 
             cst.executeQuery();
-            obtenerPiezasProcesadasHora();
-            JOptionPane.showMessageDialog(null, "LAS PIEZAS PROCESADAS EN LA HORA: " + hora + " FUERON REGISTRADAS CON ÉXITO");
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al registrar la producción por hora", ex);
             throw ex;
@@ -159,9 +175,8 @@ public class RegistroDASModel {
              CallableStatement cst = con.prepareCall("{call obtener_piezas_x_hora_maq(?)}")) {
 
             RBP datosRBP = RBP.getInstance();
-            cst.setInt(1, datosRBP.getId()); // Establecer el parámetro de entrada
-
-            // Ejecutar la consulta y obtener el ResultSet
+            cst.setInt(1, datosRBP.getId());
+            
             try (ResultSet r = cst.executeQuery()) {
                 while (r.next()) {
                     String hora = r.getString("hora");
@@ -177,8 +192,7 @@ public class RegistroDASModel {
                         .okNg(okNg)
                         .nombre(nombre)
                         .build();
-
-                    // Agregar la instancia a la lista
+                    
                     piezas.add(pieza);
                 }
             }
