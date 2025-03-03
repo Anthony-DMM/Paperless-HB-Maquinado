@@ -151,6 +151,10 @@ public class CapturaOrdenManufacturaModel {
             cs.setInt(4, datosMOG.getSequ());
             cs.registerOutParameter(5, java.sql.Types.INTEGER);
             cs.execute();
+            
+            int id_rbp = cs.getInt(5);
+            RBP rbp = RBP.getInstance();
+            rbp.setId(id_rbp);
         }
     }
 

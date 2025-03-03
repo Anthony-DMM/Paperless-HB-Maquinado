@@ -56,8 +56,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
         this.registroDASView = RegistroDASView.getInstance();
 
         addListeners();
-        registroDASView.cbxOK.addItemListener(this);
-        registroDASView.cbxNG.addItemListener(this);
         
         registroDASView.addWindowListener(new WindowAdapter() {
             @Override
@@ -111,6 +109,9 @@ public class RegistroDASController implements ActionListener, ItemListener {
                 }
             }
         });
+        registroDASView.cbxOK.addItemListener(this);
+        registroDASView.cbxNG.addItemListener(this);
+        registroDASView.btnRegistrarProduccion.addActionListener(this);
     }
 
     @Override
@@ -120,7 +121,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
         if (source instanceof JTextField) {
             //handleTextFieldAction((JTextField) source);
         } else if (source instanceof JButton) {
-            //handleButtonAction((JButton) source);
+            handleButtonAction((JButton) source);
         }
     }
     
@@ -139,6 +140,58 @@ public class RegistroDASController implements ActionListener, ItemListener {
                registroDASView.cbxNG.setEnabled(true); 
            }
        }
+    }
+    
+    private void handleButtonAction(JButton button) {
+        if (button.equals(registroDASView.getBtnRegistrarProduccion())) {
+            handleRegistroProduccionButton();
+        } else if (button.equals(registroDASView.getBtnFinalizarDAS())) {
+            //handleRegresarButton();
+        } else if (button.equals(registroDASView.getBtnRegresar())) {
+            //handleRegresarButton();
+        }
+    }
+    
+    private void handleRegistroProduccionButton() {
+        // Obtener el número de empleado desde el campo de texto
+        String numero_empleado = registroDASView.txtNumeroEmpleado.getText().trim();
+
+        // Validar que el número de empleado no esté vacío
+        if (numero_empleado.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El número de empleado no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Obtener el valor acumulado desde el campo de texto
+        int acumulado;
+        try {
+            acumulado = Integer.parseInt(registroDASView.txtAcumulado.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El valor acumulado debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Determinar la calidad basada en la selección del usuario
+        String calidad;
+        if (registroDASView.cbxOK.isSelected()) {
+            calidad = "OK"; // Asignar el valor correspondiente a "OK"
+        } else if (registroDASView.cbxNG.isSelected()) {
+            calidad = "NG"; // Asignar el valor correspondiente a "NG"
+        } else {
+            JOptionPane.showMessageDialog(null, "Debes seleccionar una calidad (OK o NG).", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Llamar al método para registrar las piezas por hora
+        try {
+            registroDASModel.registrarPiezasPorHora(numero_empleado, acumulado, calidad);
+            JOptionPane.showMessageDialog(null, "Registro exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("La función se ejecutó correctamente.");
+        } catch (SQLException | ParseException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar la producción.", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Ocurrió un error al ejecutar la función.");
+        }
     }
 
     private void handleCodigoSoporteCapturado(JPasswordField passwordField) {

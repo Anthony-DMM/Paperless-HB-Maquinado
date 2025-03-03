@@ -15,6 +15,7 @@ import lombok.Data;
 @Builder
 public class RBP {
     private static RBP instance;
+    private int id;
     private String hora;
     
     public static RBP getInstance() {

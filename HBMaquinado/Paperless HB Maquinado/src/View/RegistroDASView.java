@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -70,6 +71,32 @@ public class RegistroDASView extends javax.swing.JFrame {
     public static RegistroDASView getInstance() {
         return VistaSingleton.getInstance(RegistroDASView.class);
     }
+
+    public JButton getBtnFinalizarDAS() {
+        return btnFinalizarDAS;
+    }
+
+    public void setBtnFinalizarDAS(JButton btnFinalizarDAS) {
+        this.btnFinalizarDAS = btnFinalizarDAS;
+    }
+
+    public JButton getBtnRegistrarProduccion() {
+        return btnRegistrarProduccion;
+    }
+
+    public void setBtnRegistrarProduccion(JButton btnRegistrarProduccion) {
+        this.btnRegistrarProduccion = btnRegistrarProduccion;
+    }
+
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+
+    public void setBtnRegresar(JButton btnRegresar) {
+        this.btnRegresar = btnRegresar;
+    }
+    
+    
 
     public JPasswordField getTxtCodigoSoporte() {
         return txtCodigoSoporte;
@@ -855,7 +882,7 @@ public class RegistroDASView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnFinalizarDAS;
-    private javax.swing.JButton btnRegistrarProduccion;
+    public javax.swing.JButton btnRegistrarProduccion;
     public javax.swing.JButton btnRegresar;
     public javax.swing.JCheckBox cbxNG;
     public javax.swing.JCheckBox cbxOK;
