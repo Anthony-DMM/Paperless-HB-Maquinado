@@ -71,16 +71,19 @@ public class RegistroDASController implements ActionListener, ItemListener {
     private void cargarDatos() {
         try {
             MOG datosMOG = MOG.getInstance();
-            
             String fechaString = fechaHora.fechaActual("dd-MM-yyyy");
             Date fechaDate = fechaHora.stringToDate(fechaString, "dd-MM-yyyy");
             registroDASView.jdcFecha.setDate(fechaDate);
             registroDASView.txtMOG.setText(datosMOG.getMog());
             registroDASView.txtModelo.setText(datosMOG.getModelo());
             registroDASView.txtSTD.setText(datosMOG.getStd());
+            registroDASView.txtLote.setText(datosMOG.getTm());
 
             String hora = fechaHora.horaActual();
             registroDASView.txtHora.setText(hora);
+            
+            List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
+            actualizarTabla(piezas);
         } catch (SQLException | ParseException ex) {
             System.out.println("Error al cargar los datos: " + ex.getMessage());
             ex.printStackTrace();
@@ -183,6 +186,9 @@ public class RegistroDASController implements ActionListener, ItemListener {
 
         try {
             registroDASModel.registrarPiezasPorHora(numero_empleado, acumulado, calidad);
+            LimpiarCampos.limpiarCampos(registroDASView.txtNumeroEmpleado, registroDASView.txtNombreEmpleado, registroDASView.txtAcumulado);
+            registroDASView.cbxNG.setSelected(false);
+            registroDASView.cbxOK.setSelected(false);
             List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
             actualizarTabla(piezas);
         } catch (SQLException | ParseException ex) {
