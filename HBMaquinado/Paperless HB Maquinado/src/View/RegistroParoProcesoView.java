@@ -4,6 +4,7 @@
  */
 package View;
 
+import Config.VistaSingleton;
 import java.awt.Color;
 
 /**
@@ -20,6 +21,10 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         btn_regresar.setBackground(Color.black);
         btn_finalizar.setBackground(Color.black);
+    }
+    
+    public static RegistroParoProcesoView getInstance() {
+        return VistaSingleton.getInstance(RegistroParoProcesoView.class);
     }
 
     /**

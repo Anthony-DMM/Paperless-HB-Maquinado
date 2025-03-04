@@ -40,7 +40,7 @@ public class PaperlessHBMaquinado {
         OpcionesView opcionesView = OpcionesView.getInstance();
         RegistroDASView registroDASView = RegistroDASView.getInstance(); 
         RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
-        RegistroParoProcesoView registroParoProcesoView = new RegistroParoProcesoView(); 
+        RegistroParoProcesoView registroParoProcesoView = RegistroParoProcesoView.getInstance(); 
         CambioMOGView cambioMOGView = CambioMOGView.getInstance();
         
         validarLineaView.setVisible(true);

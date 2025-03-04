@@ -16,6 +16,7 @@ import Utils.Navegador;
 import View.CapturaOrdenManufacturaView;
 import View.OpcionesView;
 import View.RegistroDASView;
+import View.RegistroParoProcesoView;
 import View.ValidarLineaView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,6 +54,8 @@ public class RegistroDASController implements ActionListener, ItemListener {
 
     private RegistroDASModel registroDASModel;
     private RegistroDASView registroDASView;
+    private OpcionesView opcionesView = OpcionesView.getInstance();
+    private RegistroParoProcesoView paroProcesoView = RegistroParoProcesoView.getInstance();
     private FechaHora fechaHora = new FechaHora();
     DAS datosLinea = DAS.getInstance();
 
@@ -138,6 +141,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
         registroDASView.cbxOK.addItemListener(this);
         registroDASView.cbxNG.addItemListener(this);
         registroDASView.btnRegistrarProduccion.addActionListener(this);
+        registroDASView.btnParoProceso.addActionListener(this);
     }
 
     @Override
@@ -171,10 +175,12 @@ public class RegistroDASController implements ActionListener, ItemListener {
     private void handleButtonAction(JButton button) {
         if (button.equals(registroDASView.getBtnRegistrarProduccion())) {
             handleRegistroProduccionButton();
+        } else if (button.equals(registroDASView.getBtnParoProceso())) {
+            handleParoProcesoButton();
         } else if (button.equals(registroDASView.getBtnFinalizarDAS())) {
             //handleRegresarButton();
         } else if (button.equals(registroDASView.getBtnRegresar())) {
-            //handleRegresarButton();
+            handleRegresarButton();
         }
     }
     
@@ -298,6 +304,14 @@ public class RegistroDASController implements ActionListener, ItemListener {
                 Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    
+    private void handleParoProcesoButton() {
+        Navegador.avanzarSiguienteVentana(registroDASView, paroProcesoView);
+    }
+    
+    private void handleRegresarButton() {
+        Navegador.regresarVentanaAnterior(registroDASView, opcionesView);
     }
 }
 

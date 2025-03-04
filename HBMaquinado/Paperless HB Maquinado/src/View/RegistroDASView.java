@@ -145,6 +145,16 @@ public class RegistroDASView extends javax.swing.JFrame {
     public void setTxtNombreSoporteRapido(JTextField txtNombreSoporteRapido) {
         this.txtNombreSoporteRapido = txtNombreSoporteRapido;
     }
+
+    public JButton getBtnParoProceso() {
+        return btnParoProceso;
+    }
+
+    public void setBtnParoProceso(JButton btnParoProceso) {
+        this.btnParoProceso = btnParoProceso;
+    }
+    
+    
     
     
     
