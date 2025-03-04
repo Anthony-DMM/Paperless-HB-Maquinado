@@ -130,23 +130,21 @@ public class RegistroDASModel {
         java.sql.Date fechaF = new java.sql.Date(fechaUtil.getTime());
         String hora = fechaHora.horaActual();
 
-        // Obtener la lista de piezas procesadas
         List<HoraxHora> piezas = obtenerPiezasProcesadasHora();
 
-        // Obtener el último acumulado registrado
         int ultimoAcumulado = 0;
         if (!piezas.isEmpty()) {
             HoraxHora ultimaPieza = piezas.get(piezas.size() - 1);
             ultimoAcumulado = ultimaPieza.getAcumulado();
         }
 
-        // Validar que el acumulado actual sea igual o mayor que el último acumulado
         if (acumulado < ultimoAcumulado) {
             throw new IllegalArgumentException("El acumulado actual no puede ser menor que el último acumulado registrado.");
         }
 
-        // Calcular las piezas procesadas
         int piezasProcesadas = acumulado - ultimoAcumulado;
+
+        validarIntervaloHora(piezas, hora);
 
         try (Connection con = conexion.conexionMySQL();
              CallableStatement cst = con.prepareCall("{call registro_x_hora_maq(?,?,?,?,?,?,?,?,?)}")) {
@@ -155,8 +153,8 @@ public class RegistroDASModel {
             cst.setString(2, datosMOG.getOrden_manufactura());
             cst.setString(3, numero_empleado);
             cst.setString(4, hora);
-            cst.setInt(5, piezasProcesadas); // Usar las piezas procesadas calculadas
-            cst.setInt(6, acumulado); // Acumulado actual
+            cst.setInt(5, piezasProcesadas);
+            cst.setInt(6, acumulado);
             cst.setString(7, calidad);
             cst.setDate(8, fechaF);
             cst.setString(9, lineaProduccion.getLinea());
@@ -165,6 +163,20 @@ public class RegistroDASModel {
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al registrar la producción por hora", ex);
             throw ex;
+        }
+    }
+    
+    private void validarIntervaloHora(List<HoraxHora> piezas, String horaActual) {
+        if (!piezas.isEmpty()) {
+            HoraxHora ultimaHora = piezas.get(piezas.size() - 1);
+            String ultimaHoraRegistrada = ultimaHora.getHora();
+
+            int horaRegistrada = Integer.parseInt(ultimaHoraRegistrada.split(":")[0]);
+            int horaActualInt = Integer.parseInt(horaActual.split(":")[0]);
+
+            if (horaActualInt == horaRegistrada) {
+                throw new IllegalStateException("No se puede registrar en el mismo intervalo de hora.");
+            }
         }
     }
     

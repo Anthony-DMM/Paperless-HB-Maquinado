@@ -205,68 +205,24 @@ public class RegistroDASController implements ActionListener, ItemListener {
         }
 
         try {
-            // Intentar registrar las piezas
             registroDASModel.registrarPiezasPorHora(numero_empleado, acumulado, calidad);
-
-            // Si el registro es exitoso, limpiar los campos
             LimpiarCampos.limpiarCampos(registroDASView.txtNumeroEmpleado, registroDASView.txtNombreEmpleado, registroDASView.txtAcumulado);
             registroDASView.cbxOK.setSelected(false);
             registroDASView.cbxNG.setSelected(false);
 
-            // Actualizar la tabla con los nuevos datos
             List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
             actualizarTabla(piezas);
 
             JOptionPane.showMessageDialog(null, "Registro exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalArgumentException ex) {
-            // Manejar errores de validación (acumulado menor que el último acumulado)
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalStateException ex) { // Agrega este bloque catch
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException | ParseException ex) {
-            // Manejar errores de base de datos o parseo
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar la producción.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    /*private void handleRegistroProduccionButton() {
-        String numero_empleado = registroDASView.txtNumeroEmpleado.getText().trim();
-
-        if (numero_empleado.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El número de empleado no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        int acumulado;
-        try {
-            acumulado = Integer.parseInt(registroDASView.txtAcumulado.getText().trim());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El valor acumulado debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        String calidad;
-        if (registroDASView.cbxOK.isSelected()) {
-            calidad = "OK";
-        } else if (registroDASView.cbxNG.isSelected()) {
-            calidad = "NG";
-        } else {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar una calidad (OK o NG).", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            registroDASModel.registrarPiezasPorHora(numero_empleado, acumulado, calidad);
-            LimpiarCampos.limpiarCampos(registroDASView.txtNumeroEmpleado, registroDASView.txtNombreEmpleado, registroDASView.txtAcumulado);
-            registroDASView.cbxNG.setSelected(false);
-            registroDASView.cbxOK.setSelected(false);
-
-            // Actualizar la tabla con los nuevos datos
-            List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
-            actualizarTabla(piezas);
-        } catch (SQLException | ParseException ex) {
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar la producción.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }*/
     
     private void actualizarTabla(List<HoraxHora> piezas) {
         DefaultTableModel dtm = (DefaultTableModel) registroDASView.tblHoraxHora.getModel();
