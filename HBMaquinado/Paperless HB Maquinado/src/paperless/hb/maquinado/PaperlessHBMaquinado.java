@@ -8,11 +8,13 @@ import Controller.ValidarLineaController;
 import Controller.CapturaOrdenManufacturaController;
 import Controller.OpcionesController;
 import Controller.RegistroDASController;
+import Controller.RegistroParoProcesoController;
 import Controller.RegistroRBPController;
 import Model.ValidarLineaModel;
 import Model.CapturaOrdenManufacturaModel;
 import Model.DBConexion;
 import Model.RegistroDASModel;
+import Model.RegistroParoProcesoModel;
 import Model.RegistroRBPModel;
 import View.ValidarLineaView;
 import View.CambioMOGView;
@@ -50,6 +52,7 @@ public class PaperlessHBMaquinado {
         ValidarLineaModel validarLineaModel = new ValidarLineaModel(conexion);
         CapturaOrdenManufacturaModel capturaOrdenManufacturaModel = new CapturaOrdenManufacturaModel(conexion);
         RegistroDASModel registroDASModel = new RegistroDASModel(conexion);
+        RegistroParoProcesoModel registroParoProcesoModel = new RegistroParoProcesoModel(conexion);
         RegistroRBPModel registroRBPModel = new RegistroRBPModel(conexion); 
         
         
@@ -58,6 +61,7 @@ public class PaperlessHBMaquinado {
         CapturaOrdenManufacturaController capturaOrdenManufacturaController = new CapturaOrdenManufacturaController(capturaOrdenManufacturaModel, capturaOrdenManufacturaView);
         OpcionesController opcionesController = new OpcionesController();
         RegistroDASController registroDASController = new RegistroDASController(registroDASModel, registroDASView);
+        RegistroParoProcesoController registroParoProcesoController = new RegistroParoProcesoController(registroParoProcesoModel, registroParoProcesoView);
         RegistroRBPController registroRBPController = new RegistroRBPController();
     }
     
