@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Entities.ParoProceso;
 import Model.RegistroParoProcesoModel;
 import Utils.FechaHora;
 import Utils.MostrarMensaje;
@@ -19,6 +20,10 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -36,13 +41,15 @@ public class RegistroParoProcesoController implements ActionListener {
     private FechaHora fechaHora = new FechaHora();
     private Timer timer;
     private Timestamp horaInicio;
+    String tiempoTranscurrido;
+    ParoProceso datosParoProceso = ParoProceso.getInstance();
 
     public RegistroParoProcesoController(RegistroParoProcesoModel registroParoProcesoModel, RegistroParoProcesoView registroParoProcesoView) {
         this.registroParoProcesoModel = registroParoProcesoModel;
         this.registroParoProcesoView = registroParoProcesoView;
 
-        this.registroParoProcesoView.btnRegresar.addActionListener(this);
-        this.registroParoProcesoView.btnFinalizar.addActionListener(this);
+        registroParoProcesoView.btnFinalizar.addActionListener(this);
+        registroParoProcesoView.cboxCategoria.addActionListener(this);
 
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -78,6 +85,14 @@ public class RegistroParoProcesoController implements ActionListener {
         String horaInicioFormateada = fechaHora.horaActual();
         registroParoProcesoView.txtHoraInicio.setText(horaInicioFormateada);
         registroParoProcesoView.txtTiempo.setText("00:00:00");
+
+        if (registroParoProcesoModel.obtenerCategoriasParoProceso()) {
+            datosParoProceso = ParoProceso.getInstance();
+            
+            datosParoProceso.getListaCategorias().forEach(paro -> {
+                registroParoProcesoView.cboxCategoria.addItem(paro.getCategoria());
+            });
+        }
     }
 
     private void actualizarTiempoTranscurrido() throws SQLException {
@@ -94,17 +109,21 @@ public class RegistroParoProcesoController implements ActionListener {
             long minutos = (segundosTotales % 3600) / 60;
             long segundos = segundosTotales % 60;
 
-            String tiempoTranscurrido = String.format("%02d:%02d:%02d", horas, minutos, segundos);
+            tiempoTranscurrido = String.format("%02d:%02d:%02d", horas, minutos, segundos);
             registroParoProcesoView.txtTiempo.setText(tiempoTranscurrido);
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == registroParoProcesoView.btnRegresar) {
-            handleRegresar();
-        } else if (e.getSource() == registroParoProcesoView.btnFinalizar) {
+        if (e.getSource() == registroParoProcesoView.btnFinalizar) {
             handleRegistrarParo();
+        } else if (e.getSource() == registroParoProcesoView.cboxCategoria) {
+            try {
+                handleCategoriaSeleccionada();
+            } catch (SQLException ex) {
+                Logger.getLogger(RegistroParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -112,12 +131,42 @@ public class RegistroParoProcesoController implements ActionListener {
         if (hayCamposVacios()) {
             MostrarMensaje.mostrarError("Es necesario completar todos los campos para registrar el paro");
         } else {
-
+            int minutosTranscurridos = obtenerMinutosTranscurridos(tiempoTranscurrido);
+            if (minutosTranscurridos < 5) {
+                MostrarMensaje.mostrarInfo("El tiempo transcurrido debe ser de al menos 5 minutos.");
+            } else {
+                // Lógica para registrar el paro (si el tiempo es válido)
+            }
         }
     }
+    
+    private void handleCategoriaSeleccionada() throws SQLException {
+        if (!"Seleccionar categoria".equals(registroParoProcesoView.cboxCategoria.getSelectedItem())) {
+            String categoria = (String) registroParoProcesoView.cboxCategoria.getSelectedItem();
 
-    private void handleRegresar() {
-        Navegador.regresarVentanaAnterior(registroParoProcesoView, registroDASView);
+            registroParoProcesoView.cboxCausa.removeAllItems();
+            if (registroParoProcesoModel.obtenerCausasPorCategoriaParoProceso(categoria)) {
+                datosParoProceso.getListaCausas().forEach(paro -> {
+                    registroParoProcesoView.cboxCausa.addItem(paro.getDescripcion());
+                });
+            }
+        } else {
+            registroParoProcesoView.cboxCausa.removeAllItems();
+        }
+    }
+    
+    private int obtenerMinutosTranscurridos(String tiempoTranscurrido) {
+        if (tiempoTranscurrido != null && !tiempoTranscurrido.isEmpty()) {
+            String[] partes = tiempoTranscurrido.split(":");
+            if (partes.length == 3) {
+                try {
+                    return Integer.parseInt(partes[1]);
+                } catch (NumberFormatException e) {
+                    return 0;
+                }
+            }
+        }
+        return 0;
     }
 
     private boolean hayCamposVacios() {
@@ -125,8 +174,6 @@ public class RegistroParoProcesoController implements ActionListener {
                 || registroParoProcesoView.txtTiempo.getText().isEmpty()
                 || registroParoProcesoView.cboxCategoria.getSelectedItem() == null
                 || registroParoProcesoView.cboxCausa.getSelectedItem() == null
-                || registroParoProcesoView.cboxAndon.getSelectedItem() == null
-                || registroParoProcesoView.cboxNivel.getSelectedItem() == null
                 || registroParoProcesoView.txtDetalle.getText().isEmpty();
     }
 }
