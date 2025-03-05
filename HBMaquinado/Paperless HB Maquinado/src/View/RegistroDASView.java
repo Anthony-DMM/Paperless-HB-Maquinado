@@ -31,6 +31,7 @@ public class RegistroDASView extends javax.swing.JFrame {
     private RegistroDASView() {
         initComponents();
         setLocationRelativeTo(null);
+        cbxTurno.setBackground(Color.YELLOW);
         btnRegistrarProduccion.setBackground(Color.BLACK);
         btnRegresar.setBackground(Color.BLACK);
         btnFinalizarDAS.setBackground(Color.BLACK);
@@ -175,7 +176,6 @@ public class RegistroDASView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jdcFecha = new com.toedter.calendar.JDateChooser();
-        jTextField1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtNombreSoporteRapido = new javax.swing.JTextField();
@@ -212,6 +212,7 @@ public class RegistroDASView extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
         btnFinalizarDAS = new javax.swing.JButton();
         btnParoProceso = new javax.swing.JButton();
+        cbxTurno = new javax.swing.JComboBox<>();
 
         jDateChooserDateSW.setBackground(new java.awt.Color(204, 204, 204));
         jDateChooserDateSW.setEnabled(false);
@@ -228,7 +229,7 @@ public class RegistroDASView extends javax.swing.JFrame {
         jLabel1.setText("ACTIVIDAD DIARIA \"HB MAQUINADO\"");
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
-        jLabel5.setText("Grupo:");
+        jLabel5.setText("Turno:");
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel6.setText("Fecha:");
@@ -237,10 +238,6 @@ public class RegistroDASView extends javax.swing.JFrame {
         jdcFecha.setEnabled(false);
         jdcFecha.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         jdcFecha.setPreferredSize(new java.awt.Dimension(100, 40));
-
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel7.setText(" Código de Soporte Rápido:");
@@ -463,6 +460,9 @@ public class RegistroDASView extends javax.swing.JFrame {
         btnParoProceso.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         btnParoProceso.setForeground(new java.awt.Color(255, 255, 255));
 
+        cbxTurno.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        cbxTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar turno", "1", "2" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -477,13 +477,14 @@ public class RegistroDASView extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1))
+                        .addComponent(cbxTurno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(txtNombreSoporteRapido, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigoSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtCodigoSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -532,9 +533,7 @@ public class RegistroDASView extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)))
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtAcumulado)
                             .addComponent(txtHora)
@@ -550,13 +549,11 @@ public class RegistroDASView extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jdcFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jdcFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxTurno))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
@@ -730,6 +727,7 @@ public class RegistroDASView extends javax.swing.JFrame {
     public javax.swing.JButton btnRegresar;
     public javax.swing.JCheckBox cbxNG;
     public javax.swing.JCheckBox cbxOK;
+    public javax.swing.JComboBox<String> cbxTurno;
     public com.toedter.calendar.JDateChooser jDateChooserDateSW;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -752,7 +750,6 @@ public class RegistroDASView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     public com.toedter.calendar.JDateChooser jdcFecha;
     public javax.swing.JTable tblHoraxHora;
     public javax.swing.JTextField txtAcumulado;

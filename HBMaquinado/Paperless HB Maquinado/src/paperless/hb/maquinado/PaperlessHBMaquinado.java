@@ -45,7 +45,7 @@ public class PaperlessHBMaquinado {
         RegistroParoProcesoView registroParoProcesoView = RegistroParoProcesoView.getInstance(); 
         CambioMOGView cambioMOGView = CambioMOGView.getInstance();
         
-        registroParoProcesoView.setVisible(true);
+        validarLineaView.setVisible(true);
         
         // Modelos
         DBConexion conexion = new DBConexion();

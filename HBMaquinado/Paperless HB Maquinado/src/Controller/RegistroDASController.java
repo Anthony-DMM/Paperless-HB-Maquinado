@@ -57,6 +57,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
     private OpcionesView opcionesView = OpcionesView.getInstance();
     private RegistroParoProcesoView paroProcesoView = RegistroParoProcesoView.getInstance();
     private FechaHora fechaHora = new FechaHora();
+    String horaActual;
     DAS datosLinea = DAS.getInstance();
 
     public RegistroDASController(RegistroDASModel registroDASModel, RegistroDASView registroDASView) {
@@ -88,8 +89,8 @@ public class RegistroDASController implements ActionListener, ItemListener {
     }
     
     private void actualizarHora() throws SQLException {
-        String hora = fechaHora.horaActual();
-        registroDASView.txtHora.setText(hora);
+        horaActual = fechaHora.horaActual();
+        registroDASView.txtHora.setText(horaActual);
     }
     
     private void cargarDatos() {
@@ -140,6 +141,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
         });
         registroDASView.cbxOK.addItemListener(this);
         registroDASView.cbxNG.addItemListener(this);
+        registroDASView.cbxTurno.addItemListener(this);
         registroDASView.btnRegistrarProduccion.addActionListener(this);
         registroDASView.btnParoProceso.addActionListener(this);
     }
@@ -151,7 +153,11 @@ public class RegistroDASController implements ActionListener, ItemListener {
         if (source instanceof JTextField) {
             //handleTextFieldAction((JTextField) source);
         } else if (source instanceof JButton) {
-            handleButtonAction((JButton) source);
+            try {
+                handleButtonAction((JButton) source);
+            } catch (ParseException ex) {
+                Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
@@ -172,7 +178,15 @@ public class RegistroDASController implements ActionListener, ItemListener {
        }
     }
     
-    private void handleButtonAction(JButton button) {
+    private void turno() {
+        if(horaActual){
+            
+        } else {
+            
+        }
+    }
+    
+    private void handleButtonAction(JButton button) throws ParseException {
         if (button.equals(registroDASView.getBtnRegistrarProduccion())) {
             handleRegistroProduccionButton();
         } else if (button.equals(registroDASView.getBtnParoProceso())) {
@@ -184,55 +198,56 @@ public class RegistroDASController implements ActionListener, ItemListener {
         }
     }
     
-    private void handleRegistroProduccionButton() {
-        String numero_empleado = registroDASView.txtNumeroEmpleado.getText().trim();
+    private void handleRegistroProduccionButton() throws ParseException {
 
-        if (numero_empleado.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El número de empleado no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        int acumulado;
-        try {
-            acumulado = Integer.parseInt(registroDASView.txtAcumulado.getText().trim());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El valor acumulado debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        String calidad;
-        if (registroDASView.cbxOK.isSelected()) {
-            calidad = "OK";
-        } else if (registroDASView.cbxNG.isSelected()) {
-            calidad = "NG";
+        if (areFieldsEmpty()) {
+            JOptionPane.showMessageDialog(null, EMPTY_FIELD_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar una calidad (OK o NG).", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            int acumulado;
+            try {
+                acumulado = Integer.parseInt(registroDASView.txtAcumulado.getText().trim());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "El valor acumulado debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            String calidad;
+            if (registroDASView.cbxOK.isSelected()) {
+                calidad = "OK";
+            } else if (registroDASView.cbxNG.isSelected()) {
+                calidad = "NG";
+            } else {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar una calidad (OK o NG).", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            String numero_empleado = registroDASView.txtNumeroEmpleado.getText().trim();
+            try {
+                registroDASModel.registrarPiezasPorHora(numero_empleado, acumulado, calidad);
+                LimpiarCampos.limpiarCampos(registroDASView.txtNumeroEmpleado, registroDASView.txtNombreEmpleado, registroDASView.txtAcumulado);
+                registroDASView.cbxOK.setSelected(false);
+                registroDASView.cbxNG.setSelected(false);
+
+                List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
+                actualizarTabla(piezas);
+
+                JOptionPane.showMessageDialog(null, "Registro exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (IllegalStateException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar la producción.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
-        try {
-            registroDASModel.registrarPiezasPorHora(numero_empleado, acumulado, calidad);
-            LimpiarCampos.limpiarCampos(registroDASView.txtNumeroEmpleado, registroDASView.txtNombreEmpleado, registroDASView.txtAcumulado);
-            registroDASView.cbxOK.setSelected(false);
-            registroDASView.cbxNG.setSelected(false);
-
-            List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
-            actualizarTabla(piezas);
-
-            JOptionPane.showMessageDialog(null, "Registro exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        } catch (IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (IllegalStateException ex) { // Agrega este bloque catch
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException | ParseException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar la producción.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        
     }
     
     private void actualizarTabla(List<HoraxHora> piezas) {
         DefaultTableModel dtm = (DefaultTableModel) registroDASView.tblHoraxHora.getModel();
-        dtm.setRowCount(0); // Limpiar la tabla
+        dtm.setRowCount(0);
 
         for (HoraxHora pieza : piezas) {
             Object[] rowData = {
@@ -304,6 +319,21 @@ public class RegistroDASController implements ActionListener, ItemListener {
                 Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    
+    private boolean areFieldsEmpty() {
+        char[] codigoSoporte = registroDASView.getTxtCodigoSoporte().getPassword();
+        String codigoSoporteIngresado = new String(codigoSoporte);
+        
+        char[] codigoInspector = registroDASView.getTxtCodigoInspector().getPassword();
+        String codigoInspectorIngresado = new String(codigoInspector);
+        
+        char[] codigoEmpleado = registroDASView.getTxtNumeroEmpleado().getPassword();
+        String codigoEmpleadoIngresado = new String(codigoEmpleado);
+
+        return codigoSoporteIngresado.isEmpty() ||
+               codigoInspectorIngresado.isEmpty() ||
+               codigoEmpleadoIngresado.isEmpty();
     }
     
     private void handleParoProcesoButton() {
