@@ -19,8 +19,8 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
     public RegistroParoProcesoView() {
         initComponents();
         setLocationRelativeTo(null);
-        btn_regresar.setBackground(Color.black);
-        btn_finalizar.setBackground(Color.black);
+        btnRegresar.setBackground(Color.black);
+        btnFinalizar.setBackground(Color.black);
     }
     
     public static RegistroParoProcesoView getInstance() {
@@ -40,21 +40,21 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbox_turno = new javax.swing.JComboBox<>();
+        cboxCategoria = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        cbox_turno1 = new javax.swing.JComboBox<>();
+        cboxCausa = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtDetalle = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtHoraInicio = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        cbox_turno2 = new javax.swing.JComboBox<>();
+        cboxAndon = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
-        cbox_turno3 = new javax.swing.JComboBox<>();
+        cboxNivel = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        btn_regresar = new javax.swing.JButton();
-        btn_finalizar = new javax.swing.JButton();
+        txtTiempo = new javax.swing.JTextField();
+        btnRegresar = new javax.swing.JButton();
+        btnFinalizar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -208,77 +208,75 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel9.setText("Categoría:");
 
-        cbox_turno.setBackground(new java.awt.Color(255, 255, 0));
-        cbox_turno.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        cbox_turno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir turno", "1", "2", "3" }));
-        cbox_turno.addActionListener(new java.awt.event.ActionListener() {
+        cboxCategoria.setBackground(new java.awt.Color(255, 255, 0));
+        cboxCategoria.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        cboxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir turno", "1", "2", "3" }));
+        cboxCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbox_turnoActionPerformed(evt);
+                cboxCategoriaActionPerformed(evt);
             }
         });
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel10.setText("Causa:");
 
-        cbox_turno1.setBackground(new java.awt.Color(255, 255, 0));
-        cbox_turno1.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        cbox_turno1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir turno", "1", "2", "3" }));
+        cboxCausa.setBackground(new java.awt.Color(255, 255, 0));
+        cboxCausa.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        cboxCausa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir turno", "1", "2", "3" }));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel11.setText("Detalle:");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 0));
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDetalle.setBackground(new java.awt.Color(255, 255, 0));
+        txtDetalle.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtDetalle.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel12.setText("Hora de inicio:");
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtHoraInicio.setEditable(false);
+        txtHoraInicio.setBackground(new java.awt.Color(204, 204, 204));
+        txtHoraInicio.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel13.setText("Δ3 Andón:");
 
-        cbox_turno2.setBackground(new java.awt.Color(255, 255, 0));
-        cbox_turno2.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        cbox_turno2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir turno", "1", "2", "3" }));
+        cboxAndon.setBackground(new java.awt.Color(255, 255, 0));
+        cboxAndon.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        cboxAndon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir turno", "1", "2", "3" }));
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel14.setText("Nivel:");
 
-        cbox_turno3.setBackground(new java.awt.Color(255, 255, 0));
-        cbox_turno3.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        cbox_turno3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir turno", "1", "2", "3" }));
+        cboxNivel.setBackground(new java.awt.Color(255, 255, 0));
+        cboxNivel.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        cboxNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir turno", "1", "2", "3" }));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel15.setText("Tiempo transcurrido:");
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTiempo.setEditable(false);
+        txtTiempo.setBackground(new java.awt.Color(204, 204, 204));
+        txtTiempo.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
-        btn_regresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_regresar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_regresar.setText("Regresar");
-        btn_regresar.setMaximumSize(new java.awt.Dimension(120, 60));
-        btn_regresar.setMinimumSize(new java.awt.Dimension(120, 60));
-        btn_regresar.setPreferredSize(new java.awt.Dimension(350, 80));
-        btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresar.setText("Regresar");
+        btnRegresar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnRegresar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnRegresar.setPreferredSize(new java.awt.Dimension(350, 80));
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_regresarActionPerformed(evt);
+                btnRegresarActionPerformed(evt);
             }
         });
 
-        btn_finalizar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_finalizar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_finalizar.setText("Finalizar");
-        btn_finalizar.setMaximumSize(new java.awt.Dimension(120, 60));
-        btn_finalizar.setMinimumSize(new java.awt.Dimension(120, 60));
-        btn_finalizar.setPreferredSize(new java.awt.Dimension(120, 80));
+        btnFinalizar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnFinalizar.setText("Finalizar");
+        btnFinalizar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnFinalizar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnFinalizar.setPreferredSize(new java.awt.Dimension(120, 80));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1216,10 +1214,10 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
                         .addGap(116, 116, 116)
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(116, 116, 116)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField2)
+                        .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDetalle)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1230,24 +1228,24 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(200, 200, 200)
-                        .addComponent(btn_finalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbox_turno2, 0, 342, Short.MAX_VALUE)
+                            .addComponent(cboxAndon, 0, 342, Short.MAX_VALUE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(116, 116, 116)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbox_turno3, 0, 342, Short.MAX_VALUE)
+                            .addComponent(cboxNivel, 0, 342, Short.MAX_VALUE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbox_turno, 0, 342, Short.MAX_VALUE))
+                            .addComponent(cboxCategoria, 0, 342, Short.MAX_VALUE))
                         .addGap(116, 116, 116)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbox_turno1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboxCausa, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1459,28 +1457,28 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbox_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbox_turno1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboxCausa, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbox_turno2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbox_turno3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboxAndon, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboxNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(pan_teclado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
@@ -1610,8 +1608,8 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
                             .addComponent(jLabel101, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_finalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnFinalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel61, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
@@ -1637,9 +1635,9 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_regresarActionPerformed
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -1797,9 +1795,9 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton40ActionPerformed
 
-    private void cbox_turnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_turnoActionPerformed
+    private void cboxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxCategoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbox_turnoActionPerformed
+    }//GEN-LAST:event_cboxCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1838,12 +1836,12 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_finalizar;
-    private javax.swing.JButton btn_regresar;
-    public javax.swing.JComboBox<String> cbox_turno;
-    public javax.swing.JComboBox<String> cbox_turno1;
-    public javax.swing.JComboBox<String> cbox_turno2;
-    public javax.swing.JComboBox<String> cbox_turno3;
+    public javax.swing.JButton btnFinalizar;
+    public javax.swing.JButton btnRegresar;
+    public javax.swing.JComboBox<String> cboxAndon;
+    public javax.swing.JComboBox<String> cboxCategoria;
+    public javax.swing.JComboBox<String> cboxCausa;
+    public javax.swing.JComboBox<String> cboxNivel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1987,9 +1985,9 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel pan_teclado;
+    public javax.swing.JTextField txtDetalle;
+    public javax.swing.JTextField txtHoraInicio;
+    public javax.swing.JTextField txtTiempo;
     // End of variables declaration//GEN-END:variables
 }

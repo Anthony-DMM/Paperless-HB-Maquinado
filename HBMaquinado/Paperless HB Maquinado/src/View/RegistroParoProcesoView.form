@@ -74,11 +74,11 @@
                           <Component id="jLabel15" min="-2" pref="342" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="jTextField3" min="-2" pref="342" max="-2" attributes="0"/>
+                          <Component id="txtHoraInicio" min="-2" pref="342" max="-2" attributes="0"/>
                           <EmptySpace min="116" pref="116" max="-2" attributes="0"/>
-                          <Component id="jTextField4" min="-2" pref="342" max="-2" attributes="0"/>
+                          <Component id="txtTiempo" min="-2" pref="342" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jTextField2" max="32767" attributes="0"/>
+                      <Component id="txtDetalle" max="32767" attributes="0"/>
                       <Component id="jLabel2" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="jLabel3" min="-2" pref="160" max="-2" attributes="0"/>
@@ -90,29 +90,29 @@
                           <Component id="jLabel6" min="-2" pref="160" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="btn_regresar" min="-2" pref="300" max="-2" attributes="0"/>
+                          <Component id="btnRegresar" min="-2" pref="300" max="-2" attributes="0"/>
                           <EmptySpace min="200" pref="200" max="-2" attributes="0"/>
-                          <Component id="btn_finalizar" min="-2" pref="300" max="-2" attributes="0"/>
+                          <Component id="btnFinalizar" min="-2" pref="300" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cbox_turno2" pref="342" max="32767" attributes="0"/>
+                              <Component id="cboxAndon" pref="342" max="32767" attributes="0"/>
                               <Component id="jLabel13" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cbox_turno3" pref="342" max="32767" attributes="0"/>
+                              <Component id="cboxNivel" pref="342" max="32767" attributes="0"/>
                               <Component id="jLabel14" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jLabel9" max="32767" attributes="0"/>
-                              <Component id="cbox_turno" pref="342" max="32767" attributes="0"/>
+                              <Component id="cboxCategoria" pref="342" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="116" pref="116" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cbox_turno1" alignment="0" min="-2" pref="342" max="-2" attributes="0"/>
+                              <Component id="cboxCausa" alignment="0" min="-2" pref="342" max="-2" attributes="0"/>
                               <Component id="jLabel10" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -393,8 +393,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTextField3" min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="jTextField4" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="txtHoraInicio" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="txtTiempo" min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -403,8 +403,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="cbox_turno" min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="cbox_turno1" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="cboxCategoria" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="cboxCausa" min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -413,13 +413,13 @@
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="cbox_turno2" min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="cbox_turno3" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="cboxAndon" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="cboxNivel" min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Component id="jLabel11" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="jTextField2" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Component id="txtDetalle" min="-2" pref="70" max="-2" attributes="0"/>
                   <EmptySpace pref="30" max="32767" attributes="0"/>
                   <Component id="pan_teclado" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="30" max="32767" attributes="0"/>
@@ -574,8 +574,8 @@
                           </Group>
                           <EmptySpace pref="29" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btn_finalizar" max="32767" attributes="0"/>
-                              <Component id="btn_regresar" max="32767" attributes="0"/>
+                              <Component id="btnFinalizar" max="32767" attributes="0"/>
+                              <Component id="btnRegresar" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jLabel61" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
@@ -610,7 +610,7 @@
             <Property name="text" type="java.lang.String" value="Categor&#xed;a:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbox_turno">
+        <Component class="javax.swing.JComboBox" name="cboxCategoria">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
@@ -628,7 +628,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbox_turnoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboxCategoriaActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -643,7 +643,7 @@
             <Property name="text" type="java.lang.String" value="Causa:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbox_turno1">
+        <Component class="javax.swing.JComboBox" name="cboxCausa">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
@@ -673,7 +673,7 @@
             <Property name="text" type="java.lang.String" value="Detalle:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="txtDetalle">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
@@ -683,6 +683,9 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
@@ -692,7 +695,7 @@
             <Property name="text" type="java.lang.String" value="Hora de inicio:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="txtHoraInicio">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -701,8 +704,10 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="40" style="0"/>
             </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
@@ -712,7 +717,7 @@
             <Property name="text" type="java.lang.String" value="&#x394;3 And&#xf3;n:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbox_turno2">
+        <Component class="javax.swing.JComboBox" name="cboxAndon">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
@@ -742,7 +747,7 @@
             <Property name="text" type="java.lang.String" value="Nivel:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbox_turno3">
+        <Component class="javax.swing.JComboBox" name="cboxNivel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
@@ -772,7 +777,7 @@
             <Property name="text" type="java.lang.String" value="Tiempo transcurrido:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="txtTiempo">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -781,10 +786,12 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="40" style="0"/>
             </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_regresar">
+        <Component class="javax.swing.JButton" name="btnRegresar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="36" style="0"/>
@@ -804,10 +811,13 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_regresarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_finalizar">
+        <Component class="javax.swing.JButton" name="btnFinalizar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="36" style="0"/>
@@ -826,6 +836,9 @@
               <Dimension value="[120, 80]"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>

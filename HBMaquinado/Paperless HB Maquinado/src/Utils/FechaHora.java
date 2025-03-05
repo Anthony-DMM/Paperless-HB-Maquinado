@@ -30,7 +30,7 @@ public class FechaHora {
     Connection con = null;
     private static final Logger LOGGER = Logger.getLogger(FechaHora.class.getName());
 
-    private Timestamp obtenerTimestampActual() throws SQLException {
+    public Timestamp obtenerTimestampActual() throws SQLException {
         Timestamp timestamp = null;
         Statement sen = null;
         ResultSet res = null;
@@ -78,5 +78,11 @@ public class FechaHora {
     public Date stringToDate(String fechaString, String formato) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat(formato);
         return dateFormat.parse(fechaString);
+    }
+    
+    public Timestamp stringHoraToTimestamp(String horaString, String formato) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(formato);
+        Date fecha = dateFormat.parse(horaString);
+        return new Timestamp(fecha.getTime());
     }
 }
