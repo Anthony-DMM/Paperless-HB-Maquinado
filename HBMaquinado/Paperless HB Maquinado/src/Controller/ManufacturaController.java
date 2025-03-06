@@ -11,6 +11,7 @@ import Utils.LimpiarCampos;
 import Utils.Navegador;
 import View.ManufacturaView;
 import View.OpcionesView;
+import View.RegistroDASView;
 import View.ValidarLineaView;
 import javax.swing.*;
 import java.awt.event.*;
@@ -117,8 +118,9 @@ public class ManufacturaController implements ActionListener {
         if (areFieldsEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos antes de continuar");
         } else {
-            OpcionesView opcionesView = OpcionesView.getInstance();
-            Navegador.avanzarSiguienteVentana(manufacturaView, opcionesView);
+            RegistroDASView registroDASView = RegistroDASView.getInstance();
+            RegistroDASController registroDASController = new RegistroDASController(registroDASView);
+            Navegador.avanzarSiguienteVentana(manufacturaView, registroDASView);
         }
     }
 

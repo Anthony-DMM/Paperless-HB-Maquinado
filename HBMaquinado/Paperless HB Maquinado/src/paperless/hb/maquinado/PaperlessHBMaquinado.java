@@ -5,26 +5,7 @@
 package paperless.hb.maquinado;
 
 import Controller.ValidarLineaController;
-import Controller.ManufacturaController;
-import Controller.OpcionesController;
-import Controller.RegistroDASController;
-import Controller.RegistroParoProcesoController;
-import Controller.RegistroRBPController;
-import Model.ValidarLineaModel;
-import Model.ManufacturaModel;
-import Model.DBConexion;
-import Model.RegistroDASModel;
-import Model.RegistroParoProcesoModel;
-import Model.RegistroRBPModel;
 import View.ValidarLineaView;
-import View.CambioMOGView;
-import View.ManufacturaView;
-import View.OpcionesView;
-import View.RegistroDASView;
-import View.RegistroParoProcesoView;
-import View.RegistroRBPView;
-import java.sql.SQLException;
-import java.text.ParseException;
 
 /**
  *
@@ -34,7 +15,7 @@ public class PaperlessHBMaquinado {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException, ParseException {
+    public static void main(String[] args) {
         ValidarLineaView validarLineaView = ValidarLineaView.getInstance();
         ValidarLineaController validarLineaController = new ValidarLineaController(validarLineaView);
         validarLineaView.setVisible(true);
