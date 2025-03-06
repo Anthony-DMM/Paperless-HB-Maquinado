@@ -17,7 +17,7 @@ public class DAS {
     private static DAS instance;
     
     private int idDAS;
-    private String soporteRapido, inspector, empleado;
+    private String codigoSoporteRapido, codigoInspector, codigoEmpleado, nombreSoporteRapido, nombreInspector, nombreEmpleado;
     
     public static DAS getInstance() {
         if (instance == null) {

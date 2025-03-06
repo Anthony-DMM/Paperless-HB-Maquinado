@@ -20,4 +20,14 @@ public class Navegador {
         ventanaActual.setVisible(false);
         ventanaAnterior.setVisible(true);
     }
+    
+    public static void avanzarDestruyendoVentana(JFrame ventanaActual, JFrame ventanaSiguiente) {
+        ventanaActual.dispose();
+        ventanaSiguiente.setVisible(true);
+    }
+    
+    public static void regresarDestruyendoVentana(JFrame ventanaActual, JFrame ventanaAnterior) {
+        ventanaActual.dispose();
+        ventanaAnterior.setVisible(true);
+    }
 }

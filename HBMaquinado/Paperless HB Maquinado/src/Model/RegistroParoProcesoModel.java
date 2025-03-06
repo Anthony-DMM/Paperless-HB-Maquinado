@@ -4,6 +4,9 @@
  */
 package Model;
 
+import Entities.DAS;
+import Entities.LineaProduccion;
+import Entities.MOG;
 import Entities.ParoProceso;
 import Utils.FechaHora;
 import Utils.MostrarMensaje;
@@ -11,7 +14,9 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,12 +26,19 @@ import java.util.logging.Logger;
  * @author ANTHONY-MARTINEZ
  */
 public class RegistroParoProcesoModel {
-    private static final Logger LOGGER = Logger.getLogger(CapturaOrdenManufacturaModel.class.getName());
     private DBConexion conexion;
+    private static final Logger LOGGER = Logger.getLogger(CapturaOrdenManufacturaModel.class.getName());
     FechaHora fechaHora = new FechaHora();
+    String fecha, hora;
+    Date fechaUtil;
+    java.sql.Date fechaF;
     
-    public RegistroParoProcesoModel(DBConexion conexion) {
-        this.conexion = conexion;
+    public RegistroParoProcesoModel() throws SQLException, ParseException {
+        conexion = new DBConexion();
+        
+        fecha = fechaHora.fechaActual("yyyy-MM-dd");
+        fechaUtil = fechaHora.stringToDate(fecha, "yyyy-MM-dd");
+        fechaF = new java.sql.Date(fechaUtil.getTime());
     }
     
     public boolean obtenerCategoriasParoProceso() throws SQLException{
@@ -84,6 +96,31 @@ public class RegistroParoProcesoModel {
                 paroProceso.setListaCausas(listaParos);
                 return true;
             }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al obtener datos del empleado", ex);
+            throw ex;
+        }
+    }
+    
+    public void registrarParoProceso(int idCausa, int duracion, String detalle, String horaInicio, String horaFin) throws SQLException{
+        try (Connection con = conexion.conexionMySQL();
+            CallableStatement cst = con.prepareCall("{call InsertarRegistroCausasParo(?,?,?,?,?,?,?,?,?,?)}")){
+            DAS datosDAS = DAS.getInstance();
+            LineaProduccion datosLineaProduccion = LineaProduccion.getInstance();
+            MOG datosMOG = MOG.getInstance();
+            
+            cst.setString(1, datosDAS.getCodigoEmpleado());
+            cst.setInt(2, idCausa);
+            cst.setInt(3, duracion);
+            cst.setString(4, detalle);
+            cst.setString(5, horaInicio);
+            cst.setDate(6, fechaF);
+            cst.setString(7, datosLineaProduccion.getLinea());
+            cst.setInt(8, datosDAS.getIdDAS());
+            cst.setString(9, datosMOG.getMog());
+            cst.setString(10, horaFin);
+            
+            cst.executeQuery();
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al obtener datos del empleado", ex);
             throw ex;

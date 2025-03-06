@@ -85,4 +85,13 @@ public class FechaHora {
         Date fecha = dateFormat.parse(horaString);
         return new Timestamp(fecha.getTime());
     }
+    
+    public String timestampToString(Timestamp timestamp, String formato) {
+        if (timestamp != null) {
+            Date date = new Date(timestamp.getTime());
+            DateFormat dateFormat = new SimpleDateFormat(formato);
+            return dateFormat.format(date);
+        }
+        return null;
+    }
 }

@@ -42,7 +42,6 @@ public class PaperlessHBMaquinado {
         OpcionesView opcionesView = OpcionesView.getInstance();
         RegistroDASView registroDASView = RegistroDASView.getInstance(); 
         RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
-        RegistroParoProcesoView registroParoProcesoView = RegistroParoProcesoView.getInstance(); 
         CambioMOGView cambioMOGView = CambioMOGView.getInstance();
         
         validarLineaView.setVisible(true);
@@ -52,7 +51,6 @@ public class PaperlessHBMaquinado {
         ValidarLineaModel validarLineaModel = new ValidarLineaModel(conexion);
         CapturaOrdenManufacturaModel capturaOrdenManufacturaModel = new CapturaOrdenManufacturaModel(conexion);
         RegistroDASModel registroDASModel = new RegistroDASModel(conexion);
-        RegistroParoProcesoModel registroParoProcesoModel = new RegistroParoProcesoModel(conexion);
         RegistroRBPModel registroRBPModel = new RegistroRBPModel(conexion); 
         
         
@@ -61,7 +59,6 @@ public class PaperlessHBMaquinado {
         CapturaOrdenManufacturaController capturaOrdenManufacturaController = new CapturaOrdenManufacturaController(capturaOrdenManufacturaModel, capturaOrdenManufacturaView);
         OpcionesController opcionesController = new OpcionesController();
         RegistroDASController registroDASController = new RegistroDASController(registroDASModel, registroDASView);
-        RegistroParoProcesoController registroParoProcesoController = new RegistroParoProcesoController(registroParoProcesoModel, registroParoProcesoView);
         RegistroRBPController registroRBPController = new RegistroRBPController();
     }
     

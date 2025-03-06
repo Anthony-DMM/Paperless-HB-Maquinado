@@ -51,10 +51,9 @@ public class RegistroDASController implements ActionListener, ItemListener {
     private final RegistroDASModel registroDASModel;
     private final RegistroDASView registroDASView;
     private final OpcionesView opcionesView = OpcionesView.getInstance();
-    private final RegistroParoProcesoView paroProcesoView = RegistroParoProcesoView.getInstance();
     private final FechaHora fechaHora = new FechaHora();
     String horaActual, horaInicio, codigoSoporte, codigoInspector, codigoEmpleado;
-    DAS datosLinea = DAS.getInstance();
+    DAS datosDAS = DAS.getInstance();
 
     public RegistroDASController(RegistroDASModel registroDASModel, RegistroDASView registroDASView) throws SQLException {
         this.registroDASModel = registroDASModel;
@@ -273,7 +272,8 @@ public class RegistroDASController implements ActionListener, ItemListener {
             try {
                 if (registroDASModel.validarSoporteRapido(codigoSoporteIngresado)) {
                     codigoSoporte = codigoSoporteIngresado;
-                    registroDASView.txtNombreSoporteRapido.setText(datosLinea.getSoporteRapido());
+                    datosDAS.setCodigoSoporteRapido(codigoSoporte);
+                    registroDASView.txtNombreSoporteRapido.setText(datosDAS.getNombreSoporteRapido());
                 } else {
                     LimpiarCampos.limpiarCampos(registroDASView.getTxtCodigoSoporte(), registroDASView.getTxtNombreSoporteRapido());
                 }
@@ -294,7 +294,8 @@ public class RegistroDASController implements ActionListener, ItemListener {
             try {
                 if (registroDASModel.validarInspector(codigoInspectorIngresado)) {
                     codigoInspector = codigoInspectorIngresado;
-                    registroDASView.txtNombreInspector.setText(datosLinea.getInspector());
+                    datosDAS.setCodigoInspector(codigoInspector);
+                    registroDASView.txtNombreInspector.setText(datosDAS.getNombreInspector());
                 } else {
                     LimpiarCampos.limpiarCampos(registroDASView.getTxtCodigoInspector(), registroDASView.getTxtNombreInspector());
                 }
@@ -315,7 +316,8 @@ public class RegistroDASController implements ActionListener, ItemListener {
             try {
                 if (registroDASModel.validarOperador(numeroEmpleadoIngresado)) {
                     codigoEmpleado = numeroEmpleadoIngresado;
-                    registroDASView.txtNombreEmpleado.setText(datosLinea.getEmpleado());
+                    datosDAS.setCodigoEmpleado(codigoEmpleado);
+                    registroDASView.txtNombreEmpleado.setText(datosDAS.getNombreEmpleado());
                 } else {
                     LimpiarCampos.limpiarCampos(registroDASView.getTxtNumeroEmpleado(), registroDASView.getTxtNombreEmpleado());
                 }
@@ -347,11 +349,13 @@ public class RegistroDASController implements ActionListener, ItemListener {
         }
     }
     
-    private void handleParoProcesoButton() throws SQLException {
+    private void handleParoProcesoButton() throws SQLException, ParseException {
         if(areFieldsEmpty()){
             MostrarMensaje.mostrarError("Para continuar necesario colocar el código de inspector, soporte rápido y empleado");
         } else {
             handleDatosDAS(codigoSoporte, codigoInspector, codigoEmpleado);
+            RegistroParoProcesoView paroProcesoView = new RegistroParoProcesoView();
+            RegistroParoProcesoController paroProcesoController = new RegistroParoProcesoController(paroProcesoView);
             Navegador.avanzarSiguienteVentana(registroDASView, paroProcesoView);
         }
     }

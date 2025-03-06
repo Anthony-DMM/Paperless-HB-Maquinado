@@ -64,7 +64,7 @@ public class RegistroDASModel {
                 return false;
             } else {
                 DAS datosDAS = DAS.getInstance();
-                datosDAS.setSoporteRapido(soporteEncontrado);
+                datosDAS.setNombreSoporteRapido(soporteEncontrado);
                 return true;
             }
         } catch (SQLException ex) {
@@ -92,7 +92,7 @@ public class RegistroDASModel {
                 return false;
             } else {
                 DAS datosDAS = DAS.getInstance();
-                datosDAS.setInspector(inspectorEncontrado);
+                datosDAS.setNombreInspector(inspectorEncontrado);
                 return true;
             }
         } catch (SQLException ex) {
@@ -120,7 +120,7 @@ public class RegistroDASModel {
                 return false;
             } else {
                 DAS datosDAS = DAS.getInstance();
-                datosDAS.setEmpleado(empleadoEncontrado);
+                datosDAS.setNombreEmpleado(empleadoEncontrado);
                 return true;
             }
         } catch (SQLException ex) {

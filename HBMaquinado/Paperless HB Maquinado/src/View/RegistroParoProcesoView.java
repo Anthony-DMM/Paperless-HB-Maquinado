@@ -21,10 +21,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         btnFinalizar.setBackground(Color.black);
     }
-    
-    public static RegistroParoProcesoView getInstance() {
-        return VistaSingleton.getInstance(RegistroParoProcesoView.class);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -223,7 +219,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
 
         txtDetalle.setBackground(new java.awt.Color(255, 255, 0));
         txtDetalle.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        txtDetalle.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel12.setText("Hora de inicio:");
@@ -231,6 +226,7 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
         txtHoraInicio.setEditable(false);
         txtHoraInicio.setBackground(new java.awt.Color(204, 204, 204));
         txtHoraInicio.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtHoraInicio.setFocusable(false);
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel15.setText("Tiempo transcurrido:");
@@ -238,6 +234,7 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
         txtTiempo.setEditable(false);
         txtTiempo.setBackground(new java.awt.Color(204, 204, 204));
         txtTiempo.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtTiempo.setFocusable(false);
 
         btnFinalizar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
@@ -1183,10 +1180,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(116, 116, 116)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(txtHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(116, 116, 116)
-                            .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(txtDetalle)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1197,14 +1190,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(0, 0, 0)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cboxCategoria, 0, 404, Short.MAX_VALUE)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(54, 54, 54)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cboxCausa, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1402,7 +1387,18 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
                             .addComponent(jLabel98, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(0, 0, 0)
                             .addComponent(jLabel99, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(pan_teclado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(pan_teclado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtHoraInicio)
+                                .addComponent(cboxCategoria, javax.swing.GroupLayout.Alignment.LEADING, 0, 404, Short.MAX_VALUE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(54, 54, 54)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cboxCausa, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtTiempo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
