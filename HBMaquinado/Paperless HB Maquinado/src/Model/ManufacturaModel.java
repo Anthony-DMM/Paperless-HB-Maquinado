@@ -22,14 +22,14 @@ import java.util.logging.Logger;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class CapturaOrdenManufacturaModel {
+public class ManufacturaModel {
     private final DBConexion conexion;
-    private static final Logger LOGGER = Logger.getLogger(CapturaOrdenManufacturaModel.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ManufacturaModel.class.getName());
     private static final String ART = "HB";
     private static final String PROCESO_VALIDO = "HBL";
     FechaHora fechaHora = new FechaHora();
 
-    public CapturaOrdenManufacturaModel() {
+    public ManufacturaModel() {
         this.conexion = new DBConexion();
     }
 

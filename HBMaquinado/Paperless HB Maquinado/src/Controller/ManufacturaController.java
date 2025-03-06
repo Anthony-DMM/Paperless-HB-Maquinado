@@ -6,10 +6,10 @@ package Controller;
 
 import Entities.LineaProduccion;
 import Entities.MOG;
-import Model.CapturaOrdenManufacturaModel;
+import Model.ManufacturaModel;
 import Utils.LimpiarCampos;
 import Utils.Navegador;
-import View.CapturaOrdenManufacturaView;
+import View.ManufacturaView;
 import View.OpcionesView;
 import View.ValidarLineaView;
 import javax.swing.*;
@@ -18,12 +18,12 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CapturaOrdenManufacturaController implements ActionListener {
+public class ManufacturaController implements ActionListener {
 
-    private final CapturaOrdenManufacturaModel manufacturaModel = new CapturaOrdenManufacturaModel();
-    private final CapturaOrdenManufacturaView manufacturaView;
+    private final ManufacturaModel manufacturaModel = new ManufacturaModel();
+    private final ManufacturaView manufacturaView;
 
-    public CapturaOrdenManufacturaController(CapturaOrdenManufacturaView manufacturaView) {
+    public ManufacturaController(ManufacturaView manufacturaView) {
         this.manufacturaView = manufacturaView;
         addListeners();
     }
@@ -88,7 +88,7 @@ public class CapturaOrdenManufacturaController implements ActionListener {
                     LimpiarCampos.limpiarCampo(manufacturaView.getTxtMogCapturada());
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(CapturaOrdenManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -108,7 +108,7 @@ public class CapturaOrdenManufacturaController implements ActionListener {
                     LimpiarCampos.limpiarCampo(manufacturaView.getTxtCodigoSupervisor());
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(CapturaOrdenManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

@@ -5,20 +5,20 @@
 package paperless.hb.maquinado;
 
 import Controller.ValidarLineaController;
-import Controller.CapturaOrdenManufacturaController;
+import Controller.ManufacturaController;
 import Controller.OpcionesController;
 import Controller.RegistroDASController;
 import Controller.RegistroParoProcesoController;
 import Controller.RegistroRBPController;
 import Model.ValidarLineaModel;
-import Model.CapturaOrdenManufacturaModel;
+import Model.ManufacturaModel;
 import Model.DBConexion;
 import Model.RegistroDASModel;
 import Model.RegistroParoProcesoModel;
 import Model.RegistroRBPModel;
 import View.ValidarLineaView;
 import View.CambioMOGView;
-import View.CapturaOrdenManufacturaView;
+import View.ManufacturaView;
 import View.OpcionesView;
 import View.RegistroDASView;
 import View.RegistroParoProcesoView;

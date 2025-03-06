@@ -27,7 +27,7 @@ import java.util.logging.Logger;
  */
 public class RegistroParoProcesoModel {
     private DBConexion conexion;
-    private static final Logger LOGGER = Logger.getLogger(CapturaOrdenManufacturaModel.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ManufacturaModel.class.getName());
     FechaHora fechaHora = new FechaHora();
     String fecha, hora;
     Date fechaUtil;

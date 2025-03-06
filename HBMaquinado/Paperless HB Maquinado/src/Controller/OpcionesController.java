@@ -6,7 +6,7 @@ package Controller;
 
 import Entities.LineaProduccion;
 import Utils.Navegador;
-import View.CapturaOrdenManufacturaView;
+import View.ManufacturaView;
 import View.OpcionesView;
 import View.RegistroDASView;
 import View.RegistroRBPView;
@@ -21,11 +21,11 @@ import javax.swing.JOptionPane;
 public class OpcionesController implements ActionListener{
     
     RegistroDASView registroDASView; 
-    CapturaOrdenManufacturaView capturaOrdenManufactura;
+    ManufacturaView capturaOrdenManufactura;
     OpcionesView opciones;
 
     public OpcionesController() {
-        this.capturaOrdenManufactura = CapturaOrdenManufacturaView.getInstance();
+        this.capturaOrdenManufactura = ManufacturaView.getInstance();
         this.registroDASView = RegistroDASView.getInstance();
         this.opciones = OpcionesView.getInstance();
         

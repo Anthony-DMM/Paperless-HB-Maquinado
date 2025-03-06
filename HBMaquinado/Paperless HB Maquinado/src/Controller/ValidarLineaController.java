@@ -13,7 +13,7 @@ import Utils.MostrarMensaje;
 import Utils.Navegador;
 import Utils.ValidarCampos;
 import View.ValidarLineaView;
-import View.CapturaOrdenManufacturaView;
+import View.ManufacturaView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -54,8 +54,8 @@ public class ValidarLineaController implements ActionListener {
             MostrarMensaje.mostrarError("La línea de producción no existe o no pertenece al área de MAQUINADO.");
             LimpiarCampos.limpiarCampo(validarLineaView.getTxtLineaProduccion());
         } else {
-            CapturaOrdenManufacturaView manufacturaView = CapturaOrdenManufacturaView.getInstance();
-            CapturaOrdenManufacturaController manufacturaController = new CapturaOrdenManufacturaController(manufacturaView);
+            ManufacturaView manufacturaView = ManufacturaView.getInstance();
+            ManufacturaController manufacturaController = new ManufacturaController(manufacturaView);
             Navegador.avanzarSiguienteVentana(validarLineaView, manufacturaView);
         }
     }

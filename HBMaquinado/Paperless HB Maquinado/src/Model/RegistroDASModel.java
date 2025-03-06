@@ -29,7 +29,7 @@ import javax.swing.JOptionPane;
  * @author ANTHONY-MARTINEZ
  */
 public class RegistroDASModel {
-    private static final Logger LOGGER = Logger.getLogger(CapturaOrdenManufacturaModel.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ManufacturaModel.class.getName());
     private DBConexion conexion;
     FechaHora fechaHora = new FechaHora();
     String fecha, hora;
