@@ -35,31 +35,9 @@ public class PaperlessHBMaquinado {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException, ParseException {
-        
-        // Vistas
         ValidarLineaView validarLineaView = ValidarLineaView.getInstance();
-        CapturaOrdenManufacturaView capturaOrdenManufacturaView = CapturaOrdenManufacturaView.getInstance();
-        OpcionesView opcionesView = OpcionesView.getInstance();
-        RegistroDASView registroDASView = RegistroDASView.getInstance(); 
-        RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
-        CambioMOGView cambioMOGView = CambioMOGView.getInstance();
-        
+        ValidarLineaController validarLineaController = new ValidarLineaController(validarLineaView);
         validarLineaView.setVisible(true);
-        
-        // Modelos
-        DBConexion conexion = new DBConexion();
-        ValidarLineaModel validarLineaModel = new ValidarLineaModel(conexion);
-        CapturaOrdenManufacturaModel capturaOrdenManufacturaModel = new CapturaOrdenManufacturaModel(conexion);
-        RegistroDASModel registroDASModel = new RegistroDASModel(conexion);
-        RegistroRBPModel registroRBPModel = new RegistroRBPModel(conexion); 
-        
-        
-        // Controladores
-        ValidarLineaController validarLineaController = new ValidarLineaController(validarLineaView, validarLineaModel, capturaOrdenManufacturaView, conexion);
-        CapturaOrdenManufacturaController capturaOrdenManufacturaController = new CapturaOrdenManufacturaController(capturaOrdenManufacturaModel, capturaOrdenManufacturaView);
-        OpcionesController opcionesController = new OpcionesController();
-        RegistroDASController registroDASController = new RegistroDASController(registroDASModel, registroDASView);
-        RegistroRBPController registroRBPController = new RegistroRBPController();
     }
     
 }

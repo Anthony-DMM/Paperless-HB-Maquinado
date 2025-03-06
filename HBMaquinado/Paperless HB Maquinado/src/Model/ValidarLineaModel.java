@@ -22,10 +22,10 @@ import javax.swing.JOptionPane;
  */
 public class ValidarLineaModel {
     
-    private DBConexion conexion;
+    private final DBConexion conexion;
 
-    public ValidarLineaModel(DBConexion conexion) {
-        this.conexion = conexion;
+    public ValidarLineaModel() {
+        this.conexion = new DBConexion();
     }
 
     public LineaProduccion validarLinea(String lineaProduccion, String procesoEsperado) {
