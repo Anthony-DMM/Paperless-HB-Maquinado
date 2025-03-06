@@ -32,9 +32,17 @@ public class RegistroDASModel {
     private static final Logger LOGGER = Logger.getLogger(CapturaOrdenManufacturaModel.class.getName());
     private DBConexion conexion;
     FechaHora fechaHora = new FechaHora();
+    String fecha, hora;
+    Date fechaUtil;
+    java.sql.Date fechaF;
 
-    public RegistroDASModel(DBConexion conexion) {
+    public RegistroDASModel(DBConexion conexion) throws SQLException, ParseException {
         this.conexion = conexion;
+        
+        fecha = fechaHora.fechaActual("yyyy-MM-dd");
+        fechaUtil = fechaHora.stringToDate(fecha, "yyyy-MM-dd");
+        fechaF = new java.sql.Date(fechaUtil.getTime());
+        hora = fechaHora.horaActual();
     }
     
     public boolean validarSoporteRapido(String codigoSoporteRapido) throws SQLException{
@@ -125,11 +133,6 @@ public class RegistroDASModel {
         MOG datosMOG = MOG.getInstance();
         LineaProduccion lineaProduccion = LineaProduccion.getInstance();
 
-        String fecha = fechaHora.fechaActual("yyyy-MM-dd");
-        Date fechaUtil = fechaHora.stringToDate(fecha, "yyyy-MM-dd");
-        java.sql.Date fechaF = new java.sql.Date(fechaUtil.getTime());
-        String hora = fechaHora.horaActual();
-
         List<HoraxHora> piezas = obtenerPiezasProcesadasHora();
 
         int ultimoAcumulado = 0;
@@ -180,14 +183,19 @@ public class RegistroDASModel {
         }
     }
     
-    public List<HoraxHora> obtenerPiezasProcesadasHora() throws SQLException {
+    public List<HoraxHora> obtenerPiezasProcesadasHora() throws SQLException, ParseException {
         List<HoraxHora> piezas = new ArrayList<>();
 
         try (Connection con = conexion.conexionMySQL();
-             CallableStatement cst = con.prepareCall("{call obtener_piezas_x_hora_maq(?)}")) {
+             CallableStatement cst = con.prepareCall("{call obtener_piezas_x_hora_maq(?,?)}")) {
 
             RBP datosRBP = RBP.getInstance();
             cst.setInt(1, datosRBP.getId());
+            
+            String fecha = fechaHora.fechaActual("yyyy-MM-dd");
+            Date fechaUtil = fechaHora.stringToDate(fecha, "yyyy-MM-dd");
+            java.sql.Date fechaF = new java.sql.Date(fechaUtil.getTime());
+            cst.setDate(2, fechaF);
             
             try (ResultSet r = cst.executeQuery()) {
                 while (r.next()) {
@@ -214,5 +222,56 @@ public class RegistroDASModel {
         }
 
         return piezas;
+    }
+    
+    public void registrarDAS(String codigoSoporte, String codigoInspector, String codigoEmpleado) throws SQLException{
+        int idDAS = 0;
+        try (Connection con = conexion.conexionMySQL();
+             CallableStatement cst = con.prepareCall("{call llenarDas(?,?,?,?,?,?,?)}")) {
+
+            LineaProduccion lineaProduccion = LineaProduccion.getInstance();
+            
+            cst.registerOutParameter(1, java.sql.Types.INTEGER);
+            cst.setString(2, lineaProduccion.getLinea());
+            cst.setString(3, codigoEmpleado);
+            cst.setString(4, codigoSoporte);
+            cst.setString(5, codigoInspector);
+            cst.setDate(6, fechaF);
+            cst.setString(7, lineaProduccion.getProceso());
+
+            cst.executeQuery();
+            idDAS = cst.getInt(1);
+            if (idDAS != 0) {
+                DAS datosDAS = DAS.getInstance();
+                datosDAS.setIdDAS(idDAS);
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al registrar la producción por hora", ex);
+            throw ex;
+        }
+    }
+    
+    public int obtenerDASExistente() throws SQLException {
+        int idDAS = 0;
+        try (Connection con = conexion.conexionMySQL();
+             CallableStatement cst = con.prepareCall("{call buscar_das(?,?)}")) {
+
+            LineaProduccion lineaProduccion = LineaProduccion.getInstance();
+
+            cst.setString(1, lineaProduccion.getLinea());
+            cst.registerOutParameter(2, java.sql.Types.INTEGER);
+
+            cst.executeQuery();
+            idDAS = cst.getInt(2);
+            
+            if (idDAS != 0) {
+                DAS datosDAS = DAS.getInstance();
+                datosDAS.setIdDAS(idDAS);
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al buscar DAS existente", ex);
+            throw ex;
+        }
+        return idDAS;
     }
 }

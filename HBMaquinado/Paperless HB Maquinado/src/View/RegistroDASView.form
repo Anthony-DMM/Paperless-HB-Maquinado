@@ -188,8 +188,8 @@
                       <Component id="jLabel7" pref="50" max="32767" attributes="0"/>
                       <Component id="txtCodigoSoporte" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel8" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jLabel8" pref="50" max="32767" attributes="0"/>
                       <Component id="txtNombreSoporteRapido" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -197,8 +197,8 @@
                       <Component id="txtCodigoInspector" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtNombreInspector" pref="38" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtNombreInspector" pref="50" max="32767" attributes="0"/>
                       <Component id="jLabel10" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -206,11 +206,11 @@
                       <Component id="txtNumeroEmpleado" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jLabel11" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtNombreEmpleado" alignment="0" pref="42" max="32767" attributes="0"/>
-                      <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtNombreEmpleado" pref="49" max="32767" attributes="0"/>
+                      <Component id="jLabel12" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
