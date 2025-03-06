@@ -23,16 +23,14 @@ import java.util.logging.Logger;
  * @author ANTHONY-MARTINEZ
  */
 public class CapturaOrdenManufacturaModel {
-
+    private final DBConexion conexion;
     private static final Logger LOGGER = Logger.getLogger(CapturaOrdenManufacturaModel.class.getName());
     private static final String ART = "HB";
     private static final String PROCESO_VALIDO = "HBL";
     FechaHora fechaHora = new FechaHora();
 
-    private final DBConexion conexion;
-
-    public CapturaOrdenManufacturaModel(DBConexion conexion) {
-        this.conexion = conexion;
+    public CapturaOrdenManufacturaModel() {
+        this.conexion = new DBConexion();
     }
 
     public boolean obtenerDatosOrden(String ordenManufactura) throws SQLException {

@@ -19,30 +19,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CapturaOrdenManufacturaController implements ActionListener {
-    private static final String EMPTY_FIELD_MESSAGE = "Por favor, complete todos los campos antes de continuar";
-    private static final String INVALID_MOG_MESSAGE = "Ingrese una orden de manufactura";
-    private static final String INVALID_SUPERVISOR_MESSAGE = "Ingrese un código de supervisor";
 
-    private CapturaOrdenManufacturaModel capturaOrdenManufacturaModel;
-    private CapturaOrdenManufacturaView capturaOrdenManufacturaView;
-    private ValidarLineaView validarLineaView;
-    private OpcionesView opcionesView;
+    private final CapturaOrdenManufacturaModel manufacturaModel = new CapturaOrdenManufacturaModel();
+    private final CapturaOrdenManufacturaView manufacturaView;
 
-    public CapturaOrdenManufacturaController(CapturaOrdenManufacturaModel capturaOrdenManufacturaModel, CapturaOrdenManufacturaView capturaOrdenManufacturaView) {
-        this.capturaOrdenManufacturaModel = capturaOrdenManufacturaModel;
-        this.capturaOrdenManufacturaView = CapturaOrdenManufacturaView.getInstance();
-        this.validarLineaView = ValidarLineaView.getInstance();
-        this.opcionesView = OpcionesView.getInstance();
-
+    public CapturaOrdenManufacturaController(CapturaOrdenManufacturaView manufacturaView) {
+        this.manufacturaView = manufacturaView;
         addListeners();
     }
 
     private void addListeners() {
-        capturaOrdenManufacturaView.getTxtMogCapturada().addActionListener(this);
-        capturaOrdenManufacturaView.getBtnSiguiente().addActionListener(this);
-        capturaOrdenManufacturaView.getBtnRegresar().addActionListener(this);
+        this.manufacturaView.getTxtMogCapturada().addActionListener(this);
+        this.manufacturaView.getBtnSiguiente().addActionListener(this);
+        this.manufacturaView.getBtnRegresar().addActionListener(this);
 
-        capturaOrdenManufacturaView.getTxtCodigoSupervisor().addKeyListener(new KeyAdapter() {
+        this.manufacturaView.getTxtCodigoSupervisor().addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -64,37 +55,37 @@ public class CapturaOrdenManufacturaController implements ActionListener {
     }
 
     private void handleTextFieldAction(JTextField textField) {
-        if (textField.equals(capturaOrdenManufacturaView.getTxtMogCapturada())) {
+        if (textField.equals(manufacturaView.getTxtMogCapturada())) {
             handleMogCapturada();
         }
     }
 
     private void handleButtonAction(JButton button) {
-        if (button.equals(capturaOrdenManufacturaView.getBtnSiguiente())) {
+        if (button.equals(manufacturaView.getBtnSiguiente())) {
             handleSiguienteButton();
-        } else if (button.equals(capturaOrdenManufacturaView.getBtnRegresar())) {
+        } else if (button.equals(manufacturaView.getBtnRegresar())) {
             handleRegresarButton();
         }
     }
 
     private void handleMogCapturada() {
-        String ordenIngresada = capturaOrdenManufacturaView.getTxtMogCapturada().getText();
+        String ordenIngresada = manufacturaView.getTxtMogCapturada().getText();
         if (ordenIngresada.isEmpty()) {
-            JOptionPane.showMessageDialog(null, INVALID_MOG_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ingrese una orden de manufactura");
         } else {
             try {
-                if (capturaOrdenManufacturaModel.obtenerDatosOrden(ordenIngresada)) {
+                if (manufacturaModel.obtenerDatosOrden(ordenIngresada)) {
                     MOG datosMOG = MOG.getInstance();
                     LineaProduccion datosLinea = LineaProduccion.getInstance();
 
-                    capturaOrdenManufacturaView.getTxtMog().setText(datosMOG.getMog());
-                    capturaOrdenManufacturaView.getTxtModelo().setText(datosMOG.getModelo());
-                    capturaOrdenManufacturaView.getTxtDibujo().setText(datosMOG.getNo_dibujo());
-                    capturaOrdenManufacturaView.getTxtCantidadPlaneada().setText(Integer.toString(datosMOG.getCantidad_planeada()));
-                    capturaOrdenManufacturaView.getTxtParte().setText(datosMOG.getNo_parte());
-                    capturaOrdenManufacturaView.getTxtProceso().setText(datosLinea.getProceso());
+                    manufacturaView.getTxtMog().setText(datosMOG.getMog());
+                    manufacturaView.getTxtModelo().setText(datosMOG.getModelo());
+                    manufacturaView.getTxtDibujo().setText(datosMOG.getNo_dibujo());
+                    manufacturaView.getTxtCantidadPlaneada().setText(Integer.toString(datosMOG.getCantidad_planeada()));
+                    manufacturaView.getTxtParte().setText(datosMOG.getNo_parte());
+                    manufacturaView.getTxtProceso().setText(datosLinea.getProceso());
                 } else {
-                    LimpiarCampos.limpiarCampo(capturaOrdenManufacturaView.getTxtMogCapturada());
+                    LimpiarCampos.limpiarCampo(manufacturaView.getTxtMogCapturada());
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(CapturaOrdenManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
@@ -107,16 +98,16 @@ public class CapturaOrdenManufacturaController implements ActionListener {
         String codigoIngresado = new String(passwordChars);
 
         if (codigoIngresado.isEmpty()) {
-            JOptionPane.showMessageDialog(null, INVALID_SUPERVISOR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ingrese un código de supervisor");
         } else {
             try {
-                if (capturaOrdenManufacturaModel.validarSupervisor(codigoIngresado)) {
+                if (manufacturaModel.validarSupervisor(codigoIngresado)) {
                     LineaProduccion datosLinea = LineaProduccion.getInstance();
-                    capturaOrdenManufacturaView.getTxtSupervisorAsignado().setText(datosLinea.getSupervisor());
+                    manufacturaView.getTxtSupervisorAsignado().setText(datosLinea.getSupervisor());
                 } else {
-                    LimpiarCampos.limpiarCampo(capturaOrdenManufacturaView.getTxtCodigoSupervisor());
+                    LimpiarCampos.limpiarCampo(manufacturaView.getTxtCodigoSupervisor());
                 }
-            } catch (Exception ex) {
+            } catch (SQLException ex) {
                 Logger.getLogger(CapturaOrdenManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -124,28 +115,30 @@ public class CapturaOrdenManufacturaController implements ActionListener {
 
     private void handleSiguienteButton() {
         if (areFieldsEmpty()) {
-            JOptionPane.showMessageDialog(null, EMPTY_FIELD_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos antes de continuar");
         } else {
-            Navegador.avanzarSiguienteVentana(capturaOrdenManufacturaView, opcionesView);
+            OpcionesView opcionesView = OpcionesView.getInstance();
+            Navegador.avanzarSiguienteVentana(manufacturaView, opcionesView);
         }
     }
 
     private void handleRegresarButton() {
-        Navegador.regresarVentanaAnterior(capturaOrdenManufacturaView, validarLineaView);
+        ValidarLineaView validarLineaView = ValidarLineaView.getInstance();
+        Navegador.regresarVentanaAnterior(manufacturaView, validarLineaView);
     }
 
     private boolean areFieldsEmpty() {
-        char[] passwordChars = capturaOrdenManufacturaView.getTxtCodigoSupervisor().getPassword();
+        char[] passwordChars = manufacturaView.getTxtCodigoSupervisor().getPassword();
         String codigoSupervisor = new String(passwordChars);
 
-        return codigoSupervisor.isEmpty() ||
-               capturaOrdenManufacturaView.getTxtMogCapturada().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtSupervisorAsignado().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtMog().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtModelo().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtCantidadPlaneada().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtDibujo().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtParte().getText().isEmpty() ||
-               capturaOrdenManufacturaView.getTxtProceso().getText().isEmpty();
+        return codigoSupervisor.isEmpty()
+                || manufacturaView.getTxtMogCapturada().getText().isEmpty()
+                || manufacturaView.getTxtSupervisorAsignado().getText().isEmpty()
+                || manufacturaView.getTxtMog().getText().isEmpty()
+                || manufacturaView.getTxtModelo().getText().isEmpty()
+                || manufacturaView.getTxtCantidadPlaneada().getText().isEmpty()
+                || manufacturaView.getTxtDibujo().getText().isEmpty()
+                || manufacturaView.getTxtParte().getText().isEmpty()
+                || manufacturaView.getTxtProceso().getText().isEmpty();
     }
 }
