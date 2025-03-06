@@ -20,12 +20,8 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -37,15 +33,16 @@ import java.util.logging.Logger;
  */
 public class RegistroParoProcesoController implements ActionListener {
 
-    private RegistroParoProcesoModel registroParoProcesoModel = new RegistroParoProcesoModel();
-    private RegistroParoProcesoView registroParoProcesoView;
-    private RegistroDASView registroDASView = RegistroDASView.getInstance();
+    private final RegistroParoProcesoModel registroParoProcesoModel = new RegistroParoProcesoModel();
+    private final RegistroParoProcesoView registroParoProcesoView;
+    private final RegistroDASView registroDASView = RegistroDASView.getInstance();
+    
     private FechaHora fechaHora = new FechaHora();
     private Timer timer;
     private Timestamp horaInicio;
     String tiempoTranscurrido;
     ParoProceso datosParoProceso = ParoProceso.getInstance();
-    private Map<String, Integer> causasMap = new HashMap<>();
+    private final Map<String, Integer> causasMap = new HashMap<>();
 
     public RegistroParoProcesoController(RegistroParoProcesoView registroParoProcesoView) throws SQLException, ParseException {
         this.registroParoProcesoView = registroParoProcesoView;
