@@ -13,6 +13,7 @@ import javax.swing.JTextField;
  * @author ANTHONY-MARTINEZ
  */
 public class ValidarCampos {
+
     public static boolean esCampoVacio(JTextField campo, String mensajeError) {
         if (campo.getText().trim().isEmpty()) {
             mostrarError(mensajeError);
@@ -20,7 +21,7 @@ public class ValidarCampos {
         }
         return false;
     }
-    
+
     public static boolean esCampoVacio(JPasswordField campo, String mensajeError) {
         if (new String(campo.getPassword()).trim().isEmpty()) {
             mostrarError(mensajeError);
@@ -28,7 +29,7 @@ public class ValidarCampos {
         }
         return false;
     }
-    
+
     private static void mostrarError(String mensajeError) {
         JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
     }

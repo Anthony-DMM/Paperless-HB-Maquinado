@@ -11,6 +11,7 @@ import javax.swing.JFrame;
  * @author ANTHONY-MARTINEZ
  */
 public class Navegador {
+
     public static void avanzarSiguienteVentana(JFrame ventanaActual, JFrame ventanaSiguiente) {
         ventanaActual.setVisible(false);
         ventanaSiguiente.setVisible(true);
@@ -20,12 +21,12 @@ public class Navegador {
         ventanaActual.setVisible(false);
         ventanaAnterior.setVisible(true);
     }
-    
+
     public static void avanzarDestruyendoVentana(JFrame ventanaActual, JFrame ventanaSiguiente) {
         ventanaActual.dispose();
         ventanaSiguiente.setVisible(true);
     }
-    
+
     public static void regresarDestruyendoVentana(JFrame ventanaActual, JFrame ventanaAnterior) {
         ventanaActual.dispose();
         ventanaAnterior.setVisible(true);

@@ -9,7 +9,8 @@ package Model;
  * @author ANTHONY-MARTINEZ
  */
 public class RegistroRBPModel {
-    private DBConexion conexion;
+
+    private final DBConexion conexion;
 
     public RegistroRBPModel(DBConexion conexion) {
         this.conexion = conexion;

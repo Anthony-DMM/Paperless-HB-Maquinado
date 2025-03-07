@@ -36,7 +36,7 @@ public class RegistroParoProcesoController implements ActionListener {
     private final RegistroParoProcesoModel registroParoProcesoModel = new RegistroParoProcesoModel();
     private final RegistroParoProcesoView registroParoProcesoView;
     private final RegistroDASView registroDASView = RegistroDASView.getInstance();
-    
+
     private FechaHora fechaHora = new FechaHora();
     private Timer timer;
     private Timestamp horaInicio;
@@ -87,7 +87,7 @@ public class RegistroParoProcesoController implements ActionListener {
 
         if (registroParoProcesoModel.obtenerCategoriasParoProceso()) {
             datosParoProceso = ParoProceso.getInstance();
-            
+
             datosParoProceso.getListaCategorias().forEach(paro -> {
                 registroParoProcesoView.cboxCategoria.addItem(paro.getCategoria());
             });
@@ -150,7 +150,7 @@ public class RegistroParoProcesoController implements ActionListener {
             }
         }
     }
-    
+
     private void handleCategoriaSeleccionada() throws SQLException {
         if (!"Seleccionar categoria".equals(registroParoProcesoView.cboxCategoria.getSelectedItem())) {
             String categoria = (String) registroParoProcesoView.cboxCategoria.getSelectedItem();
@@ -168,7 +168,7 @@ public class RegistroParoProcesoController implements ActionListener {
             registroParoProcesoView.cboxCausa.removeAllItems();
         }
     }
-    
+
     private int obtenerMinutosTranscurridos(String tiempoTranscurrido) {
         if (tiempoTranscurrido != null && !tiempoTranscurrido.isEmpty()) {
             String[] partes = tiempoTranscurrido.split(":");

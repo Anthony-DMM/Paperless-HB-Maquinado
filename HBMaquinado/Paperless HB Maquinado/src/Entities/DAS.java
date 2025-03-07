@@ -14,18 +14,24 @@ import lombok.Data;
 @Data
 @Builder
 public class DAS {
+
     private static DAS instance;
-    
+
     private int idDAS;
-    private String codigoSoporteRapido, codigoInspector, codigoEmpleado, nombreSoporteRapido, nombreInspector, nombreEmpleado;
-    
+    private String codigoSoporteRapido,
+            nombreSoporteRapido,
+            codigoInspector,
+            nombreInspector,
+            codigoEmpleado,
+            nombreEmpleado;
+
     public static DAS getInstance() {
         if (instance == null) {
             instance = DAS.builder().build();
         }
         return instance;
     }
-    
+
     public static void setInstance(DAS das) {
         instance = das;
     }

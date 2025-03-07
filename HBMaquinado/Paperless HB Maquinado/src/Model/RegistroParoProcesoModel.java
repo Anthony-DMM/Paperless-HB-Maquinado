@@ -26,29 +26,29 @@ import java.util.logging.Logger;
  * @author ANTHONY-MARTINEZ
  */
 public class RegistroParoProcesoModel {
-    private DBConexion conexion;
+
+    private final DBConexion conexion;
     private static final Logger LOGGER = Logger.getLogger(ManufacturaModel.class.getName());
     FechaHora fechaHora = new FechaHora();
-    String fecha, hora;
+    String fecha;
     Date fechaUtil;
     java.sql.Date fechaF;
-    
+
     public RegistroParoProcesoModel() throws SQLException, ParseException {
         conexion = new DBConexion();
-        
+
         fecha = fechaHora.fechaActual("yyyy-MM-dd");
         fechaUtil = fechaHora.stringToDate(fecha, "yyyy-MM-dd");
         fechaF = new java.sql.Date(fechaUtil.getTime());
     }
-    
-    public boolean obtenerCategoriasParoProceso() throws SQLException{
+
+    public boolean obtenerCategoriasParoProceso() throws SQLException {
         int proceso = 1;
-        try (Connection con = conexion.conexionMySQL();
-            CallableStatement cst = con.prepareCall("{call obtenerCategoriasParoProceso(?)}")){
-            
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call obtenerCategoriasParoProceso(?)}")) {
+
             cst.setInt(1, proceso);
             ResultSet resultSet = cst.executeQuery();
-            
+
             if (!resultSet.isBeforeFirst()) {
                 MostrarMensaje.mostrarError("No se pudieron obtener las categorías de paro en proceso");
                 return false;
@@ -70,16 +70,15 @@ public class RegistroParoProcesoModel {
             throw ex;
         }
     }
-    
-    public boolean obtenerCausasPorCategoriaParoProceso(String categoria) throws SQLException{
+
+    public boolean obtenerCausasPorCategoriaParoProceso(String categoria) throws SQLException {
         int proceso = 1;
-        try (Connection con = conexion.conexionMySQL();
-            CallableStatement cst = con.prepareCall("{call obtenerCausasPorCategoriaParoProceso(?,?)}")){
-            
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call obtenerCausasPorCategoriaParoProceso(?,?)}")) {
+
             cst.setInt(1, proceso);
             cst.setString(2, categoria);
             ResultSet resultSet = cst.executeQuery();
-            
+
             if (!resultSet.isBeforeFirst()) {
                 return false;
             } else {
@@ -101,14 +100,13 @@ public class RegistroParoProcesoModel {
             throw ex;
         }
     }
-    
-    public void registrarParoProceso(int idCausa, int duracion, String detalle, String horaInicio, String horaFin) throws SQLException{
-        try (Connection con = conexion.conexionMySQL();
-            CallableStatement cst = con.prepareCall("{call InsertarRegistroCausasParo(?,?,?,?,?,?,?,?,?,?)}")){
+
+    public void registrarParoProceso(int idCausa, int duracion, String detalle, String horaInicio, String horaFin) throws SQLException {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call InsertarRegistroCausasParo(?,?,?,?,?,?,?,?,?,?)}")) {
             DAS datosDAS = DAS.getInstance();
             LineaProduccion datosLineaProduccion = LineaProduccion.getInstance();
             MOG datosMOG = MOG.getInstance();
-            
+
             cst.setString(1, datosDAS.getCodigoEmpleado());
             cst.setInt(2, idCausa);
             cst.setInt(3, duracion);
@@ -119,7 +117,7 @@ public class RegistroParoProcesoModel {
             cst.setInt(8, datosDAS.getIdDAS());
             cst.setString(9, datosMOG.getMog());
             cst.setString(10, horaFin);
-            
+
             cst.executeQuery();
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al obtener datos del empleado", ex);

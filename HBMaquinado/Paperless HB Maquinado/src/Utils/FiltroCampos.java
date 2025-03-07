@@ -13,8 +13,10 @@ import javax.swing.text.DocumentFilter;
  * @author anthony
  */
 public class FiltroCampos {
+
     // Filtro para aceptar solo números y letras
     public static class FiltroNumerosYLetras extends DocumentFilter {
+
         @Override
         public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
             if (string.matches("[a-zA-Z0-9]*")) {
@@ -32,6 +34,7 @@ public class FiltroCampos {
 
     // Filtro para aceptar solo números
     public static class FiltroSoloNumeros extends DocumentFilter {
+
         @Override
         public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
             if (string.matches("[0-9]*")) {
@@ -49,6 +52,7 @@ public class FiltroCampos {
 
     // Filtro para aceptar solo letras
     public static class FiltroSoloLetras extends DocumentFilter {
+
         @Override
         public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
             if (string.matches("[a-zA-Z]*")) {
@@ -66,6 +70,7 @@ public class FiltroCampos {
 
     // Filtro para aceptar solo números y el signo #
     public static class FiltroNumerosYSignoNumeral extends DocumentFilter {
+
         @Override
         public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
             if (string.matches("[0-9#]*")) {

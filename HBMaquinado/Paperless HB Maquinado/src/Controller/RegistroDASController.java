@@ -8,7 +8,6 @@ import Entities.DAS;
 import Entities.HoraxHora;
 import Entities.MOG;
 import Model.RegistroDASModel;
-import Utils.FechaHora;
 import Utils.LimpiarCampos;
 import Utils.MostrarMensaje;
 import Utils.Navegador;
@@ -27,14 +26,12 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -43,8 +40,7 @@ import javax.swing.table.DefaultTableModel;
  * @author ANTHONY-MARTINEZ
  */
 public class RegistroDASController implements ActionListener, ItemListener {
-    
-    
+
     private static final String EMPTY_FIELD_MESSAGE = "Por favor, complete todos los campos antes de continuar";
     private static final String INVALID_FIELD_MESSAGE = "Ingrese un código válido";
 
@@ -146,7 +142,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
             }
         });
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof JButton) {
@@ -199,8 +195,8 @@ public class RegistroDASController implements ActionListener, ItemListener {
             return;
         }
 
-        String calidad = registroDASView.cbxOK.isSelected() ? "OK" :
-                registroDASView.cbxNG.isSelected() ? "NG" : null;
+        String calidad = registroDASView.cbxOK.isSelected() ? "OK"
+                : registroDASView.cbxNG.isSelected() ? "NG" : null;
 
         if (calidad == null) {
             JOptionPane.showMessageDialog(null, "Debes seleccionar una calidad (OK o NG).", "Error", JOptionPane.ERROR_MESSAGE);
@@ -232,16 +228,16 @@ public class RegistroDASController implements ActionListener, ItemListener {
 
         for (HoraxHora pieza : piezas) {
             Object[] rowData = {
-                    pieza.getHora(),
-                    pieza.getPiezasXHora(),
-                    pieza.getAcumulado(),
-                    pieza.getOkNg(),
-                    pieza.getNombre()
+                pieza.getHora(),
+                pieza.getPiezasXHora(),
+                pieza.getAcumulado(),
+                pieza.getOkNg(),
+                pieza.getNombre()
             };
             dtm.addRow(rowData);
         }
     }
-    
+
     private void handleCodigoSoporteCapturado(JPasswordField passwordField) {
         char[] passwordChars = passwordField.getPassword();
         String codigoSoporteIngresado = new String(passwordChars);
@@ -263,7 +259,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
             }
         }
     }
-    
+
     private void handleCodigoInspectorCapturado(JPasswordField passwordField) {
         char[] passwordChars = passwordField.getPassword();
         String codigoInspectorIngresado = new String(passwordChars);
@@ -285,7 +281,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
             }
         }
     }
-    
+
     private void handleNumeroEmpleadoCapturado(JPasswordField passwordField) {
         char[] passwordChars = passwordField.getPassword();
         String numeroEmpleadoIngresado = new String(passwordChars);
@@ -307,31 +303,31 @@ public class RegistroDASController implements ActionListener, ItemListener {
             }
         }
     }
-    
+
     private boolean areFieldsEmpty() {
         char[] codigoSoporte = registroDASView.getTxtCodigoSoporte().getPassword();
         String codigoSoporteIngresado = new String(codigoSoporte);
-        
+
         char[] codigoInspector = registroDASView.getTxtCodigoInspector().getPassword();
         String codigoInspectorIngresado = new String(codigoInspector);
-        
+
         char[] codigoEmpleado = registroDASView.getTxtNumeroEmpleado().getPassword();
         String codigoEmpleadoIngresado = new String(codigoEmpleado);
 
-        return codigoSoporteIngresado.isEmpty() ||
-               codigoInspectorIngresado.isEmpty() ||
-               codigoEmpleadoIngresado.isEmpty();
+        return codigoSoporteIngresado.isEmpty()
+                || codigoInspectorIngresado.isEmpty()
+                || codigoEmpleadoIngresado.isEmpty();
     }
-    
+
     private void handleDatosDAS(String codigoSoporte, String codigoInspector, String codigoEmpleado) throws SQLException {
         int DASExistente = registroDASModel.obtenerDASExistente();
-        if (DASExistente == 0){
+        if (DASExistente == 0) {
             registroDASModel.registrarDAS(codigoSoporte, codigoInspector, codigoEmpleado);
         }
     }
-    
+
     private void handleParoProcesoButton() throws SQLException, ParseException {
-        if(areFieldsEmpty()){
+        if (areFieldsEmpty()) {
             MostrarMensaje.mostrarError("Para continuar necesario colocar el código de inspector, soporte rápido y empleado");
         } else {
             handleDatosDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosDAS.getCodigoEmpleado());
@@ -340,7 +336,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
             Navegador.avanzarSiguienteVentana(registroDASView, paroProcesoView);
         }
     }
-    
+
     private void handleRegresarButton() {
         ManufacturaView manufacturaView = ManufacturaView.getInstance();
         Navegador.regresarVentanaAnterior(registroDASView, manufacturaView);

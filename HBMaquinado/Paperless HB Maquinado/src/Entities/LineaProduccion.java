@@ -14,13 +14,13 @@ import lombok.Data;
 @Data
 @Builder
 public class LineaProduccion {
+
     private static LineaProduccion instance;
 
     private String linea;
     private String proceso;
     private String supervisor;
 
-    // Método estático para obtener la instancia única
     public static LineaProduccion getInstance() {
         if (instance == null) {
             instance = LineaProduccion.builder().build();
@@ -28,7 +28,6 @@ public class LineaProduccion {
         return instance;
     }
 
-    // Método para actualizar la instancia
     public static void setInstance(LineaProduccion lineaProduccion) {
         instance = lineaProduccion;
     }

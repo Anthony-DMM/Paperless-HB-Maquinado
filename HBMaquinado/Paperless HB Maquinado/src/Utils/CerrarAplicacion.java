@@ -11,12 +11,13 @@ import javax.swing.JOptionPane;
  * @author ANTHONY-MARTINEZ
  */
 public class CerrarAplicacion {
+
     public static void cerrar() {
         int confirmacion = JOptionPane.showConfirmDialog(
-            null,
-            "¿Está seguro que desea salir?",
-            "Cerrar aplicación",
-            JOptionPane.YES_NO_OPTION
+                null,
+                "¿Está seguro que desea salir?",
+                "Cerrar aplicación",
+                JOptionPane.YES_NO_OPTION
         );
 
         if (confirmacion == JOptionPane.YES_OPTION) {

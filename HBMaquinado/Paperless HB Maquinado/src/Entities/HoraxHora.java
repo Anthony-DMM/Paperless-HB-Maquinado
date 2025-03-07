@@ -14,20 +14,21 @@ import lombok.Data;
 @Data
 @Builder
 public class HoraxHora {
+
     private static HoraxHora instance;
     private String hora;
     private int piezasXHora;
     private int acumulado;
     private String okNg;
     private String nombre;
-    
+
     public static HoraxHora getInstance() {
         if (instance == null) {
             instance = HoraxHora.builder().build();
         }
         return instance;
     }
-    
+
     public static void setInstance(HoraxHora horaxHora) {
         instance = horaxHora;
     }

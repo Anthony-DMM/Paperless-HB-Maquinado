@@ -11,7 +11,6 @@ import Utils.FechaHora;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -23,6 +22,7 @@ import java.util.logging.Logger;
  * @author ANTHONY-MARTINEZ
  */
 public class ManufacturaModel {
+
     private final DBConexion conexion;
     private static final Logger LOGGER = Logger.getLogger(ManufacturaModel.class.getName());
     private static final String ART = "HB";
@@ -37,8 +37,7 @@ public class ManufacturaModel {
         MOG datosMOG = MOG.getInstance();
         LineaProduccion lineaProduccion = LineaProduccion.getInstance();
 
-        try (Connection cone = conexion.oracle();
-             Statement sen = cone.createStatement()) {
+        try (Connection cone = conexion.oracle(); Statement sen = cone.createStatement()) {
 
             // Configurar esquema y ejecutar consulta
             sen.executeUpdate("ALTER SESSION SET CURRENT_SCHEMA = BAANLN");
@@ -89,7 +88,7 @@ public class ManufacturaModel {
             datosMOG.setSequ(res.getInt(8));
             datosMOG.setTm(res.getString(10));
             datosMOG.setStd(limpiarEstandar(res.getString(9)));
-            
+
             RBP rbp = RBP.getInstance();
             String hora = fechaHora.horaActual();
             rbp.setHora(hora);
@@ -114,10 +113,10 @@ public class ManufacturaModel {
     }
 
     private String limpiarEstandar(String estandar) {
-        String[] colores = {"Café", "CAFE", "Rojo", "Azul", "Verde", "Rosa", "Amarillo", "Negro", "Cafe", "CAFÉ", 
-                            "ROJO", "AZUL", "VERDE", "ROSA", "AMARILLO", "NEGRO", "YELLOW", "BROWN", "GREEN", 
-                            "MORADO", "BLUE", "BLANCO", "PURPLE", "Purple", "Blue", "PINK", "Pink", "White", 
-                            "WHITE", "RED", "BLACK", "Black", "Blanca", "BLANCA", "Morado", "-"};
+        String[] colores = {"Café", "CAFE", "Rojo", "Azul", "Verde", "Rosa", "Amarillo", "Negro", "Cafe", "CAFÉ",
+            "ROJO", "AZUL", "VERDE", "ROSA", "AMARILLO", "NEGRO", "YELLOW", "BROWN", "GREEN",
+            "MORADO", "BLUE", "BLANCO", "PURPLE", "Purple", "Blue", "PINK", "Pink", "White",
+            "WHITE", "RED", "BLACK", "Black", "Blanca", "BLANCA", "Morado", "-"};
         for (String color : colores) {
             estandar = estandar.replace(color, "");
         }
@@ -149,7 +148,7 @@ public class ManufacturaModel {
             cs.setInt(4, datosMOG.getSequ());
             cs.registerOutParameter(5, java.sql.Types.INTEGER);
             cs.execute();
-            
+
             int id_rbp = cs.getInt(5);
             RBP rbp = RBP.getInstance();
             rbp.setId(id_rbp);
@@ -168,7 +167,7 @@ public class ManufacturaModel {
         try (CallableStatement cst2 = con.prepareCall("{call insertarCorriendo(?,?,?,?,?)}")) {
             String hora = fechaHora.horaActual();
             String fecha = fechaHora.fechaActual("yyyy-MM-dd");
-            
+
             cst2.setString(1, datosMOG.getOrden_manufactura());
             cst2.setString(2, datosMOG.getMog());
             cst2.setString(3, hora);
@@ -179,8 +178,7 @@ public class ManufacturaModel {
     }
 
     public boolean validarSupervisor(String codigoSupervisor) throws SQLException {
-        try (Connection con = conexion.conexionMySQL();
-             CallableStatement cst = con.prepareCall("{call login(?,?,?,?)}")) {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call login(?,?,?,?)}")) {
 
             cst.setString(1, codigoSupervisor);
             cst.registerOutParameter(2, java.sql.Types.INTEGER);

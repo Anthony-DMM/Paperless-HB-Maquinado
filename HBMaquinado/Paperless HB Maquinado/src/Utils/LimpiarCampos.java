@@ -11,6 +11,7 @@ import javax.swing.JTextField;
  * @author ANTHONY-MARTINEZ
  */
 public class LimpiarCampos {
+
     public static void limpiarCampo(JTextField campo) {
         campo.setText("");
     }

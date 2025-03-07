@@ -6,22 +6,18 @@ package Model;
 
 import Entities.LineaProduccion;
 import Utils.MostrarMensaje;
-import View.ValidarLineaView;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author ANTHONY-MARTINEZ
  */
 public class ValidarLineaModel {
-    
+
     private final DBConexion conexion;
 
     public ValidarLineaModel() {
@@ -57,7 +53,7 @@ public class ValidarLineaModel {
             cerrarRecursos(con, cst);
         }
     }
-    
+
     private LineaProduccion crearLineaProduccion(String lineaProduccion, String supervisorAsignado, String procesoMaquina) {
         LineaProduccion linea = LineaProduccion.getInstance();
         linea.setLinea(lineaProduccion);
@@ -65,12 +61,12 @@ public class ValidarLineaModel {
         linea.setProceso(procesoMaquina);
         return linea;
     }
-    
+
     private void manejarExcepcion(SQLException ex) {
         Logger.getLogger(ValidarLineaModel.class.getName()).log(Level.SEVERE, "Error al validar la línea de producción", ex);
         MostrarMensaje.mostrarError("No se encontró ningún supervisor asignado.");
     }
-    
+
     private void cerrarRecursos(Connection con, CallableStatement cst) {
         if (cst != null) {
             try {

@@ -66,8 +66,7 @@ public class RegistroDASModel {
 
     private boolean validarEntidad(String codigo, String storedProcedure, String mensajeError, java.util.function.Consumer<String> setter) throws SQLException {
         int proceso = 1;
-        try (Connection con = conexion.conexionMySQL();
-             CallableStatement cst = con.prepareCall("{call " + storedProcedure + "(?,?,?,?)}")) {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call " + storedProcedure + "(?,?,?,?)}")) {
 
             cst.setString(1, codigo);
             cst.registerOutParameter(2, java.sql.Types.INTEGER);
@@ -107,8 +106,7 @@ public class RegistroDASModel {
 
         validarIntervaloHora(piezas, hora.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
 
-        try (Connection con = conexion.conexionMySQL();
-             CallableStatement cst = con.prepareCall("{call registro_x_hora_maq(?,?,?,?,?,?,?,?,?)}")) {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call registro_x_hora_maq(?,?,?,?,?,?,?,?,?)}")) {
 
             cst.setString(1, datosMOG.getMog());
             cst.setString(2, datosMOG.getOrden_manufactura());
@@ -144,8 +142,7 @@ public class RegistroDASModel {
     public List<HoraxHora> obtenerPiezasProcesadasHora() throws SQLException {
         List<HoraxHora> piezas = new ArrayList<>();
 
-        try (Connection con = conexion.conexionMySQL();
-             CallableStatement cst = con.prepareCall("{call obtener_piezas_x_hora_maq(?,?)}")) {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call obtener_piezas_x_hora_maq(?,?)}")) {
 
             RBP datosRBP = RBP.getInstance();
             cst.setInt(1, datosRBP.getId());
@@ -170,11 +167,10 @@ public class RegistroDASModel {
 
         return piezas;
     }
-    
+
     public void registrarDAS(String codigoSoporte, String codigoInspector, String codigoEmpleado) throws SQLException {
         int idDAS = 0;
-        try (Connection con = conexion.conexionMySQL();
-             CallableStatement cst = con.prepareCall("{call llenarDas(?,?,?,?,?,?,?)}")) {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call llenarDas(?,?,?,?,?,?,?)}")) {
 
             LineaProduccion lineaProduccion = LineaProduccion.getInstance();
 
@@ -197,11 +193,10 @@ public class RegistroDASModel {
             throw ex;
         }
     }
-    
+
     public int obtenerDASExistente() throws SQLException {
         int idDAS = 0;
-        try (Connection con = conexion.conexionMySQL();
-             CallableStatement cst = con.prepareCall("{call buscar_das(?,?)}")) {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call buscar_das(?,?)}")) {
 
             LineaProduccion lineaProduccion = LineaProduccion.getInstance();
 

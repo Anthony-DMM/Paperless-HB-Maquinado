@@ -6,7 +6,6 @@ package Controller;
 
 import Entities.LineaProduccion;
 import Model.ValidarLineaModel;
-import Model.DBConexion;
 import Utils.CerrarAplicacion;
 import Utils.LimpiarCampos;
 import Utils.MostrarMensaje;
@@ -21,8 +20,8 @@ import java.awt.event.ActionListener;
  *
  * @author ANTHONY-MARTINEZ
  */
-
 public class ValidarLineaController implements ActionListener {
+
     ValidarLineaView validarLineaView;
     ValidarLineaModel validarLineaModel = new ValidarLineaModel();
 
@@ -32,7 +31,7 @@ public class ValidarLineaController implements ActionListener {
         this.validarLineaView.getBtnIngresar().addActionListener(this);
         this.validarLineaView.getBtnSalir().addActionListener(this);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == validarLineaView.getBtnIngresar()) {
@@ -41,12 +40,12 @@ public class ValidarLineaController implements ActionListener {
             CerrarAplicacion.cerrar();
         }
     }
-    
+
     private void validarLinea() {
         if (ValidarCampos.esCampoVacio(validarLineaView.getTxtLineaProduccion(), "Debe ingresar la línea de producción")) {
             return;
         }
-        
+
         String lineaProduccion = validarLineaView.getTxtLineaProduccion().getText().trim();
         LineaProduccion linea = validarLineaModel.validarLinea(lineaProduccion, "MAQUINADO");
 

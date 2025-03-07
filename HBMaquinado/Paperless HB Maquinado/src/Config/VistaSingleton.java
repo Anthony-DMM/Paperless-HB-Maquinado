@@ -14,6 +14,7 @@ import javax.swing.JFrame;
  * @author ANTHONY-MARTINEZ
  */
 public abstract class VistaSingleton<T extends JFrame> {
+
     private static final Map<Class<?>, JFrame> instances = new HashMap<>();
 
     // Obtener instancia única

@@ -12,6 +12,7 @@ import View.ValidarLineaView;
  * @author ANTHONY-MARTINEZ
  */
 public class PaperlessHBMaquinado {
+
     /**
      * @param args the command line arguments
      */
@@ -20,5 +21,5 @@ public class PaperlessHBMaquinado {
         ValidarLineaController validarLineaController = new ValidarLineaController(validarLineaView);
         validarLineaView.setVisible(true);
     }
-    
+
 }

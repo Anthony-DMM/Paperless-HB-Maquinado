@@ -14,9 +14,9 @@ import javax.swing.JOptionPane;
  * @author ANTHONY-MARTINEZ
  */
 public class DBConexion {
-    
+
     Connection con = null, cone = null;
-    
+
     public Connection conexionMySQL() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -33,7 +33,7 @@ public class DBConexion {
         }
         return con;
     }
-    
+
     public Connection oracle() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");

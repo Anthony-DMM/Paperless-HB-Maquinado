@@ -13,9 +13,6 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,9 +44,15 @@ public class FechaHora {
             LOGGER.log(Level.SEVERE, "Error al obtener el timestamp actual", ex);
             throw ex;
         } finally {
-            if (res != null) res.close();
-            if (sen != null) sen.close();
-            if (con != null) con.close();
+            if (res != null) {
+                res.close();
+            }
+            if (sen != null) {
+                sen.close();
+            }
+            if (con != null) {
+                con.close();
+            }
         }
 
         return timestamp;
@@ -74,18 +77,18 @@ public class FechaHora {
         }
         return null;
     }
-    
+
     public Date stringToDate(String fechaString, String formato) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat(formato);
         return dateFormat.parse(fechaString);
     }
-    
+
     public Timestamp stringHoraToTimestamp(String horaString, String formato) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat(formato);
         Date fecha = dateFormat.parse(horaString);
         return new Timestamp(fecha.getTime());
     }
-    
+
     public String timestampToString(Timestamp timestamp, String formato) {
         if (timestamp != null) {
             Date date = new Date(timestamp.getTime());
