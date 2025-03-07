@@ -5,6 +5,7 @@
 package paperless.hb.maquinado;
 
 import Controller.ValidarLineaController;
+import View.RegistroRBPView;
 import View.ValidarLineaView;
 
 /**
