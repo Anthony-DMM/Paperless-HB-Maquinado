@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import Entities.ParoProceso;
+import Interfaces.ParoProceso;
 import Model.RegistroParoProcesoModel;
 import Utils.FechaHora;
 import Utils.MostrarMensaje;

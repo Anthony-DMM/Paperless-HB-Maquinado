@@ -4,9 +4,9 @@
  */
 package Controller;
 
-import Entities.DAS;
-import Entities.HoraxHora;
-import Entities.MOG;
+import Interfaces.DAS;
+import Interfaces.HoraxHora;
+import Interfaces.MOG;
 import Model.RegistroDASModel;
 import Utils.FechaHora;
 import Utils.LimpiarCampos;

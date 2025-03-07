@@ -4,10 +4,10 @@
  */
 package Model;
 
-import Entities.DAS;
-import Entities.LineaProduccion;
-import Entities.MOG;
-import Entities.ParoProceso;
+import Interfaces.DAS;
+import Interfaces.LineaProduccion;
+import Interfaces.MOG;
+import Interfaces.ParoProceso;
 import Utils.FechaHora;
 import Utils.MostrarMensaje;
 import java.sql.CallableStatement;

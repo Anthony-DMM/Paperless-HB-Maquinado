@@ -4,8 +4,8 @@
  */
 package Controller;
 
-import Entities.LineaProduccion;
-import Entities.MOG;
+import Interfaces.LineaProduccion;
+import Interfaces.MOG;
 import Model.ManufacturaModel;
 import Utils.LimpiarCampos;
 import Utils.Navegador;

@@ -4,7 +4,7 @@
  */
 package Model;
 
-import Entities.LineaProduccion;
+import Interfaces.LineaProduccion;
 import Utils.MostrarMensaje;
 import java.sql.CallableStatement;
 import java.sql.Connection;

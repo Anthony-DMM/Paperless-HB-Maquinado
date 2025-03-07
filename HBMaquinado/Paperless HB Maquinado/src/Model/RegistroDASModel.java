@@ -4,11 +4,11 @@
  */
 package Model;
 
-import Entities.DAS;
-import Entities.HoraxHora;
-import Entities.LineaProduccion;
-import Entities.MOG;
-import Entities.RBP;
+import Interfaces.DAS;
+import Interfaces.HoraxHora;
+import Interfaces.LineaProduccion;
+import Interfaces.MOG;
+import Interfaces.RBP;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;

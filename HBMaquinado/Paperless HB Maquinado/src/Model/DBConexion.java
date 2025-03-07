@@ -20,10 +20,6 @@ public class DBConexion {
     public Connection conexionMySQL() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            /*con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306"
-                        + "/rbppaperlesshalfp?user=root"
-                        + "&password=");*/
             con = DriverManager.getConnection("jdbc:mysql://192.168.155.16:3306"
                     + "/rbppaperlesshalfpr?user=adminpaperless"
                     + "&password=paperless2018");

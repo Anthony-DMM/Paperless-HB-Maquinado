@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import Entities.LineaProduccion;
+import Interfaces.LineaProduccion;
 import Model.ValidarLineaModel;
 import Utils.CerrarAplicacion;
 import Utils.LimpiarCampos;
