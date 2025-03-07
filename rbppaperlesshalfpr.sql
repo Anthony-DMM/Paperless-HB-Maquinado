@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-03-2025 a las 14:26:14
+-- Tiempo de generación: 07-03-2025 a las 14:27:52
 -- Versión del servidor: 10.3.13-MariaDB
 -- Versión de PHP: 7.3.7
 
@@ -6195,7 +6195,59 @@ INSERT INTO `corriendoactualmente` (`id_corriendo`, `linea`, `ordenActual`, `mog
 (775, 'TP08', 'MOG083559', 'MOG083559', '12:28:48', '2025-03-06', 1),
 (776, 'TH17', 'HBL056746', 'MOG083559', '13:53:17', '2025-03-06', 1),
 (777, 'TH17', 'HBL056746', 'MOG083559', '14:07:59', '2025-03-06', 1),
-(778, 'TP08', 'MOG083559', 'MOG083559', '14:17:03', '2025-03-06', 1);
+(778, 'TP08', 'MOG083559', 'MOG083559', '14:17:03', '2025-03-06', 1),
+(779, 'TP08', 'MOG083559', 'MOG083559', '14:34:18', '2025-03-06', 1),
+(780, 'TH17', 'HBL056746', 'MOG083559', '07:42:29', '2025-03-07', 1),
+(781, 'TH17', 'HBL056746', 'MOG083559', '07:55:53', '2025-03-07', 1),
+(782, 'TH17', 'HBL056743', 'MOG083551', '07:59:15', '2025-03-07', 1),
+(783, 'TH17', 'HBL056746', 'MOG083559', '07:59:30', '2025-03-07', 1),
+(784, 'TH17', 'HBL056746', 'MOG083559', '08:08:49', '2025-03-07', 1),
+(785, 'TH17', 'HBL056746', 'MOG083559', '08:14:37', '2025-03-07', 1),
+(786, 'TH17', 'HBL056746', 'MOG083559', '08:23:47', '2025-03-07', 1),
+(787, 'TH17', 'HBL056746', 'MOG083559', '08:25:21', '2025-03-07', 1),
+(788, 'TH17', 'HBL056746', 'MOG083559', '08:28:30', '2025-03-07', 1),
+(789, 'TH17', 'HBL056746', 'MOG083559', '08:30:07', '2025-03-07', 1),
+(790, 'TH17', 'HBL056746', 'MOG083559', '08:35:04', '2025-03-07', 1),
+(791, 'TH17', 'HBL056476', 'MOG083172', '08:36:37', '2025-03-07', 1),
+(792, 'TH17', 'HBL056746', 'MOG083559', '08:40:10', '2025-03-07', 1),
+(793, 'TP08', 'MOG083559', 'MOG083559', '08:42:33', '2025-03-07', 1),
+(794, 'TP08', 'MOG083559', 'MOG083559', '08:44:22', '2025-03-07', 1),
+(795, 'TP08', 'MOG083559', 'MOG083559', '08:45:50', '2025-03-07', 1),
+(796, 'TP08', 'MOG083559', 'MOG083559', '08:46:34', '2025-03-07', 1),
+(797, 'TP08', 'MOG083559', 'MOG083559', '08:47:20', '2025-03-07', 1),
+(798, 'TP10', 'MOG083559', 'MOG083559', '08:48:33', '2025-03-07', 1),
+(799, 'TH17', 'HBL056746', 'MOG083559', '08:50:47', '2025-03-07', 1),
+(800, 'TH17', 'HBL056746', 'MOG083559', '08:51:43', '2025-03-07', 1),
+(801, 'TP08', 'MOG083559', 'MOG083559', '08:52:03', '2025-03-07', 1),
+(802, 'TH17', 'HBL056746', 'MOG083559', '09:17:48', '2025-03-07', 1),
+(803, 'MOG08', 'MOG083559', 'MOG083559', '10:38:38', '2025-03-07', 1),
+(804, 'TP09', 'MOG083558', 'MOG083558', '11:25:08', '2025-03-07', 1),
+(805, 'TP09', 'MOG084719', 'MOG084719', '11:26:13', '2025-03-07', 1),
+(806, 'TH17', 'HBL056746', 'MOG083559', '12:19:24', '2025-03-07', 1),
+(807, 'TH17', 'HBL056746', 'MOG083559', '12:19:29', '2025-03-07', 1),
+(808, 'TH17', 'HBL056746', 'MOG083559', '12:19:32', '2025-03-07', 1),
+(809, 'TH42', 'HBL056746', 'MOG083559', '12:22:47', '2025-03-07', 1),
+(810, 'TH42', 'HBL056746', 'MOG083559', '12:22:47', '2025-03-07', 1),
+(811, 'TH42', 'HBL056746', 'MOG083559', '12:22:47', '2025-03-07', 1),
+(812, 'TH42', 'HBL056746', 'MOG083559', '12:22:48', '2025-03-07', 1),
+(813, 'TH42', 'HBL056746', 'MOG083559', '12:22:50', '2025-03-07', 1),
+(814, 'TH42', 'HBL056746', 'MOG083559', '12:22:50', '2025-03-07', 1),
+(815, 'TH42', 'HBL056746', 'MOG083559', '12:22:50', '2025-03-07', 1),
+(816, 'TH42', 'HBL056746', 'MOG083559', '12:22:51', '2025-03-07', 1),
+(817, 'TH42', 'HBL056749', 'MOG083562', '12:24:05', '2025-03-07', 1),
+(818, 'TH42', 'HBL056749', 'MOG083562', '12:24:05', '2025-03-07', 1),
+(819, 'TH42', 'HBL056749', 'MOG083562', '12:24:05', '2025-03-07', 1),
+(820, 'TH42', 'HBL056749', 'MOG083562', '12:24:05', '2025-03-07', 1),
+(821, 'TP07', 'MOG083559', 'MOG083559', '14:14:13', '2025-03-07', 1),
+(822, 'TP07', 'MOG083704', 'MOG083704', '14:15:55', '2025-03-07', 1),
+(823, 'TP08', 'MOG083704', 'MOG083704', '14:17:12', '2025-03-07', 1),
+(824, 'TP08', 'MOG032365', 'MOG032365', '14:18:43', '2025-03-07', 1),
+(825, 'TP07', 'MOG032365', 'MOG032365', '14:18:58', '2025-03-07', 1),
+(826, 'TP07', 'MOG014088', 'MOG014088', '14:20:30', '2025-03-07', 1),
+(827, 'TP07', 'MOG014088', 'MOG014088', '14:20:43', '2025-03-07', 1),
+(828, 'TP08', 'MOG083559', 'MOG083559', '14:23:00', '2025-03-07', 1),
+(829, 'TP08', 'MOG083559', 'MOG083559', '14:24:45', '2025-03-07', 1),
+(830, 'TP08', 'MOG083559', 'MOG083559', '14:25:34', '2025-03-07', 1);
 
 -- --------------------------------------------------------
 
@@ -6485,7 +6537,10 @@ INSERT INTO `das` (`id_das`, `linea`, `empleado_id_empleado`, `id_keeper`, `id_i
 (267, 'TP08', 735, 600, 600, '2025-03-05', 1, 1, 'PRENSA'),
 (268, 'TP08', 149, 600, 600, '2025-03-06', 1, 1, 'PRENSA'),
 (269, 'TH17', 49, 45, 107, '2025-03-06', 1, 1, 'MAQUINADO'),
-(270, 'TP05', 149, 600, 600, '2025-03-06', 1, 1, 'PRENSA');
+(270, 'TP05', 149, 600, 600, '2025-03-06', 1, 1, 'PRENSA'),
+(271, 'TH17', 49, 45, 107, '2025-03-07', 1, 1, 'MAQUINADO'),
+(272, 'TP08', 761, 600, 600, '2025-03-07', 1, 1, 'PRENSA'),
+(273, 'MOG08', 761, 600, 600, '2025-03-07', 1, 1, 'PRENSA');
 
 -- --------------------------------------------------------
 
@@ -9376,7 +9431,13 @@ INSERT INTO `lote_coil` (`id_lote_coil`, `registro_rbp_id_registro_rbp`, `lote_c
 (208, 151, '151516-31', 0, 0, 261, 151, '14:32:58'),
 (209, 151, '15151515-31', 0, 0, 262, 151, '14:41:40'),
 (210, 151, '151515-31', 1, 0, 263, 151, '14:59:54'),
-(211, 214, '2256165-31', 1, 0, 264, 213, '14:44:18');
+(211, 214, '2256165-31', 1, 0, 264, 213, '14:44:18'),
+(212, 218, 'Y7185-22.9-TC', 78.89, 1, NULL, NULL, NULL),
+(213, 218, 'I2572001-31', 6, 0, NULL, NULL, NULL),
+(214, 218, 'Y7185-17.7-TC', 567, 0, NULL, NULL, NULL),
+(215, 218, 'Y7185-22.9-TC', 345, 0, NULL, NULL, NULL),
+(216, 218, 'hiuliuui.', 8797, 0, NULL, NULL, NULL),
+(217, 230, 'Y7185-22.9-TC', 7867, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -9622,7 +9683,13 @@ INSERT INTO `mog` (`id_mog`, `mog`, `descripcion`, `num_dibujo`, `no_parte`, `mo
 (221, 'MOG083548', 'HB I4 C/R STD 1', 'A-291339-01', '8E5G6211AA', 'I4 C/R STD 1', 'STD 1', 20000, 16.4, 1.1),
 (222, 'MOG083518', 'HB 5R0(AP2)C/RSTDC', 'A-170930-00', '13213-5R0-0230', '5R0(AP2)C/RSTDC', 'STD C', 20000, 10.3, 1.1),
 (223, 'MOG083561', 'HB AP4 C/R STD F', 'K-171720-05', '13216-5A2-A011-M1', 'AP4 C/R STD F', 'STD F', 20000, 16.4, 1.1),
-(224, 'MOG083550', 'HB 123Y C/R STD 3', 'A-146362', '13281-70031-3', '123Y C/R STD 3', 'STD 3', 1000, 17.17, 1.1);
+(224, 'MOG083550', 'HB 123Y C/R STD 3', 'A-146362', '13281-70031-3', '123Y C/R STD 3', 'STD 3', 1000, 17.17, 1.1),
+(225, 'MOG083172', 'HB I3 MPC DRMU STD1', 'A-293434-03', 'PV4E-6333-AA', 'I3 MPC DRMU STD1', 'STD 1', 20000, 28.5, 1.1),
+(226, 'MOG084719', 'HB PENTASTARCR STD2', 'A-215253', '04893952AA', 'PENTASTARCR STD2', 'STD 2', 20000, 19.26, 1.1),
+(227, 'MOG083562', 'HB AP4 C/R STD D', 'K-171720-05', '13214-5A2-A011-M1', 'AP4 C/R STD D', 'STD D', 20000, 16.4, 1.1),
+(228, 'MOG083704', 'HB TR C/R STD 3', 'A-155995-00', '121114KH3A', 'TR C/R STD 3', 'STD 3', 26000, 15.9, 1.1),
+(229, 'MOG032365', 'HB PY M/N U STD 3', 'A-175948', 'PX13 11 353', 'PY M/N U STD 3', 'STD 3', 20000, 30.95, 1.1),
+(230, 'MOG014088', 'HB COYOTE C/R', 'A-291309-2', 'BR3E6211AA', 'COYOTE C/R', 'STD', 20000, 24.15, 1.1);
 
 -- --------------------------------------------------------
 
@@ -10580,7 +10647,8 @@ INSERT INTO `registrocausasparo` (`idregistrocausasparo`, `empleado_idempleado`,
 (27, 49, 25, 5, 'SE AJUSTÓ LA VERDADERA Y AUTÉNTICA NAVAJA', '14:08:17', '2025-03-06', 'TH17', 269, 216, '14:13:19'),
 (28, 149, 98, 0, 'PINCHE GEMINI QLERO', '14:17:24', '2025-03-06', 'TP08', 268, 216, '14:17:41'),
 (29, 149, 100, 0, 'OTRO TACO DE CEVIVHE POR FAVOR', '14:18:17', '2025-03-06', 'TP08', 268, 216, '14:18:28'),
-(30, 49, 1, 5, 'czvsdvsdvdsv', '14:20:03', '2025-03-06', 'TH17', 269, 216, '14:25:26');
+(30, 49, 1, 5, 'czvsdvsdvdsv', '14:20:03', '2025-03-06', 'TH17', 269, 216, '14:25:26'),
+(31, 49, 39, 7, 'SI', '07:44:21', '2025-03-07', 'TH17', 271, 216, '07:51:26');
 
 -- --------------------------------------------------------
 
@@ -10868,7 +10936,13 @@ INSERT INTO `registro_rbp` (`id_registro_rbp`, `orden_manufactura`, `proceso`, `
 (225, 'HBL056740', 'MAQUINADO', 1, 1, 1, 221, 20, 'TM325012088', NULL),
 (226, 'HBL056723', 'MAQUINADO', 1, 1, 1, 222, 20, 'TM325011944', NULL),
 (227, 'HBL056748', 'MAQUINADO', 1, 1, 1, 223, 20, 'TM325012139', NULL),
-(228, 'HBL056742', 'MAQUINADO', 1, 1, 1, 224, 20, 'TM325012096', NULL);
+(228, 'HBL056742', 'MAQUINADO', 1, 1, 1, 224, 20, 'TM325012096', NULL),
+(229, 'HBL056476', 'MAQUINADO', 1, 1, 1, 225, 20, 'TM325010654', NULL),
+(230, 'PRS055397', 'PRENSA', 1, 1, 1, 226, 10, 'TM325030781', NULL),
+(231, 'HBL056749', 'MAQUINADO', 1, 1, 1, 227, 20, 'TM325012144', NULL),
+(232, 'PRS054785', 'PRENSA', 1, 1, 1, 228, 10, 'TM325012675', NULL),
+(233, 'PRS023568', 'PRENSA', 1, 1, 1, 229, 10, 'TM319031602', NULL),
+(234, 'PRS011111', 'PRENSA', 1, 1, 1, 230, 10, 'TM317040292', NULL);
 
 -- --------------------------------------------------------
 
@@ -10899,7 +10973,10 @@ INSERT INTO `registro_x_hora` (`id_registro_x_hora`, `hora`, `cantidadxhora`, `a
 (25, '08:37:08', 1, 5001, 'a poco nomas 1 en do dia', '2025-03-06', 216, 218, 'TP08'),
 (26, '08:37:22', 1, 5001, 'adsf', '2025-03-06', 216, 218, 'TP08'),
 (27, '08:37:44', 1, 5001, 'asdf', '2025-03-06', 216, 218, 'TP08'),
-(28, '10:13:52', 7311, 12312, 'EL CHICO DEL APARTAMENTO 512 O... OO... 52E', '2025-03-06', 216, 218, 'TP08');
+(28, '10:13:52', 7311, 12312, 'EL CHICO DEL APARTAMENTO 512 O... OO... 52E', '2025-03-06', 216, 218, 'TP08'),
+(29, '08:54:03', 1, 12313, '', '2025-03-07', 216, 218, 'TP08'),
+(30, '11:02:25', 1000, 1000, 'ASDJad', '2025-03-07', 216, 218, 'TP08'),
+(31, '11:28:53', 5000, 5000, 'SI', '2025-03-07', 226, 230, 'TP09');
 
 -- --------------------------------------------------------
 
@@ -10927,7 +11004,9 @@ CREATE TABLE `registro_x_hora_maq` (
 INSERT INTO `registro_x_hora_maq` (`id_registro_x_hora`, `hora`, `cantidadxhora`, `acumulado`, `ok_ng`, `fecha`, `linea`, `mog_id_mog`, `registro_rbp_id_registro_rbp`, `empleado_id_empleado`) VALUES
 (46, '08:34:54', 26000, 26000, 'OK', '2025-03-06', 'TH17', 216, 220, 49),
 (47, '11:47:18', 64000, 90000, 'NG', '2025-03-06', 'TH17', 216, 220, 49),
-(48, '13:54:17', 30000, 120000, 'OK', '2025-03-06', 'TH17', 216, 220, 49);
+(48, '13:54:17', 30000, 120000, 'OK', '2025-03-06', 'TH17', 216, 220, 49),
+(49, '07:43:29', 1500, 1500, 'OK', '2025-03-07', 'TH17', 216, 220, 49),
+(50, '08:00:32', 200, 1700, 'OK', '2025-03-07', 'TH17', 216, 220, 49);
 
 -- --------------------------------------------------------
 
@@ -11880,13 +11959,13 @@ ALTER TABLE `coiling_material_a`
 -- AUTO_INCREMENT de la tabla `corriendoactualmente`
 --
 ALTER TABLE `corriendoactualmente`
-  MODIFY `id_corriendo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=779;
+  MODIFY `id_corriendo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=831;
 
 --
 -- AUTO_INCREMENT de la tabla `das`
 --
 ALTER TABLE `das`
-  MODIFY `id_das` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
+  MODIFY `id_das` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=274;
 
 --
 -- AUTO_INCREMENT de la tabla `das_coiling_totales`
@@ -11994,13 +12073,13 @@ ALTER TABLE `empleado_supervisor`
 -- AUTO_INCREMENT de la tabla `lote_coil`
 --
 ALTER TABLE `lote_coil`
-  MODIFY `id_lote_coil` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
+  MODIFY `id_lote_coil` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
 
 --
 -- AUTO_INCREMENT de la tabla `mog`
 --
 ALTER TABLE `mog`
-  MODIFY `id_mog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
+  MODIFY `id_mog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=231;
 
 --
 -- AUTO_INCREMENT de la tabla `ordenes_abiertas_asupervisor`
@@ -12054,7 +12133,7 @@ ALTER TABLE `razon_rechazo1`
 -- AUTO_INCREMENT de la tabla `registrocausasparo`
 --
 ALTER TABLE `registrocausasparo`
-  MODIFY `idregistrocausasparo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idregistrocausasparo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `registrocausasparocoiling`
@@ -12072,19 +12151,19 @@ ALTER TABLE `registrocausasparoslitter`
 -- AUTO_INCREMENT de la tabla `registro_rbp`
 --
 ALTER TABLE `registro_rbp`
-  MODIFY `id_registro_rbp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
+  MODIFY `id_registro_rbp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
 
 --
 -- AUTO_INCREMENT de la tabla `registro_x_hora`
 --
 ALTER TABLE `registro_x_hora`
-  MODIFY `id_registro_x_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_registro_x_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `registro_x_hora_maq`
 --
 ALTER TABLE `registro_x_hora_maq`
-  MODIFY `id_registro_x_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_registro_x_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `tiempo`
