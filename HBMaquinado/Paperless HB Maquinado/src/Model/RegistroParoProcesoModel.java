@@ -66,7 +66,7 @@ public class RegistroParoProcesoModel {
                 return true;
             }
         } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, "Error al obtener datos del empleado", ex);
+            LOGGER.log(Level.SEVERE, "Error al obtener las categorías de paros en proceso", ex);
             throw ex;
         }
     }
@@ -96,7 +96,7 @@ public class RegistroParoProcesoModel {
                 return true;
             }
         } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, "Error al obtener datos del empleado", ex);
+            LOGGER.log(Level.SEVERE, "Error al obtener las causas de paros en proceso", ex);
             throw ex;
         }
     }
@@ -120,7 +120,7 @@ public class RegistroParoProcesoModel {
 
             cst.executeQuery();
         } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, "Error al obtener datos del empleado", ex);
+            LOGGER.log(Level.SEVERE, "Ocurrió un error al registrar el paro ", ex);
             throw ex;
         }
     }

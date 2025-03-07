@@ -8,12 +8,14 @@ import Entities.DAS;
 import Entities.HoraxHora;
 import Entities.MOG;
 import Model.RegistroDASModel;
+import Utils.FechaHora;
 import Utils.LimpiarCampos;
 import Utils.MostrarMensaje;
 import Utils.Navegador;
 import View.ManufacturaView;
 import View.RegistroDASView;
 import View.RegistroParoProcesoView;
+import View.RegistroRBPView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -42,12 +44,12 @@ import javax.swing.table.DefaultTableModel;
 public class RegistroDASController implements ActionListener, ItemListener {
 
     private static final String EMPTY_FIELD_MESSAGE = "Por favor, complete todos los campos antes de continuar";
-    private static final String INVALID_FIELD_MESSAGE = "Ingrese un código válido";
 
     private final RegistroDASModel registroDASModel;
     private final RegistroDASView registroDASView;
+    private final FechaHora fechaHora = new FechaHora();
     private LocalTime horaInicio;
-    private DAS datosDAS = DAS.getInstance();
+    private final DAS datosDAS = DAS.getInstance();
     private Timer timer;
 
     public enum AccionBoton {
@@ -102,7 +104,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
     private void cargarDatos() {
         try {
             MOG datosMOG = MOG.getInstance();
-            registroDASView.jdcFecha.setDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
+            registroDASView.txtFecha.setText(fechaHora.fechaActual("dd-MM-yyyy"));
             registroDASView.txtMOG.setText(datosMOG.getMog());
             registroDASView.txtModelo.setText(datosMOG.getModelo());
             registroDASView.txtSTD.setText(datosMOG.getStd());
@@ -130,6 +132,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
         registroDASView.btnRegistrarProduccion.addActionListener(this);
         registroDASView.btnParoProceso.addActionListener(this);
         registroDASView.btnRegresar.addActionListener(this);
+        registroDASView.btnFinalizarDAS.addActionListener(this);
     }
 
     private void addFieldListeners(JPasswordField passwordField, java.util.function.Consumer<JPasswordField> handler) {
@@ -166,18 +169,22 @@ public class RegistroDASController implements ActionListener, ItemListener {
     }
 
     private void handleButtonAction(JButton button) {
-        if (button.equals(registroDASView.getBtnRegistrarProduccion())) {
+        if (button.equals(registroDASView.btnRegistrarProduccion)) {
             handleRegistroProduccionButton();
-        } else if (button.equals(registroDASView.getBtnParoProceso())) {
+        } else if (button.equals(registroDASView.btnParoProceso)) {
             try {
                 handleParoProcesoButton();
-            } catch (SQLException ex) {
-                Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
+            } catch (SQLException | ParseException ex) {
                 Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (button.equals(registroDASView.getBtnRegresar())) {
+        } else if (button.equals(registroDASView.btnRegresar)) {
             handleRegresarButton();
+        } else if (button.equals(registroDASView.btnFinalizarDAS)) {
+            try {
+                handleFinalizarDASButton();
+            } catch (SQLException ex) {
+                Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -207,7 +214,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
         try {
             handleDatosDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosDAS.getCodigoEmpleado());
             registroDASModel.registrarPiezasPorHora(numeroEmpleado, acumulado, calidad);
-            LimpiarCampos.limpiarCampos(registroDASView.txtNumeroEmpleado, registroDASView.txtNombreEmpleado, registroDASView.txtAcumulado);
+            LimpiarCampos.limpiarCampos(registroDASView.txtAcumulado);
             registroDASView.cbxOK.setSelected(false);
             registroDASView.cbxNG.setSelected(false);
 
@@ -337,6 +344,15 @@ public class RegistroDASController implements ActionListener, ItemListener {
         }
     }
 
+    private void handleFinalizarDASButton() throws SQLException {
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Deseas finalizar el DAS? Recuerda que esta acción no se puede revertir");  
+        if (opcion == JOptionPane.YES_OPTION) {  
+            handleDatosDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosDAS.getCodigoEmpleado());
+            RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
+            Navegador.avanzarSiguienteVentana(registroDASView, registroRBPView);
+        }  
+    }
+    
     private void handleRegresarButton() {
         ManufacturaView manufacturaView = ManufacturaView.getInstance();
         Navegador.regresarVentanaAnterior(registroDASView, manufacturaView);
