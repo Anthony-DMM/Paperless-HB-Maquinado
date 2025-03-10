@@ -86,11 +86,13 @@ public class ManufacturaView extends javax.swing.JFrame {
         txtSupervisorAsignado.setEditable(false);
         txtSupervisorAsignado.setBackground(new java.awt.Color(204, 204, 204));
         txtSupervisorAsignado.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtSupervisorAsignado.setFocusable(false);
 
         lbl_codigo_supervisor.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         lbl_codigo_supervisor.setPreferredSize(new java.awt.Dimension(303, 100));
 
-        txtMogCapturada.setBackground(new java.awt.Color(255, 255, 0));
+        txtMogCapturada.setEditable(false);
+        txtMogCapturada.setBackground(new java.awt.Color(204, 204, 204));
         txtMogCapturada.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         txtMogCapturada.setPreferredSize(new java.awt.Dimension(6, 70));
         txtMogCapturada.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -105,6 +107,7 @@ public class ManufacturaView extends javax.swing.JFrame {
         txtMog.setEditable(false);
         txtMog.setBackground(new java.awt.Color(204, 204, 204));
         txtMog.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtMog.setFocusable(false);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel5.setText("Modelo:");
@@ -112,6 +115,7 @@ public class ManufacturaView extends javax.swing.JFrame {
         txtModelo.setEditable(false);
         txtModelo.setBackground(new java.awt.Color(204, 204, 204));
         txtModelo.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtModelo.setFocusable(false);
 
         lbl_cantidad_planeada.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         lbl_cantidad_planeada.setPreferredSize(new java.awt.Dimension(303, 100));
@@ -119,6 +123,7 @@ public class ManufacturaView extends javax.swing.JFrame {
         txtCantidadPlaneada.setEditable(false);
         txtCantidadPlaneada.setBackground(new java.awt.Color(204, 204, 204));
         txtCantidadPlaneada.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtCantidadPlaneada.setFocusable(false);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel7.setText("No. Dibujo:");
@@ -126,6 +131,7 @@ public class ManufacturaView extends javax.swing.JFrame {
         txtDibujo.setEditable(false);
         txtDibujo.setBackground(new java.awt.Color(204, 204, 204));
         txtDibujo.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtDibujo.setFocusable(false);
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel8.setText("No. Parte:");
@@ -133,6 +139,7 @@ public class ManufacturaView extends javax.swing.JFrame {
         txtParte.setEditable(false);
         txtParte.setBackground(new java.awt.Color(204, 204, 204));
         txtParte.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtParte.setFocusable(false);
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel9.setText("Proceso:");
@@ -140,6 +147,7 @@ public class ManufacturaView extends javax.swing.JFrame {
         txtProceso.setEditable(false);
         txtProceso.setBackground(new java.awt.Color(204, 204, 204));
         txtProceso.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtProceso.setFocusable(false);
 
         btnRegresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btnRegresar.setForeground(new java.awt.Color(255, 255, 255));

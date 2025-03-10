@@ -4,6 +4,7 @@
  */
 package Utils;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -28,6 +29,12 @@ public class ValidarCampos {
             return true;
         }
         return false;
+    }
+    
+    public static void activarCampo(JTextField textField) {
+        textField.setEditable(true);
+        textField.setBackground(Color.YELLOW);
+        textField.requestFocusInWindow();
     }
 
     private static void mostrarError(String mensajeError) {
