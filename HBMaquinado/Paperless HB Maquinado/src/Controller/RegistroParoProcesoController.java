@@ -137,7 +137,7 @@ public class RegistroParoProcesoController implements ActionListener {
             int minutosTranscurridos = obtenerMinutosTranscurridos(tiempoTranscurrido);
             if (minutosTranscurridos < 5) {
                 MostrarMensaje.mostrarInfo("El paro en proceso no se registrará ya que su duración es menor a 5 minutos");
-                Navegador.regresarDestruyendoVentana(registroParoProcesoView, registroDASView);
+                Navegador.regresarVentanaAnterior();
             } else {
                 String causaSeleccionada = (String) registroParoProcesoView.cboxCausa.getSelectedItem();
                 String detalleCausa = registroParoProcesoView.txtDetalle.getText();
@@ -146,7 +146,7 @@ public class RegistroParoProcesoController implements ActionListener {
                 String horaInicioFormateada = fechaHora.timestampToString(horaInicio, "HH:mm:ss");
                 registroParoProcesoModel.registrarParoProceso(idCausaSeleccionada, minutosTranscurridos, detalleCausa, horaInicioFormateada, horaFin);
                 MostrarMensaje.mostrarInfo("Se ha registrado el paro en proceso");
-                Navegador.regresarDestruyendoVentana(registroParoProcesoView, registroDASView);
+                Navegador.regresarVentanaAnterior();
             }
         }
     }

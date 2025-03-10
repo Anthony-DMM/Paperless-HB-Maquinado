@@ -340,7 +340,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
             handleDatosDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosDAS.getCodigoEmpleado());
             RegistroParoProcesoView paroProcesoView = new RegistroParoProcesoView();
             RegistroParoProcesoController paroProcesoController = new RegistroParoProcesoController(paroProcesoView);
-            Navegador.avanzarSiguienteVentana(registroDASView, paroProcesoView);
+            Navegador.avanzarSiguienteVentana(paroProcesoView);
         }
     }
 
@@ -349,12 +349,12 @@ public class RegistroDASController implements ActionListener, ItemListener {
         if (opcion == JOptionPane.YES_OPTION) {  
             handleDatosDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosDAS.getCodigoEmpleado());
             RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
-            Navegador.avanzarSiguienteVentana(registroDASView, registroRBPView);
+            Navegador.avanzarSiguienteVentana(registroRBPView);
         }  
     }
     
     private void handleRegresarButton() {
         ManufacturaView manufacturaView = ManufacturaView.getInstance();
-        Navegador.regresarVentanaAnterior(registroDASView, manufacturaView);
+        Navegador.regresarVentanaAnterior();
     }
 }

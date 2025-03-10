@@ -170,7 +170,8 @@ public class RegistroDASModel {
 
     public void registrarDAS(String codigoSoporte, String codigoInspector, String codigoEmpleado) throws SQLException {
         int idDAS = 0;
-        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call llenarDas(?,?,?,?,?,?,?)}")) {
+        int turno = 0;
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call llenarDas(?,?,?,?,?,?,?,?)}")) {
 
             LineaProduccion lineaProduccion = LineaProduccion.getInstance();
 
@@ -181,6 +182,7 @@ public class RegistroDASModel {
             cst.setString(5, codigoInspector);
             cst.setDate(6, java.sql.Date.valueOf(fechaF));
             cst.setString(7, lineaProduccion.getProceso());
+            cst.setInt(8, turno);
 
             cst.executeQuery();
             idDAS = cst.getInt(1);
@@ -196,12 +198,14 @@ public class RegistroDASModel {
 
     public int obtenerDASExistente() throws SQLException {
         int idDAS = 0;
-        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call buscar_das(?,?)}")) {
+        int turno = 0;
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call buscar_das(?,?,?)}")) {
 
             LineaProduccion lineaProduccion = LineaProduccion.getInstance();
 
             cst.setString(1, lineaProduccion.getLinea());
             cst.registerOutParameter(2, java.sql.Types.INTEGER);
+            cst.setInt(3, turno);
 
             cst.executeQuery();
             idDAS = cst.getInt(2);

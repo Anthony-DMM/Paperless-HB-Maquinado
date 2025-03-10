@@ -4,6 +4,7 @@
  */
 package Utils;
 
+import java.util.Stack;
 import javax.swing.JFrame;
 
 /**
@@ -12,23 +13,32 @@ import javax.swing.JFrame;
  */
 public class Navegador {
 
-    public static void avanzarSiguienteVentana(JFrame ventanaActual, JFrame ventanaSiguiente) {
-        ventanaActual.setVisible(false);
+    private static Stack<JFrame> historial = new Stack<>();
+    private static JFrame ventanaActual;
+
+    public static void inicializar(JFrame primeraVentana) {
+        ventanaActual = primeraVentana;
+        historial.push(primeraVentana);
+    }
+
+    public static void avanzarSiguienteVentana(JFrame ventanaSiguiente) {
+        if (ventanaActual != null) {
+            ventanaActual.setVisible(false);
+        }
         ventanaSiguiente.setVisible(true);
+        ventanaActual = ventanaSiguiente;
+        historial.push(ventanaSiguiente);
     }
 
-    public static void regresarVentanaAnterior(JFrame ventanaActual, JFrame ventanaAnterior) {
-        ventanaActual.setVisible(false);
-        ventanaAnterior.setVisible(true);
-    }
-
-    public static void avanzarDestruyendoVentana(JFrame ventanaActual, JFrame ventanaSiguiente) {
-        ventanaActual.dispose();
-        ventanaSiguiente.setVisible(true);
-    }
-
-    public static void regresarDestruyendoVentana(JFrame ventanaActual, JFrame ventanaAnterior) {
-        ventanaActual.dispose();
-        ventanaAnterior.setVisible(true);
+    public static void regresarVentanaAnterior() {
+        if (!historial.isEmpty()) {
+            historial.pop();
+            if (!historial.isEmpty()) {
+                JFrame ventanaAnterior = historial.peek();
+                ventanaActual.dispose();
+                ventanaAnterior.setVisible(true);
+                ventanaActual = ventanaAnterior;
+            }
+        }
     }
 }

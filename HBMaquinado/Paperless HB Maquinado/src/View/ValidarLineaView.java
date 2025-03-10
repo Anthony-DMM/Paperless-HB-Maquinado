@@ -23,7 +23,6 @@ public class ValidarLineaView extends javax.swing.JFrame {
     private ValidarLineaView() {
         initComponents();
         setLocationRelativeTo(null);
-        btnIngresar.setBackground(Color.black);
         btnSalir.setBackground(Color.black);
         
         ((AbstractDocument) txtLineaProduccion.getDocument()).setDocumentFilter(new FiltroCampos.FiltroNumerosYLetras());
@@ -45,7 +44,6 @@ public class ValidarLineaView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lbl_bienvenido = new javax.swing.JLabel();
         lbl_codigo_supervisor = new javax.swing.JLabel();
-        btnIngresar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         txtLineaProduccion = new javax.swing.JTextField();
 
@@ -65,11 +63,6 @@ public class ValidarLineaView extends javax.swing.JFrame {
         lbl_codigo_supervisor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_codigo_supervisor.setText("Línea de producción");
         lbl_codigo_supervisor.setPreferredSize(new java.awt.Dimension(700, 50));
-
-        btnIngresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIngresar.setText("Continuar");
-        btnIngresar.setPreferredSize(new java.awt.Dimension(700, 70));
 
         btnSalir.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -94,7 +87,6 @@ public class ValidarLineaView extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_bienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_codigo_supervisor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtLineaProduccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -110,10 +102,8 @@ public class ValidarLineaView extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(txtLineaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(134, 134, 134)
-                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(685, 685, 685))
+                .addGap(800, 800, 800))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,11 +170,11 @@ public class ValidarLineaView extends javax.swing.JFrame {
     }
 
     public JButton getBtnIngresar() {
-        return btnIngresar;
+        return btnSalir;
     }
 
     public void setBtnIngresar(JButton btn_ingresar) {
-        this.btnIngresar = btn_ingresar;
+        this.btnSalir = btn_ingresar;
     }
 
     public JButton getBtnSalir() {
@@ -208,7 +198,6 @@ public class ValidarLineaView extends javax.swing.JFrame {
     
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnIngresar;
     public javax.swing.JButton btnSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_bienvenido;

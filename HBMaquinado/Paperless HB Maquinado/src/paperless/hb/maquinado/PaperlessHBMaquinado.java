@@ -5,7 +5,7 @@
 package paperless.hb.maquinado;
 
 import Controller.ValidarLineaController;
-import View.RegistroRBPView;
+import Utils.Navegador;
 import View.ValidarLineaView;
 
 /**
@@ -20,8 +20,8 @@ public class PaperlessHBMaquinado {
     public static void main(String[] args) {
         ValidarLineaView validarLineaView = ValidarLineaView.getInstance();
         ValidarLineaController validarLineaController = new ValidarLineaController(validarLineaView);
-        RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
-        registroRBPView.setVisible(true);
+        validarLineaView.setVisible(true);
+        Navegador.inicializar(validarLineaView);
     }
 
 }
