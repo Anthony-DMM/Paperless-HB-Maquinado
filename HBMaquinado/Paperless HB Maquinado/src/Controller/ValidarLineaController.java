@@ -26,6 +26,9 @@ public class ValidarLineaController implements ActionListener {
 
     ValidarLineaView validarLineaView;
     ValidarLineaModel validarLineaModel = new ValidarLineaModel();
+    Navegador navegador = Navegador.getInstance();
+    ManufacturaView manufacturaView = ManufacturaView.getInstance();
+    ManufacturaController manufacturaController = new ManufacturaController(manufacturaView);
 
     public ValidarLineaController(ValidarLineaView validarLineaView) {
         this.validarLineaView = validarLineaView;
@@ -46,7 +49,6 @@ public class ValidarLineaController implements ActionListener {
         if (e.getSource() == validarLineaView.getBtnSalir()) {
             CerrarAplicacion.cerrar();
         }
-        
     }
 
     private void validarLinea() {
@@ -61,9 +63,7 @@ public class ValidarLineaController implements ActionListener {
             MostrarMensaje.mostrarError("La línea de producción no existe o no pertenece al área de MAQUINADO.");
             LimpiarCampos.limpiarCampo(validarLineaView.getTxtLineaProduccion());
         } else {
-            ManufacturaView manufacturaView = ManufacturaView.getInstance();
-            ManufacturaController manufacturaController = new ManufacturaController(manufacturaView);
-            Navegador.avanzarSiguienteVentana(manufacturaView);
+            navegador.avanzar(manufacturaView, validarLineaView);
         }
     }
 }

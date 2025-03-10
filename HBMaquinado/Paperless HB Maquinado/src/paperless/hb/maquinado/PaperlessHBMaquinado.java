@@ -21,7 +21,6 @@ public class PaperlessHBMaquinado {
         ValidarLineaView validarLineaView = ValidarLineaView.getInstance();
         ValidarLineaController validarLineaController = new ValidarLineaController(validarLineaView);
         validarLineaView.setVisible(true);
-        Navegador.inicializar(validarLineaView);
     }
 
 }

@@ -12,7 +12,6 @@ import Utils.Navegador;
 import Utils.ValidarCampos;
 import View.ManufacturaView;
 import View.RegistroRBPView;
-import java.awt.Color;
 import javax.swing.*;
 import java.awt.event.*;
 import java.sql.SQLException;
@@ -23,6 +22,9 @@ public class ManufacturaController implements ActionListener {
     
     private final ManufacturaModel manufacturaModel = new ManufacturaModel();
     private final ManufacturaView manufacturaView;
+    private Navegador navegador =  Navegador.getInstance();
+    RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
+    RegistroRBPController registroRBPController = new RegistroRBPController(registroRBPView);
     
     public ManufacturaController(ManufacturaView manufacturaView) {
         this.manufacturaView = manufacturaView;
@@ -126,14 +128,12 @@ public class ManufacturaController implements ActionListener {
         if (areFieldsEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos antes de continuar");
         } else {
-            RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
-            RegistroRBPController registroRBPController = new RegistroRBPController(registroRBPView);
-            Navegador.avanzarSiguienteVentana(registroRBPView);
+            Navegador.getInstance().avanzar(registroRBPView, manufacturaView);
         }
     }
     
     private void handleRegresarButton() {
-        Navegador.regresarVentanaAnterior();
+        navegador.regresar(manufacturaView);
     }
     
     private boolean areFieldsEmpty() {

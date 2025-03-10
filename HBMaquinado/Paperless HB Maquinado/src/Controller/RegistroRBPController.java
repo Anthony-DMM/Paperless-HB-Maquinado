@@ -25,6 +25,7 @@ import javax.swing.JTextField;
 public class RegistroRBPController implements ActionListener {
     //RegistroRBPModel registroRBPModel = new RegistroRBPModel();
     RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
+    Navegador navegador = Navegador.getInstance();
     
     public RegistroRBPController(RegistroRBPView registroRBPView) {
         this.registroRBPView = registroRBPView;
@@ -35,6 +36,7 @@ public class RegistroRBPController implements ActionListener {
         registroRBPView.btnDAS.addActionListener(this);
         registroRBPView.btnParoLinea.addActionListener(this);
         registroRBPView.btnCambioMOG.addActionListener(this);
+        registroRBPView.btnRegresar.addActionListener(this);
     }
     
     @Override
@@ -56,11 +58,13 @@ public class RegistroRBPController implements ActionListener {
         if (button.equals(registroRBPView.btnDAS)) {
             RegistroDASView registroDASView = RegistroDASView.getInstance();
             RegistroDASController registroDASController = new RegistroDASController(registroDASView);
-            Navegador.avanzarSiguienteVentana(registroDASView);
+            Navegador.getInstance().avanzar(registroDASView, registroRBPView);
         } else if (button.equals(registroRBPView.btnParoLinea)) {
             RegistroParoProcesoView registroParoProcesoView = new RegistroParoProcesoView();
             RegistroParoProcesoController registroParoProcesoController = new RegistroParoProcesoController(registroParoProcesoView);
-            Navegador.avanzarSiguienteVentana(registroParoProcesoView);
+            Navegador.getInstance().avanzar(registroParoProcesoView, registroRBPView);
+        } else if (button.equals(registroRBPView.btnRegresar)) {
+            navegador.regresar(registroRBPView);
         }
     }
 }
