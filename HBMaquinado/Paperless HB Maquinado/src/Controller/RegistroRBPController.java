@@ -6,26 +6,26 @@ package Controller;
 
 import Model.RegistroRBPModel;
 import Utils.Navegador;
+import View.ParoProcesoView;
 import View.RegistroDASView;
-import View.RegistroParoProcesoView;
 import View.RegistroRBPView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JTextField;
 
 /**
  *
  * @author ANTHONY-MARTINEZ
  */
 public class RegistroRBPController implements ActionListener {
-    RegistroRBPModel registroRBPModel = new RegistroRBPModel();
-    RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
-    Navegador navegador = Navegador.getInstance();
+    private static final Logger LOGGER = Logger.getLogger(RegistroRBPController.class.getName());
+
+    private final RegistroRBPModel registroRBPModel = new RegistroRBPModel();
+    private final RegistroRBPView registroRBPView;
+    private final ParoProcesoView paroProcesoView = ParoProcesoView.getInstance();
+    private final RegistroDASView registroDASView = RegistroDASView.getInstance();
+    private final Navegador navegador = Navegador.getInstance();
     
     public RegistroRBPController(RegistroRBPView registroRBPView) {
         this.registroRBPView = registroRBPView;
@@ -41,32 +41,31 @@ public class RegistroRBPController implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
-
-        if (source instanceof JButton) {
-            try {
-                handleButtonAction((JButton) source);
-            } catch (SQLException ex) {
-                Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        handleButtonAction((JButton) e.getSource());
     }
     
-    private void handleButtonAction(JButton button) throws SQLException, ParseException {
-        if (button.equals(registroRBPView.btnDAS)) {
-            RegistroDASView registroDASView = RegistroDASView.getInstance();
-            RegistroDASController registroDASController = new RegistroDASController(registroDASView);
-            Navegador.getInstance().avanzar(registroDASView, registroRBPView);
-        } else if (button.equals(registroRBPView.btnParoLinea)) {
-            RegistroParoProcesoView registroParoProcesoView = new RegistroParoProcesoView();
-            RegistroParoProcesoController registroParoProcesoController = new RegistroParoProcesoController(registroParoProcesoView);
-            Navegador.getInstance().avanzar(registroParoProcesoView, registroRBPView);
-        } else if (button.equals(registroRBPView.btnRegresar)) {
-            navegador.regresar(registroRBPView);
+    private void handleButtonAction(JButton button) {
+        switch (button.getName()) {
+            case "btnDAS":
+                navegador.avanzar(registroDASView, registroRBPView);
+                break;
+            case "btnParoLinea":
+                navegador.avanzar(paroProcesoView, registroRBPView);
+                break;
+            case "btnCambioMOG":
+                navegador.avanzar(registroDASView, registroRBPView);
+                break;
+            case "btnVerDibujo":
+                navegador.avanzar(paroProcesoView, registroRBPView);
+                break;
+            case "btnRegresar":
+                navegador.regresar(registroRBPView);
+                break;
+            default:
+                break;
         }
     }
+}
     
     /*private void handleDatosDAS(String codigoSoporte, String codigoInspector, String codigoEmpleado) throws SQLException {
         int DASExistente = registroDASModel.obtenerDASExistente();
@@ -74,4 +73,3 @@ public class RegistroRBPController implements ActionListener {
             registroDASModel.registrarDAS(codigoSoporte, codigoInspector, codigoEmpleado);
         }
     }*/
-}

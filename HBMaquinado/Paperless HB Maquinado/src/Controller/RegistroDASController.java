@@ -14,7 +14,7 @@ import Utils.MostrarMensaje;
 import Utils.Navegador;
 import View.ManufacturaView;
 import View.RegistroDASView;
-import View.RegistroParoProcesoView;
+import View.ParoProcesoView;
 import View.RegistroRBPView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

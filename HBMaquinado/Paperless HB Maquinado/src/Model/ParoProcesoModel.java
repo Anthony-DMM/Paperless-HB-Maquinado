@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class RegistroParoProcesoModel {
+public class ParoProcesoModel {
 
     private final DBConexion conexion;
     private static final Logger LOGGER = Logger.getLogger(ManufacturaModel.class.getName());
@@ -34,7 +34,7 @@ public class RegistroParoProcesoModel {
     Date fechaUtil;
     java.sql.Date fechaF;
 
-    public RegistroParoProcesoModel() throws SQLException, ParseException {
+    public ParoProcesoModel() throws SQLException, ParseException {
         conexion = new DBConexion();
 
         fecha = fechaHora.fechaActual("yyyy-MM-dd");

@@ -11,15 +11,19 @@ import java.awt.Color;
  *
  * @author anthony
  */
-public class RegistroParoProcesoView extends javax.swing.JFrame {
+public class ParoProcesoView extends javax.swing.JFrame {
 
     /**
      * Creates new form Registro_Paro_Proceso
      */
-    public RegistroParoProcesoView() {
+    public ParoProcesoView() {
         initComponents();
         setLocationRelativeTo(null);
         btnFinalizar.setBackground(Color.black);
+    }
+    
+    public static ParoProcesoView getInstance() {
+        return VistaSingleton.getInstance(ParoProcesoView.class);
     }
 
     /**
@@ -246,429 +250,427 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Posibles causas de paro");
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Dandori");
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Ajustes");
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Problema de Mantenimiento");
-        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Paro Planeado");
-        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("01");
-        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel8.setText(" Cambio de Modelo");
-        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("04");
-        jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel17.setText(" Cambio de MOG");
-        jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("02");
-        jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel19.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel19.setText(" Recolector de Rebaba");
-        jLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel20.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("22");
-        jLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel21.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel21.setText(" Corte de Altura");
-        jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel22.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("07");
-        jLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel23.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel23.setText(" Δ7 TPM");
-        jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel24.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel24.setText("42");
-        jLabel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel24.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel25.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel25.setText(" Δ7 Cambio de U/L");
-        jLabel25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel25.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel26.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("14");
-        jLabel26.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel26.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel27.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel27.setText(" Ajuste Inicial");
-        jLabel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel27.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel43.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel43.setText("03");
-        jLabel43.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel43.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel44.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel44.setText(" Transportación (Holders)");
-        jLabel44.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel44.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel28.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel28.setText("23");
-        jLabel28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel28.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel29.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel29.setText(" Verificador de Altura");
-        jLabel29.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel29.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel30.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("32");
-        jLabel30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel30.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel31.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel31.setText(" Espera de Material");
-        jLabel31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel31.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel32.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel32.setText("Δ3 Llamada Andón");
-        jLabel32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel32.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel33.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel33.setText("33");
-        jLabel33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel33.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel34.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel34.setText(" Ajuste de Navajas");
-        jLabel34.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel34.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel35.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel35.setText(" Acabado de Ancho");
-        jLabel35.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel35.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel36.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel36.setText("15");
-        jLabel36.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel36.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel37.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel37.setText("25");
-        jLabel37.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel37.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel38.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel38.setText(" M. Transferencia");
-        jLabel38.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel38.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel39.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel39.setText("35");
-        jLabel39.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel39.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel40.setFont(new java.awt.Font("Arial", 0, 9)); // NOI18N
         jLabel40.setText(" Δ7 Resultado de Inspección");
-        jLabel40.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel40.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel41.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel41.setText("Andón");
-        jLabel41.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel41.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel42.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel42.setText("Se informó a:");
-        jLabel42.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel42.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel45.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel45.setText("34");
-        jLabel45.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel45.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel46.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel46.setText(" Ajuste de Flujo");
-        jLabel46.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel46.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel47.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel47.setText("16");
-        jLabel47.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel47.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel48.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel48.setText(" Perforación");
-        jLabel48.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel48.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel49.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel49.setText("26");
-        jLabel49.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel49.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel50.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel50.setText(" Pulido de Orificio");
-        jLabel50.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel50.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel51.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel51.setText("36");
-        jLabel51.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel51.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel52.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel52.setText(" Saludo Matutino");
-        jLabel52.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel52.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel53.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel53.setText("SP");
-        jLabel53.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel53.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel54.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel54.setText("Soporte de proceso");
-        jLabel54.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel54.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel55.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel55.setText("40");
-        jLabel55.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel55.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel56.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel56.setText(" Ajuste de Espesor");
-        jLabel56.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel56.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel57.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel57.setText("17");
-        jLabel57.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel57.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel58.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel58.setText(" Alivio de la Uña");
-        jLabel58.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel58.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel59.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel59.setText("28");
-        jLabel59.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel59.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel60.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel60.setText(" Chamfer de Esquinas");
-        jLabel60.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel60.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel61.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel61.setText("38");
-        jLabel61.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel61.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel62.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel62.setText(" Paros Planificados");
-        jLabel62.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel62.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel63.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel63.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel63.setText("SV");
-        jLabel63.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel63.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel64.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel64.setText(" Supervisor");
-        jLabel64.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel64.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel65.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel65.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel65.setText("29");
-        jLabel65.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel65.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel66.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel66.setText(" Cambio de Navajas");
-        jLabel66.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel66.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel67.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel67.setText("18");
-        jLabel67.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel67.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel68.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel68.setText(" Expulsión de Uña");
-        jLabel68.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel68.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel69.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel69.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel69.setText("30");
-        jLabel69.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel69.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel70.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel70.setText(" Cambio de Banda");
-        jLabel70.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel70.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel71.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel71.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel71.setText("GA");
-        jLabel71.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel71.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel72.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel72.setText(" Gerente del área");
-        jLabel72.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel72.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel73.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel73.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel73.setText("09");
-        jLabel73.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel73.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel74.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel74.setText(" Otros");
-        jLabel74.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel74.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel75.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel75.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel75.setText("19");
-        jLabel75.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel75.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel76.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel76.setText(" Canal de Aceite");
-        jLabel76.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel76.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel77.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel77.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel77.setText("39");
-        jLabel77.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel77.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel78.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel78.setText(" Pulido de Espalda");
-        jLabel78.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel78.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel79.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel79.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel79.setText("MT");
-        jLabel79.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel79.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel80.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel80.setText(" Mantenimiento");
-        jLabel80.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel80.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel81.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel81.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel81.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel82.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel82.setText(" Chamfer de Orificio");
-        jLabel82.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel82.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel83.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel83.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel83.setText("20");
-        jLabel83.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel83.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel84.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel84.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel84.setText("43");
-        jLabel84.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel84.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel85.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel85.setText(" Boring");
-        jLabel85.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel85.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel86.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel86.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel86.setText("Nivel");
-        jLabel86.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel86.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel88.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
         jLabel88.setText(" Alarma y Escalación");
-        jLabel88.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel88.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel87.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel87.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel87.setText("Nivel");
-        jLabel87.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel87.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel89.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
         jLabel89.setText(" Alarma y Escalación");
-        jLabel89.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel89.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel90.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel90.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel90.setText("21");
-        jLabel90.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel90.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel91.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel91.setText(" Broach");
-        jLabel91.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel91.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel92.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel92.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel92.setText("46");
-        jLabel92.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel92.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel93.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel93.setText(" Autocheck");
-        jLabel93.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel93.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel94.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel94.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel94.setText("1");
-        jLabel94.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel94.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel95.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel95.setText(" Operador");
-        jLabel95.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel95.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel96.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel96.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel96.setText("3");
-        jLabel96.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel96.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel97.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel97.setText(" Supervisor / Mantenimiento / Inspección ");
-        jLabel97.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel97.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel98.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel98.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel98.setText("2");
-        jLabel98.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel98.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel99.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel99.setText("Soporte de proceso");
-        jLabel99.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel99.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel100.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel100.setText("4");
-        jLabel100.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel100.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel101.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel101.setText(" Gerente / Mantenimiento SV / Inspección ");
-        jLabel101.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel101.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton1.setText("1");
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton2.setText("2");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -677,7 +679,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton3.setText("3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -686,7 +687,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton4.setText("4");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -695,7 +695,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton5.setText("5");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -704,7 +703,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton6.setText("6");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -713,7 +711,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton7.setText("7");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -722,7 +719,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton8.setText("8");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -731,7 +727,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton9.setText("9");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -740,7 +735,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(255, 255, 255));
         jButton10.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton10.setText("0");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -749,7 +743,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setBackground(new java.awt.Color(255, 255, 255));
         jButton11.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton11.setText("Q");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -758,7 +751,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton12.setBackground(new java.awt.Color(255, 255, 255));
         jButton12.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jButton12.setText("W");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -767,7 +759,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton13.setBackground(new java.awt.Color(255, 255, 255));
         jButton13.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton13.setText("E");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -776,7 +767,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton14.setBackground(new java.awt.Color(255, 255, 255));
         jButton14.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton14.setText("R");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -785,7 +775,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton15.setBackground(new java.awt.Color(255, 255, 255));
         jButton15.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton15.setText("T");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
@@ -794,7 +783,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton16.setBackground(new java.awt.Color(255, 255, 255));
         jButton16.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton16.setText("Y");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -803,7 +791,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton17.setBackground(new java.awt.Color(255, 255, 255));
         jButton17.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton17.setText("U");
         jButton17.addActionListener(new java.awt.event.ActionListener() {
@@ -812,7 +799,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton18.setBackground(new java.awt.Color(255, 255, 255));
         jButton18.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton18.setText("I");
         jButton18.addActionListener(new java.awt.event.ActionListener() {
@@ -821,7 +807,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton19.setBackground(new java.awt.Color(255, 255, 255));
         jButton19.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton19.setText("O");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
@@ -830,7 +815,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton20.setBackground(new java.awt.Color(255, 255, 255));
         jButton20.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton20.setText("<");
         jButton20.addActionListener(new java.awt.event.ActionListener() {
@@ -839,7 +823,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton21.setBackground(new java.awt.Color(255, 255, 255));
         jButton21.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton21.setText("A");
         jButton21.addActionListener(new java.awt.event.ActionListener() {
@@ -848,7 +831,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton22.setBackground(new java.awt.Color(255, 255, 255));
         jButton22.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton22.setText("S");
         jButton22.addActionListener(new java.awt.event.ActionListener() {
@@ -857,7 +839,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton23.setBackground(new java.awt.Color(255, 255, 255));
         jButton23.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton23.setText("D");
         jButton23.addActionListener(new java.awt.event.ActionListener() {
@@ -866,7 +847,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton24.setBackground(new java.awt.Color(255, 255, 255));
         jButton24.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton24.setText("F");
         jButton24.addActionListener(new java.awt.event.ActionListener() {
@@ -875,7 +855,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton25.setBackground(new java.awt.Color(255, 255, 255));
         jButton25.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton25.setText("G");
         jButton25.addActionListener(new java.awt.event.ActionListener() {
@@ -884,7 +863,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton26.setBackground(new java.awt.Color(255, 255, 255));
         jButton26.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton26.setText("H");
         jButton26.addActionListener(new java.awt.event.ActionListener() {
@@ -893,7 +871,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton27.setBackground(new java.awt.Color(255, 255, 255));
         jButton27.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton27.setText("J");
         jButton27.addActionListener(new java.awt.event.ActionListener() {
@@ -902,7 +879,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton28.setBackground(new java.awt.Color(255, 255, 255));
         jButton28.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton28.setText("K");
         jButton28.addActionListener(new java.awt.event.ActionListener() {
@@ -911,7 +887,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton29.setBackground(new java.awt.Color(255, 255, 255));
         jButton29.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton29.setText("L");
         jButton29.addActionListener(new java.awt.event.ActionListener() {
@@ -920,7 +895,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton30.setBackground(new java.awt.Color(255, 255, 255));
         jButton30.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton30.setText("Ñ");
         jButton30.addActionListener(new java.awt.event.ActionListener() {
@@ -929,7 +903,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton31.setBackground(new java.awt.Color(255, 255, 255));
         jButton31.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton31.setText("Z");
         jButton31.addActionListener(new java.awt.event.ActionListener() {
@@ -938,7 +911,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton32.setBackground(new java.awt.Color(255, 255, 255));
         jButton32.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton32.setText("X");
         jButton32.addActionListener(new java.awt.event.ActionListener() {
@@ -947,7 +919,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton33.setBackground(new java.awt.Color(255, 255, 255));
         jButton33.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton33.setText("C");
         jButton33.addActionListener(new java.awt.event.ActionListener() {
@@ -956,7 +927,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton34.setBackground(new java.awt.Color(255, 255, 255));
         jButton34.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton34.setText("V");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
@@ -965,7 +935,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton35.setBackground(new java.awt.Color(255, 255, 255));
         jButton35.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton35.setText("B");
         jButton35.addActionListener(new java.awt.event.ActionListener() {
@@ -974,7 +943,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton36.setBackground(new java.awt.Color(255, 255, 255));
         jButton36.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton36.setText("N");
         jButton36.addActionListener(new java.awt.event.ActionListener() {
@@ -983,7 +951,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton37.setBackground(new java.awt.Color(255, 255, 255));
         jButton37.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton37.setText("M");
         jButton37.addActionListener(new java.awt.event.ActionListener() {
@@ -992,7 +959,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton38.setBackground(new java.awt.Color(255, 255, 255));
         jButton38.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton38.setText(",");
         jButton38.addActionListener(new java.awt.event.ActionListener() {
@@ -1001,7 +967,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton39.setBackground(new java.awt.Color(255, 255, 255));
         jButton39.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton39.setText(".");
         jButton39.addActionListener(new java.awt.event.ActionListener() {
@@ -1010,7 +975,6 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
             }
         });
 
-        jButton40.setBackground(new java.awt.Color(255, 255, 255));
         jButton40.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jButton40.setText("Espacio");
         jButton40.addActionListener(new java.awt.event.ActionListener() {
@@ -1425,7 +1389,7 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(txtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(pan_teclado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1756,21 +1720,23 @@ public class RegistroParoProcesoView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroParoProcesoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ParoProcesoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroParoProcesoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ParoProcesoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroParoProcesoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ParoProcesoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroParoProcesoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ParoProcesoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroParoProcesoView().setVisible(true);
+                new ParoProcesoView().setVisible(true);
             }
         });
     }

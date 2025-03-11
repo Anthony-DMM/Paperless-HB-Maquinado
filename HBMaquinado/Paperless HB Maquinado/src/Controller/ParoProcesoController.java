@@ -5,12 +5,12 @@
 package Controller;
 
 import Interfaces.ParoProceso;
-import Model.RegistroParoProcesoModel;
+import Model.ParoProcesoModel;
 import Utils.FechaHora;
 import Utils.MostrarMensaje;
 import Utils.Navegador;
 import View.RegistroDASView;
-import View.RegistroParoProcesoView;
+import View.ParoProcesoView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -31,10 +31,10 @@ import java.util.logging.Logger;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class RegistroParoProcesoController implements ActionListener {
+public class ParoProcesoController implements ActionListener {
 
-    private final RegistroParoProcesoModel registroParoProcesoModel = new RegistroParoProcesoModel();
-    private final RegistroParoProcesoView registroParoProcesoView;
+    private final ParoProcesoModel registroParoProcesoModel = new ParoProcesoModel();
+    private final ParoProcesoView registroParoProcesoView;
     private final RegistroDASView registroDASView = RegistroDASView.getInstance();
 
     private FechaHora fechaHora = new FechaHora();
@@ -44,7 +44,7 @@ public class RegistroParoProcesoController implements ActionListener {
     ParoProceso datosParoProceso = ParoProceso.getInstance();
     private final Map<String, Integer> causasMap = new HashMap<>();
 
-    public RegistroParoProcesoController(RegistroParoProcesoView registroParoProcesoView) throws SQLException, ParseException {
+    public ParoProcesoController(ParoProcesoView registroParoProcesoView) throws SQLException, ParseException {
         this.registroParoProcesoView = registroParoProcesoView;
 
         this.registroParoProcesoView.btnFinalizar.addActionListener(this);
@@ -57,7 +57,7 @@ public class RegistroParoProcesoController implements ActionListener {
                 try {
                     actualizarTiempoTranscurrido();
                 } catch (SQLException ex) {
-                    Logger.getLogger(RegistroParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }, 0, 1000);
@@ -69,7 +69,7 @@ public class RegistroParoProcesoController implements ActionListener {
                     horaInicio = fechaHora.obtenerTimestampActual();
                     cargarDatos();
                 } catch (SQLException ex) {
-                    Logger.getLogger(RegistroParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -119,13 +119,13 @@ public class RegistroParoProcesoController implements ActionListener {
             try {
                 handleRegistrarParo();
             } catch (SQLException ex) {
-                Logger.getLogger(RegistroParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (e.getSource() == registroParoProcesoView.cboxCategoria) {
             try {
                 handleCategoriaSeleccionada();
             } catch (SQLException ex) {
-                Logger.getLogger(RegistroParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
