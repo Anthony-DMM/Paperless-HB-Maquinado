@@ -5,10 +5,10 @@
 package View;
 
 import java.awt.BorderLayout;
-import javafx.application.Platform;
+/*import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
-import javafx.scene.web.WebView;
+import javafx.scene.web.WebView;*/
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -56,14 +56,14 @@ public class DibujoView extends javax.swing.JFrame {
         setSize(900, 1600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JFXPanel jfxPanel = new JFXPanel();
+        /*JFXPanel jfxPanel = new JFXPanel();
         add(jfxPanel, BorderLayout.CENTER);
 
         Platform.runLater(() -> {
             WebView webView = new WebView();
             jfxPanel.setScene(new Scene(webView));
             webView.getEngine().load("https://198.167.155.9:8180/drawingspst/");
-        });
+        });*/
 
         setVisible(true);
     }

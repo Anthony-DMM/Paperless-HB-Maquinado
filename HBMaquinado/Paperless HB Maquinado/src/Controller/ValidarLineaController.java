@@ -24,37 +24,34 @@ import java.awt.event.KeyEvent;
  */
 public class ValidarLineaController implements ActionListener {
 
-    ValidarLineaView validarLineaView;
-    ValidarLineaModel validarLineaModel = new ValidarLineaModel();
-    Navegador navegador = Navegador.getInstance();
-    ManufacturaView manufacturaView = ManufacturaView.getInstance();
-    ManufacturaController manufacturaController = new ManufacturaController(manufacturaView);
+    private final ValidarLineaView validarLineaView;
+    private final ValidarLineaModel validarLineaModel = new ValidarLineaModel();
+    private final Navegador navegador = Navegador.getInstance();
+    private final ManufacturaView manufacturaView = ManufacturaView.getInstance();
+    private final ManufacturaController manufacturaController = new ManufacturaController(manufacturaView);
 
     public ValidarLineaController(ValidarLineaView validarLineaView) {
         this.validarLineaView = validarLineaView;
+        configurarEventos();
+    }
 
-        this.validarLineaView.getBtnSalir().addActionListener(this);
-        this.validarLineaView.getTxtLineaProduccion().addKeyListener(new KeyAdapter() {
+    private void configurarEventos() {
+        validarLineaView.getBtnSalir().addActionListener(this);
+        validarLineaView.getTxtLineaProduccion().addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    validarLinea();
-                }
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) validarLinea();
             }
         });
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == validarLineaView.getBtnSalir()) {
-            CerrarAplicacion.cerrar();
-        }
+        if (e.getSource() == validarLineaView.getBtnSalir()) CerrarAplicacion.cerrar();
     }
 
     private void validarLinea() {
-        if (ValidarCampos.esCampoVacio(validarLineaView.getTxtLineaProduccion(), "Debe ingresar la línea de producción")) {
-            return;
-        }
+        if (ValidarCampos.esCampoVacio(validarLineaView.getTxtLineaProduccion(), "Ingrese una línea de producción")) return;
 
         String lineaProduccion = validarLineaView.getTxtLineaProduccion().getText().trim();
         LineaProduccion linea = validarLineaModel.validarLinea(lineaProduccion, "MAQUINADO");
@@ -62,8 +59,9 @@ public class ValidarLineaController implements ActionListener {
         if (linea == null) {
             MostrarMensaje.mostrarError("La línea de producción no existe o no pertenece al área de MAQUINADO.");
             LimpiarCampos.limpiarCampo(validarLineaView.getTxtLineaProduccion());
-        } else {
-            navegador.avanzar(manufacturaView, validarLineaView);
+            return;
         }
+
+        navegador.avanzar(manufacturaView, validarLineaView);
     }
 }

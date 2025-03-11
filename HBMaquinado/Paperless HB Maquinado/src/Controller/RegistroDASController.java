@@ -47,6 +47,10 @@ public class RegistroDASController implements ActionListener, ItemListener {
 
     private final RegistroDASModel registroDASModel;
     private final RegistroDASView registroDASView;
+    Navegador navegador = Navegador.getInstance();
+    RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
+    
+    
     private final FechaHora fechaHora = new FechaHora();
     private LocalTime horaInicio;
     private final DAS datosDAS = DAS.getInstance();
@@ -54,7 +58,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
 
     public enum AccionBoton {
         REGISTRAR_PRODUCCION,
-        PARO_PROCESO,
         REGRESAR
     }
 
@@ -130,7 +133,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
         registroDASView.cbxNG.addItemListener(this);
         registroDASView.cbxTurno.addItemListener(this);
         registroDASView.btnRegistrarProduccion.addActionListener(this);
-        registroDASView.btnParoProceso.addActionListener(this);
         registroDASView.btnRegresar.addActionListener(this);
         registroDASView.btnFinalizarDAS.addActionListener(this);
     }
@@ -171,12 +173,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
     private void handleButtonAction(JButton button) {
         if (button.equals(registroDASView.btnRegistrarProduccion)) {
             handleRegistroProduccionButton();
-        } else if (button.equals(registroDASView.btnParoProceso)) {
-            try {
-                handleParoProcesoButton();
-            } catch (SQLException | ParseException ex) {
-                Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
-            }
         } else if (button.equals(registroDASView.btnRegresar)) {
             handleRegresarButton();
         } else if (button.equals(registroDASView.btnFinalizarDAS)) {
@@ -212,7 +208,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
 
         String numeroEmpleado = registroDASView.txtNumeroEmpleado.getText().trim();
         try {
-            handleDatosDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosDAS.getCodigoEmpleado());
             registroDASModel.registrarPiezasPorHora(numeroEmpleado, acumulado, calidad);
             LimpiarCampos.limpiarCampos(registroDASView.txtAcumulado);
             registroDASView.cbxOK.setSelected(false);
@@ -326,34 +321,14 @@ public class RegistroDASController implements ActionListener, ItemListener {
                 || codigoEmpleadoIngresado.isEmpty();
     }
 
-    private void handleDatosDAS(String codigoSoporte, String codigoInspector, String codigoEmpleado) throws SQLException {
-        int DASExistente = registroDASModel.obtenerDASExistente();
-        if (DASExistente == 0) {
-            registroDASModel.registrarDAS(codigoSoporte, codigoInspector, codigoEmpleado);
-        }
-    }
-
-    private void handleParoProcesoButton() throws SQLException, ParseException {
-        if (areFieldsEmpty()) {
-            MostrarMensaje.mostrarError("Para continuar necesario colocar el código de inspector, soporte rápido y empleado");
-        } else {
-            handleDatosDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosDAS.getCodigoEmpleado());
-            RegistroParoProcesoView paroProcesoView = new RegistroParoProcesoView();
-            RegistroParoProcesoController paroProcesoController = new RegistroParoProcesoController(paroProcesoView);
-            Navegador.getInstance().avanzar(paroProcesoView, registroDASView);
-        }
-    }
-
     private void handleFinalizarDASButton() throws SQLException {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Deseas finalizar el DAS? Recuerda que esta acción no se puede revertir");  
-        if (opcion == JOptionPane.YES_OPTION) {  
-            handleDatosDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosDAS.getCodigoEmpleado());
-            RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
-            Navegador.getInstance().avanzar(registroRBPView, registroDASView);
+        if (opcion == JOptionPane.YES_OPTION) {
+            navegador.avanzar(registroRBPView, registroDASView);
         }  
     }
     
     private void handleRegresarButton() {
-        Navegador.getInstance().regresar(registroDASView);
+        navegador.regresar(registroDASView);
     }
 }

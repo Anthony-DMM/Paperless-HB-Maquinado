@@ -23,7 +23,7 @@ import javax.swing.JTextField;
  * @author ANTHONY-MARTINEZ
  */
 public class RegistroRBPController implements ActionListener {
-    //RegistroRBPModel registroRBPModel = new RegistroRBPModel();
+    RegistroRBPModel registroRBPModel = new RegistroRBPModel();
     RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
     Navegador navegador = Navegador.getInstance();
     
@@ -67,4 +67,11 @@ public class RegistroRBPController implements ActionListener {
             navegador.regresar(registroRBPView);
         }
     }
+    
+    /*private void handleDatosDAS(String codigoSoporte, String codigoInspector, String codigoEmpleado) throws SQLException {
+        int DASExistente = registroDASModel.obtenerDASExistente();
+        if (DASExistente == 0) {
+            registroDASModel.registrarDAS(codigoSoporte, codigoInspector, codigoEmpleado);
+        }
+    }*/
 }

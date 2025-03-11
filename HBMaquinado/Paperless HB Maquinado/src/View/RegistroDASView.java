@@ -228,33 +228,33 @@ public class RegistroDASView extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel7.setText(" Código de Soporte Rápido:");
-        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel8.setText(" Nombre de Soporte Rápido:");
-        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         txtNombreSoporteRapido.setEditable(false);
         txtNombreSoporteRapido.setBackground(new java.awt.Color(204, 204, 204));
         txtNombreSoporteRapido.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtNombreSoporteRapido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtNombreSoporteRapido.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel9.setText(" Código de Inspector:");
-        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel10.setText(" Nombre de Inspector:");
-        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         txtNombreInspector.setEditable(false);
         txtNombreInspector.setBackground(new java.awt.Color(204, 204, 204));
         txtNombreInspector.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtNombreInspector.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtNombreInspector.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         txtCodigoInspector.setBackground(new java.awt.Color(255, 255, 0));
         txtCodigoInspector.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtCodigoInspector.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtCodigoInspector.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         txtCodigoInspector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoInspectorActionPerformed(evt);
@@ -268,7 +268,7 @@ public class RegistroDASView extends javax.swing.JFrame {
 
         txtCodigoSoporte.setBackground(new java.awt.Color(255, 255, 0));
         txtCodigoSoporte.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtCodigoSoporte.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtCodigoSoporte.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         txtCodigoSoporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoSoporteActionPerformed(evt);
@@ -282,15 +282,15 @@ public class RegistroDASView extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel11.setText(" Número de Empleado:");
-        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel12.setText(" Nombre de Empleado:");
-        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         txtNumeroEmpleado.setBackground(new java.awt.Color(255, 255, 0));
         txtNumeroEmpleado.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtNumeroEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtNumeroEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         txtNumeroEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumeroEmpleadoActionPerformed(evt);
@@ -305,67 +305,67 @@ public class RegistroDASView extends javax.swing.JFrame {
         txtNombreEmpleado.setEditable(false);
         txtNombreEmpleado.setBackground(new java.awt.Color(204, 204, 204));
         txtNombreEmpleado.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtNombreEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtNombreEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel13.setText(" Número de Orden de Producción:");
-        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         txtMOG.setEditable(false);
         txtMOG.setBackground(new java.awt.Color(204, 204, 204));
         txtMOG.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtMOG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtMOG.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel14.setText(" Modelo:");
-        jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         txtModelo.setEditable(false);
         txtModelo.setBackground(new java.awt.Color(204, 204, 204));
         txtModelo.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtModelo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtModelo.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel15.setText(" STD:");
-        jLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         txtSTD.setEditable(false);
         txtSTD.setBackground(new java.awt.Color(204, 204, 204));
         txtSTD.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtSTD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtSTD.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel16.setText(" Lote:");
-        jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         txtLote.setEditable(false);
         txtLote.setBackground(new java.awt.Color(204, 204, 204));
         txtLote.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtLote.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtLote.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel20.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel20.setText(" Hora:");
-        jLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         txtHora.setEditable(false);
         txtHora.setBackground(new java.awt.Color(204, 204, 204));
         txtHora.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtHora.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtHora.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel21.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel21.setText(" Acumulado:");
-        jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         txtAcumulado.setBackground(new java.awt.Color(255, 255, 0));
         txtAcumulado.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtAcumulado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtAcumulado.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel22.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel22.setText(" Calidad:");
-        jLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 0));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         cbxOK.setBackground(new java.awt.Color(255, 255, 0));
         cbxOK.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
@@ -443,7 +443,7 @@ public class RegistroDASView extends javax.swing.JFrame {
 
         cbxTurno.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         cbxTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar turno", "1", "2" }));
-        cbxTurno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cbxTurno.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         btnDibujo.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         btnDibujo.setForeground(new java.awt.Color(255, 255, 255));
@@ -451,25 +451,25 @@ public class RegistroDASView extends javax.swing.JFrame {
 
         jLabel23.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel23.setText(" Fecha:");
-        jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         txtFecha.setEditable(false);
         txtFecha.setBackground(new java.awt.Color(204, 204, 204));
         txtFecha.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtFecha.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel24.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel24.setText(" Turno:");
-        jLabel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel24.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel25.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel25.setText(" Grupo:");
-        jLabel25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel25.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         txtFecha1.setEditable(false);
         txtFecha1.setBackground(new java.awt.Color(204, 204, 204));
         txtFecha1.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtFecha1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtFecha1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -745,7 +745,7 @@ public class RegistroDASView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnDibujo;
     public javax.swing.JButton btnFinalizarDAS;
-    public javax.swing.JButton btnParoProceso;
+    private javax.swing.JButton btnParoProceso;
     public javax.swing.JButton btnRegistrarProduccion;
     public javax.swing.JButton btnRegresar;
     public javax.swing.JCheckBox cbxNG;
