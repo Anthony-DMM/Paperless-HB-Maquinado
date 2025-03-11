@@ -33,7 +33,7 @@ public class DibujoView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         JPanel topPanel = new JPanel();
-        JButton btnRegresar = new JButton("Regresar");
+        btnRegresar = new JButton("Regresar");
         btnRegresar.setBackground(Color.BLACK);
         btnRegresar.setForeground(Color.WHITE);
         btnRegresar.setPreferredSize(new Dimension(900, 60));
@@ -57,8 +57,14 @@ public class DibujoView extends javax.swing.JFrame {
     public static DibujoView getInstance() {
         return VistaSingleton.getInstance(DibujoView.class);
     }
-    
-    
+
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+
+    public void setBtnRegresar(JButton btnRegresar) {
+        this.btnRegresar = btnRegresar;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.

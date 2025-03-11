@@ -19,7 +19,7 @@ public class DibujoController implements ActionListener {
     
     public DibujoController(DibujoView dibujoView) {
         this.dibujoView = dibujoView;
-        dibujoView.btnRegresar.addActionListener(this);
+        dibujoView.getBtnRegresar().addActionListener(this);
     }
 
     @Override
