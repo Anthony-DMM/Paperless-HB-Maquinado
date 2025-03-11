@@ -6,6 +6,7 @@ package Controller;
 
 import Model.RegistroRBPModel;
 import Utils.Navegador;
+import View.DibujoView;
 import View.ParoProcesoView;
 import View.RegistroDASView;
 import View.RegistroRBPView;
@@ -28,6 +29,8 @@ public class RegistroRBPController implements ActionListener {
     private final RegistroRBPView registroRBPView;
     private final RegistroDASView registroDASView = RegistroDASView.getInstance();
     private final RegistroDASController registroDASController = new RegistroDASController(registroDASView);
+    private final DibujoView dibujoView = DibujoView.getInstance();
+    private final DibujoController dibujoController = new DibujoController(dibujoView);
     private final Navegador navegador = Navegador.getInstance();
     
     public RegistroRBPController(RegistroRBPView registroRBPView) {
@@ -53,7 +56,7 @@ public class RegistroRBPController implements ActionListener {
         } else if (button == registroRBPView.btnCambioMOG) {
             navegador.avanzar(registroDASView, registroRBPView);
         } else if (button == registroRBPView.btnDibujo) {
-            //navegador.avanzar(paroProcesoView, registroRBPView);
+            navegador.avanzar(dibujoView, registroRBPView);
         } else if (button == registroRBPView.btnRegresar) {
             navegador.regresar(registroRBPView);
         }

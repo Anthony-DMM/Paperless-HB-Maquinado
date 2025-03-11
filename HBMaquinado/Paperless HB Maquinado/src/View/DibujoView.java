@@ -4,25 +4,62 @@
  */
 package View;
 
+import Config.VistaSingleton;
 import java.awt.BorderLayout;
-/*import javafx.application.Platform;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
-import javafx.scene.web.WebView;*/
+import javafx.scene.web.WebView;
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+import javax.swing.JPanel;
 
 /**
  *
  * @author ANTHONY-MARTINEZ
  */
 public class DibujoView extends javax.swing.JFrame {
-
     /**
      * Creates new form DibujoView
      */
+    
+    public JButton btnRegresar;
 
+    public DibujoView() {
+        setSize(900, 1600);
+        setLocationRelativeTo(null);
+        
+        JPanel topPanel = new JPanel();
+        JButton btnRegresar = new JButton("Regresar");
+        btnRegresar.setBackground(Color.BLACK);
+        btnRegresar.setForeground(Color.WHITE);
+        btnRegresar.setPreferredSize(new Dimension(900, 60));
+        btnRegresar.setFont(new Font("Arial", Font.PLAIN, 30));
+        topPanel.add(btnRegresar);
 
+        add(topPanel, BorderLayout.NORTH);
+
+        // Crea el JFXPanel
+        JFXPanel jfxPanel = new JFXPanel();
+        add(jfxPanel, BorderLayout.CENTER);
+
+        // Carga el contenido de JavaFX en el JFXPanel
+        Platform.runLater(() -> {
+            WebView webView = new WebView();
+            jfxPanel.setScene(new Scene(webView));
+            webView.getEngine().load("http://192.168.155.9:8180/drawingspst/");
+        });
+    }
+     
+    public static DibujoView getInstance() {
+        return VistaSingleton.getInstance(DibujoView.class);
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,25 +88,38 @@ public class DibujoView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-     public DibujoView() {
-        setTitle("Simple WebView");
-        setSize(900, 1600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(RegistroRBPView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(RegistroRBPView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(RegistroRBPView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(RegistroRBPView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
 
-        /*JFXPanel jfxPanel = new JFXPanel();
-        add(jfxPanel, BorderLayout.CENTER);
-
-        Platform.runLater(() -> {
-            WebView webView = new WebView();
-            jfxPanel.setScene(new Scene(webView));
-            webView.getEngine().load("https://198.167.155.9:8180/drawingspst/");
-        });*/
-
-        setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new DibujoView());
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new DibujoView().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
