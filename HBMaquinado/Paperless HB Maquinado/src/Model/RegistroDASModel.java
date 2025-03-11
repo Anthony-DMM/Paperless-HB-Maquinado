@@ -29,17 +29,13 @@ import javax.swing.JOptionPane;
 public class RegistroDASModel {
 
     private static final Logger LOGGER = Logger.getLogger(RegistroDASModel.class.getName());
-    private DBConexion conexion;
+    private final DBConexion conexion;
     private LocalDate fechaF;
     private LocalTime hora;
 
     public RegistroDASModel() {
-        inicializarConexion();
-        inicializarFechaHora();
-    }
-
-    private void inicializarConexion() {
         this.conexion = new DBConexion();
+        inicializarFechaHora();
     }
 
     private void inicializarFechaHora() {
