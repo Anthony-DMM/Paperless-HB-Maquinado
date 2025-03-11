@@ -11,6 +11,8 @@ import View.RegistroDASView;
 import View.RegistroRBPView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 
@@ -20,11 +22,12 @@ import javax.swing.JButton;
  */
 public class RegistroRBPController implements ActionListener {
     private static final Logger LOGGER = Logger.getLogger(RegistroRBPController.class.getName());
+    private final Map<JButton, Runnable> buttonActions = new HashMap<>();
 
     private final RegistroRBPModel registroRBPModel = new RegistroRBPModel();
     private final RegistroRBPView registroRBPView;
-    private final ParoProcesoView paroProcesoView = ParoProcesoView.getInstance();
     private final RegistroDASView registroDASView = RegistroDASView.getInstance();
+    private final RegistroDASController registroDASController = new RegistroDASController(registroDASView);
     private final Navegador navegador = Navegador.getInstance();
     
     public RegistroRBPController(RegistroRBPView registroRBPView) {
@@ -34,36 +37,31 @@ public class RegistroRBPController implements ActionListener {
     
     private void addListeners() {
         registroRBPView.btnDAS.addActionListener(this);
+        registroRBPView.btnDibujo.addActionListener(this);
         registroRBPView.btnParoLinea.addActionListener(this);
         registroRBPView.btnCambioMOG.addActionListener(this);
         registroRBPView.btnRegresar.addActionListener(this);
     }
     
+    private void handleButtonAction(JButton button) {
+        if (button == registroRBPView.btnDAS) {
+            navegador.avanzar(registroDASView, registroRBPView);
+        } else if (button == registroRBPView.btnParoLinea) {
+            ParoProcesoView paroProcesoView = new ParoProcesoView();
+            ParoProcesoController paroProcesoController = new ParoProcesoController(paroProcesoView);
+            navegador.avanzar(paroProcesoView, registroRBPView);
+        } else if (button == registroRBPView.btnCambioMOG) {
+            navegador.avanzar(registroDASView, registroRBPView);
+        } else if (button == registroRBPView.btnDibujo) {
+            //navegador.avanzar(paroProcesoView, registroRBPView);
+        } else if (button == registroRBPView.btnRegresar) {
+            navegador.regresar(registroRBPView);
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         handleButtonAction((JButton) e.getSource());
-    }
-    
-    private void handleButtonAction(JButton button) {
-        switch (button.getName()) {
-            case "btnDAS":
-                navegador.avanzar(registroDASView, registroRBPView);
-                break;
-            case "btnParoLinea":
-                navegador.avanzar(paroProcesoView, registroRBPView);
-                break;
-            case "btnCambioMOG":
-                navegador.avanzar(registroDASView, registroRBPView);
-                break;
-            case "btnVerDibujo":
-                navegador.avanzar(paroProcesoView, registroRBPView);
-                break;
-            case "btnRegresar":
-                navegador.regresar(registroRBPView);
-                break;
-            default:
-                break;
-        }
     }
 }
     

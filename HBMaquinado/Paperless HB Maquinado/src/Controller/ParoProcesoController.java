@@ -43,8 +43,10 @@ public class ParoProcesoController implements ActionListener {
     String tiempoTranscurrido;
     ParoProceso datosParoProceso = ParoProceso.getInstance();
     private final Map<String, Integer> causasMap = new HashMap<>();
+    
+    private static final Logger LOGGER = Logger.getLogger(ParoProcesoController.class.getName());
 
-    public ParoProcesoController(ParoProcesoView registroParoProcesoView) throws SQLException, ParseException {
+    public ParoProcesoController(ParoProcesoView registroParoProcesoView) {
         this.registroParoProcesoView = registroParoProcesoView;
 
         this.registroParoProcesoView.btnFinalizar.addActionListener(this);
@@ -57,7 +59,7 @@ public class ParoProcesoController implements ActionListener {
                 try {
                     actualizarTiempoTranscurrido();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
+                    LOGGER.log(Level.SEVERE, "Error al actualizar el tiempo transcurrido", ex);
                 }
             }
         }, 0, 1000);
@@ -69,7 +71,7 @@ public class ParoProcesoController implements ActionListener {
                     horaInicio = fechaHora.obtenerTimestampActual();
                     cargarDatos();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
+                    LOGGER.log(Level.SEVERE, "Error al cargar datos o obtener hora de inicio", ex);
                 }
             }
 
@@ -161,7 +163,7 @@ public class ParoProcesoController implements ActionListener {
             if (registroParoProcesoModel.obtenerCausasPorCategoriaParoProceso(categoria)) {
                 datosParoProceso.getListaCausas().forEach(paro -> {
                     registroParoProcesoView.cboxCausa.addItem(paro.getDescripcion());
-                    causasMap.put(paro.getDescripcion(), paro.getIdcausas_paro()); // Almacenar la relación descripción -> ID
+                    causasMap.put(paro.getDescripcion(), paro.getIdcausas_paro());
                 });
             }
         } else {

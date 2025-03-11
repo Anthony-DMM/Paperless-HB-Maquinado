@@ -34,12 +34,18 @@ public class ParoProcesoModel {
     Date fechaUtil;
     java.sql.Date fechaF;
 
-    public ParoProcesoModel() throws SQLException, ParseException {
-        conexion = new DBConexion();
-
-        fecha = fechaHora.fechaActual("yyyy-MM-dd");
-        fechaUtil = fechaHora.stringToDate(fecha, "yyyy-MM-dd");
-        fechaF = new java.sql.Date(fechaUtil.getTime());
+    public ParoProcesoModel() {
+        this.conexion = new DBConexion();
+        fechaHora = new FechaHora();
+        try {
+            fecha = fechaHora.fechaActual("yyyy-MM-dd");
+            fechaUtil = fechaHora.stringToDate(fecha, "yyyy-MM-dd");
+            fechaF = new java.sql.Date(fechaUtil.getTime());
+        } catch (SQLException ex) {
+            Logger.getLogger(ParoProcesoModel.class.getName()).log(Level.SEVERE, "Error al inicializar la conexión o al obtener la fecha", ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(ParoProcesoModel.class.getName()).log(Level.SEVERE, "Error al parsear la fecha", ex);
+        }
     }
 
     public boolean obtenerCategoriasParoProceso() throws SQLException {

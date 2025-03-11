@@ -484,7 +484,7 @@ public class RegistroRBPView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnCambioMOG;
     public javax.swing.JButton btnDAS;
-    private javax.swing.JButton btnDibujo;
+    public javax.swing.JButton btnDibujo;
     public javax.swing.JButton btnParoLinea;
     public javax.swing.JButton btnRegresar;
     public javax.swing.JButton btnSiguiente;
