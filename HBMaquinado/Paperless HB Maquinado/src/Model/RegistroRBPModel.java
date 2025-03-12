@@ -6,6 +6,8 @@ package Model;
 
 import Interfaces.DAS;
 import Interfaces.LineaProduccion;
+import Interfaces.RBP;
+import Utils.MostrarMensaje;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -22,10 +24,37 @@ public class RegistroRBPModel {
     private final DBConexion conexion;
     private static final Logger LOGGER = Logger.getLogger(RegistroRBPModel.class.getName());
     private final LocalDate fechaF;
+    private final RBP datosRBP = RBP.getInstance();
 
     public RegistroRBPModel() {
         this.conexion = new DBConexion();
         fechaF = LocalDate.now();
+    }
+    
+    public boolean validarOperador(String numeroEmpleado) throws SQLException {
+        int proceso = 1;
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call traerOperador(?,?,?,?)}")) {
+
+            cst.setString(1, numeroEmpleado);
+            cst.registerOutParameter(2, java.sql.Types.INTEGER);
+            cst.setInt(3, proceso);
+            cst.registerOutParameter(4, java.sql.Types.VARCHAR);
+            cst.executeQuery();
+
+            int valor = cst.getInt(2);
+            String empleadoEncontrado = cst.getString(4);
+
+            if (valor == 0) {
+                MostrarMensaje.mostrarError("No se encontró ningún empleado");
+                return false;
+            } else {
+                datosRBP.setNombreEmpleado(empleadoEncontrado);
+                return true;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al obtener datos de la entidad", ex);
+            throw ex;
+        }
     }
     
     public void registrarDAS(String codigoSoporte, String codigoInspector, String codigoEmpleado) throws SQLException {

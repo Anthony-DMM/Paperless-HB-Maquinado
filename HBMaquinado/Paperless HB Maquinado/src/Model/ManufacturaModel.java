@@ -29,6 +29,7 @@ public class ManufacturaModel {
     private static final String PROCESO_VALIDO = "HBL";
     FechaHora fechaHora = new FechaHora();
     MOG datosMOG = MOG.getInstance();
+    RBP rbp = RBP.getInstance();
     LineaProduccion lineaProduccion = LineaProduccion.getInstance();
 
     public ManufacturaModel() {
@@ -147,7 +148,6 @@ public class ManufacturaModel {
             cs.execute();
 
             int id_rbp = cs.getInt(5);
-            RBP rbp = RBP.getInstance();
             rbp.setId(id_rbp);
         }
     }
@@ -172,8 +172,8 @@ public class ManufacturaModel {
             cst2.setString(5, lineaProduccion.getLinea());
             cst2.execute();
             
-            RBP rbp = RBP.getInstance();
             rbp.setHora(hora);
+            rbp.setFecha(fecha);
         }
     }
 

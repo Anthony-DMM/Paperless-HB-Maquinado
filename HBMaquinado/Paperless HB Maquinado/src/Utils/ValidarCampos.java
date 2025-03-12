@@ -37,6 +37,14 @@ public class ValidarCampos {
         textField.requestFocusInWindow();
     }
     
+    public static void activarCampos(JTextField... campos) {
+        for (JTextField campo : campos) {
+            campo.setEditable(true);
+            campo.setBackground(Color.YELLOW);
+            campo.requestFocusInWindow();
+        }
+    }
+    
     public static void bloquearCampo(JTextField textField) {
         textField.setEditable(false);
         textField.setBackground(Color.LIGHT_GRAY);

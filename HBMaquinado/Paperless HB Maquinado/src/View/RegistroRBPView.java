@@ -54,42 +54,42 @@ public class RegistroRBPView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         lblNumeroEmpleado = new javax.swing.JLabel();
         lblEmpleado = new javax.swing.JLabel();
         lblTurno = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtNombreEmpleado = new javax.swing.JTextField();
         lblPiezasRecibidas = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         lblHoraInicio = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtHoraInicio = new javax.swing.JTextField();
         lblTituloRBP = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
         btnDibujo = new javax.swing.JButton();
         jLabelCanastasCom = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         lblScrapTotal = new javax.swing.JLabel();
-        jTextFieldRSW1 = new javax.swing.JTextField();
+        txtPiezasxFila = new javax.swing.JTextField();
         lblPiezasxFila = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextFieldFSW1 = new javax.swing.JTextField();
-        jTextFieldCSW1 = new javax.swing.JTextField();
+        txtFilas = new javax.swing.JTextField();
+        txtNiveles = new javax.swing.JTextField();
         jLabel212 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextFieldCantSW1 = new javax.swing.JTextField();
+        txtCanastas = new javax.swing.JTextField();
         jLabelCanastasCom1 = new javax.swing.JLabel();
-        jTextFieldFSW2 = new javax.swing.JTextField();
+        txtFilasCompletas = new javax.swing.JTextField();
         lblFilasCompletas = new javax.swing.JLabel();
         lblNivelesCompletos = new javax.swing.JLabel();
-        jTextFieldCSW2 = new javax.swing.JTextField();
-        jTextFieldCantSW2 = new javax.swing.JTextField();
+        txtNivelesCompletos = new javax.swing.JTextField();
+        txtSobrante = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
         btnSiguiente = new javax.swing.JButton();
         btnDAS = new javax.swing.JButton();
         btnParoLinea = new javax.swing.JButton();
         btnCambioMOG = new javax.swing.JButton();
+        txtNumeroEmpleado = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,9 +97,6 @@ public class RegistroRBPView extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel3.setText("Fecha:");
-
-        jTextField1.setBackground(new java.awt.Color(255, 255, 0));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
         lblNumeroEmpleado.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
 
@@ -112,9 +109,9 @@ public class RegistroRBPView extends javax.swing.JFrame {
         jTextField3.setBackground(new java.awt.Color(204, 204, 204));
         jTextField3.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtNombreEmpleado.setEditable(false);
+        txtNombreEmpleado.setBackground(new java.awt.Color(204, 204, 204));
+        txtNombreEmpleado.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
 
         lblPiezasRecibidas.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         lblPiezasRecibidas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -122,21 +119,23 @@ public class RegistroRBPView extends javax.swing.JFrame {
         jTextField7.setEditable(false);
         jTextField7.setBackground(new java.awt.Color(204, 204, 204));
         jTextField7.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         lblHoraInicio.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         lblHoraInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtHoraInicio.setEditable(false);
+        txtHoraInicio.setBackground(new java.awt.Color(204, 204, 204));
+        txtHoraInicio.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtHoraInicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         lblTituloRBP.setFont(new java.awt.Font("Arial", 1, 44)); // NOI18N
         lblTituloRBP.setForeground(new java.awt.Color(0, 102, 0));
         lblTituloRBP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jTextField6.setEditable(false);
-        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField6.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtFecha.setEditable(false);
+        txtFecha.setBackground(new java.awt.Color(204, 204, 204));
+        txtFecha.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
 
         btnDibujo.setBackground(new java.awt.Color(0, 0, 0));
         btnDibujo.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
@@ -150,15 +149,16 @@ public class RegistroRBPView extends javax.swing.JFrame {
         jTextField8.setEditable(false);
         jTextField8.setBackground(new java.awt.Color(204, 204, 204));
         jTextField8.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         lblScrapTotal.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         lblScrapTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jTextFieldRSW1.setEditable(false);
-        jTextFieldRSW1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldRSW1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextFieldRSW1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldRSW1.setFocusable(false);
+        txtPiezasxFila.setEditable(false);
+        txtPiezasxFila.setBackground(new java.awt.Color(204, 204, 204));
+        txtPiezasxFila.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtPiezasxFila.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPiezasxFila.setFocusable(false);
 
         lblPiezasxFila.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         lblPiezasxFila.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -168,17 +168,17 @@ public class RegistroRBPView extends javax.swing.JFrame {
         jLabel9.setText("Filas");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jTextFieldFSW1.setEditable(false);
-        jTextFieldFSW1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldFSW1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextFieldFSW1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldFSW1.setFocusable(false);
+        txtFilas.setEditable(false);
+        txtFilas.setBackground(new java.awt.Color(204, 204, 204));
+        txtFilas.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtFilas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtFilas.setFocusable(false);
 
-        jTextFieldCSW1.setEditable(false);
-        jTextFieldCSW1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldCSW1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextFieldCSW1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldCSW1.setFocusable(false);
+        txtNiveles.setEditable(false);
+        txtNiveles.setBackground(new java.awt.Color(204, 204, 204));
+        txtNiveles.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtNiveles.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNiveles.setFocusable(false);
 
         jLabel212.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel212.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -188,22 +188,22 @@ public class RegistroRBPView extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Canastas");
 
-        jTextFieldCantSW1.setEditable(false);
-        jTextFieldCantSW1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldCantSW1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextFieldCantSW1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldCantSW1.setFocusable(false);
+        txtCanastas.setEditable(false);
+        txtCanastas.setBackground(new java.awt.Color(204, 204, 204));
+        txtCanastas.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtCanastas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCanastas.setFocusable(false);
 
         jLabelCanastasCom1.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabelCanastasCom1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCanastasCom1.setText("Canastas Incompletas");
         jLabelCanastasCom1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextFieldFSW2.setEditable(false);
-        jTextFieldFSW2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldFSW2.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextFieldFSW2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldFSW2.setFocusable(false);
+        txtFilasCompletas.setEditable(false);
+        txtFilasCompletas.setBackground(new java.awt.Color(204, 204, 204));
+        txtFilasCompletas.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtFilasCompletas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtFilasCompletas.setFocusable(false);
 
         lblFilasCompletas.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         lblFilasCompletas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -212,17 +212,17 @@ public class RegistroRBPView extends javax.swing.JFrame {
         lblNivelesCompletos.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         lblNivelesCompletos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jTextFieldCSW2.setEditable(false);
-        jTextFieldCSW2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldCSW2.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextFieldCSW2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldCSW2.setFocusable(false);
+        txtNivelesCompletos.setEditable(false);
+        txtNivelesCompletos.setBackground(new java.awt.Color(204, 204, 204));
+        txtNivelesCompletos.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtNivelesCompletos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNivelesCompletos.setFocusable(false);
 
-        jTextFieldCantSW2.setEditable(false);
-        jTextFieldCantSW2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldCantSW2.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextFieldCantSW2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldCantSW2.setFocusable(false);
+        txtSobrante.setEditable(false);
+        txtSobrante.setBackground(new java.awt.Color(204, 204, 204));
+        txtSobrante.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtSobrante.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtSobrante.setFocusable(false);
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -273,6 +273,9 @@ public class RegistroRBPView extends javax.swing.JFrame {
             }
         });
 
+        txtNumeroEmpleado.setBackground(new java.awt.Color(255, 255, 0));
+        txtNumeroEmpleado.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -280,56 +283,25 @@ public class RegistroRBPView extends javax.swing.JFrame {
             .addComponent(lblTituloRBP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                            .addComponent(lblNumeroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)))
-                        .addGap(51, 51, 51)
-                        .addComponent(btnDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTurno))
-                        .addGap(60, 60, 60)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblHoraInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblPiezasRecibidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(lblScrapTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldRSW1)
+                            .addComponent(txtPiezasxFila)
                             .addComponent(lblPiezasxFila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(60, 60, 60)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldFSW1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                            .addComponent(txtFilas, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(70, 70, 70)
-                                .addComponent(jTextFieldCSW1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNiveles, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(69, 69, 69)
                                 .addComponent(jLabel212, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(70, 70, 70)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(jTextFieldCantSW1)))
+                            .addComponent(txtCanastas)))
                     .addComponent(jLabelCanastasCom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelCanastasCom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -339,11 +311,11 @@ public class RegistroRBPView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextFieldFSW2)
+                                .addComponent(txtFilasCompletas)
                                 .addGap(65, 65, 65)
-                                .addComponent(jTextFieldCSW2)
+                                .addComponent(txtNivelesCompletos)
                                 .addGap(65, 65, 65)
-                                .addComponent(jTextFieldCantSW2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSobrante, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblFilasCompletas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -355,7 +327,42 @@ public class RegistroRBPView extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnCambioMOG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(btnParoLinea, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(btnDAS, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                            .addComponent(btnDAS, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTurno))
+                                .addGap(60, 60, 60)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblHoraInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtHoraInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                                .addGap(70, 70, 70)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblPiezasRecibidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(lblNumeroEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(lblEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                                    .addComponent(txtNumeroEmpleado)
+                                    .addComponent(txtNombreEmpleado))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(lblScrapTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -367,15 +374,15 @@ public class RegistroRBPView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(lblNumeroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblNumeroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                            .addComponent(txtNumeroEmpleado))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                            .addComponent(txtNombreEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                             .addComponent(lblEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(btnDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(50, 50, 50)
@@ -388,7 +395,7 @@ public class RegistroRBPView extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
@@ -401,10 +408,10 @@ public class RegistroRBPView extends javax.swing.JFrame {
                     .addComponent(lblPiezasxFila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldRSW1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldFSW1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCSW1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCantSW1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPiezasxFila, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFilas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNiveles, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCanastas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(jLabelCanastasCom1)
                 .addGap(25, 25, 25)
@@ -416,9 +423,9 @@ public class RegistroRBPView extends javax.swing.JFrame {
                             .addComponent(lblFilasCompletas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldCSW2, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                            .addComponent(jTextFieldCantSW2)
-                            .addComponent(jTextFieldFSW2)))
+                            .addComponent(txtNivelesCompletos, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                            .addComponent(txtSobrante)
+                            .addComponent(txtFilasCompletas)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnDAS, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
@@ -510,20 +517,9 @@ public class RegistroRBPView extends javax.swing.JFrame {
     public javax.swing.JLabel jLabelCanastasCom;
     public javax.swing.JLabel jLabelCanastasCom1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    public javax.swing.JTextField jTextFieldCSW1;
-    public javax.swing.JTextField jTextFieldCSW2;
-    public javax.swing.JTextField jTextFieldCantSW1;
-    public javax.swing.JTextField jTextFieldCantSW2;
-    public javax.swing.JTextField jTextFieldFSW1;
-    public javax.swing.JTextField jTextFieldFSW2;
-    public javax.swing.JTextField jTextFieldRSW1;
     private javax.swing.JLabel lblEmpleado;
     public javax.swing.JLabel lblFilasCompletas;
     private javax.swing.JLabel lblHoraInicio;
@@ -534,5 +530,16 @@ public class RegistroRBPView extends javax.swing.JFrame {
     private javax.swing.JLabel lblScrapTotal;
     public javax.swing.JLabel lblTituloRBP;
     private javax.swing.JLabel lblTurno;
+    public javax.swing.JTextField txtCanastas;
+    public javax.swing.JTextField txtFecha;
+    public javax.swing.JTextField txtFilas;
+    public javax.swing.JTextField txtFilasCompletas;
+    public javax.swing.JTextField txtHoraInicio;
+    public javax.swing.JTextField txtNiveles;
+    public javax.swing.JTextField txtNivelesCompletos;
+    public javax.swing.JTextField txtNombreEmpleado;
+    public javax.swing.JPasswordField txtNumeroEmpleado;
+    public javax.swing.JTextField txtPiezasxFila;
+    public javax.swing.JTextField txtSobrante;
     // End of variables declaration//GEN-END:variables
 }

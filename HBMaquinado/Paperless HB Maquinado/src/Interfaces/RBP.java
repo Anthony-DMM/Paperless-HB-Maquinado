@@ -17,7 +17,7 @@ public class RBP {
 
     private static RBP instance;
     private int id;
-    private String hora;
+    private String hora, fecha, codigoEmpleado, nombreEmpleado;
 
     public static RBP getInstance() {
         if (instance == null) {
