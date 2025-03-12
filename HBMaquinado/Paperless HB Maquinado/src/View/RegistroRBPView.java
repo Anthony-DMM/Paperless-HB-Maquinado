@@ -154,9 +154,11 @@ public class RegistroRBPView extends javax.swing.JFrame {
         lblScrapTotal.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         lblScrapTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jTextFieldRSW1.setBackground(new java.awt.Color(255, 255, 0));
+        jTextFieldRSW1.setEditable(false);
+        jTextFieldRSW1.setBackground(new java.awt.Color(204, 204, 204));
         jTextFieldRSW1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         jTextFieldRSW1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldRSW1.setFocusable(false);
 
         lblPiezasxFila.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         lblPiezasxFila.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -166,13 +168,17 @@ public class RegistroRBPView extends javax.swing.JFrame {
         jLabel9.setText("Filas");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jTextFieldFSW1.setBackground(new java.awt.Color(255, 255, 0));
+        jTextFieldFSW1.setEditable(false);
+        jTextFieldFSW1.setBackground(new java.awt.Color(204, 204, 204));
         jTextFieldFSW1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         jTextFieldFSW1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldFSW1.setFocusable(false);
 
-        jTextFieldCSW1.setBackground(new java.awt.Color(255, 255, 0));
+        jTextFieldCSW1.setEditable(false);
+        jTextFieldCSW1.setBackground(new java.awt.Color(204, 204, 204));
         jTextFieldCSW1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         jTextFieldCSW1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldCSW1.setFocusable(false);
 
         jLabel212.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel212.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -182,18 +188,22 @@ public class RegistroRBPView extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Canastas");
 
-        jTextFieldCantSW1.setBackground(new java.awt.Color(255, 255, 0));
+        jTextFieldCantSW1.setEditable(false);
+        jTextFieldCantSW1.setBackground(new java.awt.Color(204, 204, 204));
         jTextFieldCantSW1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         jTextFieldCantSW1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldCantSW1.setFocusable(false);
 
         jLabelCanastasCom1.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabelCanastasCom1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCanastasCom1.setText("Canastas Incompletas");
         jLabelCanastasCom1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextFieldFSW2.setBackground(new java.awt.Color(255, 255, 0));
+        jTextFieldFSW2.setEditable(false);
+        jTextFieldFSW2.setBackground(new java.awt.Color(204, 204, 204));
         jTextFieldFSW2.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         jTextFieldFSW2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldFSW2.setFocusable(false);
 
         lblFilasCompletas.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         lblFilasCompletas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -202,13 +212,17 @@ public class RegistroRBPView extends javax.swing.JFrame {
         lblNivelesCompletos.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         lblNivelesCompletos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jTextFieldCSW2.setBackground(new java.awt.Color(255, 255, 0));
+        jTextFieldCSW2.setEditable(false);
+        jTextFieldCSW2.setBackground(new java.awt.Color(204, 204, 204));
         jTextFieldCSW2.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         jTextFieldCSW2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldCSW2.setFocusable(false);
 
-        jTextFieldCantSW2.setBackground(new java.awt.Color(255, 255, 0));
+        jTextFieldCantSW2.setEditable(false);
+        jTextFieldCantSW2.setBackground(new java.awt.Color(204, 204, 204));
         jTextFieldCantSW2.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         jTextFieldCantSW2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldCantSW2.setFocusable(false);
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
