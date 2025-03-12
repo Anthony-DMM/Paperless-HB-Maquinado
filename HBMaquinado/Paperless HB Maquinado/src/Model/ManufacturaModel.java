@@ -28,15 +28,14 @@ public class ManufacturaModel {
     private static final String ART = "HB";
     private static final String PROCESO_VALIDO = "HBL";
     FechaHora fechaHora = new FechaHora();
+    MOG datosMOG = MOG.getInstance();
+    LineaProduccion lineaProduccion = LineaProduccion.getInstance();
 
     public ManufacturaModel() {
         this.conexion = new DBConexion();
     }
 
     public boolean obtenerDatosOrden(String ordenManufactura) throws SQLException {
-        MOG datosMOG = MOG.getInstance();
-        LineaProduccion lineaProduccion = LineaProduccion.getInstance();
-
         try (Connection cone = conexion.oracle(); Statement sen = cone.createStatement()) {
 
             // Configurar esquema y ejecutar consulta
@@ -46,13 +45,6 @@ public class ManufacturaModel {
 
             if (!procesarResultadoConsulta(res, datosMOG, ordenManufactura)) {
                 return false;
-            }
-
-            try (Connection con = conexion.conexionMySQL()) {
-                int id = insertarDatosMog(con, datosMOG);
-                insertarDatosRbp(con, datosMOG, lineaProduccion, id);
-                actualizarTm(con, datosMOG);
-                insertarCorriendo(con, datosMOG, lineaProduccion);
             }
 
             return true;
@@ -88,10 +80,6 @@ public class ManufacturaModel {
             datosMOG.setSequ(res.getInt(8));
             datosMOG.setTm(res.getString(10));
             datosMOG.setStd(limpiarEstandar(res.getString(9)));
-
-            RBP rbp = RBP.getInstance();
-            String hora = fechaHora.horaActual();
-            rbp.setHora(hora);
         }
 
         if (!ordenEncontrada) {
@@ -123,6 +111,15 @@ public class ManufacturaModel {
         return estandar.trim();
     }
 
+    public void ejecutarTransacciones() throws SQLException {
+        try (Connection con = conexion.conexionMySQL()) {
+            int id = insertarDatosMog(con, datosMOG);
+            insertarDatosRbp(con, datosMOG, lineaProduccion, id);
+            actualizarTm(con, datosMOG);
+            insertarCorriendo(con, datosMOG, lineaProduccion);
+        }
+    }
+    
     private int insertarDatosMog(Connection con, MOG datosMOG) throws SQLException {
         try (CallableStatement cst = con.prepareCall("{call llenarMog(?,?,?,?,?,?,?,?,?,?)}")) {
             cst.setString(1, datosMOG.getMog());
@@ -174,6 +171,9 @@ public class ManufacturaModel {
             cst2.setString(4, fecha);
             cst2.setString(5, lineaProduccion.getLinea());
             cst2.execute();
+            
+            RBP rbp = RBP.getInstance();
+            rbp.setHora(hora);
         }
     }
 

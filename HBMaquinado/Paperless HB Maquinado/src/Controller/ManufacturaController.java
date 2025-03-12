@@ -117,8 +117,13 @@ public class ManufacturaController implements ActionListener {
             MostrarMensaje.mostrarError("Por favor, complete todos los campos para continuar");
             return;
         }
-        navegador.avanzar(registroRBPView, manufacturaView);
-    }
+        try {
+            manufacturaModel.ejecutarTransacciones();
+            navegador.avanzar(registroRBPView, manufacturaView);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }  
     
     private boolean areFieldsEmpty() {
         return new String(manufacturaView.getTxtCodigoSupervisor().getPassword()).trim().isEmpty()
