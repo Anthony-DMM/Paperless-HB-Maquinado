@@ -12,6 +12,7 @@ import Utils.FechaHora;
 import Utils.LimpiarCampos;
 import Utils.MostrarMensaje;
 import Utils.Navegador;
+import View.DibujoView;
 import View.RegistroDASView;
 import View.RegistroRBPView;
 import java.awt.event.ActionEvent;
@@ -47,6 +48,9 @@ public class RegistroDASController implements ActionListener, ItemListener {
     Navegador navegador = Navegador.getInstance();
     RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
     
+    private final DibujoView dibujoView = DibujoView.getInstance();
+    private final DibujoController dibujoController = DibujoController.getInstance(dibujoView);
+    
     
     private final FechaHora fechaHora = new FechaHora();
     private LocalTime horaInicio;
@@ -55,7 +59,8 @@ public class RegistroDASController implements ActionListener, ItemListener {
 
     public enum AccionBoton {
         REGISTRAR_PRODUCCION,
-        REGRESAR
+        REGRESAR,
+        VER_DIBUJO
     }
 
     public RegistroDASController(RegistroDASView registroDASView) {
@@ -132,6 +137,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
         registroDASView.btnRegistrarProduccion.addActionListener(this);
         registroDASView.btnRegresar.addActionListener(this);
         registroDASView.btnFinalizarDAS.addActionListener(this);
+        registroDASView.btnDibujo.addActionListener(this);
     }
 
     private void addFieldListeners(JPasswordField passwordField, java.util.function.Consumer<JPasswordField> handler) {
@@ -172,6 +178,8 @@ public class RegistroDASController implements ActionListener, ItemListener {
             handleRegistroProduccionButton();
         } else if (button.equals(registroDASView.btnRegresar)) {
             handleRegresarButton();
+        } else if (button.equals(registroDASView.btnDibujo)) {
+            handleVerDibujo();
         } else if (button.equals(registroDASView.btnFinalizarDAS)) {
             try {
                 handleFinalizarDASButton();
@@ -179,6 +187,10 @@ public class RegistroDASController implements ActionListener, ItemListener {
                 Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    
+    private void handleVerDibujo() {
+        navegador.avanzar(dibujoView, registroDASView);
     }
 
     private void handleRegistroProduccionButton() {

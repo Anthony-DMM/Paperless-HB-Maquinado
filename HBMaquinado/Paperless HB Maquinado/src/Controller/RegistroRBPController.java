@@ -32,7 +32,7 @@ public class RegistroRBPController implements ActionListener {
     private final RegistroDASView registroDASView = RegistroDASView.getInstance();
     private final RegistroDASController registroDASController = new RegistroDASController(registroDASView);
     private final DibujoView dibujoView = DibujoView.getInstance();
-    private final DibujoController dibujoController = new DibujoController(dibujoView);
+    private final DibujoController dibujoController = DibujoController.getInstance(dibujoView);
     private final Navegador navegador = Navegador.getInstance();
     
     private final FechaHora fechaHora = new FechaHora();
@@ -72,7 +72,7 @@ public class RegistroRBPController implements ActionListener {
                 navegador.avanzar(paroProcesoView, registroRBPView);
                 break;
             case CAMBIO_MOG:
-                navegador.avanzar(registroDASView, registroRBPView);
+                //navegador.avanzar(registroDASView, registroRBPView);
                 break;
             case DIBUJO:
                 navegador.avanzar(dibujoView, registroRBPView);

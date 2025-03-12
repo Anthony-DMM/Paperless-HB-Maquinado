@@ -14,12 +14,21 @@ import java.awt.event.ActionListener;
  * @author ANTHONY-MARTINEZ
  */
 public class DibujoController implements ActionListener {
+    
+    private static DibujoController instance;
     private final DibujoView dibujoView;
     private final Navegador navegador = Navegador.getInstance();
     
     public DibujoController(DibujoView dibujoView) {
         this.dibujoView = dibujoView;
-        dibujoView.getBtnRegresar().addActionListener(this);
+        dibujoView.btnRegresar.addActionListener(this);
+    }
+    
+    public static DibujoController getInstance(DibujoView dibujoView) {
+        if (instance == null) {
+            instance = new DibujoController(dibujoView);
+        }
+        return instance;
     }
 
     @Override
