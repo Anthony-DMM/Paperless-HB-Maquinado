@@ -75,6 +75,7 @@ public class ManufacturaController implements ActionListener {
             if (manufacturaModel.obtenerDatosOrden(ordenIngresada)) {
                 ValidarCampos.bloquearCampo(manufacturaView.txtMogCapturada);
                 llenarCamposMOG();
+                manufacturaView.btnSiguiente.requestFocusInWindow();
             } else {
                 limpiarCamposMOG();
             }
