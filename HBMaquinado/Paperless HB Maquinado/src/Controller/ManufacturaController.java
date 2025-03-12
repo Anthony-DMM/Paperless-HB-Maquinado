@@ -113,7 +113,7 @@ public class ManufacturaController implements ActionListener {
     
     private void handleSiguienteButton() {
         if (areFieldsEmpty()) {
-            MostrarMensaje.mostrarError("Por favor, complete todos los campos antes de continuar");
+            MostrarMensaje.mostrarError("Por favor, complete todos los campos para continuar");
             return;
         }
         navegador.avanzar(registroRBPView, manufacturaView);
@@ -135,21 +135,21 @@ public class ManufacturaController implements ActionListener {
         MOG datosMOG = MOG.getInstance();
         LineaProduccion datosLinea = LineaProduccion.getInstance();
 
-        manufacturaView.getTxtMog().setText(datosMOG.getMog());
-        manufacturaView.getTxtModelo().setText(datosMOG.getModelo());
-        manufacturaView.getTxtDibujo().setText(datosMOG.getNo_dibujo());
-        manufacturaView.getTxtCantidadPlaneada().setText(String.valueOf(datosMOG.getCantidad_planeada()));
-        manufacturaView.getTxtParte().setText(datosMOG.getNo_parte());
-        manufacturaView.getTxtProceso().setText(datosLinea.getProceso());
+        manufacturaView.txtMog.setText(datosMOG.getMog());
+        manufacturaView.txtModelo.setText(datosMOG.getModelo());
+        manufacturaView.txtDibujo.setText(datosMOG.getNo_dibujo());
+        manufacturaView.txtCantidadPlaneada.setText(String.valueOf(datosMOG.getCantidad_planeada()));
+        manufacturaView.txtParte.setText(datosMOG.getNo_parte());
+        manufacturaView.txtProceso.setText(datosLinea.getProceso());
     }
 
     private void limpiarCamposMOG() {
         LimpiarCampos.limpiarCampos(manufacturaView.getTxtMogCapturada(),
-                manufacturaView.getTxtMog(),
-                manufacturaView.getTxtModelo(),
-                manufacturaView.getTxtCantidadPlaneada(),
-                manufacturaView.getTxtDibujo(),
-                manufacturaView.getTxtParte(),
-                manufacturaView.getTxtProceso());
+                manufacturaView.txtMog,
+                manufacturaView.txtModelo,
+                manufacturaView.txtCantidadPlaneada,
+                manufacturaView.txtDibujo,
+                manufacturaView.txtParte,
+                manufacturaView.txtProceso);
     }
 }
