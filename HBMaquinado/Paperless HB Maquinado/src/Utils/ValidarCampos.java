@@ -36,6 +36,11 @@ public class ValidarCampos {
         textField.setBackground(Color.YELLOW);
         textField.requestFocusInWindow();
     }
+    
+    public static void bloquearCampo(JTextField textField) {
+        textField.setEditable(false);
+        textField.setBackground(Color.LIGHT_GRAY);
+    }
 
     private static void mostrarError(String mensajeError) {
         JOptionPane.showMessageDialog(null, mensajeError, "Error", JOptionPane.ERROR_MESSAGE);

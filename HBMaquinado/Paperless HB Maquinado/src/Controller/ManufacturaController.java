@@ -34,9 +34,10 @@ public class ManufacturaController implements ActionListener {
     }
     
     private void addListeners() {
-        manufacturaView.getTxtMogCapturada().addActionListener(this);
-        manufacturaView.getBtnSiguiente().addActionListener(this);
-        manufacturaView.getBtnRegresar().addActionListener(this);
+        manufacturaView.txtMogCapturada.addActionListener(this);
+        manufacturaView.btnSiguiente.addActionListener(this);
+        manufacturaView.btnRegresar.addActionListener(this);
+        manufacturaView.btnCorregir.addActionListener(this);
         
         manufacturaView.getTxtCodigoSupervisor().addKeyListener(new KeyAdapter() {
             @Override
@@ -52,17 +53,19 @@ public class ManufacturaController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         
-        if (source == manufacturaView.getTxtMogCapturada()) {
+        if (source == manufacturaView.txtMogCapturada) {
             handleMogCapturada();
-        } else if (source == manufacturaView.getBtnSiguiente()) {
+        } else if (source == manufacturaView.btnSiguiente) {
             handleSiguienteButton();
-        } else if (source == manufacturaView.getBtnRegresar()) {
+        } else if (source == manufacturaView.btnRegresar) {
             navegador.regresar(manufacturaView);
+        } else if (source == manufacturaView.btnCorregir) {
+            handleCorregirDatos();
         }
     }
     
     private void handleMogCapturada() {
-        String ordenIngresada = manufacturaView.getTxtMogCapturada().getText().trim();
+        String ordenIngresada = manufacturaView.txtMogCapturada.getText().trim();
         if (ordenIngresada.isEmpty()) {
             MostrarMensaje.mostrarError("Ingrese una orden de manufactura");
             return;
@@ -70,6 +73,7 @@ public class ManufacturaController implements ActionListener {
 
         try {
             if (manufacturaModel.obtenerDatosOrden(ordenIngresada)) {
+                ValidarCampos.bloquearCampo(manufacturaView.txtMogCapturada);
                 llenarCamposMOG();
             } else {
                 limpiarCamposMOG();
@@ -89,14 +93,22 @@ public class ManufacturaController implements ActionListener {
 
         try {
             if (manufacturaModel.validarSupervisor(codigoIngresado)) {
-                manufacturaView.getTxtSupervisorAsignado().setText(LineaProduccion.getInstance().getSupervisor());
-                ValidarCampos.activarCampo(manufacturaView.getTxtMogCapturada());
+                manufacturaView.txtSupervisorAsignado.setText(LineaProduccion.getInstance().getSupervisor());
+                ValidarCampos.activarCampo(manufacturaView.txtMogCapturada);
+                ValidarCampos.bloquearCampo(manufacturaView.txtCodigoSupervisor);
             } else {
-                LimpiarCampos.limpiarCampo(manufacturaView.getTxtCodigoSupervisor());
+                LimpiarCampos.limpiarCampo(manufacturaView.txtSupervisorAsignado);
             }
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al validar el código del supervisor", ex);
         }
+    }
+    
+    private void handleCorregirDatos() {
+        LimpiarCampos.limpiarCampos(manufacturaView.txtCodigoSupervisor, manufacturaView.txtSupervisorAsignado);
+        limpiarCamposMOG();
+        ValidarCampos.activarCampo(manufacturaView.txtCodigoSupervisor);
+        ValidarCampos.bloquearCampo(manufacturaView.txtMogCapturada);
     }
     
     private void handleSiguienteButton() {
