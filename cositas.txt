@@ -10,23 +10,75 @@ INSPECTOR
 EMPLEADO
 #6722701617#
 
-PROCEDIMIENTOS A CREAR/ANALIZAR
-registroxhora
-obtener_registro_x_hora
+CONSULTA PARA TRAER HISTORIAL DE PAROS
+SELECT causas_paro_idcausas_paro, tiempo, detalle, hora_inicio, hora_fin 
+FROM `registrocausasparo` 
+WHERE linea = "TH17" 
+AND fecha = "2025-03-13" 
+AND mog_idmog = 216;
+
+obtenerAndonPorProceso
+BEGIN
+SELECT id_andon, descripcion
+FROM catalogo_andon AS ca
+INNER JOIN catalogo_andon_has_procesos AS cap ON cap.catalogo_andon_id_andon = ca.id_andon
+WHERE cap.procesos_id_proceso = proceso_id;
+END
+
+obtenerNivelMaquinado
+BEGIN
+SELECT id_nivel, nivel
+FROM catalogo_nivel
+END
 
 
------- AÑADIR EL TURNO AL DAS
------- TRAER UNICAMENTE LOS DATOS DEL DAS ACTUAL BASADO EN TURNO Y FECHA
------- AÑADIR LLENADO Y VALIDACIÓN DE DAS EN EL REGISTRO DAS EN LOS BOTONES FINALIZAR DAS Y PARO EN PROCESO
------- REALIZAR EL REGISTRO DE PARO EN PROCESO
+BEGIN
+    DECLARE empleado_id INT;
+    DECLARE mog_id INT; -- Declarar variable para mog_id
+	DECLARE andon_id INT;
+	DECLARE nivel_id INT;
 
-das son los apas
-das_prod los shikillos
+    SELECT id_empleado INTO empleado_id
+    FROM empleado
+    WHERE codigo_alea = empleado_numero;
 
-buscarDAS
-llenarDAS
+    SELECT id_mog INTO mog_id -- Asignar valor a mog_id
+    FROM mog
+    WHERE mog.mog = codigo_mog;
+    
+    SELECT id_andon INTO andon_id
+    FROM catalogo_andon
+    WHERE catalogo_andon.id_andon = codigo_andon;
+    
+    SELECT id_nivel INTO nivel_id
+    FROM catalogo_nivel
+    WHERE catalogo_nivel.id_nivel = codigo_nivel;
 
-
-
-
-166
+    INSERT INTO registrocausasparo (
+        empleado_idempleado,
+        causas_paro_idcausas_paro,
+        tiempo,
+        detalle,
+        hora_inicio,
+        fecha,
+        linea,
+        das_id_das,
+        mog_idmog,
+        hora_fin,
+        catalogo_andon_id_andon,
+        catalogo_nivel_id_nivel
+    ) VALUES (
+        empleado_id,
+        causas_paro_id_causas_paro,
+        tiempo,
+        detalle,
+        hora_inicio,
+        fecha,
+        linea,
+        das_id_das,
+        mog_id,
+        hora_fin,
+        andon_id,
+        nivel_id
+    );
+END

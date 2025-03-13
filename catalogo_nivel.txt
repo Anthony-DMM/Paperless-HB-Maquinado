@@ -1,0 +1,12 @@
+CREATE TABLE catalogo_nivel (
+    id_nivel INT PRIMARY KEY AUTO_INCREMENT,
+    nivel INT NOT NULL,
+    escalacion VARCHAR(100)
+);
+
+-- Insertar los niveles iniciales
+INSERT INTO catalogo_nivel (nivel, escalacion) VALUES
+(1, 'Operador'),
+(2, 'Soporte de proceso'),
+(3, 'Supervisor/Mantenimiento/Inspección'),
+(4, 'Gerente/Mantenimiento SV/Inspección');
