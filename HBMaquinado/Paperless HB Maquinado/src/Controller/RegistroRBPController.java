@@ -4,7 +4,8 @@
  */
 package Controller;
 
-import Interfaces.RBP;
+import Entities.Operador;
+import Entities.RBP;
 import Model.RegistroRBPModel;
 import Utils.FechaHora;
 import Utils.LimpiarCampos;
@@ -48,6 +49,7 @@ public class RegistroRBPController implements ActionListener {
     private LocalTime horaInicio;
     
     private final RBP datosRBP = RBP.getInstance();
+    private final Operador datosOperador = Operador.getInstance();
     
     private static final Logger LOGGER = Logger.getLogger(ManufacturaController.class.getName());
     
@@ -100,7 +102,11 @@ public class RegistroRBPController implements ActionListener {
     private void handleButtonAction(AccionBoton accion) {
         switch (accion) {
             case DAS:
-                navegador.avanzar(registroDASView, registroRBPView);
+                if (new String(registroRBPView.txtNumeroEmpleado.getPassword()).isEmpty() && registroRBPView.txtNombreEmpleado.getText().isEmpty()) {
+                    MostrarMensaje.mostrarAdvertencia("Para iniciar el llenado del DAS es necesario capturar el número de empleado");
+                } else {
+                    navegador.avanzar(registroDASView, registroRBPView);
+                }
                 break;
             case PARO_LINEA:
                 ParoProcesoView paroProcesoView = new ParoProcesoView();
@@ -146,16 +152,16 @@ public class RegistroRBPController implements ActionListener {
 
         if (numeroEmpleadoIngresado.isEmpty()) {
             MostrarMensaje.mostrarAdvertencia("Es necesario colocar el código de empleado");
-            LimpiarCampos.limpiarCampos(registroDASView.getTxtNumeroEmpleado(), registroDASView.getTxtNombreEmpleado());
+            LimpiarCampos.limpiarCampos(registroRBPView.txtNumeroEmpleado, registroRBPView.txtNumeroEmpleado);
         } else {
             try {
                 if (registroRBPModel.validarOperador(numeroEmpleadoIngresado)) {
                     String codigoEmpleado = numeroEmpleadoIngresado;
-                    datosRBP.setCodigoEmpleado(codigoEmpleado);
-                    registroRBPView.txtNombreEmpleado.setText(datosRBP.getNombreEmpleado());
+                    datosOperador.setCódigo(codigoEmpleado);
+                    registroRBPView.txtNombreEmpleado.setText(datosOperador.getNombre());
                     ValidarCampos.activarCampos(registroRBPView.txtPiezasxFila, registroRBPView.txtFilas, registroRBPView.txtNiveles, registroRBPView.txtCanastas, registroRBPView.txtFilasCompletas, registroRBPView.txtNivelesCompletos, registroRBPView.txtSobrante);
                 } else {
-                    LimpiarCampos.limpiarCampos(registroDASView.getTxtNumeroEmpleado(), registroDASView.getTxtNombreEmpleado());
+                    LimpiarCampos.limpiarCampos(registroRBPView.txtNumeroEmpleado, registroRBPView.txtNumeroEmpleado);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);

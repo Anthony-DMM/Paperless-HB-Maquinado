@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Entities.Operador;
 import Interfaces.DAS;
 import Interfaces.HoraxHora;
 import Interfaces.MOG;
@@ -129,7 +130,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
     private void addListeners() {
         addFieldListeners(registroDASView.getTxtCodigoSoporte(), this::handleCodigoSoporteCapturado);
         addFieldListeners(registroDASView.getTxtCodigoInspector(), this::handleCodigoInspectorCapturado);
-        addFieldListeners(registroDASView.getTxtNumeroEmpleado(), this::handleNumeroEmpleadoCapturado);
+        //addFieldListeners(registroDASView.getTxtNumeroEmpleado(), this::handleNumeroEmpleadoCapturado);
 
         registroDASView.cbxOK.addItemListener(this);
         registroDASView.cbxNG.addItemListener(this);
@@ -215,9 +216,9 @@ public class RegistroDASController implements ActionListener, ItemListener {
             return;
         }
 
-        String numeroEmpleado = registroDASView.txtNumeroEmpleado.getText().trim();
+        Operador datosOperador = Operador.getInstance();
         try {
-            registroDASModel.registrarPiezasPorHora(numeroEmpleado, acumulado, calidad);
+            registroDASModel.registrarPiezasPorHora(datosOperador.getCódigo(), acumulado, calidad);
             LimpiarCampos.limpiarCampos(registroDASView.txtAcumulado);
             registroDASView.cbxOK.setSelected(false);
             registroDASView.cbxNG.setSelected(false);
@@ -293,7 +294,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
         }
     }
 
-    private void handleNumeroEmpleadoCapturado(JPasswordField passwordField) {
+    /*private void handleNumeroEmpleadoCapturado(JPasswordField passwordField) {
         char[] passwordChars = passwordField.getPassword();
         String numeroEmpleadoIngresado = new String(passwordChars);
 
@@ -313,7 +314,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
                 Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }
+    }*/
 
     private boolean areFieldsEmpty() {
         char[] codigoSoporte = registroDASView.getTxtCodigoSoporte().getPassword();
@@ -322,12 +323,8 @@ public class RegistroDASController implements ActionListener, ItemListener {
         char[] codigoInspector = registroDASView.getTxtCodigoInspector().getPassword();
         String codigoInspectorIngresado = new String(codigoInspector);
 
-        char[] codigoEmpleado = registroDASView.getTxtNumeroEmpleado().getPassword();
-        String codigoEmpleadoIngresado = new String(codigoEmpleado);
-
         return codigoSoporteIngresado.isEmpty()
-                || codigoInspectorIngresado.isEmpty()
-                || codigoEmpleadoIngresado.isEmpty();
+                || codigoInspectorIngresado.isEmpty();
     }
 
     private void handleFinalizarDASButton() throws SQLException {

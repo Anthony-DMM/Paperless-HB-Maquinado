@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Interfaces;
+package Entities;
 
 import lombok.Builder;
 import lombok.Data;
@@ -13,20 +13,20 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class RBP {
-
-    private static RBP instance;
-    private int id;
-    private String hora, fecha, codigoEmpleado, nombreEmpleado;
-
-    public static RBP getInstance() {
+public class Operador {
+    private String nombre;
+    private String código;
+    
+    private static Operador instance;
+    
+    public static Operador getInstance() {
         if (instance == null) {
-            instance = RBP.builder().build();
+            instance = Operador.builder().build();
         }
         return instance;
     }
 
-    public static void setInstance(RBP rbp) {
-        instance = rbp;
+    public static void setInstance(Operador operador) {
+        instance = operador;
     }
 }

@@ -4,9 +4,10 @@
  */
 package Model;
 
+import Entities.Operador;
 import Interfaces.DAS;
 import Interfaces.LineaProduccion;
-import Interfaces.RBP;
+import Entities.RBP;
 import Utils.MostrarMensaje;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -25,6 +26,7 @@ public class RegistroRBPModel {
     private static final Logger LOGGER = Logger.getLogger(RegistroRBPModel.class.getName());
     private final LocalDate fechaF;
     private final RBP datosRBP = RBP.getInstance();
+    private final Operador datosOperador = Operador.getInstance();
 
     public RegistroRBPModel() {
         this.conexion = new DBConexion();
@@ -48,7 +50,7 @@ public class RegistroRBPModel {
                 MostrarMensaje.mostrarError("No se encontró ningún empleado");
                 return false;
             } else {
-                datosRBP.setNombreEmpleado(empleadoEncontrado);
+                datosOperador.setNombre(empleadoEncontrado);
                 return true;
             }
         } catch (SQLException ex) {

@@ -8,7 +8,8 @@ import Interfaces.DAS;
 import Interfaces.HoraxHora;
 import Interfaces.LineaProduccion;
 import Interfaces.MOG;
-import Interfaces.RBP;
+import Entities.RBP;
+import Utils.MostrarMensaje;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -32,6 +33,7 @@ public class RegistroDASModel {
     private final DBConexion conexion;
     private LocalDate fechaF;
     private LocalTime hora;
+    DAS datosDAS = DAS.getInstance();
 
     public RegistroDASModel() {
         this.conexion = new DBConexion();
@@ -47,37 +49,51 @@ public class RegistroDASModel {
             JOptionPane.showMessageDialog(null, "Error al obtener la fecha y hora.");
         }
     }
-
-    public boolean validarSoporteRapido(String codigoSoporteRapido) throws SQLException {
-        return validarEntidad(codigoSoporteRapido, "traerKeeper", "No se encontró ningún soporte rápido asignado", DAS.getInstance()::setNombreSoporteRapido);
-    }
-
+    
     public boolean validarInspector(String codigoInspector) throws SQLException {
-        return validarEntidad(codigoInspector, "traerInspector", "No se encontró ningún inspector asignado", DAS.getInstance()::setNombreInspector);
-    }
-
-    public boolean validarOperador(String numeroEmpleado) throws SQLException {
-        return validarEntidad(numeroEmpleado, "traerOperador", "No se encontró ningún empleado", DAS.getInstance()::setNombreEmpleado);
-    }
-
-    private boolean validarEntidad(String codigo, String storedProcedure, String mensajeError, java.util.function.Consumer<String> setter) throws SQLException {
         int proceso = 1;
-        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call " + storedProcedure + "(?,?,?,?)}")) {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call traerInspector(?,?,?,?)}")) {
 
-            cst.setString(1, codigo);
+            cst.setString(1, codigoInspector);
             cst.registerOutParameter(2, java.sql.Types.INTEGER);
             cst.setInt(3, proceso);
             cst.registerOutParameter(4, java.sql.Types.VARCHAR);
             cst.executeQuery();
 
             int valor = cst.getInt(2);
-            String entidadEncontrada = cst.getString(4);
+            String inspectorEncontrado = cst.getString(4);
 
             if (valor == 0) {
-                JOptionPane.showMessageDialog(null, mensajeError);
+                MostrarMensaje.mostrarError("No se encontró ningún inspector asignado");
                 return false;
             } else {
-                setter.accept(entidadEncontrada);
+                datosDAS.setNombreInspector(inspectorEncontrado);
+                return true;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al obtener datos de la entidad", ex);
+            throw ex;
+        }
+    }
+    
+    public boolean validarSoporteRapido(String codigoSoporteRapido) throws SQLException {
+        int proceso = 1;
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call traerKeeper(?,?,?,?)}")) {
+
+            cst.setString(1, codigoSoporteRapido);
+            cst.registerOutParameter(2, java.sql.Types.INTEGER);
+            cst.setInt(3, proceso);
+            cst.registerOutParameter(4, java.sql.Types.VARCHAR);
+            cst.executeQuery();
+
+            int valor = cst.getInt(2);
+            String soporteEncontrado = cst.getString(4);
+
+            if (valor == 0) {
+                MostrarMensaje.mostrarError("No se encontró ningún soporte rápido asignado");
+                return false;
+            } else {
+                datosDAS.setNombreSoporteRapido(soporteEncontrado);
                 return true;
             }
         } catch (SQLException ex) {
