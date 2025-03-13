@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import Interfaces.ParoProceso;
+import Entities.ParoProceso;
 import Model.ParoProcesoModel;
 import Utils.FechaHora;
 import Utils.MostrarMensaje;
@@ -43,13 +43,15 @@ public class ParoProcesoController implements ActionListener {
     String tiempoTranscurrido;
     ParoProceso datosParoProceso = ParoProceso.getInstance();
     private final Map<String, Integer> causasMap = new HashMap<>();
+    private final Map<String, Integer> andonesMap = new HashMap<>();
+    private final Map<String, Integer> nivelesMap = new HashMap<>();
     
     private static final Logger LOGGER = Logger.getLogger(ParoProcesoController.class.getName());
 
     public ParoProcesoController(ParoProcesoView registroParoProcesoView) {
         this.registroParoProcesoView = registroParoProcesoView;
 
-        this.registroParoProcesoView.btnFinalizar.addActionListener(this);
+        this.registroParoProcesoView.btnCancelar.addActionListener(this);
         this.registroParoProcesoView.cboxCategoria.addActionListener(this);
 
         timer = new Timer();
@@ -94,6 +96,24 @@ public class ParoProcesoController implements ActionListener {
                 registroParoProcesoView.cboxCategoria.addItem(paro.getCategoria());
             });
         }
+        
+        if (registroParoProcesoModel.obtenerAndonPorProceso()) {
+            datosParoProceso = ParoProceso.getInstance();
+
+            datosParoProceso.getListaAndones().forEach(paro -> {
+                registroParoProcesoView.cboxAndon.addItem(paro.getDescripcion_andon());
+                andonesMap.put(paro.getDescripcion_andon(), paro.getId_andon());
+            });
+        }
+        
+        if (registroParoProcesoModel.obtenerNivelMaquinado()) {
+            datosParoProceso = ParoProceso.getInstance();
+
+            datosParoProceso.getListaNiveles().forEach(paro -> {
+                registroParoProcesoView.cboxNivel.addItem(String.valueOf(paro.getNivel()));
+                nivelesMap.put(String.valueOf(paro.getNivel()), paro.getId_nivel());
+            });
+        }
     }
 
     private void actualizarTiempoTranscurrido() throws SQLException {
@@ -117,7 +137,7 @@ public class ParoProcesoController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == registroParoProcesoView.btnFinalizar) {
+        if (e.getSource() == registroParoProcesoView.btnCancelar) {
             try {
                 handleRegistrarParo();
             } catch (SQLException ex) {
@@ -137,16 +157,30 @@ public class ParoProcesoController implements ActionListener {
             MostrarMensaje.mostrarError("Es necesario completar todos los campos para registrar el paro");
         } else {
             int minutosTranscurridos = obtenerMinutosTranscurridos(tiempoTranscurrido);
-            if (minutosTranscurridos < 5) {
+            if (minutosTranscurridos < 0) {
                 MostrarMensaje.mostrarInfo("El paro en proceso no se registrará ya que su duración es menor a 5 minutos");
                 Navegador.getInstance().regresar(registroParoProcesoView);
             } else {
                 String causaSeleccionada = (String) registroParoProcesoView.cboxCausa.getSelectedItem();
-                String detalleCausa = registroParoProcesoView.txtDetalle.getText();
                 int idCausaSeleccionada = causasMap.get(causaSeleccionada);
+                String detalleCausa = registroParoProcesoView.txtDetalle.getText();
+                
+                Integer idAndonSeleccionado = null;
+                Integer idNivelSeleccionado = null;
+
+                String andonSeleccionado = (String) registroParoProcesoView.cboxAndon.getSelectedItem();
+                if (andonSeleccionado != null) {
+                    idAndonSeleccionado = andonesMap.get(andonSeleccionado);
+                }
+
+                String nivelSeleccionado = (String) registroParoProcesoView.cboxNivel.getSelectedItem();
+                if (nivelSeleccionado != null) {
+                    idNivelSeleccionado = nivelesMap.get(nivelSeleccionado);
+                }
+                
                 String horaFin = fechaHora.horaActual();
                 String horaInicioFormateada = fechaHora.timestampToString(horaInicio, "HH:mm:ss");
-                registroParoProcesoModel.registrarParoProceso(idCausaSeleccionada, minutosTranscurridos, detalleCausa, horaInicioFormateada, horaFin);
+                registroParoProcesoModel.registrarParoProceso(idCausaSeleccionada, minutosTranscurridos, detalleCausa, horaInicioFormateada, horaFin, idAndonSeleccionado, idNivelSeleccionado);
                 MostrarMensaje.mostrarInfo("Se ha registrado el paro en proceso");
                 Navegador.getInstance().regresar(registroParoProcesoView);
             }

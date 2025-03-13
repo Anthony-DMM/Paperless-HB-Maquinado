@@ -24,12 +24,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JPasswordField;
 
 /**
  *
@@ -109,9 +106,13 @@ public class RegistroRBPController implements ActionListener {
                 }
                 break;
             case PARO_LINEA:
-                ParoProcesoView paroProcesoView = new ParoProcesoView();
-                ParoProcesoController paroProcesoController = new ParoProcesoController(paroProcesoView);
-                navegador.avanzar(paroProcesoView, registroRBPView);
+                if (new String(registroRBPView.txtNumeroEmpleado.getPassword()).isEmpty() && registroRBPView.txtNombreEmpleado.getText().isEmpty()) {
+                    MostrarMensaje.mostrarAdvertencia("Para registrar el paro en proceso es necesario capturar el número de empleado");
+                } else {
+                    ParoProcesoView paroProcesoView = new ParoProcesoView();
+                    ParoProcesoController paroProcesoController = new ParoProcesoController(paroProcesoView);
+                    navegador.avanzar(paroProcesoView, registroRBPView);
+                }
                 break;
             case CAMBIO_MOG:
                 //navegador.avanzar(registroDASView, registroRBPView);

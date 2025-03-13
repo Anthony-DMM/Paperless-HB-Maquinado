@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Interfaces;
+package Entities;
 
 import java.util.List;
 import lombok.Builder;
@@ -18,13 +18,13 @@ public class ParoProceso {
 
     private static ParoProceso instance;
 
-    String descripcion,
-            categoria;
-    int idcausas_paro,
-            numero_causas_paro;
+    String descripcion, categoria, descripcion_andon;
+    int idcausas_paro, numero_causas_paro, id_andon, id_nivel, nivel;
 
     private List<ParoProceso> listaCausas;
     private List<ParoProceso> listaCategorias;
+    private List<ParoProceso> listaAndones;
+    private List<ParoProceso> listaNiveles;
 
     public static ParoProceso getInstance() {
         if (instance == null) {

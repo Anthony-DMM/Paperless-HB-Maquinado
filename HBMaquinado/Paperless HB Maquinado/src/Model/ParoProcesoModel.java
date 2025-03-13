@@ -4,10 +4,11 @@
  */
 package Model;
 
+import Entities.Operador;
 import Interfaces.DAS;
 import Interfaces.LineaProduccion;
 import Interfaces.MOG;
-import Interfaces.ParoProceso;
+import Entities.ParoProceso;
 import Utils.FechaHora;
 import Utils.MostrarMensaje;
 import java.sql.CallableStatement;
@@ -33,6 +34,7 @@ public class ParoProcesoModel {
     String fecha;
     Date fechaUtil;
     java.sql.Date fechaF;
+    int proceso = 1;
 
     public ParoProcesoModel() {
         this.conexion = new DBConexion();
@@ -47,9 +49,8 @@ public class ParoProcesoModel {
             Logger.getLogger(ParoProcesoModel.class.getName()).log(Level.SEVERE, "Error al parsear la fecha", ex);
         }
     }
-
+    
     public boolean obtenerCategoriasParoProceso() throws SQLException {
-        int proceso = 1;
         try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call obtenerCategoriasParoProceso(?)}")) {
 
             cst.setInt(1, proceso);
@@ -77,8 +78,63 @@ public class ParoProcesoModel {
         }
     }
 
+    public boolean obtenerAndonPorProceso() throws SQLException {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call obtenerAndonPorProceso(?)}")) {
+
+            cst.setInt(1, proceso);
+            ResultSet resultSet = cst.executeQuery();
+
+            if (!resultSet.isBeforeFirst()) {
+                MostrarMensaje.mostrarError("No se pudieron obtener los andones de paro en proceso");
+                return false;
+            } else {
+                List<ParoProceso> listaAndones = new ArrayList<>();
+                while (resultSet.next()) {
+                    ParoProceso paroProceso = ParoProceso.builder()
+                            .id_andon(resultSet.getInt("id_andon"))
+                            .descripcion_andon(resultSet.getString("descripcion"))
+                            .build();
+                    listaAndones.add(paroProceso);
+                }
+
+                ParoProceso paroProceso = ParoProceso.getInstance();
+                paroProceso.setListaAndones(listaAndones);
+                return true;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al obtener los andones de paro en proceso", ex);
+            throw ex;
+        }
+    }
+    
+    public boolean obtenerNivelMaquinado() throws SQLException {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call obtenerNivelMaquinado()}")) {
+            ResultSet resultSet = cst.executeQuery();
+
+            if (!resultSet.isBeforeFirst()) {
+                MostrarMensaje.mostrarError("No se pudieron obtener los niveles de paro en proceso");
+                return false;
+            } else {
+                List<ParoProceso> listaNiveles = new ArrayList<>();
+                while (resultSet.next()) {
+                    ParoProceso paroProceso = ParoProceso.builder()
+                            .id_nivel(resultSet.getInt("id_nivel"))
+                            .nivel(resultSet.getInt("nivel"))
+                            .build();
+                    listaNiveles.add(paroProceso);
+                }
+
+                ParoProceso paroProceso = ParoProceso.getInstance();
+                paroProceso.setListaNiveles(listaNiveles);
+                return true;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al obtener los niveles de paro en proceso", ex);
+            throw ex;
+        }
+    }
+    
     public boolean obtenerCausasPorCategoriaParoProceso(String categoria) throws SQLException {
-        int proceso = 1;
         try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call obtenerCausasPorCategoriaParoProceso(?,?)}")) {
 
             cst.setInt(1, proceso);
@@ -107,13 +163,16 @@ public class ParoProcesoModel {
         }
     }
 
-    public void registrarParoProceso(int idCausa, int duracion, String detalle, String horaInicio, String horaFin) throws SQLException {
-        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call InsertarRegistroCausasParo(?,?,?,?,?,?,?,?,?,?)}")) {
+    public void registrarParoProceso(int idCausa, int duracion, String detalle, String horaInicio, String horaFin, Integer idAndon, Integer idNivel) throws SQLException {
+        try (Connection con = conexion.conexionMySQL();
+             CallableStatement cst = con.prepareCall("{call InsertarRegistroCausasParo(?,?,?,?,?,?,?,?,?,?,?,?)}")) {
+
             DAS datosDAS = DAS.getInstance();
+            Operador datosOperador = Operador.getInstance();
             LineaProduccion datosLineaProduccion = LineaProduccion.getInstance();
             MOG datosMOG = MOG.getInstance();
 
-            cst.setString(1, datosDAS.getCodigoEmpleado());
+            cst.setString(1, datosOperador.getCódigo());
             cst.setInt(2, idCausa);
             cst.setInt(3, duracion);
             cst.setString(4, detalle);
@@ -123,10 +182,12 @@ public class ParoProcesoModel {
             cst.setInt(8, datosDAS.getIdDAS());
             cst.setString(9, datosMOG.getMog());
             cst.setString(10, horaFin);
+            cst.setObject(11, idAndon, java.sql.Types.INTEGER);
+            cst.setObject(12, idNivel, java.sql.Types.INTEGER);
 
             cst.executeQuery();
         } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, "Ocurrió un error al registrar el paro ", ex);
+            LOGGER.log(Level.SEVERE, "Ocurrió un error al registrar el paro de línea", ex);
             throw ex;
         }
     }
