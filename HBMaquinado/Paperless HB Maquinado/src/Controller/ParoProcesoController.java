@@ -52,6 +52,7 @@ public class ParoProcesoController implements ActionListener {
         this.registroParoProcesoView = registroParoProcesoView;
 
         this.registroParoProcesoView.btnCancelar.addActionListener(this);
+        this.registroParoProcesoView.btnFinalizar.addActionListener(this);
         this.registroParoProcesoView.cboxCategoria.addActionListener(this);
 
         timer = new Timer();
@@ -138,8 +139,10 @@ public class ParoProcesoController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == registroParoProcesoView.btnCancelar) {
+            Navegador.getInstance().regresar(registroParoProcesoView);
+        } else if (e.getSource() == registroParoProcesoView.btnFinalizar) {
             try {
-                handleRegistrarParo();
+                handleCategoriaSeleccionada();
             } catch (SQLException ex) {
                 Logger.getLogger(ParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -192,7 +195,7 @@ public class ParoProcesoController implements ActionListener {
             String categoria = (String) registroParoProcesoView.cboxCategoria.getSelectedItem();
 
             registroParoProcesoView.cboxCausa.removeAllItems();
-            causasMap.clear(); // Limpiar el mapa antes de llenarlo nuevamente
+            causasMap.clear();
 
             if (registroParoProcesoModel.obtenerCausasPorCategoriaParoProceso(categoria)) {
                 datosParoProceso.getListaCausas().forEach(paro -> {
