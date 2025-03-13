@@ -103,7 +103,7 @@ public class RegistroRBPController implements ActionListener {
         switch (accion) {
             case DAS:
                 if (new String(registroRBPView.txtNumeroEmpleado.getPassword()).isEmpty() && registroRBPView.txtNombreEmpleado.getText().isEmpty()) {
-                    MostrarMensaje.mostrarAdvertencia("Para iniciar el llenado del DAS es necesario capturar el número de empleado");
+                    MostrarMensaje.mostrarAdvertencia("Para realizar el llenado del DAS es necesario capturar el número de empleado");
                 } else {
                     navegador.avanzar(registroDASView, registroRBPView);
                 }
