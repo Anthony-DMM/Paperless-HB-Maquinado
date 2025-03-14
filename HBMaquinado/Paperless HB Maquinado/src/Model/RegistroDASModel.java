@@ -102,7 +102,7 @@ public class RegistroDASModel {
         }
     }
 
-    public void registrarPiezasPorHora(String numero_empleado, int acumulado, String calidad) throws SQLException {
+    public void registrarPiezasPorHora(String codigo_inspector, int acumulado, String calidad) throws SQLException {
         MOG datosMOG = MOG.getInstance();
         LineaProduccion lineaProduccion = LineaProduccion.getInstance();
 
@@ -122,7 +122,7 @@ public class RegistroDASModel {
 
             cst.setString(1, datosMOG.getMog());
             cst.setString(2, datosMOG.getOrden_manufactura());
-            cst.setString(3, numero_empleado);
+            cst.setString(3, codigo_inspector);
             cst.setString(4, hora.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
             cst.setInt(5, piezasProcesadas);
             cst.setInt(6, acumulado);

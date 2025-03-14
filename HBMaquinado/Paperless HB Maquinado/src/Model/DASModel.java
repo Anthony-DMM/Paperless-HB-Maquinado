@@ -5,14 +5,15 @@
 package Model;
 
 import Entities.Operador;
+import Entities.RBP;
 import Interfaces.DAS;
 import Interfaces.LineaProduccion;
-import Entities.RBP;
-import Utils.MostrarMensaje;
+import Utils.FechaHora;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,48 +21,54 @@ import java.util.logging.Logger;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class RegistroRBPModel {
+public class DASModel {
 
     private final DBConexion conexion;
     private static final Logger LOGGER = Logger.getLogger(RegistroRBPModel.class.getName());
-    private final LocalDate fechaF;
+    private final FechaHora fechaHora = new FechaHora();
+    private LocalDate fechaF = LocalDate.now();
     private final RBP datosRBP = RBP.getInstance();
+    private final DAS datosDAS = DAS.getInstance();
     private final Operador datosOperador = Operador.getInstance();
     int idDAS = 0;
 
-    public RegistroRBPModel() {
+    public DASModel() {
         this.conexion = new DBConexion();
-        fechaF = LocalDate.now();
-    }
-    
-    public boolean validarOperador(String numeroEmpleado) throws SQLException {
-        int proceso = 1;
-        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call traerOperador(?,?,?,?)}")) {
-
-            cst.setString(1, numeroEmpleado);
-            cst.registerOutParameter(2, java.sql.Types.INTEGER);
-            cst.setInt(3, proceso);
-            cst.registerOutParameter(4, java.sql.Types.VARCHAR);
-            cst.executeQuery();
-
-            int valor = cst.getInt(2);
-            String empleadoEncontrado = cst.getString(4);
-
-            if (valor == 0) {
-                MostrarMensaje.mostrarError("No se encontró ningún empleado");
-                return false;
-            } else {
-                datosOperador.setNombre(empleadoEncontrado);
-                return true;
+        try {
+            String fechaStr = fechaHora.fechaActual("yyyy-MM-dd");
+            if (fechaStr != null) {
+                fechaF = LocalDate.parse(fechaStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             }
         } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, "Error al obtener datos de la entidad", ex);
+            LOGGER.log(Level.SEVERE, "Error al obtener la fecha actual", ex);
+        }
+    }
+
+    public boolean buscarDASExistente(int turno) throws SQLException {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call buscar_das(?,?,?)}")) {
+
+            LineaProduccion lineaProduccion = LineaProduccion.getInstance();
+
+            cst.setString(1, lineaProduccion.getLinea());
+            cst.registerOutParameter(2, java.sql.Types.INTEGER);
+            cst.setInt(3, turno);
+
+            cst.executeQuery();
+            idDAS = cst.getInt(2);
+
+            if (idDAS != 0) {
+                datosDAS.setIdDAS(idDAS);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al buscar DAS existente", ex);
             throw ex;
         }
     }
     
-    public void registrarDAS(String codigoSoporte, String codigoInspector, String codigoEmpleado) throws SQLException {
-        int turno = 0;
+    public void registrarDAS(String codigoSoporte, String codigoInspector, String codigoEmpleado, int turno) throws SQLException {
         try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call llenarDas(?,?,?,?,?,?,?,?)}")) {
 
             LineaProduccion lineaProduccion = LineaProduccion.getInstance();
@@ -78,7 +85,6 @@ public class RegistroRBPModel {
             cst.executeQuery();
             idDAS = cst.getInt(1);
             if (idDAS != 0) {
-                DAS datosDAS = DAS.getInstance();
                 datosDAS.setIdDAS(idDAS);
             }
         } catch (SQLException ex) {
@@ -86,28 +92,18 @@ public class RegistroRBPModel {
             throw ex;
         }
     }
-
-    public int obtenerDASExistente() throws SQLException {
-        int turno = 0;
-        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call buscar_das(?,?,?)}")) {
-
-            LineaProduccion lineaProduccion = LineaProduccion.getInstance();
-
-            cst.setString(1, lineaProduccion.getLinea());
-            cst.registerOutParameter(2, java.sql.Types.INTEGER);
-            cst.setInt(3, turno);
+    
+    public void actualizarDASPadre(String codigoInspector, String codigoSoporte) throws SQLException {
+        
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call actualizarDASPadre(?,?,?)}")) {
+            cst.setInt(1, datosDAS.getIdDAS());
+            cst.setString(2, codigoInspector);
+            cst.setString(3, codigoSoporte);
 
             cst.executeQuery();
-            idDAS = cst.getInt(2);
-
-            if (idDAS != 0) {
-                DAS datosDAS = DAS.getInstance();
-                datosDAS.setIdDAS(idDAS);
-            }
         } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, "Error al buscar DAS existente", ex);
+            LOGGER.log(Level.SEVERE, "Error al actualizar el DAS principal", ex);
             throw ex;
         }
-        return idDAS;
     }
 }

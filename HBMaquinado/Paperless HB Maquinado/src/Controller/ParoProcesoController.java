@@ -142,7 +142,7 @@ public class ParoProcesoController implements ActionListener {
             Navegador.getInstance().regresar(registroParoProcesoView);
         } else if (e.getSource() == registroParoProcesoView.btnFinalizar) {
             try {
-                handleCategoriaSeleccionada();
+                handleRegistrarParo();
             } catch (SQLException ex) {
                 Logger.getLogger(ParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -160,7 +160,7 @@ public class ParoProcesoController implements ActionListener {
             MostrarMensaje.mostrarError("Es necesario completar todos los campos para registrar el paro");
         } else {
             int minutosTranscurridos = obtenerMinutosTranscurridos(tiempoTranscurrido);
-            if (minutosTranscurridos < 0) {
+            if (minutosTranscurridos < 5) {
                 MostrarMensaje.mostrarInfo("El paro en proceso no se registrará ya que su duración es menor a 5 minutos");
                 Navegador.getInstance().regresar(registroParoProcesoView);
             } else {

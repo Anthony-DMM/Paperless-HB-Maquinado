@@ -20,7 +20,7 @@ public class ParoProcesoView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         btnCancelar.setBackground(Color.black);
-        btnFinalizar.setBackground(Color.GREEN);
+        btnFinalizar.setBackground(new Color(0, 102, 0));
     }
     
     public static ParoProcesoView getInstance() {

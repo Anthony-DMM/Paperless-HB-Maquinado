@@ -8,6 +8,7 @@ import Entities.Operador;
 import Interfaces.DAS;
 import Interfaces.HoraxHora;
 import Interfaces.MOG;
+import Model.DASModel;
 import Model.RegistroDASModel;
 import Utils.FechaHora;
 import Utils.LimpiarCampos;
@@ -42,10 +43,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RegistroDASController implements ActionListener, ItemListener {
 
-    private static final String EMPTY_FIELD_MESSAGE = "Por favor, complete todos los campos antes de continuar";
-
     private final RegistroDASModel registroDASModel;
     private final RegistroDASView registroDASView;
+    private final DASModel dasModel;
     Navegador navegador = Navegador.getInstance();
     RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
     
@@ -67,6 +67,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
     public RegistroDASController(RegistroDASView registroDASView) {
         this.registroDASView = RegistroDASView.getInstance();
         this.registroDASModel = new RegistroDASModel();
+        this.dasModel = new DASModel();
         inicializarHoraInicio();
         addListeners();
         inicializarTimer();
@@ -130,7 +131,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
     private void addListeners() {
         addFieldListeners(registroDASView.getTxtCodigoSoporte(), this::handleCodigoSoporteCapturado);
         addFieldListeners(registroDASView.getTxtCodigoInspector(), this::handleCodigoInspectorCapturado);
-        //addFieldListeners(registroDASView.getTxtNumeroEmpleado(), this::handleNumeroEmpleadoCapturado);
 
         registroDASView.cbxOK.addItemListener(this);
         registroDASView.cbxNG.addItemListener(this);
@@ -195,8 +195,10 @@ public class RegistroDASController implements ActionListener, ItemListener {
     }
 
     private void handleRegistroProduccionButton() {
-        if (areFieldsEmpty()) {
-            JOptionPane.showMessageDialog(null, EMPTY_FIELD_MESSAGE);
+        char[] codigoInspector = registroDASView.getTxtCodigoInspector().getPassword();
+        String codigoInspectorIngresado = new String(codigoInspector);
+        if (codigoInspectorIngresado.isEmpty() || registroDASView.txtNombreInspector.getText().isEmpty()) {
+            MostrarMensaje.mostrarError("Favor de capturar los datos del inspector");
             return;
         }
 
@@ -215,10 +217,9 @@ public class RegistroDASController implements ActionListener, ItemListener {
             JOptionPane.showMessageDialog(null, "Debes seleccionar una calidad (OK o NG).", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        Operador datosOperador = Operador.getInstance();
+        
         try {
-            registroDASModel.registrarPiezasPorHora(datosOperador.getCódigo(), acumulado, calidad);
+            registroDASModel.registrarPiezasPorHora(codigoInspectorIngresado, acumulado, calidad);
             LimpiarCampos.limpiarCampos(registroDASView.txtAcumulado);
             registroDASView.cbxOK.setSelected(false);
             registroDASView.cbxNG.setSelected(false);
@@ -294,28 +295,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
         }
     }
 
-    /*private void handleNumeroEmpleadoCapturado(JPasswordField passwordField) {
-        char[] passwordChars = passwordField.getPassword();
-        String numeroEmpleadoIngresado = new String(passwordChars);
-
-        if (numeroEmpleadoIngresado.isEmpty()) {
-            MostrarMensaje.mostrarAdvertencia("Es necesario colocar el código de empleado");
-            LimpiarCampos.limpiarCampos(registroDASView.getTxtNumeroEmpleado(), registroDASView.getTxtNombreEmpleado());
-        } else {
-            try {
-                if (registroDASModel.validarOperador(numeroEmpleadoIngresado)) {
-                    String codigoEmpleado = numeroEmpleadoIngresado;
-                    datosDAS.setCodigoEmpleado(codigoEmpleado);
-                    registroDASView.txtNombreEmpleado.setText(datosDAS.getNombreEmpleado());
-                } else {
-                    LimpiarCampos.limpiarCampos(registroDASView.getTxtNumeroEmpleado(), registroDASView.getTxtNombreEmpleado());
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }*/
-
     private boolean areFieldsEmpty() {
         char[] codigoSoporte = registroDASView.getTxtCodigoSoporte().getPassword();
         String codigoSoporteIngresado = new String(codigoSoporte);
@@ -329,8 +308,22 @@ public class RegistroDASController implements ActionListener, ItemListener {
 
     private void handleFinalizarDASButton() throws SQLException {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Deseas finalizar el DAS? Recuerda que esta acción no se puede revertir");  
-        if (opcion == JOptionPane.YES_OPTION) {
-            navegador.avanzar(registroRBPView, registroDASView);
+        if (areFieldsEmpty()) {
+            MostrarMensaje.mostrarError("Favor de capturar el código de inspector y código de soporte rápido para finalizar el DAS");
+        } else if (opcion == JOptionPane.YES_OPTION) {
+            int turnoSeleccionado = registroDASView.cbxTurno.getSelectedIndex();
+            if(turnoSeleccionado == 0){
+                MostrarMensaje.mostrarAdvertencia("Es necesario seleccionar un turno para finalizar el DAS");
+            } else {
+               if(!dasModel.buscarDASExistente(turnoSeleccionado)) {
+                   Operador datosOperador = Operador.getInstance();
+                   dasModel.registrarDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosOperador.getCódigo(), turnoSeleccionado);
+               } else {
+                   dasModel.actualizarDASPadre(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector());
+                   MostrarMensaje.mostrarInfo("DAS finalizado con éxito");
+                   navegador.avanzar(registroRBPView, registroDASView);
+               }
+            }
         }  
     }
     
