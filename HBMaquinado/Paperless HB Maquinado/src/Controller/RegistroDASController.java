@@ -17,6 +17,7 @@ import Utils.Navegador;
 import View.DibujoView;
 import View.RegistroDASView;
 import View.RegistroRBPView;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -57,6 +58,8 @@ public class RegistroDASController implements ActionListener, ItemListener {
     private LocalTime horaInicio;
     private final DAS datosDAS = DAS.getInstance();
     private Timer timer;
+    
+    boolean dasExiste = false;
 
     public enum AccionBoton {
         REGISTRAR_PRODUCCION,
@@ -116,9 +119,13 @@ public class RegistroDASController implements ActionListener, ItemListener {
             registroDASView.txtModelo.setText(datosMOG.getModelo());
             registroDASView.txtSTD.setText(datosMOG.getStd());
             registroDASView.txtLote.setText(datosMOG.getTm());
-
+            dasExiste = dasModel.buscarDASExistente(datosDAS.getTurno());
+            if(datosDAS.getEstado()==0){
+                registroDASView.btnFinalizarDAS.setBackground(Color.GRAY);
+                registroDASView.btnFinalizarDAS.setEnabled(false);
+                registroDASView.btnFinalizarDAS.setFocusable(false);
+            }
             actualizarHora();
-            turno();
 
             List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
             actualizarTabla(piezas);
@@ -134,7 +141,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
 
         registroDASView.cbxOK.addItemListener(this);
         registroDASView.cbxNG.addItemListener(this);
-        registroDASView.cbxTurno.addItemListener(this);
+        
         registroDASView.btnRegistrarProduccion.addActionListener(this);
         registroDASView.btnRegresar.addActionListener(this);
         registroDASView.btnFinalizarDAS.addActionListener(this);
@@ -168,11 +175,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
         }
     }
 
-    private void turno() {
-        LocalTime inicioTurno = LocalTime.parse("06:59:59");
-        LocalTime finTurno = LocalTime.parse("19:00:00");
-        registroDASView.cbxTurno.setSelectedItem(horaInicio.isAfter(inicioTurno) && horaInicio.isBefore(finTurno) ? "1" : "2");
-    }
+    
 
     private void handleButtonAction(JButton button) {
         if (button.equals(registroDASView.btnRegistrarProduccion)) {
@@ -311,19 +314,18 @@ public class RegistroDASController implements ActionListener, ItemListener {
         if (areFieldsEmpty()) {
             MostrarMensaje.mostrarError("Favor de capturar el código de inspector y código de soporte rápido para finalizar el DAS");
         } else if (opcion == JOptionPane.YES_OPTION) {
-            int turnoSeleccionado = registroDASView.cbxTurno.getSelectedIndex();
-            if(turnoSeleccionado == 0){
-                MostrarMensaje.mostrarAdvertencia("Es necesario seleccionar un turno para finalizar el DAS");
+            if(!dasExiste) {
+                Operador datosOperador = Operador.getInstance();
+                dasModel.registrarDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosOperador.getCódigo(), datosDAS.getTurno());
             } else {
-               if(!dasModel.buscarDASExistente(turnoSeleccionado)) {
-                   Operador datosOperador = Operador.getInstance();
-                   dasModel.registrarDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosOperador.getCódigo(), turnoSeleccionado);
-               } else {
-                   dasModel.actualizarDASPadre(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector());
-                   MostrarMensaje.mostrarInfo("DAS finalizado con éxito");
-                   navegador.avanzar(registroRBPView, registroDASView);
-               }
+                if(dasModel.actualizarDASPadre(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector())){
+                    registroDASView.btnFinalizarDAS.setBackground(Color.GRAY);
+                    registroDASView.btnFinalizarDAS.setEnabled(false);
+                    registroDASView.btnFinalizarDAS.setFocusable(false);
+                    navegador.avanzar(registroRBPView, registroDASView);
+                }
             }
+            MostrarMensaje.mostrarInfo("DAS finalizado con éxito");
         }  
     }
     

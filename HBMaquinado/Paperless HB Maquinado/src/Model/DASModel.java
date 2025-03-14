@@ -31,6 +31,7 @@ public class DASModel {
     private final DAS datosDAS = DAS.getInstance();
     private final Operador datosOperador = Operador.getInstance();
     int idDAS = 0;
+    int estado = 0;
 
     public DASModel() {
         this.conexion = new DBConexion();
@@ -45,19 +46,22 @@ public class DASModel {
     }
 
     public boolean buscarDASExistente(int turno) throws SQLException {
-        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call buscar_das(?,?,?)}")) {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call buscar_das(?,?,?,?)}")) {
 
             LineaProduccion lineaProduccion = LineaProduccion.getInstance();
 
             cst.setString(1, lineaProduccion.getLinea());
             cst.registerOutParameter(2, java.sql.Types.INTEGER);
             cst.setInt(3, turno);
+            cst.registerOutParameter(4, java.sql.Types.INTEGER);
 
             cst.executeQuery();
             idDAS = cst.getInt(2);
-
+            estado = cst.getInt(4);
+            System.out.println(estado);
             if (idDAS != 0) {
                 datosDAS.setIdDAS(idDAS);
+                datosDAS.setEstado(estado);
                 return true;
             } else {
                 return false;
@@ -93,14 +97,19 @@ public class DASModel {
         }
     }
     
-    public void actualizarDASPadre(String codigoInspector, String codigoSoporte) throws SQLException {
-        
+    public boolean actualizarDASPadre(String codigoInspector, String codigoSoporte) throws SQLException {
         try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call actualizarDASPadre(?,?,?)}")) {
             cst.setInt(1, datosDAS.getIdDAS());
             cst.setString(2, codigoInspector);
             cst.setString(3, codigoSoporte);
 
-            cst.executeQuery();
+            int filasAfectadas = cst.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al actualizar el DAS principal", ex);
             throw ex;
