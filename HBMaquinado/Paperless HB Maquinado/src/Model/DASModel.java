@@ -6,7 +6,7 @@ package Model;
 
 import Entities.Operador;
 import Entities.RBP;
-import Interfaces.DAS;
+import Entities.DAS;
 import Interfaces.LineaProduccion;
 import Utils.FechaHora;
 import java.sql.CallableStatement;

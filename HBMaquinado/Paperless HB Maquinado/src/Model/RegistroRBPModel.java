@@ -5,7 +5,7 @@
 package Model;
 
 import Entities.Operador;
-import Interfaces.DAS;
+import Entities.DAS;
 import Interfaces.LineaProduccion;
 import Entities.RBP;
 import Utils.MostrarMensaje;

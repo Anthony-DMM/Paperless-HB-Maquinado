@@ -5,7 +5,7 @@
 package Controller;
 
 import Entities.Operador;
-import Interfaces.DAS;
+import Entities.DAS;
 import Interfaces.HoraxHora;
 import Interfaces.MOG;
 import Model.DASModel;

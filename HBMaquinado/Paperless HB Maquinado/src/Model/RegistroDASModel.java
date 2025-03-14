@@ -4,7 +4,7 @@
  */
 package Model;
 
-import Interfaces.DAS;
+import Entities.DAS;
 import Interfaces.HoraxHora;
 import Interfaces.LineaProduccion;
 import Interfaces.MOG;

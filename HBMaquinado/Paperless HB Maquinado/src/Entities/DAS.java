@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Interfaces;
+package Entities;
 
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +17,7 @@ public class DAS {
 
     private static DAS instance;
 
-    private int idDAS;
+    private int idDAS, turno;
     private String codigoSoporteRapido,
             nombreSoporteRapido,
             codigoInspector,
