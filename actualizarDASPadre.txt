@@ -1,0 +1,8 @@
+actualizarDASPadre
+
+BEGIN
+    UPDATE das
+    SET id_keeper = (SELECT empleado.id_empleado FROM empleado WHERE empleado.codigo_alea = soporte_id),
+    id_inspector = (SELECT empleado.id_empleado FROM empleado WHERE empleado.codigo_alea = inspector_id)
+    WHERE id_das = das_id;
+END
