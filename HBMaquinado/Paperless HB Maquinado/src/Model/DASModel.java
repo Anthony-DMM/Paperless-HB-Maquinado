@@ -106,6 +106,7 @@ public class DASModel {
             int filasAfectadas = cst.executeUpdate();
 
             if (filasAfectadas > 0) {
+                datosDAS.setEstado(0);
                 return true;
             } else {
                 return false;

@@ -120,11 +120,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
             registroDASView.txtSTD.setText(datosMOG.getStd());
             registroDASView.txtLote.setText(datosMOG.getTm());
             dasExiste = dasModel.buscarDASExistente(datosDAS.getTurno());
-            if(datosDAS.getEstado()==0){
-                registroDASView.btnFinalizarDAS.setBackground(Color.GRAY);
-                registroDASView.btnFinalizarDAS.setEnabled(false);
-                registroDASView.btnFinalizarDAS.setFocusable(false);
-            }
             actualizarHora();
 
             List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
@@ -317,15 +312,19 @@ public class RegistroDASController implements ActionListener, ItemListener {
             if(!dasExiste) {
                 Operador datosOperador = Operador.getInstance();
                 dasModel.registrarDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosOperador.getCódigo(), datosDAS.getTurno());
+                dasModel.actualizarDASPadre(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector());
+                dasExiste = true;
+                MostrarMensaje.mostrarInfo("DAS finalizado con éxito");
             } else {
-                if(dasModel.actualizarDASPadre(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector())){
-                    registroDASView.btnFinalizarDAS.setBackground(Color.GRAY);
-                    registroDASView.btnFinalizarDAS.setEnabled(false);
-                    registroDASView.btnFinalizarDAS.setFocusable(false);
-                    navegador.avanzar(registroRBPView, registroDASView);
+                if(datosDAS.getEstado() == 0){
+                   MostrarMensaje.mostrarError("El DAS actual ya se encuentra finalizado");
+                } else {
+                   if(dasModel.actualizarDASPadre(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector())){
+                        navegador.avanzar(registroRBPView, registroDASView);
+                        MostrarMensaje.mostrarInfo("DAS finalizado con éxito");
+                   } 
                 }
             }
-            MostrarMensaje.mostrarInfo("DAS finalizado con éxito");
         }  
     }
     
