@@ -6,6 +6,7 @@ package Model;
 
 import Entities.Operador;
 import Entities.DAS;
+import Entities.DetalleParo;
 import Interfaces.LineaProduccion;
 import Interfaces.MOG;
 import Entities.ParoProceso;
@@ -35,6 +36,7 @@ public class ParoProcesoModel {
     Date fechaUtil;
     java.sql.Date fechaF;
     int proceso = 1;
+    DAS datosDAS = DAS.getInstance();
 
     public ParoProcesoModel() {
         this.conexion = new DBConexion();
@@ -190,5 +192,33 @@ public class ParoProcesoModel {
             LOGGER.log(Level.SEVERE, "Ocurrió un error al registrar el paro de línea", ex);
             throw ex;
         }
+    }
+    
+    public List<DetalleParo> obtenerHistorialParos() throws SQLException {
+        List<DetalleParo> historialParos = new ArrayList<>();
+
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call obtenerParosMaquinado(?)}")) {
+            cst.setInt(1, datosDAS.getIdDAS());
+
+            try (ResultSet r = cst.executeQuery()) {
+                while (r.next()) {
+                    DetalleParo paro = DetalleParo.builder()
+                        .descripcion(r.getString("descripcion"))
+                        .hora_inicio(r.getString("hora_inicio"))
+                        .hora_fin(r.getString("hora_fin"))
+                        .tiempo(r.getInt("tiempo"))
+                        .andon(r.getString("andon"))
+                        .escalacion(r.getString("escalacion"))
+                        .detalle(r.getString("detalle"))
+                        .build();
+                historialParos.add(paro);
+                }
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al obtener la producción por hora", ex);
+            throw ex;
+        }
+
+        return historialParos;
     }
 }

@@ -5,6 +5,7 @@
 package Controller;
 
 import Entities.DAS;
+import Entities.DetalleParo;
 import Entities.Operador;
 import Entities.ParoProceso;
 import Model.DASModel;
@@ -24,11 +25,13 @@ import java.text.ParseException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -124,6 +127,11 @@ public class ParoProcesoController implements ActionListener {
                 nivelesMap.put(String.valueOf(paro.getNivel()), paro.getId_nivel());
             });
         }
+        if(dasModel.buscarDASExistente(datosDAS.getTurno())){
+            List<DetalleParo> historialParos = registroParoProcesoModel.obtenerHistorialParos();
+            actualizarTabla(historialParos);
+        }
+            
     }
 
     private void actualizarTiempoTranscurrido() throws SQLException {
@@ -199,8 +207,9 @@ public class ParoProcesoController implements ActionListener {
                     
                 }
                 registroParoProcesoModel.registrarParoProceso(idCausaSeleccionada, minutosTranscurridos, detalleCausa, horaInicioFormateada, horaFin, idAndonSeleccionado, idNivelSeleccionado);
+                List<DetalleParo> historialParos = registroParoProcesoModel.obtenerHistorialParos();
+                actualizarTabla(historialParos);
                 MostrarMensaje.mostrarInfo("Se ha registrado el paro en proceso");
-                Navegador.getInstance().regresar(registroParoProcesoView);
             }
         }
     }
@@ -235,6 +244,24 @@ public class ParoProcesoController implements ActionListener {
             }
         }
         return 0;
+    }
+    
+    private void actualizarTabla(List<DetalleParo> historialParos) {
+        DefaultTableModel dtm = (DefaultTableModel) registroParoProcesoView.tblParos.getModel();
+        dtm.setRowCount(0);
+
+        for (DetalleParo paro : historialParos) {
+            Object[] rowData = {
+                paro.getDescripcion(),
+                paro.getHora_inicio(),
+                paro.getHora_fin(),
+                paro.getTiempo(),
+                paro.getAndon(),
+                paro.getEscalacion(),
+                paro.getDetalle()
+            };
+            dtm.addRow(rowData);
+        }
     }
 
     private boolean hayCamposVacios() {

@@ -360,7 +360,15 @@ public class RegistroDASView extends javax.swing.JFrame {
             new String [] {
                 "Hora", "Piezas x Hora", "Acumulado", "Ok / Ng", "Nombre"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblHoraxHora);
 
         btnRegresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
