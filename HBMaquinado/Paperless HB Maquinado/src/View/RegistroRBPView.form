@@ -67,7 +67,7 @@
                       <Component id="txtNiveles" max="32767" attributes="0"/>
                       <Component id="jLabel212" pref="180" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                  <EmptySpace pref="60" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel11" pref="180" max="32767" attributes="0"/>
                       <Component id="txtCanastas" pref="180" max="32767" attributes="0"/>
@@ -95,27 +95,13 @@
                       <Component id="txtSobrante" pref="180" max="32767" attributes="0"/>
                       <Component id="jLabel12" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                  <EmptySpace pref="60" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btnCambioMOG" alignment="1" pref="0" max="32767" attributes="0"/>
                       <Component id="btnParoLinea" pref="180" max="32767" attributes="0"/>
                       <Component id="btnDAS" alignment="1" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="lblNumeroEmpleado" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabel3" alignment="0" pref="150" max="32767" attributes="0"/>
-                      <Component id="lblEmpleado" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtFecha" max="32767" attributes="0"/>
-                      <Component id="txtNumeroEmpleado" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtNombreEmpleado" alignment="0" min="-2" pref="455" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Component id="lblAvisoTurno" alignment="0" min="-2" pref="800" max="-2" attributes="0"/>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel4" pref="150" max="32767" attributes="0"/>
@@ -126,24 +112,39 @@
                       <Component id="txtHoraInicio" max="32767" attributes="0"/>
                       <Component id="cbxTurno" pref="261" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="246" max="-2" attributes="0"/>
-                          <Component id="btnDibujo" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel6" alignment="0" min="-2" pref="233" max="-2" attributes="0"/>
-                              <Component id="jLabel7" alignment="1" min="-2" pref="233" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtNombreEmpleado2" alignment="1" pref="180" max="32767" attributes="0"/>
-                              <Component id="txtNombreEmpleado3" alignment="1" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <EmptySpace pref="62" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel6" alignment="0" min="-2" pref="233" max="-2" attributes="0"/>
+                      <Component id="jLabel7" alignment="1" min="-2" pref="233" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtNombreEmpleado2" alignment="1" pref="180" max="32767" attributes="0"/>
+                      <Component id="txtNombreEmpleado3" alignment="1" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="btnDibujo" min="-2" pref="246" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="lblNumeroEmpleado" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" pref="150" max="32767" attributes="0"/>
+                              <Component id="lblEmpleado" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtFecha" max="32767" attributes="0"/>
+                              <Component id="txtNumeroEmpleado" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtNombreEmpleado" alignment="0" min="-2" pref="455" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="lblAvisoTurno" alignment="0" min="-2" pref="800" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

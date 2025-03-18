@@ -58,8 +58,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
     private LocalTime horaInicio;
     private final DAS datosDAS = DAS.getInstance();
     private Timer timer;
-    
-    boolean dasExiste = false;
 
     public enum AccionBoton {
         REGISTRAR_PRODUCCION,
@@ -119,7 +117,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
             registroDASView.txtModelo.setText(datosMOG.getModelo());
             registroDASView.txtSTD.setText(datosMOG.getStd());
             registroDASView.txtLote.setText(datosMOG.getTm());
-            dasExiste = dasModel.buscarDASExistente(datosDAS.getTurno());
             actualizarHora();
 
             List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
@@ -309,11 +306,10 @@ public class RegistroDASController implements ActionListener, ItemListener {
         if (areFieldsEmpty()) {
             MostrarMensaje.mostrarError("Favor de capturar el código de inspector y código de soporte rápido para finalizar el DAS");
         } else if (opcion == JOptionPane.YES_OPTION) {
-            if(!dasExiste) {
+            if(!dasModel.buscarDASExistente(datosDAS.getTurno())) {
                 Operador datosOperador = Operador.getInstance();
                 dasModel.registrarDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosOperador.getCódigo(), datosDAS.getTurno());
                 dasModel.actualizarDASPadre(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector());
-                dasExiste = true;
                 MostrarMensaje.mostrarInfo("DAS finalizado con éxito");
             } else {
                 if(datosDAS.getEstado() == 0){

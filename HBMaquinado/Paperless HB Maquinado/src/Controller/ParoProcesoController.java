@@ -4,7 +4,10 @@
  */
 package Controller;
 
+import Entities.DAS;
+import Entities.Operador;
 import Entities.ParoProceso;
+import Model.DASModel;
 import Model.ParoProcesoModel;
 import Utils.FechaHora;
 import Utils.MostrarMensaje;
@@ -36,6 +39,9 @@ public class ParoProcesoController implements ActionListener {
     private final ParoProcesoModel registroParoProcesoModel = new ParoProcesoModel();
     private final ParoProcesoView registroParoProcesoView;
     private final RegistroDASView registroDASView = RegistroDASView.getInstance();
+    private final DASModel dasModel;
+    
+    Navegador navegador = Navegador.getInstance();
 
     private FechaHora fechaHora = new FechaHora();
     private Timer timer;
@@ -47,9 +53,12 @@ public class ParoProcesoController implements ActionListener {
     private final Map<String, Integer> nivelesMap = new HashMap<>();
     
     private static final Logger LOGGER = Logger.getLogger(ParoProcesoController.class.getName());
+    
+    private final DAS datosDAS = DAS.getInstance();
 
     public ParoProcesoController(ParoProcesoView registroParoProcesoView) {
         this.registroParoProcesoView = registroParoProcesoView;
+        this.dasModel = new DASModel();
 
         this.registroParoProcesoView.btnCancelar.addActionListener(this);
         this.registroParoProcesoView.btnFinalizar.addActionListener(this);
@@ -160,7 +169,7 @@ public class ParoProcesoController implements ActionListener {
             MostrarMensaje.mostrarError("Es necesario completar todos los campos para registrar el paro");
         } else {
             int minutosTranscurridos = obtenerMinutosTranscurridos(tiempoTranscurrido);
-            if (minutosTranscurridos < 5) {
+            if (minutosTranscurridos < 0) {
                 MostrarMensaje.mostrarInfo("El paro en proceso no se registrará ya que su duración es menor a 5 minutos");
                 Navegador.getInstance().regresar(registroParoProcesoView);
             } else {
@@ -168,8 +177,8 @@ public class ParoProcesoController implements ActionListener {
                 int idCausaSeleccionada = causasMap.get(causaSeleccionada);
                 String detalleCausa = registroParoProcesoView.txtDetalle.getText();
                 
-                Integer idAndonSeleccionado = null;
-                Integer idNivelSeleccionado = null;
+                Integer idAndonSeleccionado = 0;
+                Integer idNivelSeleccionado = 0;
 
                 String andonSeleccionado = (String) registroParoProcesoView.cboxAndon.getSelectedItem();
                 if (andonSeleccionado != null) {
@@ -183,6 +192,12 @@ public class ParoProcesoController implements ActionListener {
                 
                 String horaFin = fechaHora.horaActual();
                 String horaInicioFormateada = fechaHora.timestampToString(horaInicio, "HH:mm:ss");
+                
+                if(!dasModel.buscarDASExistente(datosDAS.getTurno())) {
+                    Operador datosOperador = Operador.getInstance();
+                    dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
+                    
+                }
                 registroParoProcesoModel.registrarParoProceso(idCausaSeleccionada, minutosTranscurridos, detalleCausa, horaInicioFormateada, horaFin, idAndonSeleccionado, idNivelSeleccionado);
                 MostrarMensaje.mostrarInfo("Se ha registrado el paro en proceso");
                 Navegador.getInstance().regresar(registroParoProcesoView);
