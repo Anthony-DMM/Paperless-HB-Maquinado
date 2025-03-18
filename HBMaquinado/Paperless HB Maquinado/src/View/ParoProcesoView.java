@@ -25,7 +25,7 @@ public class ParoProcesoView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         btnCancelar.setBackground(Color.black);
         btnParoManual.setBackground(Color.black);
-        btnFinalizar.setBackground(new Color(0, 102, 0));
+        btnFinalizar.setBackground(new Color(0,0,195));
         
         JTableHeader header = tblParos.getTableHeader();
         header.setFont(new Font("Arial", Font.BOLD, 16));
@@ -73,7 +73,7 @@ public class ParoProcesoView extends javax.swing.JFrame {
         txtDetalle = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtHoraInicio = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
+        lblDuracion = new javax.swing.JLabel();
         txtTiempo = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnFinalizar = new javax.swing.JButton();
@@ -134,8 +134,8 @@ public class ParoProcesoView extends javax.swing.JFrame {
         txtHoraInicio.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         txtHoraInicio.setFocusable(false);
 
-        jLabel15.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jLabel15.setText("Duración:");
+        lblDuracion.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        lblDuracion.setText("Duración:");
 
         txtTiempo.setEditable(false);
         txtTiempo.setBackground(new java.awt.Color(204, 204, 204));
@@ -259,7 +259,7 @@ public class ParoProcesoView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTiempo)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                            .addComponent(lblDuracion, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnParoManual, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -273,7 +273,7 @@ public class ParoProcesoView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,12 +399,12 @@ public class ParoProcesoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    public javax.swing.JLabel lblDuracion;
     public javax.swing.JTable tblParos;
     public javax.swing.JTextField txtDetalle;
     public javax.swing.JTextField txtHoraInicio;

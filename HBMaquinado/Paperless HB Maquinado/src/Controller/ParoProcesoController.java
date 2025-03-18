@@ -13,6 +13,8 @@ import Model.ParoProcesoModel;
 import Utils.FechaHora;
 import Utils.MostrarMensaje;
 import Utils.Navegador;
+import Utils.ValidarCampos;
+import View.ParoProcesoManualView;
 import View.RegistroDASView;
 import View.ParoProcesoView;
 import java.awt.event.ActionEvent;
@@ -66,6 +68,7 @@ public class ParoProcesoController implements ActionListener {
         this.registroParoProcesoView.btnCancelar.addActionListener(this);
         this.registroParoProcesoView.btnFinalizar.addActionListener(this);
         this.registroParoProcesoView.cboxCategoria.addActionListener(this);
+        this.registroParoProcesoView.btnParoManual.addActionListener(this);
 
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -169,6 +172,8 @@ public class ParoProcesoController implements ActionListener {
             } catch (SQLException ex) {
                 Logger.getLogger(ParoProcesoController.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else if (e.getSource() == registroParoProcesoView.btnParoManual) {
+            handleParoManual();
         }
     }
 
@@ -214,6 +219,12 @@ public class ParoProcesoController implements ActionListener {
         }
     }
 
+    private void handleParoManual() {
+        ParoProcesoManualView paroProcesoManualView = new ParoProcesoManualView();
+        ParoProcesoManualController paroProcesoManualController = new ParoProcesoManualController(paroProcesoManualView);
+        navegador.avanzar(paroProcesoManualView, registroParoProcesoView);
+    }
+    
     private void handleCategoriaSeleccionada() throws SQLException {
         if (!"Seleccionar categoria".equals(registroParoProcesoView.cboxCategoria.getSelectedItem())) {
             String categoria = (String) registroParoProcesoView.cboxCategoria.getSelectedItem();
