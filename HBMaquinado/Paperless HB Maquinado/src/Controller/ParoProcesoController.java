@@ -223,6 +223,7 @@ public class ParoProcesoController implements ActionListener {
         ParoProcesoManualView paroProcesoManualView = new ParoProcesoManualView();
         ParoProcesoManualController paroProcesoManualController = new ParoProcesoManualController(paroProcesoManualView);
         navegador.avanzar(paroProcesoManualView, registroParoProcesoView);
+        navegador.getHistorial().remove(registroParoProcesoView);
     }
     
     private void handleCategoriaSeleccionada() throws SQLException {

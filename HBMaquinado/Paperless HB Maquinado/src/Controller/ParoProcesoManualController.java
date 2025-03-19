@@ -13,6 +13,7 @@ import Utils.FechaHora;
 import Utils.MostrarMensaje;
 import Utils.Navegador;
 import View.ParoProcesoManualView;
+import View.ParoProcesoView;
 import View.RegistroDASView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +21,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
@@ -35,7 +38,7 @@ public class ParoProcesoManualController implements ActionListener {
     private final ParoProcesoModel registroParoProcesoModel = new ParoProcesoModel();
     private final ParoProcesoManualView registroParoProcesoManualView;
     private final RegistroDASView registroDASView = RegistroDASView.getInstance();
-    private final DASModel dasModel;
+    private final DASModel dasModel = new DASModel();
     
     Navegador navegador = Navegador.getInstance();
 
@@ -48,14 +51,25 @@ public class ParoProcesoManualController implements ActionListener {
     private final Map<String, Integer> andonesMap = new HashMap<>();
     private final Map<String, Integer> nivelesMap = new HashMap<>();
     
+    String horaInicioFormateada;
+    String horaFinFormateada;
+    int duracionEnMinutos;
+    
     private static final Logger LOGGER = Logger.getLogger(ParoProcesoManualController.class.getName());
     
     private final DAS datosDAS = DAS.getInstance();
 
     public ParoProcesoManualController(ParoProcesoManualView registroParoProcesoManualView) {
         this.registroParoProcesoManualView = registroParoProcesoManualView;
-        this.dasModel = new DASModel();
-
+        addListeners();
+        try {
+            cargarDatos();
+        } catch (SQLException ex) {
+            Logger.getLogger(ParoProcesoManualController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void addListeners(){
         this.registroParoProcesoManualView.btnCancelar.addActionListener(this);
         this.registroParoProcesoManualView.btnFinalizar.addActionListener(this);
         this.registroParoProcesoManualView.cboxCategoria.addActionListener(this);
@@ -91,7 +105,7 @@ public class ParoProcesoManualController implements ActionListener {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    calcularDuracionEnMinutos(registroParoProcesoManualView.txtHoraInicioHoras.getText(), registroParoProcesoManualView.txtHoraInicioMinutos.getText(), registroParoProcesoManualView.txtHoraFinHoras.getText(), registroParoProcesoManualView.txtHoraFinMinutos.getText());
+                    calcularDuracion();
                 }
             }
         });
@@ -129,7 +143,10 @@ public class ParoProcesoManualController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == registroParoProcesoManualView.btnCancelar) {
-            Navegador.getInstance().regresar(registroParoProcesoManualView);
+            ParoProcesoView paroProcesoView = new ParoProcesoView();
+            ParoProcesoController paroProcesoController = new ParoProcesoController(paroProcesoView);
+            navegador.avanzar(paroProcesoView, registroParoProcesoManualView);
+            navegador.getHistorial().remove(registroParoProcesoManualView);
         } else if (e.getSource() == registroParoProcesoManualView.btnFinalizar) {
             try {
                 handleRegistrarParo();
@@ -145,29 +162,41 @@ public class ParoProcesoManualController implements ActionListener {
         }
     }
     
-    public static int calcularDuracionEnMinutos(String horaInicioStr, String minutosInicioStr, String horaFinStr, String minutosFinStr) {
-        // 1. Convertir las cadenas de hora y minutos a enteros
-        int horaInicio = Integer.parseInt(horaInicioStr);
-        int minutosInicio = Integer.parseInt(minutosInicioStr);
-        int horaFin = Integer.parseInt(horaFinStr);
-        int minutosFin = Integer.parseInt(minutosFinStr);
+    public void calcularDuracion() {
+        try {
+            // 1. Obtener las horas y minutos de los campos de texto
+            int horaInicio = Integer.parseInt(registroParoProcesoManualView.txtHoraInicioHoras.getText());
+            int minutosInicio = Integer.parseInt(registroParoProcesoManualView.txtHoraInicioMinutos.getText());
+            int horaFin = Integer.parseInt(registroParoProcesoManualView.txtHoraFinHoras.getText());
+            int minutosFin = Integer.parseInt(registroParoProcesoManualView.txtHoraFinMinutos.getText());
 
-        // 2. Calcular el tiempo total en minutos para la hora de inicio
-        int tiempoInicioEnMinutos = (horaInicio * 60) + minutosInicio;
+            // 2. Crear objetos LocalTime para horaInicio y horaFin
+            LocalTime tiempoInicio = LocalTime.of(horaInicio, minutosInicio);
+            LocalTime tiempoFin = LocalTime.of(horaFin, minutosFin);
 
-        // 3. Calcular el tiempo total en minutos para la hora de fin
-        int tiempoFinEnMinutos = (horaFin * 60) + minutosFin;
+            // 3. Formatear los objetos LocalTime a cadenas HH:mm:ss
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            horaInicioFormateada = tiempoInicio.format(formatter);
+            horaFinFormateada = tiempoFin.format(formatter);
 
-        // 4. Calcular la diferencia entre el tiempo total de fin y el tiempo total de inicio
-        int duracionEnMinutos = tiempoFinEnMinutos - tiempoInicioEnMinutos;
+            // 4. Calcular la duración (como antes)
+            int tiempoInicioEnMinutos = (horaInicio * 60) + minutosInicio;
+            int tiempoFinEnMinutos = (horaFin * 60) + minutosFin;
+            duracionEnMinutos = tiempoFinEnMinutos - tiempoInicioEnMinutos;
 
-        // 5. Manejar el caso donde la hora de fin es menor que la hora de inicio
-        if (duracionEnMinutos < 0) {
-            duracionEnMinutos += 24 * 60; // Asumir que la diferencia máxima es de 24 horas
+            if (duracionEnMinutos < 0) {
+                duracionEnMinutos += 24 * 60;
+            }
+
+            // 5. Establecer la duración y las horas formateadas en los campos correspondientes
+            registroParoProcesoManualView.txtDuracion.setText(String.valueOf(duracionEnMinutos));
+
+        } catch (NumberFormatException e) {
+            // Manejar el caso en que los campos de texto no contengan números válidos
+            System.err.println("Error: Ingresa horas y minutos válidos.");
         }
-
-        return duracionEnMinutos;
     }
+
 
     private void handleRegistrarParo() throws SQLException {
         if (hayCamposVacios()) {
@@ -195,16 +224,17 @@ public class ParoProcesoManualController implements ActionListener {
                     idNivelSeleccionado = nivelesMap.get(nivelSeleccionado);
                 }
                 
-                String horaFin = fechaHora.timestampToString(horaInicio, "HH:mm:ss");
-                String horaInicioFormateada = fechaHora.timestampToString(horaInicio, "HH:mm:ss");
-                
                 if(!dasModel.buscarDASExistente(datosDAS.getTurno())) {
                     Operador datosOperador = Operador.getInstance();
                     dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
                     
                 }
-                registroParoProcesoModel.registrarParoProceso(idCausaSeleccionada, minutosTranscurridos, detalleCausa, horaInicioFormateada, horaFin, idAndonSeleccionado, idNivelSeleccionado);
+                registroParoProcesoModel.registrarParoProceso(idCausaSeleccionada, duracionEnMinutos, detalleCausa, horaInicioFormateada, horaFinFormateada, idAndonSeleccionado, idNivelSeleccionado);
                 MostrarMensaje.mostrarInfo("Se ha registrado el paro en proceso");
+                ParoProcesoView paroProcesoView = new ParoProcesoView();
+                ParoProcesoController paroProcesoController = new ParoProcesoController(paroProcesoView);
+                navegador.avanzar(paroProcesoView, registroParoProcesoManualView);
+                navegador.getHistorial().remove(registroParoProcesoManualView);
             }
         }
     }

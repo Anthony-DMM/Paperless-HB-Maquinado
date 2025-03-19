@@ -4,6 +4,7 @@
  */
 package paperless.hb.maquinado;
 
+import Controller.ParoProcesoManualController;
 import Controller.ValidarLineaController;
 import View.DibujoView;
 import View.ParoProcesoManualView;
@@ -21,7 +22,6 @@ public class PaperlessHBMaquinado {
     public static void main(String[] args) {
         ValidarLineaView validarLineaView = ValidarLineaView.getInstance();
         ValidarLineaController validarLineaController = new ValidarLineaController(validarLineaView);
-        ParoProcesoManualView manualView = ParoProcesoManualView.getInstance(); 
-        manualView.setVisible(true);
+        validarLineaView.setVisible(true);
     }
 }

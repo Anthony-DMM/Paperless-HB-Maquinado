@@ -38,4 +38,8 @@ public class Navegador {
         vistaActual.setVisible(false);
         historial.pop().setVisible(true);
     }
+    
+    public Stack<Frame> getHistorial() {
+        return historial;
+    }
 }
