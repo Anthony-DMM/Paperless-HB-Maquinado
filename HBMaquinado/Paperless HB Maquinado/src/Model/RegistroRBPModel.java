@@ -27,6 +27,7 @@ public class RegistroRBPModel {
     private final LocalDate fechaF;
     private final RBP datosRBP = RBP.getInstance();
     private final Operador datosOperador = Operador.getInstance();
+    private final LineaProduccion lineaProduccion = LineaProduccion.getInstance();
     int idDAS = 0;
 
     public RegistroRBPModel() {
@@ -109,5 +110,31 @@ public class RegistroRBPModel {
             throw ex;
         }
         return idDAS;
+    }
+    
+    public void registrarPiezasProcesadas(int piezasFila, int filas, int niveles, int canastas, int filasCompletas, int nivelesCompletos, int sobrante) throws SQLException {
+        int piezasProcesadas = piezasFila * filas * niveles * canastas;
+        try (Connection con = conexion.conexionMySQL();
+                CallableStatement cst = con.prepareCall("{call insertar_piezas_procesadas_maquinado(?,?,?,?,?,?,?,?,?,?,?)}")) {
+
+            LineaProduccion lineaProduccion = LineaProduccion.getInstance();
+
+            cst.setInt(1, datosRBP.getId());
+            cst.setString(2, lineaProduccion.getLinea());
+            cst.setInt(3, piezasProcesadas);
+            cst.setInt(4, piezasFila);
+            cst.setInt(5, filas);
+            cst.setInt(6, niveles);
+            cst.setInt(7, canastas);
+            cst.setInt(8, nivelesCompletos);
+            cst.setInt(9, filasCompletas);
+            cst.setInt(10, 0);
+            cst.setInt(11, sobrante);
+
+            cst.executeQuery();
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al registrar la producción por hora", ex);
+            throw ex;
+        }
     }
 }

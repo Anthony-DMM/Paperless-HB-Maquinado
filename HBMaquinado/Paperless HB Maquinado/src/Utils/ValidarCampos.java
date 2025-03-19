@@ -40,6 +40,7 @@ public class ValidarCampos {
     public static void activarCampos(JTextField... campos) {
         for (JTextField campo : campos) {
             campo.setEditable(true);
+            campo.setFocusable(true);
             campo.setBackground(Color.YELLOW);
             campo.requestFocusInWindow();
         }
@@ -47,6 +48,7 @@ public class ValidarCampos {
     
     public static void bloquearCampo(JTextField textField) {
         textField.setEditable(false);
+        textField.setFocusable(false);
         textField.setBackground(Color.LIGHT_GRAY);
     }
 

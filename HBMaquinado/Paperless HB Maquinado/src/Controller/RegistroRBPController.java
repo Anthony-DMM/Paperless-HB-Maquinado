@@ -75,6 +75,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
         agregarAccion(registroRBPView.btnParoLinea, AccionBoton.PARO_LINEA);
         agregarAccion(registroRBPView.btnCambioMOG, AccionBoton.CAMBIO_MOG);
         agregarAccion(registroRBPView.btnRegresar, AccionBoton.REGRESAR);
+        agregarAccion(registroRBPView.btnSiguiente, AccionBoton.SIGUIENTE);
         registroRBPView.cbxTurno.addItemListener(this);
         registroRBPView.txtNumeroEmpleado.addKeyListener(new KeyAdapter() {
             @Override
@@ -114,7 +115,8 @@ public class RegistroRBPController implements ActionListener, ItemListener {
         PARO_LINEA,
         CAMBIO_MOG,
         DIBUJO,
-        REGRESAR
+        REGRESAR,
+        SIGUIENTE
     }
 
     private void handleButtonAction(AccionBoton accion) {
@@ -144,6 +146,9 @@ public class RegistroRBPController implements ActionListener, ItemListener {
             case REGRESAR:
                 navegador.regresar(registroRBPView);
                 break;
+            case SIGUIENTE:
+                handleRegistrarPiezasProcesadas();
+            break;
         }
     }
 
@@ -187,6 +192,36 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    private void handleRegistrarPiezasProcesadas() {
+        if (datosDAS.getEstado() == 1) {
+            MostrarMensaje.mostrarError("Es necesario finalizar el DAS para continuar");
+        } else {
+            if(registroRBPView.txtPiezasxFila.getText().isEmpty()
+                    || registroRBPView.txtFilas.getText().isEmpty()
+                    || registroRBPView.txtNiveles.getText().isEmpty()
+                    || registroRBPView.txtCanastas.getText().isEmpty()
+                    || registroRBPView.txtFilasCompletas.getText().isEmpty()
+                    || registroRBPView.txtNivelesCompletos.getText().isEmpty()
+                    || registroRBPView.txtSobrante.getText().isEmpty()){
+                MostrarMensaje.mostrarAdvertencia("Favor de capturar todos los datos en las secciones Canastas completas y Canastas incompletas");
+            } else {
+                int piezasFila = Integer.parseInt(registroRBPView.txtPiezasxFila.getText());
+                int filas = Integer.parseInt(registroRBPView.txtFilas.getText());
+                int niveles = Integer.parseInt(registroRBPView.txtNiveles.getText());
+                int canastas = Integer.parseInt(registroRBPView.txtCanastas.getText());
+                int filasCompletas = Integer.parseInt(registroRBPView.txtFilasCompletas.getText());
+                int nivelesCompletos = Integer.parseInt(registroRBPView.txtNivelesCompletos.getText());
+                int sobrante = Integer.parseInt(registroRBPView.txtSobrante.getText());
+                try {
+                    registroRBPModel.registrarPiezasProcesadas(piezasFila, filas, niveles, canastas, filasCompletas, nivelesCompletos, sobrante);
+                    MostrarMensaje.mostrarInfo("Se han registrado las piezas producidas con éxito");
+                } catch (SQLException ex) {
+                    Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }
