@@ -27,7 +27,7 @@ public class ValidarLineaModel {
 
     public LineaProduccion validarLinea(String lineaProduccion, String procesoEsperado) {
         try (Connection con = conexion.conexionMySQL();
-             CallableStatement cst = con.prepareCall("{call Supervisorname(?,?,?,?)}")) {
+            CallableStatement cst = con.prepareCall("{call Supervisorname(?,?,?,?)}")) {
 
             cst.setString(1, lineaProduccion);
             cst.setString(2, procesoEsperado);
@@ -35,27 +35,32 @@ public class ValidarLineaModel {
             cst.registerOutParameter(4, java.sql.Types.VARCHAR);
             cst.executeQuery();
 
-            return procesarResultado(lineaProduccion, cst);
+            String supervisorAsignado = cst.getString(3);
+            String procesoMaquina = cst.getString(4);
+
+            if (procesoMaquina != null) {
+                try (CallableStatement cst2 = con.prepareCall("{call obtenerGrupoMaquina(?,?)}")) {
+                    cst2.setString(1, lineaProduccion);
+                    cst2.registerOutParameter(2, java.sql.Types.INTEGER);
+                    cst2.executeQuery();
+
+                    int grupoAsignado = cst2.getInt(2);
+
+                    LineaProduccion linea = LineaProduccion.getInstance();
+                    linea.setLinea(lineaProduccion);
+                    linea.setSupervisor(supervisorAsignado);
+                    linea.setProceso(procesoMaquina);
+                    linea.setGrupo(grupoAsignado);
+                    return linea;
+                }
+            } else {
+                return null;
+            }
 
         } catch (SQLException ex) {
             manejarExcepcion(ex);
             return null;
         }
-    }
-
-    private LineaProduccion procesarResultado(String lineaProduccion, CallableStatement cst) throws SQLException {
-        String supervisorAsignado = cst.getString(3);
-        String procesoMaquina = cst.getString(4);
-
-        return (procesoMaquina != null) ? crearLineaProduccion(lineaProduccion, supervisorAsignado, procesoMaquina) : null;
-    }
-
-    private LineaProduccion crearLineaProduccion(String lineaProduccion, String supervisor, String proceso) {
-        LineaProduccion linea = LineaProduccion.getInstance();
-        linea.setLinea(lineaProduccion);
-        linea.setSupervisor(supervisor);
-        linea.setProceso(proceso);
-        return linea;
     }
 
     private void manejarExcepcion(SQLException ex) {

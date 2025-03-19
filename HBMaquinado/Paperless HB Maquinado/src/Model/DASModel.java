@@ -58,7 +58,6 @@ public class DASModel {
             cst.executeQuery();
             idDAS = cst.getInt(2);
             estado = cst.getInt(4);
-            System.out.println(estado);
             if (idDAS != 0) {
                 datosDAS.setIdDAS(idDAS);
                 datosDAS.setEstado(estado);

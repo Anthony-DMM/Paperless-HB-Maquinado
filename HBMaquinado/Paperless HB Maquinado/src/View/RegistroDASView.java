@@ -175,7 +175,7 @@ public class RegistroDASView extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        txtFecha1 = new javax.swing.JTextField();
+        txtGrupoMaquina = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -402,10 +402,10 @@ public class RegistroDASView extends javax.swing.JFrame {
         jLabel25.setText(" Grupo:");
         jLabel25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtFecha1.setEditable(false);
-        txtFecha1.setBackground(new java.awt.Color(204, 204, 204));
-        txtFecha1.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtFecha1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtGrupoMaquina.setEditable(false);
+        txtGrupoMaquina.setBackground(new java.awt.Color(204, 204, 204));
+        txtGrupoMaquina.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtGrupoMaquina.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -476,7 +476,7 @@ public class RegistroDASView extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, 0)
-                                        .addComponent(txtFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtGrupoMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, 0)
@@ -516,7 +516,7 @@ public class RegistroDASView extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtFecha1, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)))
+                            .addComponent(txtGrupoMaquina, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)))
                     .addComponent(btnDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -697,7 +697,7 @@ public class RegistroDASView extends javax.swing.JFrame {
     public javax.swing.JPasswordField txtCodigoInspector;
     public javax.swing.JPasswordField txtCodigoSoporte;
     public javax.swing.JTextField txtFecha;
-    public javax.swing.JTextField txtFecha1;
+    public javax.swing.JTextField txtGrupoMaquina;
     public javax.swing.JTextField txtHora;
     public javax.swing.JTextField txtLote;
     public javax.swing.JTextField txtMOG;

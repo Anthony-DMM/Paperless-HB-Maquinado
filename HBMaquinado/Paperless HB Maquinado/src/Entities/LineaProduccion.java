@@ -20,6 +20,7 @@ public class LineaProduccion {
     private String linea;
     private String proceso;
     private String supervisor;
+    private int grupo;
 
     public static LineaProduccion getInstance() {
         if (instance == null) {

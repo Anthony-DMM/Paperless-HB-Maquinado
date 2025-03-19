@@ -7,6 +7,7 @@ package Controller;
 import Entities.Operador;
 import Entities.DAS;
 import Interfaces.HoraxHora;
+import Interfaces.LineaProduccion;
 import Interfaces.MOG;
 import Model.DASModel;
 import Model.RegistroDASModel;
@@ -57,6 +58,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
     private final FechaHora fechaHora = new FechaHora();
     private LocalTime horaInicio;
     private final DAS datosDAS = DAS.getInstance();
+    private final LineaProduccion lineaProduccion = LineaProduccion.getInstance();
     private Timer timer;
 
     public enum AccionBoton {
@@ -72,7 +74,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
         inicializarHoraInicio();
         addListeners();
         inicializarTimer();
-
+        
         registroDASView.addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
@@ -118,7 +120,9 @@ public class RegistroDASController implements ActionListener, ItemListener {
             registroDASView.txtSTD.setText(datosMOG.getStd());
             registroDASView.txtLote.setText(datosMOG.getTm());
             actualizarHora();
-
+            
+            registroDASView.txtGrupoMaquina.setText(String.valueOf(lineaProduccion.getGrupo()));
+        
             List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
             actualizarTabla(piezas);
         } catch (SQLException ex) {
