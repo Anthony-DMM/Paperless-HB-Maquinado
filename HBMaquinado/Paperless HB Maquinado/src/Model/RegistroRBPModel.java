@@ -11,6 +11,7 @@ import Entities.RBP;
 import Utils.MostrarMensaje;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.logging.Level;
@@ -29,6 +30,11 @@ public class RegistroRBPModel {
     private final Operador datosOperador = Operador.getInstance();
     private final LineaProduccion lineaProduccion = LineaProduccion.getInstance();
     int idDAS = 0;
+    int rangoCanasta1;
+    int rangoCanasta2;
+    int nivelesCompletosAnterior;
+    int filasCompletasAnterior;
+    int sobranteAnterior;
 
     public RegistroRBPModel() {
         this.conexion = new DBConexion();
@@ -112,13 +118,45 @@ public class RegistroRBPModel {
         return idDAS;
     }
     
+    public boolean obtenerPiezasProcesadasMaquinado() throws SQLException {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call obtener_piezas_procesadas_maquinado(?)}")) {
+            cst.setInt(1, datosRBP.getId());
+            ResultSet rs = cst.executeQuery();
+            
+            if (rs.next()) {
+                rangoCanasta1 = rs.getInt("rango_canasta_1");
+                rangoCanasta2 = rs.getInt("rango_canasta_2");
+                nivelesCompletosAnterior = rs.getInt("niveles_completos");
+                filasCompletasAnterior = rs.getInt("filas_completas");
+                sobranteAnterior = rs.getInt("sobrante");
+                return true;
+            } else {
+                return false;
+            }
+            
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al buscar DAS existente", ex);
+            throw ex;
+        }
+    }
+    
     public void registrarPiezasProcesadas(int piezasFila, int filas, int niveles, int canastas, int filasCompletas, int nivelesCompletos, int sobrante) throws SQLException {
+        if(obtenerPiezasProcesadasMaquinado()){
+            if(filasCompletasAnterior == 0 && nivelesCompletosAnterior == 0 && sobranteAnterior == 0){
+                rangoCanasta1 = rangoCanasta2 + 1;
+                rangoCanasta2 = rangoCanasta1 + canastas - 1;
+            } else {
+                rangoCanasta1 = rangoCanasta2;
+                rangoCanasta2 = rangoCanasta1 + canastas;
+            }
+        } else {
+            rangoCanasta1 = 1;
+            rangoCanasta2 = rangoCanasta1 + canastas;
+        }
+        
         int piezasProcesadas = piezasFila * filas * niveles * canastas;
         try (Connection con = conexion.conexionMySQL();
-                CallableStatement cst = con.prepareCall("{call insertar_piezas_procesadas_maquinado(?,?,?,?,?,?,?,?,?,?,?)}")) {
-
-            LineaProduccion lineaProduccion = LineaProduccion.getInstance();
-
+                CallableStatement cst = con.prepareCall("{call insertar_piezas_procesadas_maquinado(?,?,?,?,?,?,?,?,?,?,?,?,?)}")) {
             cst.setInt(1, datosRBP.getId());
             cst.setString(2, lineaProduccion.getLinea());
             cst.setInt(3, piezasProcesadas);
@@ -130,6 +168,8 @@ public class RegistroRBPModel {
             cst.setInt(9, filasCompletas);
             cst.setInt(10, 0);
             cst.setInt(11, sobrante);
+            cst.setInt(12, rangoCanasta1);
+            cst.setInt(13, rangoCanasta2);
 
             cst.executeQuery();
         } catch (SQLException ex) {
