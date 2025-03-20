@@ -14,6 +14,7 @@ import Utils.LimpiarCampos;
 import Utils.MostrarMensaje;
 import Utils.Navegador;
 import Utils.ValidarCampos;
+import View.CambioMOGView;
 import View.DibujoView;
 import View.ParoProcesoView;
 import View.RegistroHoraxHoraView;
@@ -44,6 +45,8 @@ public class RegistroRBPController implements ActionListener, ItemListener {
     private final RegistroRBPView registroRBPView;
     private final RegistroHoraxHoraView registroDASView = RegistroHoraxHoraView.getInstance();
     private final RegistroHoraxHoraController registroDASController = new RegistroHoraxHoraController(registroDASView);
+    private final CambioMOGView cambioMOGView = CambioMOGView.getInstance();
+    private final CambioMOGController cambioMOGController = new CambioMOGController(cambioMOGView);
     private final DibujoView dibujoView = DibujoView.getInstance();
     private final DibujoController dibujoController = DibujoController.getInstance(dibujoView);
     private final Navegador navegador = Navegador.getInstance();
@@ -117,14 +120,16 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                         if(!dasModel.buscarDASExistente(datosDAS.getTurno())) {
                             Operador datosOperador = Operador.getInstance();
                             dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
+                            navegador.avanzar(ventanaDestino, registroRBPView);
                         }
                         turnoValido = true;
                     } catch (SQLException ex) {
                         Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            } else {
+                navegador.avanzar(ventanaDestino, registroRBPView);
             }
-            navegador.avanzar(ventanaDestino, registroRBPView);
         }    
     }
 
@@ -161,7 +166,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                 validarDAS(paroProcesoView);
                 break;
             case CAMBIO_MOG:
-                //navegador.avanzar(registroDASView, registroRBPView);
+                validarDAS(cambioMOGView);
                 break;
             case DIBUJO:
                 validarDAS(dibujoView);
