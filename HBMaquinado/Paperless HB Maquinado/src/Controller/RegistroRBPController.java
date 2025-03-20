@@ -7,6 +7,7 @@ package Controller;
 import Entities.DAS;
 import Entities.Operador;
 import Entities.RBP;
+import Model.DASModel;
 import Model.RegistroRBPModel;
 import Utils.FechaHora;
 import Utils.LimpiarCampos;
@@ -15,8 +16,9 @@ import Utils.Navegador;
 import Utils.ValidarCampos;
 import View.DibujoView;
 import View.ParoProcesoView;
-import View.RegistroDASView;
+import View.RegistroHoraxHoraView;
 import View.RegistroRBPView;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -30,6 +32,7 @@ import java.time.LocalTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,14 +42,16 @@ public class RegistroRBPController implements ActionListener, ItemListener {
 
     private final RegistroRBPModel registroRBPModel = new RegistroRBPModel();
     private final RegistroRBPView registroRBPView;
-    private final RegistroDASView registroDASView = RegistroDASView.getInstance();
-    private final RegistroDASController registroDASController = new RegistroDASController(registroDASView);
+    private final RegistroHoraxHoraView registroDASView = RegistroHoraxHoraView.getInstance();
+    private final RegistroHoraxHoraController registroDASController = new RegistroHoraxHoraController(registroDASView);
     private final DibujoView dibujoView = DibujoView.getInstance();
     private final DibujoController dibujoController = DibujoController.getInstance(dibujoView);
     private final Navegador navegador = Navegador.getInstance();
+    
+    private final DASModel dasModel;
 
-    LocalTime inicioTurno = LocalTime.parse("06:54:59");
-    LocalTime finTurno = LocalTime.parse("19:29:59");
+    LocalTime inicioTurno = LocalTime.parse("07:00:00");
+    LocalTime finTurno = LocalTime.parse("18:59:59");
     LocalTime horaInicio;
 
     private final FechaHora fechaHora = new FechaHora();
@@ -59,6 +64,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
 
     public RegistroRBPController(RegistroRBPView registroRBPView) {
         this.registroRBPView = registroRBPView;
+        this.dasModel = new DASModel();
         addListeners();
 
         registroRBPView.addWindowListener(new WindowAdapter() {
@@ -96,6 +102,27 @@ public class RegistroRBPController implements ActionListener, ItemListener {
             Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    private void validarDAS(Frame ventanaDestino) {
+        if (registroRBPView.txtNumeroEmpleado.getText().isEmpty() || registroRBPView.txtNombreEmpleado.getText().isEmpty()) {
+            MostrarMensaje.mostrarError("Favor de capturar los datos del empleado para continuar");
+        } else if (registroRBPView.cbxTurno.getSelectedIndex() == 0) {
+            MostrarMensaje.mostrarError("Favor de seleccionar un turno de trabajo");
+        } else {
+            int opcion = JOptionPane.showConfirmDialog(null, "<html>¿Seguro que quieres elegir el turno?: "+datosDAS.getTurno()+"<br>Una vez confirmado, no podrás modificarlo</html>");
+            if (opcion == JOptionPane.YES_OPTION) {
+                try {
+                    if(!dasModel.buscarDASExistente(datosDAS.getTurno())) {
+                        Operador datosOperador = Operador.getInstance();
+                        dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
+                    }
+                    navegador.avanzar(ventanaDestino, registroRBPView);
+                } catch (SQLException ex) {
+                    Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }    
+    }
 
     private void turno() {
         horaInicio = fechaHora.stringHoraToLocalTime(datosRBP.getHora(), "HH:mm:ss");
@@ -122,26 +149,18 @@ public class RegistroRBPController implements ActionListener, ItemListener {
     private void handleButtonAction(AccionBoton accion) {
         switch (accion) {
             case DAS:
-                if (new String(registroRBPView.txtNumeroEmpleado.getPassword()).isEmpty() && registroRBPView.txtNombreEmpleado.getText().isEmpty()) {
-                    MostrarMensaje.mostrarAdvertencia("Para realizar el llenado del DAS es necesario capturar el número de empleado");
-                } else {
-                    navegador.avanzar(registroDASView, registroRBPView);
-                }
+                validarDAS(registroDASView);
                 break;
             case PARO_LINEA:
-                if (new String(registroRBPView.txtNumeroEmpleado.getPassword()).isEmpty() && registroRBPView.txtNombreEmpleado.getText().isEmpty()) {
-                    MostrarMensaje.mostrarAdvertencia("Para registrar el paro en proceso es necesario capturar el número de empleado");
-                } else {
-                    ParoProcesoView paroProcesoView = new ParoProcesoView();
-                    ParoProcesoController paroProcesoController = new ParoProcesoController(paroProcesoView);
-                    navegador.avanzar(paroProcesoView, registroRBPView);
-                }
+                ParoProcesoView paroProcesoView = new ParoProcesoView();
+                ParoProcesoController paroProcesoController = new ParoProcesoController(paroProcesoView);
+                validarDAS(paroProcesoView);
                 break;
             case CAMBIO_MOG:
                 //navegador.avanzar(registroDASView, registroRBPView);
                 break;
             case DIBUJO:
-                navegador.avanzar(dibujoView, registroRBPView);
+                validarDAS(dibujoView);
                 break;
             case REGRESAR:
                 navegador.regresar(registroRBPView);
@@ -191,7 +210,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                     LimpiarCampos.limpiarCampos(registroRBPView.txtNumeroEmpleado, registroRBPView.txtNumeroEmpleado);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RegistroHoraxHoraController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

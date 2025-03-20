@@ -14,7 +14,7 @@ import Utils.MostrarMensaje;
 import Utils.Navegador;
 import View.ParoProcesoManualView;
 import View.ParoProcesoView;
-import View.RegistroDASView;
+import View.RegistroHoraxHoraView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -37,7 +37,7 @@ public class ParoProcesoManualController implements ActionListener {
 
     private final ParoProcesoModel registroParoProcesoModel = new ParoProcesoModel();
     private final ParoProcesoManualView registroParoProcesoManualView;
-    private final RegistroDASView registroDASView = RegistroDASView.getInstance();
+    private final RegistroHoraxHoraView registroDASView = RegistroHoraxHoraView.getInstance();
     private final DASModel dasModel = new DASModel();
     
     Navegador navegador = Navegador.getInstance();

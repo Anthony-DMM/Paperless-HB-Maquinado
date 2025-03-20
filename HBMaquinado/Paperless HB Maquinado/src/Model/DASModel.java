@@ -96,16 +96,32 @@ public class DASModel {
         }
     }
     
-    public boolean actualizarDASPadre(String codigoInspector, String codigoSoporte) throws SQLException {
-        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call actualizarDASPadre(?,?,?)}")) {
+    public boolean actualizarSoporteDAS(String codigoSoporte) throws SQLException {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call actualizarSoporteDAS(?,?)}")) {
             cst.setInt(1, datosDAS.getIdDAS());
-            cst.setString(2, codigoInspector);
-            cst.setString(3, codigoSoporte);
+            cst.setString(2, codigoSoporte);
 
             int filasAfectadas = cst.executeUpdate();
 
             if (filasAfectadas > 0) {
-                datosDAS.setEstado(0);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al actualizar el DAS principal", ex);
+            throw ex;
+        }
+    }
+    
+    public boolean actualizarInspectorDAS(String codigoInspector) throws SQLException {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call actualizarInspectorDAS(?,?)}")) {
+            cst.setInt(1, datosDAS.getIdDAS());
+            cst.setString(2, codigoInspector);
+
+            int filasAfectadas = cst.executeUpdate();
+
+            if (filasAfectadas > 0) {
                 return true;
             } else {
                 return false;

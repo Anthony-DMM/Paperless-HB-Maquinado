@@ -22,6 +22,7 @@ public class RegistroRBPView extends javax.swing.JFrame {
         lblTituloRBP.setText("<html><center>RBP - REGISTRO BÁSICO DE<br> PRODUCCIÓN ''HB MAQUINADO''</center></html>");
         lblNumeroEmpleado.setText("<html>Número<br>empleado:</html>");
         lblEmpleado.setText("<html>Nombre<br>empleado:</html>");
+        btnDAS.setText("<html><center>Hora<br>x Hora</center></html>");
         btnDibujo.setText("<html><center>Ver<br>Dibujo</center></html>");
         lblPiezasxFila.setText("<html><center>Piezas<br>por fila</center></html>");
         lblFilasCompletas.setText("<html><center>Filas<br>completas</center></html>");
@@ -212,7 +213,6 @@ public class RegistroRBPView extends javax.swing.JFrame {
 
         btnDAS.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         btnDAS.setForeground(new java.awt.Color(255, 255, 255));
-        btnDAS.setText("DAS");
         btnDAS.setMaximumSize(new java.awt.Dimension(120, 60));
         btnDAS.setMinimumSize(new java.awt.Dimension(120, 60));
         btnDAS.setPreferredSize(new java.awt.Dimension(350, 80));

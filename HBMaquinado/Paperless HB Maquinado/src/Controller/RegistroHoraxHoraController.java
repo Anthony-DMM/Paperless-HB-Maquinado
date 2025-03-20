@@ -10,13 +10,13 @@ import Interfaces.HoraxHora;
 import Interfaces.LineaProduccion;
 import Interfaces.MOG;
 import Model.DASModel;
-import Model.RegistroDASModel;
+import Model.RegistroHoraxHoraModel;
 import Utils.FechaHora;
 import Utils.LimpiarCampos;
 import Utils.MostrarMensaje;
 import Utils.Navegador;
 import View.DibujoView;
-import View.RegistroDASView;
+import View.RegistroHoraxHoraView;
 import View.RegistroRBPView;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -43,10 +43,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class RegistroDASController implements ActionListener, ItemListener {
+public class RegistroHoraxHoraController implements ActionListener, ItemListener {
 
-    private final RegistroDASModel registroDASModel;
-    private final RegistroDASView registroDASView;
+    private final RegistroHoraxHoraModel registroDASModel;
+    private final RegistroHoraxHoraView registroDASView;
     private final DASModel dasModel;
     Navegador navegador = Navegador.getInstance();
     RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
@@ -67,9 +67,9 @@ public class RegistroDASController implements ActionListener, ItemListener {
         VER_DIBUJO
     }
 
-    public RegistroDASController(RegistroDASView registroDASView) {
-        this.registroDASView = RegistroDASView.getInstance();
-        this.registroDASModel = new RegistroDASModel();
+    public RegistroHoraxHoraController(RegistroHoraxHoraView registroDASView) {
+        this.registroDASView = RegistroHoraxHoraView.getInstance();
+        this.registroDASModel = new RegistroHoraxHoraModel();
         this.dasModel = new DASModel();
         inicializarHoraInicio();
         addListeners();
@@ -92,7 +92,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
         try {
             horaInicio = LocalTime.now();
         } catch (Exception e) {
-            Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, "Error al obtener la hora de inicio", e);
+            Logger.getLogger(RegistroHoraxHoraController.class.getName()).log(Level.SEVERE, "Error al obtener la hora de inicio", e);
             JOptionPane.showMessageDialog(null, "Error al inicializar la hora de inicio.");
         }
     }
@@ -107,7 +107,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
             LocalTime horaActual = LocalTime.now();
             registroDASView.txtHora.setText(horaActual.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
         } catch (Exception ex) {
-            Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, "Error al actualizar la hora", ex);
+            Logger.getLogger(RegistroHoraxHoraController.class.getName()).log(Level.SEVERE, "Error al actualizar la hora", ex);
         }
     }
 
@@ -126,7 +126,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
             List<HoraxHora> piezas = registroDASModel.obtenerPiezasProcesadasHora();
             actualizarTabla(piezas);
         } catch (SQLException ex) {
-            Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, "Error al cargar los datos", ex);
+            Logger.getLogger(RegistroHoraxHoraController.class.getName()).log(Level.SEVERE, "Error al cargar los datos", ex);
             JOptionPane.showMessageDialog(null, "Error al cargar los datos.");
         }
     }
@@ -140,7 +140,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
         
         registroDASView.btnRegistrarProduccion.addActionListener(this);
         registroDASView.btnRegresar.addActionListener(this);
-        registroDASView.btnFinalizarDAS.addActionListener(this);
         registroDASView.btnDibujo.addActionListener(this);
     }
 
@@ -180,12 +179,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
             handleRegresarButton();
         } else if (button.equals(registroDASView.btnDibujo)) {
             handleVerDibujo();
-        } else if (button.equals(registroDASView.btnFinalizarDAS)) {
-            try {
-                handleFinalizarDASButton();
-            } catch (SQLException ex) {
-                Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
     
@@ -267,7 +260,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
                     LimpiarCampos.limpiarCampos(registroDASView.getTxtCodigoSoporte(), registroDASView.getTxtNombreSoporteRapido());
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RegistroHoraxHoraController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -289,7 +282,7 @@ public class RegistroDASController implements ActionListener, ItemListener {
                     LimpiarCampos.limpiarCampos(registroDASView.getTxtCodigoInspector(), registroDASView.getTxtNombreInspector());
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(RegistroDASController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RegistroHoraxHoraController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -303,29 +296,6 @@ public class RegistroDASController implements ActionListener, ItemListener {
 
         return codigoSoporteIngresado.isEmpty()
                 || codigoInspectorIngresado.isEmpty();
-    }
-
-    private void handleFinalizarDASButton() throws SQLException {
-        int opcion = JOptionPane.showConfirmDialog(null, "¿Deseas finalizar el DAS? Recuerda que esta acción no se puede revertir");  
-        if (areFieldsEmpty()) {
-            MostrarMensaje.mostrarError("Favor de capturar el código de inspector y código de soporte rápido para finalizar el DAS");
-        } else if (opcion == JOptionPane.YES_OPTION) {
-            if(!dasModel.buscarDASExistente(datosDAS.getTurno())) {
-                Operador datosOperador = Operador.getInstance();
-                dasModel.registrarDAS(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector(), datosOperador.getCódigo(), datosDAS.getTurno());
-                dasModel.actualizarDASPadre(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector());
-                MostrarMensaje.mostrarInfo("DAS finalizado con éxito");
-            } else {
-                if(datosDAS.getEstado() == 0){
-                   MostrarMensaje.mostrarError("El DAS actual ya se encuentra finalizado");
-                } else {
-                   if(dasModel.actualizarDASPadre(datosDAS.getCodigoSoporteRapido(), datosDAS.getCodigoInspector())){
-                        navegador.avanzar(registroRBPView, registroDASView);
-                        MostrarMensaje.mostrarInfo("DAS finalizado con éxito");
-                   } 
-                }
-            }
-        }  
     }
     
     private void handleRegresarButton() {

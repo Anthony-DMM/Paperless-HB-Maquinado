@@ -27,16 +27,18 @@ import javax.swing.JOptionPane;
  *
  * @author ANTHONY-MARTINEZ
  */
-public class RegistroDASModel {
+public class RegistroHoraxHoraModel {
 
-    private static final Logger LOGGER = Logger.getLogger(RegistroDASModel.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(RegistroHoraxHoraModel.class.getName());
     private final DBConexion conexion;
     private LocalDate fechaF;
     private LocalTime hora;
     DAS datosDAS = DAS.getInstance();
+    private final DASModel dasModel;
 
-    public RegistroDASModel() {
+    public RegistroHoraxHoraModel() {
         this.conexion = new DBConexion();
+        this.dasModel = new DASModel();
         inicializarFechaHora();
     }
 
@@ -68,6 +70,7 @@ public class RegistroDASModel {
                 return false;
             } else {
                 datosDAS.setNombreInspector(inspectorEncontrado);
+                dasModel.actualizarInspectorDAS(codigoInspector);
                 return true;
             }
         } catch (SQLException ex) {
@@ -94,6 +97,7 @@ public class RegistroDASModel {
                 return false;
             } else {
                 datosDAS.setNombreSoporteRapido(soporteEncontrado);
+                dasModel.actualizarSoporteDAS(codigoSoporteRapido);
                 return true;
             }
         } catch (SQLException ex) {
@@ -118,7 +122,7 @@ public class RegistroDASModel {
 
         validarIntervaloHora(piezas, hora.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
 
-        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call registro_x_hora_maq(?,?,?,?,?,?,?,?,?)}")) {
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call registro_x_hora_maq(?,?,?,?,?,?,?,?,?,?)}")) {
 
             cst.setString(1, datosMOG.getMog());
             cst.setString(2, datosMOG.getOrden_manufactura());
@@ -129,6 +133,7 @@ public class RegistroDASModel {
             cst.setString(7, calidad);
             cst.setDate(8, java.sql.Date.valueOf(fechaF));
             cst.setString(9, lineaProduccion.getLinea());
+            cst.setInt(10, datosDAS.getIdDAS());
 
             cst.executeQuery();
         } catch (SQLException ex) {
@@ -154,12 +159,8 @@ public class RegistroDASModel {
     public List<HoraxHora> obtenerPiezasProcesadasHora() throws SQLException {
         List<HoraxHora> piezas = new ArrayList<>();
 
-        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call obtener_piezas_x_hora_maq(?,?)}")) {
-
-            RBP datosRBP = RBP.getInstance();
-            cst.setInt(1, datosRBP.getId());
-            cst.setDate(2, java.sql.Date.valueOf(fechaF));
-
+        try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call obtener_piezas_x_hora_maq(?)}")) {
+            cst.setInt(1, datosDAS.getIdDAS());
             try (ResultSet r = cst.executeQuery()) {
                 while (r.next()) {
                     HoraxHora pieza = HoraxHora.builder()
