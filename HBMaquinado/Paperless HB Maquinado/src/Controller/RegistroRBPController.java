@@ -44,23 +44,23 @@ public class RegistroRBPController implements ActionListener, ItemListener {
     private final DibujoView dibujoView = DibujoView.getInstance();
     private final DibujoController dibujoController = DibujoController.getInstance(dibujoView);
     private final Navegador navegador = Navegador.getInstance();
-    
+
     LocalTime inicioTurno = LocalTime.parse("06:54:59");
     LocalTime finTurno = LocalTime.parse("19:29:59");
     LocalTime horaInicio;
-    
+
     private final FechaHora fechaHora = new FechaHora();
-    
+
     private final RBP datosRBP = RBP.getInstance();
     private final DAS datosDAS = DAS.getInstance();
     private final Operador datosOperador = Operador.getInstance();
-    
+
     private static final Logger LOGGER = Logger.getLogger(ManufacturaController.class.getName());
-    
+
     public RegistroRBPController(RegistroRBPView registroRBPView) {
         this.registroRBPView = registroRBPView;
         addListeners();
-        
+
         registroRBPView.addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
@@ -68,7 +68,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
             }
         });
     }
-    
+
     private void addListeners() {
         agregarAccion(registroRBPView.btnDAS, AccionBoton.DAS);
         agregarAccion(registroRBPView.btnDibujo, AccionBoton.DIBUJO);
@@ -86,7 +86,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
             }
         });
     }
-    
+
     private void cargarDatos() {
         turno();
         registroRBPView.txtHoraInicio.setText(datosRBP.getHora());
@@ -96,7 +96,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
             Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void turno() {
         horaInicio = fechaHora.stringHoraToLocalTime(datosRBP.getHora(), "HH:mm:ss");
         registroRBPView.cbxTurno.setSelectedItem(horaInicio.isAfter(inicioTurno) && horaInicio.isBefore(finTurno) ? "1" : "2");
@@ -148,7 +148,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                 break;
             case SIGUIENTE:
                 handleRegistrarPiezasProcesadas();
-            break;
+                break;
         }
     }
 
@@ -172,7 +172,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
         boton.setActionCommand(accion.toString());
         boton.addActionListener(this);
     }
-    
+
     private void handleNumeroEmpleadoCapturado() {
         char[] passwordChars = registroRBPView.txtNumeroEmpleado.getPassword();
         String numeroEmpleadoIngresado = new String(passwordChars);
@@ -195,33 +195,39 @@ public class RegistroRBPController implements ActionListener, ItemListener {
             }
         }
     }
-    
+
     private void handleRegistrarPiezasProcesadas() {
-        if (datosDAS.getEstado() == 1) {
-            MostrarMensaje.mostrarError("Es necesario finalizar el DAS para continuar");
+        int piezasCanasta = Integer.parseInt(registroRBPView.txtPiezasxFila.getText()) * Integer.parseInt(registroRBPView.txtFilas.getText()) * Integer.parseInt(registroRBPView.txtNiveles.getText());
+        int piezasCanastaIncompleta = Integer.parseInt(registroRBPView.txtPiezasxFila.getText()) * Integer.parseInt(registroRBPView.txtFilasCompletas.getText()) * Integer.parseInt(registroRBPView.txtNivelesCompletos.getText());
+        if (registroRBPView.txtPiezasxFila.getText().isEmpty()
+                || registroRBPView.txtFilas.getText().isEmpty()
+                || registroRBPView.txtNiveles.getText().isEmpty()
+                || registroRBPView.txtCanastas.getText().isEmpty()
+                || registroRBPView.txtFilasCompletas.getText().isEmpty()
+                || registroRBPView.txtNivelesCompletos.getText().isEmpty()
+                || registroRBPView.txtSobrante.getText().isEmpty()) {
+            MostrarMensaje.mostrarAdvertencia("Favor de capturar todos los datos en las secciones Canastas completas y Canastas incompletas");
+        } else if (Integer.parseInt(registroRBPView.txtFilasCompletas.getText()) >= Integer.parseInt(registroRBPView.txtFilas.getText())){
+            MostrarMensaje.mostrarError("La cantidad de filas completas de las canastas incompletas no puede ser mayor a la cantidad de filas de las canastas completas, favor de verificar");
+        } else if (Integer.parseInt(registroRBPView.txtNivelesCompletos.getText()) >= Integer.parseInt(registroRBPView.txtNiveles.getText())){
+            MostrarMensaje.mostrarError("La cantidad de niveles completos de las canastas incompletas no puede ser mayor a la cantidad de niveles de las canastas completas, favor de verificar");
+        } else if (Integer.parseInt(registroRBPView.txtSobrante.getText()) >= piezasCanasta){
+            MostrarMensaje.mostrarError("La cantidad de sobrante es mayor a la cantidad de piezas que completan una canasta, favor de verificar");
+        } else if (Integer.parseInt(registroRBPView.txtSobrante.getText()) < piezasCanastaIncompleta){
+            MostrarMensaje.mostrarError("La cantidad de sobrante es menor a la cantidad de piezas que hay en la canasta (piezas por fila, filas completas y niveles completos)");
         } else {
-            if(registroRBPView.txtPiezasxFila.getText().isEmpty()
-                    || registroRBPView.txtFilas.getText().isEmpty()
-                    || registroRBPView.txtNiveles.getText().isEmpty()
-                    || registroRBPView.txtCanastas.getText().isEmpty()
-                    || registroRBPView.txtFilasCompletas.getText().isEmpty()
-                    || registroRBPView.txtNivelesCompletos.getText().isEmpty()
-                    || registroRBPView.txtSobrante.getText().isEmpty()){
-                MostrarMensaje.mostrarAdvertencia("Favor de capturar todos los datos en las secciones Canastas completas y Canastas incompletas");
-            } else {
-                int piezasFila = Integer.parseInt(registroRBPView.txtPiezasxFila.getText());
-                int filas = Integer.parseInt(registroRBPView.txtFilas.getText());
-                int niveles = Integer.parseInt(registroRBPView.txtNiveles.getText());
-                int canastas = Integer.parseInt(registroRBPView.txtCanastas.getText());
-                int filasCompletas = Integer.parseInt(registroRBPView.txtFilasCompletas.getText());
-                int nivelesCompletos = Integer.parseInt(registroRBPView.txtNivelesCompletos.getText());
-                int sobrante = Integer.parseInt(registroRBPView.txtSobrante.getText());
-                try {
-                    registroRBPModel.registrarPiezasProcesadas(piezasFila, filas, niveles, canastas, filasCompletas, nivelesCompletos, sobrante);
-                    MostrarMensaje.mostrarInfo("Se han registrado las piezas producidas con éxito");
-                } catch (SQLException ex) {
-                    Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            int piezasFila = Integer.parseInt(registroRBPView.txtPiezasxFila.getText());
+            int filas = Integer.parseInt(registroRBPView.txtFilas.getText());
+            int niveles = Integer.parseInt(registroRBPView.txtNiveles.getText());
+            int canastas = Integer.parseInt(registroRBPView.txtCanastas.getText());
+            int filasCompletas = Integer.parseInt(registroRBPView.txtFilasCompletas.getText());
+            int nivelesCompletos = Integer.parseInt(registroRBPView.txtNivelesCompletos.getText());
+            int sobrante = Integer.parseInt(registroRBPView.txtSobrante.getText());
+            try {
+                registroRBPModel.registrarPiezasProcesadas(piezasFila, filas, niveles, canastas, filasCompletas, nivelesCompletos, sobrante);
+                MostrarMensaje.mostrarInfo("Se han registrado las piezas producidas con éxito");
+            } catch (SQLException ex) {
+                Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
