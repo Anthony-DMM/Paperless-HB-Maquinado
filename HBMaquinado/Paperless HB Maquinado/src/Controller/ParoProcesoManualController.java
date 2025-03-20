@@ -200,7 +200,7 @@ public class ParoProcesoManualController implements ActionListener {
 
     private void handleRegistrarParo() throws SQLException {
         if (hayCamposVacios()) {
-            MostrarMensaje.mostrarError("Es necesario completar todos los campos para registrar el paro");
+            MostrarMensaje.mostrarError("Para registrar un paro de línea debes capturar la hora de inicio, hora de fin y duración del paro, además debes seleccionar al menos una categoría y una causa");
         } else {
             int minutosTranscurridos = 5;//obtenerMinutosTranscurridos(tiempoTranscurrido);
             if (minutosTranscurridos < 0) {
@@ -240,10 +240,11 @@ public class ParoProcesoManualController implements ActionListener {
     }
     
     private void handleCategoriaSeleccionada() throws SQLException {
+        registroParoProcesoManualView.cboxCausa.removeAllItems();
+        registroParoProcesoManualView.cboxCausa.addItem("Selecciona una causa");
+
         if (!"Seleccionar categoria".equals(registroParoProcesoManualView.cboxCategoria.getSelectedItem())) {
             String categoria = (String) registroParoProcesoManualView.cboxCategoria.getSelectedItem();
-
-            registroParoProcesoManualView.cboxCausa.removeAllItems();
             causasMap.clear();
 
             if (registroParoProcesoModel.obtenerCausasPorCategoriaParoProceso(categoria)) {
@@ -252,15 +253,20 @@ public class ParoProcesoManualController implements ActionListener {
                     causasMap.put(paro.getDescripcion(), paro.getIdcausas_paro());
                 });
             }
+            registroParoProcesoManualView.cboxCausa.setSelectedIndex(0);
         } else {
-            registroParoProcesoManualView.cboxCausa.removeAllItems();
+            registroParoProcesoManualView.cboxCausa.setSelectedIndex(0);
         }
     }
     
     private boolean hayCamposVacios() {
         return registroParoProcesoManualView.txtHoraInicioHoras.getText().isEmpty()
-                || registroParoProcesoManualView.cboxCategoria.getSelectedItem() == null
-                || registroParoProcesoManualView.cboxCausa.getSelectedItem() == null
-                || registroParoProcesoManualView.txtDetalle.getText().isEmpty();
+                || registroParoProcesoManualView.txtHoraInicioHoras.getText().isEmpty()
+                || registroParoProcesoManualView.txtHoraInicioMinutos.getText().isEmpty()
+                || registroParoProcesoManualView.txtHoraFinHoras.getText().isEmpty()
+                || registroParoProcesoManualView.txtHoraFinMinutos.getText().isEmpty()
+                || registroParoProcesoManualView.txtDuracion.getText().isEmpty()
+                || registroParoProcesoManualView.cboxCategoria.getSelectedIndex()== 0
+                || registroParoProcesoManualView.cboxCausa.getSelectedIndex() == 0;
     }
 }

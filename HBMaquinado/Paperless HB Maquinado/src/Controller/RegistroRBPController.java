@@ -49,6 +49,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
     private final Navegador navegador = Navegador.getInstance();
     
     private final DASModel dasModel;
+    private boolean turnoValido = false;
 
     LocalTime inicioTurno = LocalTime.parse("07:00:00");
     LocalTime finTurno = LocalTime.parse("18:59:59");
@@ -109,18 +110,21 @@ public class RegistroRBPController implements ActionListener, ItemListener {
         } else if (registroRBPView.cbxTurno.getSelectedIndex() == 0) {
             MostrarMensaje.mostrarError("Favor de seleccionar un turno de trabajo");
         } else {
-            int opcion = JOptionPane.showConfirmDialog(null, "<html>¿Seguro que quieres elegir el turno?: "+datosDAS.getTurno()+"<br>Una vez confirmado, no podrás modificarlo</html>");
-            if (opcion == JOptionPane.YES_OPTION) {
-                try {
-                    if(!dasModel.buscarDASExistente(datosDAS.getTurno())) {
-                        Operador datosOperador = Operador.getInstance();
-                        dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
+            if (turnoValido == false) {
+                int opcion = JOptionPane.showConfirmDialog(null, "<html>¿Seguro que quieres elegir el turno?: "+datosDAS.getTurno()+"<br>Una vez confirmado, no podrás modificarlo</html>");
+                if (opcion == JOptionPane.YES_OPTION) {
+                    try {
+                        if(!dasModel.buscarDASExistente(datosDAS.getTurno())) {
+                            Operador datosOperador = Operador.getInstance();
+                            dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
+                        }
+                        turnoValido = true;
+                    } catch (SQLException ex) {
+                        Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    navegador.avanzar(ventanaDestino, registroRBPView);
-                } catch (SQLException ex) {
-                    Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            navegador.avanzar(ventanaDestino, registroRBPView);
         }    
     }
 

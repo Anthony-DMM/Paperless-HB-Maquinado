@@ -11,6 +11,7 @@ import Entities.ParoProceso;
 import Model.DASModel;
 import Model.ParoProcesoModel;
 import Utils.FechaHora;
+import Utils.LimpiarCampos;
 import Utils.MostrarMensaje;
 import Utils.Navegador;
 import Utils.ValidarCampos;
@@ -155,6 +156,11 @@ public class ParoProcesoController implements ActionListener {
             registroParoProcesoView.txtTiempo.setText(tiempoTranscurrido);
         }
     }
+    
+    public void reiniciarContador() throws SQLException {
+        horaInicio = fechaHora.obtenerTimestampActual();
+        registroParoProcesoView.txtTiempo.setText("00:00:00");
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -179,7 +185,7 @@ public class ParoProcesoController implements ActionListener {
 
     private void handleRegistrarParo() throws SQLException {
         if (hayCamposVacios()) {
-            MostrarMensaje.mostrarError("Es necesario completar todos los campos para registrar el paro");
+            MostrarMensaje.mostrarError("Para registrar un paro de línea debes seleccionar al menos una categoría y una causa");
         } else {
             int minutosTranscurridos = obtenerMinutosTranscurridos(tiempoTranscurrido);
             if (minutosTranscurridos < 0) {
@@ -206,15 +212,16 @@ public class ParoProcesoController implements ActionListener {
                 String horaFin = fechaHora.horaActual();
                 String horaInicioFormateada = fechaHora.timestampToString(horaInicio, "HH:mm:ss");
                 
-                if(!dasModel.buscarDASExistente(datosDAS.getTurno())) {
-                    Operador datosOperador = Operador.getInstance();
-                    dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
-                    
-                }
                 registroParoProcesoModel.registrarParoProceso(idCausaSeleccionada, minutosTranscurridos, detalleCausa, horaInicioFormateada, horaFin, idAndonSeleccionado, idNivelSeleccionado);
                 List<DetalleParo> historialParos = registroParoProcesoModel.obtenerHistorialParos();
                 actualizarTabla(historialParos);
                 MostrarMensaje.mostrarInfo("Se ha registrado el paro en proceso");
+                registroParoProcesoView.cboxCategoria.setSelectedIndex(0);
+                registroParoProcesoView.cboxCausa.setSelectedIndex(0);
+                registroParoProcesoView.cboxAndon.setSelectedIndex(0);
+                registroParoProcesoView.cboxNivel.setSelectedIndex(0);
+                LimpiarCampos.limpiarCampo(registroParoProcesoView.txtDetalle);
+                reiniciarContador();
             }
         }
     }
@@ -227,10 +234,11 @@ public class ParoProcesoController implements ActionListener {
     }
     
     private void handleCategoriaSeleccionada() throws SQLException {
+        registroParoProcesoView.cboxCausa.removeAllItems();
+        registroParoProcesoView.cboxCausa.addItem("Selecciona una causa");
+
         if (!"Seleccionar categoria".equals(registroParoProcesoView.cboxCategoria.getSelectedItem())) {
             String categoria = (String) registroParoProcesoView.cboxCategoria.getSelectedItem();
-
-            registroParoProcesoView.cboxCausa.removeAllItems();
             causasMap.clear();
 
             if (registroParoProcesoModel.obtenerCausasPorCategoriaParoProceso(categoria)) {
@@ -239,8 +247,9 @@ public class ParoProcesoController implements ActionListener {
                     causasMap.put(paro.getDescripcion(), paro.getIdcausas_paro());
                 });
             }
+            registroParoProcesoView.cboxCausa.setSelectedIndex(0);
         } else {
-            registroParoProcesoView.cboxCausa.removeAllItems();
+            registroParoProcesoView.cboxCausa.setSelectedIndex(0);
         }
     }
 
@@ -279,8 +288,7 @@ public class ParoProcesoController implements ActionListener {
     private boolean hayCamposVacios() {
         return registroParoProcesoView.txtHoraInicio.getText().isEmpty()
                 || registroParoProcesoView.txtTiempo.getText().isEmpty()
-                || registroParoProcesoView.cboxCategoria.getSelectedItem() == null
-                || registroParoProcesoView.cboxCausa.getSelectedItem() == null
-                || registroParoProcesoView.txtDetalle.getText().isEmpty();
+                || registroParoProcesoView.cboxCategoria.getSelectedIndex()== 0
+                || registroParoProcesoView.cboxCausa.getSelectedIndex() == 0;
     }
 }
