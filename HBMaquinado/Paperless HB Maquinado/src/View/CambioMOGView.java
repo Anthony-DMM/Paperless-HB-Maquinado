@@ -6,6 +6,10 @@ package View;
 
 import Config.VistaSingleton;
 import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -19,8 +23,30 @@ public class CambioMOGView extends javax.swing.JFrame {
     private CambioMOGView() {
         initComponents();
         setLocationRelativeTo(null);
-        btn_confirmar.setBackground(Color.black);
-        btn_regresar.setBackground(Color.black);
+        btnConfirmarCambio.setText("<html><center>Registrar<br>Cambio de MOG</center></html>");
+        btnConfirmarCambio.setBackground(new Color(0,0,195));
+        btnRegresar.setBackground(Color.black);
+        
+        JTableHeader header = tblCambios.getTableHeader();
+        header.setFont(new Font("Arial", Font.BOLD, 16));
+        header.setBackground(Color.WHITE);
+        header.setForeground(Color.BLACK);
+
+    
+        DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) header.getDefaultRenderer();
+        headerRenderer.setHorizontalAlignment(JLabel.CENTER);
+
+        
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setFont(new Font("Arial", Font.PLAIN, 16));
+        renderer.setHorizontalAlignment(JLabel.CENTER);
+
+        
+        for (int i = 0; i < tblCambios.getColumnCount(); i++) {
+            tblCambios.getColumnModel().getColumn(i).setCellRenderer(renderer);
+        }
+
+        tblCambios.setRowHeight(35);
     }
     
     public static CambioMOGView getInstance() {
@@ -39,11 +65,14 @@ public class CambioMOGView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMOG = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        btn_regresar = new javax.swing.JButton();
-        btn_confirmar = new javax.swing.JButton();
+        txtPiezas = new javax.swing.JTextField();
+        btnRegresar = new javax.swing.JButton();
+        btnConfirmarCambio = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCambios = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,66 +88,100 @@ public class CambioMOGView extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Nueva MOG:");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 0));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtMOG.setBackground(new java.awt.Color(255, 255, 0));
+        txtMOG.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtMOG.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Cantidad de piezas:");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 0));
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPiezas.setEditable(false);
+        txtPiezas.setBackground(new java.awt.Color(204, 204, 204));
+        txtPiezas.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
+        txtPiezas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPiezas.setFocusable(false);
 
-        btn_regresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_regresar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_regresar.setText("Regresar");
-        btn_regresar.setMaximumSize(new java.awt.Dimension(120, 60));
-        btn_regresar.setMinimumSize(new java.awt.Dimension(120, 60));
-        btn_regresar.setPreferredSize(new java.awt.Dimension(350, 80));
+        btnRegresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresar.setText("Regresar");
+        btnRegresar.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnRegresar.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnRegresar.setPreferredSize(new java.awt.Dimension(350, 80));
 
-        btn_confirmar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        btn_confirmar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_confirmar.setText("Confirmar");
-        btn_confirmar.setMaximumSize(new java.awt.Dimension(120, 60));
-        btn_confirmar.setMinimumSize(new java.awt.Dimension(120, 60));
-        btn_confirmar.setPreferredSize(new java.awt.Dimension(120, 80));
+        btnConfirmarCambio.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btnConfirmarCambio.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfirmarCambio.setMaximumSize(new java.awt.Dimension(120, 60));
+        btnConfirmarCambio.setMinimumSize(new java.awt.Dimension(120, 60));
+        btnConfirmarCambio.setPreferredSize(new java.awt.Dimension(120, 80));
+
+        tblCambios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nueva MOG", "Piezas transferidas"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblCambios);
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Registro de Cambios de MOG");
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(138, 152, 165)));
+        jLabel2.setOpaque(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConfirmarCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(txtPiezas)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2)
-                    .addComponent(btn_confirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(50, Short.MAX_VALUE))
+            .addComponent(txtMOG, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane1)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
+                .addGap(100, 100, 100)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(20, 20, 20)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(20, 20, 20)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(200, 200, 200)
-                .addComponent(btn_confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btn_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(349, 349, 349))
+                .addGap(100, 100, 100)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(txtMOG, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(txtPiezas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConfirmarCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(123, 123, 123))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,13 +241,16 @@ public class CambioMOGView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_confirmar;
-    private javax.swing.JButton btn_regresar;
+    public javax.swing.JButton btnConfirmarCambio;
+    public javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable tblCambios;
+    public javax.swing.JTextField txtMOG;
+    public javax.swing.JTextField txtPiezas;
     // End of variables declaration//GEN-END:variables
 }

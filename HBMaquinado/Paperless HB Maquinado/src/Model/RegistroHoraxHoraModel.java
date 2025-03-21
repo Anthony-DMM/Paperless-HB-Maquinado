@@ -7,7 +7,7 @@ package Model;
 import Entities.DAS;
 import Interfaces.HoraxHora;
 import Interfaces.LineaProduccion;
-import Interfaces.MOG;
+import Entities.MOG;
 import Entities.RBP;
 import Utils.MostrarMensaje;
 import java.sql.CallableStatement;

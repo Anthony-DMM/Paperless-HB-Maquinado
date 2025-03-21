@@ -8,7 +8,7 @@ import Entities.Operador;
 import Entities.DAS;
 import Entities.DetalleParo;
 import Interfaces.LineaProduccion;
-import Interfaces.MOG;
+import Entities.MOG;
 import Entities.ParoProceso;
 import Utils.FechaHora;
 import Utils.MostrarMensaje;

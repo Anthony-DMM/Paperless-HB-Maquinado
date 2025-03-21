@@ -5,7 +5,7 @@
 package Controller;
 
 import Interfaces.LineaProduccion;
-import Interfaces.MOG;
+import Entities.MOG;
 import Model.ManufacturaModel;
 import Utils.LimpiarCampos;
 import Utils.MostrarMensaje;

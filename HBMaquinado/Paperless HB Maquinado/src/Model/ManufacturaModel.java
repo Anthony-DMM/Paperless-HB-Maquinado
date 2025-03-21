@@ -5,7 +5,7 @@
 package Model;
 
 import Interfaces.LineaProduccion;
-import Interfaces.MOG;
+import Entities.MOG;
 import Entities.RBP;
 import Utils.FechaHora;
 import java.sql.CallableStatement;

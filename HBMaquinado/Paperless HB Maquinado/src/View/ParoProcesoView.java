@@ -149,10 +149,10 @@ public class ParoProcesoView extends javax.swing.JFrame {
         btnCancelar.setMinimumSize(new java.awt.Dimension(120, 60));
         btnCancelar.setPreferredSize(new java.awt.Dimension(120, 80));
         btnCancelar.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 btnCancelarInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 

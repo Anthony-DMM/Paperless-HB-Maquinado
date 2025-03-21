@@ -8,7 +8,7 @@ import Entities.Operador;
 import Entities.DAS;
 import Interfaces.HoraxHora;
 import Interfaces.LineaProduccion;
-import Interfaces.MOG;
+import Entities.MOG;
 import Model.DASModel;
 import Model.RegistroHoraxHoraModel;
 import Utils.FechaHora;
