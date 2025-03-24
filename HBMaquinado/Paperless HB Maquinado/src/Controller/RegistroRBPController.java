@@ -19,6 +19,7 @@ import View.DibujoView;
 import View.ParoProcesoView;
 import View.RegistroHoraxHoraView;
 import View.RegistroRBPView;
+import View.RegistroScrapView;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,6 +50,8 @@ public class RegistroRBPController implements ActionListener, ItemListener {
     private final CambioMOGController cambioMOGController = new CambioMOGController(cambioMOGView);
     private final DibujoView dibujoView = DibujoView.getInstance();
     private final DibujoController dibujoController = DibujoController.getInstance(dibujoView);
+    private final RegistroScrapView registroScrapView = RegistroScrapView.getInstance();
+    private final RegistroScrapController registroScrapController = new RegistroScrapController();
     private final Navegador navegador = Navegador.getInstance();
     
     private final DASModel dasModel;
@@ -271,6 +274,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
             try {
                 registroRBPModel.registrarPiezasProcesadas(piezasxFila, filas, niveles, canastas, filasCompletas, nivelesCompletos, sobrante);
                 MostrarMensaje.mostrarInfo("Se han registrado las piezas producidas con éxito");
+                navegador.avanzar(registroScrapView, registroRBPView);
             } catch (SQLException ex) {
                 Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
             }
