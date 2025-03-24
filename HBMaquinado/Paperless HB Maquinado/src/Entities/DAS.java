@@ -17,7 +17,7 @@ public class DAS {
 
     private static DAS instance;
 
-    private int idDAS, turno, estado;
+    private int idDAS, turno, estado, piezasMeta;
     private String codigoSoporteRapido,
             nombreSoporteRapido,
             codigoInspector,

@@ -23,7 +23,8 @@ public class MOG {
             no_dibujo,
             no_parte,
             std,
-            tm;
+            tm,
+            lote;
     private double peso;
     private int cantidad_planeada, sequ;
 

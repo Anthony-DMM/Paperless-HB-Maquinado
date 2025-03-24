@@ -93,7 +93,7 @@
               <Color blue="0" green="66" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Registro de Scrap"/>
+            <Property name="text" type="java.lang.String" value="REGISTRO DE SCRAP"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[700, 14]"/>
             </Property>

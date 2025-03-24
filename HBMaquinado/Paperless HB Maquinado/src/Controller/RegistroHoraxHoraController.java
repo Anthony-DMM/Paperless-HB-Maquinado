@@ -118,7 +118,6 @@ public class RegistroHoraxHoraController implements ActionListener, ItemListener
             registroDASView.txtMOG.setText(datosMOG.getMog());
             registroDASView.txtModelo.setText(datosMOG.getModelo());
             registroDASView.txtSTD.setText(datosMOG.getStd());
-            registroDASView.txtLote.setText(datosMOG.getTm());
             actualizarHora();
             
             registroDASView.txtGrupoMaquina.setText(String.valueOf(lineaProduccion.getGrupo()));
@@ -187,10 +186,21 @@ public class RegistroHoraxHoraController implements ActionListener, ItemListener
     }
 
     private void handleRegistroProduccionButton() {
+        
+        if (registroDASView.txtPiezasMeta.getText().isEmpty()) {
+            MostrarMensaje.mostrarError("Favor de capturar la cantidad de piezas meta");
+            return;
+        }
+        
         char[] codigoInspector = registroDASView.getTxtCodigoInspector().getPassword();
         String codigoInspectorIngresado = new String(codigoInspector);
         if (codigoInspectorIngresado.isEmpty() || registroDASView.txtNombreInspector.getText().isEmpty()) {
             MostrarMensaje.mostrarError("Favor de capturar los datos del inspector");
+            return;
+        }
+        
+        if (registroDASView.txtLote.getText().isEmpty()) {
+            MostrarMensaje.mostrarError("Favor de capturar el lote");
             return;
         }
 
@@ -210,8 +220,11 @@ public class RegistroHoraxHoraController implements ActionListener, ItemListener
             return;
         }
         
+        int piezasMeta = Integer.parseInt(registroDASView.txtPiezasMeta.getText());
+        String lote = registroDASView.txtLote.getText();
+        
         try {
-            registroDASModel.registrarPiezasPorHora(codigoInspectorIngresado, acumulado, calidad);
+            registroDASModel.registrarPiezasPorHora(codigoInspectorIngresado, acumulado, calidad, piezasMeta, lote);
             LimpiarCampos.limpiarCampos(registroDASView.txtAcumulado);
             registroDASView.cbxOK.setSelected(false);
             registroDASView.cbxNG.setSelected(false);

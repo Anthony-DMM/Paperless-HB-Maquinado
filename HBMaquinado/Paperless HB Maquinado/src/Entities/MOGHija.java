@@ -17,14 +17,14 @@ public class MOGHija extends MOG {
     private static MOGHija instance;
     private int idMogHija;
 
-    public MOGHija(String mog, String modelo, String orden_manufactura, String descripcion, String no_dibujo, String no_parte, String std, String tm, double peso, int cantidad_planeada, int sequ, String atributoPropio, int idMogHija) {
-        super(mog, modelo, orden_manufactura, descripcion, no_dibujo, no_parte, std, tm, peso, cantidad_planeada, sequ);
+    public MOGHija(String mog, String modelo, String orden_manufactura, String descripcion, String no_dibujo, String no_parte, String std, String tm, String lote, double peso, int cantidad_planeada, int sequ, String atributoPropio, int idMogHija) {
+        super(mog, modelo, orden_manufactura, descripcion, no_dibujo, no_parte, std, tm, lote, peso, cantidad_planeada, sequ);
         this.idMogHija = idMogHija;
     }
 
     public static MOGHija getInstance() {
         if (instance == null) {
-            instance = new MOGHija("valorMog", "valorModelo", "valorOrden", "valorDescripcion", "valorDibujo", "valorParte", "valorStd", "valorTm", 0.0, 0, 0, "valorPropio", 0);
+            instance = new MOGHija("valorMog", "valorModelo", "valorOrden", "valorDescripcion", "valorDibujo", "valorParte", "valorStd", "valorTm", "", 0.0, 0, 0, "valorPropio", 0);
         }
         return instance;
     }

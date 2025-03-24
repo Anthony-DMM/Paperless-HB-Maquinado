@@ -106,7 +106,7 @@ public class RegistroHoraxHoraModel {
         }
     }
 
-    public void registrarPiezasPorHora(String codigo_inspector, int acumulado, String calidad) throws SQLException {
+    public void registrarPiezasPorHora(String codigo_inspector, int acumulado, String calidad, int piezasMeta, String lote) throws SQLException {
         MOG datosMOG = MOG.getInstance();
         LineaProduccion lineaProduccion = LineaProduccion.getInstance();
 
@@ -136,6 +136,19 @@ public class RegistroHoraxHoraModel {
             cst.setInt(10, datosDAS.getIdDAS());
 
             cst.executeQuery();
+            
+            CallableStatement cst2 = con.prepareCall("{call actualizarMetaPiezas(?,?)}");
+            cst2.setInt(1, piezasMeta);
+            cst2.setInt(2, datosDAS.getIdDAS());
+            cst2.executeQuery();
+            datosDAS.setPiezasMeta(piezasMeta);
+            
+            CallableStatement cst3 = con.prepareCall("{call actualizarLoteMOG(?,?)}");
+            cst3.setString(1, lote);
+            cst3.setString(2, datosMOG.getMog());
+            cst3.executeQuery();
+            datosMOG.setLote(lote);
+            
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al registrar la producción por hora", ex);
             throw ex;

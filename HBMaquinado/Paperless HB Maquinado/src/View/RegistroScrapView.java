@@ -22,6 +22,7 @@ public class RegistroScrapView extends javax.swing.JFrame {
      */
     public RegistroScrapView() {
         initComponents();
+        setLocationRelativeTo(null);
         btnRegresar.setBackground(Color.BLACK);
         btnSiguiente.setBackground(Color.BLACK);
         
@@ -73,7 +74,7 @@ public class RegistroScrapView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Registro de Scrap");
+        jLabel1.setText("REGISTRO DE SCRAP");
         jLabel1.setPreferredSize(new java.awt.Dimension(700, 14));
 
         btnRegresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N

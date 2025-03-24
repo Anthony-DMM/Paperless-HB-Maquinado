@@ -8,8 +8,10 @@ import Components.CeldaEditable;
 import Entities.RazonRechazo;
 import Entities.Scrap;
 import Model.RegistroScrapModel;
+import Utils.MostrarMensaje;
 import Utils.Navegador;
 import Utils.RenderizarTablaColor;
+import View.PreviaDASView;
 import View.RegistroScrapView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +35,8 @@ import javax.swing.table.DefaultTableModel;
 public class RegistroScrapController implements ActionListener {
     RegistroScrapModel registroScrapModel = new RegistroScrapModel();
     RegistroScrapView registroScrapView = RegistroScrapView.getInstance();
+    PreviaDASView previaDASView = PreviaDASView.getInstance();
+    PreviaDASController previaDASController = new PreviaDASController();
     private DefaultTableModel modelo = (DefaultTableModel) registroScrapView.tblScrap.getModel();
     Navegador navegador = Navegador.getInstance();
     private int columna_amarilla;
@@ -102,7 +106,6 @@ public class RegistroScrapController implements ActionListener {
                 columna_amarilla = columna_amarilla + 2;
             }
         }
-        System.out.print(columna_amarilla);
     }
 
     private void inicializar_escuchadores() {
@@ -251,5 +254,7 @@ private void hacer_columna_editable() {
 
             registroScrapModel.llenarRazonRechazo(cantidad, id_razon, columna_amarilla - 1);
         }
+        MostrarMensaje.mostrarInfo("Se ha registrado el scrap de manera exitosa");
+        navegador.avanzar(previaDASView, registroScrapView);
     }
 }
