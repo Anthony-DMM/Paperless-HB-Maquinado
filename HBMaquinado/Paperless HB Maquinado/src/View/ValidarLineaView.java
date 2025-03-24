@@ -18,7 +18,7 @@ import javax.swing.text.AbstractDocument;
 public class ValidarLineaView extends javax.swing.JFrame {
 
     /**
-     * Creates new form Autenticacion
+     * Creates new form ValidarLinea
      */
     private ValidarLineaView() {
         initComponents();
