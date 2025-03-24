@@ -27,6 +27,7 @@ public class RegistroRBPModel {
     private static final Logger LOGGER = Logger.getLogger(RegistroRBPModel.class.getName());
     private final LocalDate fechaF;
     private final RBP datosRBP = RBP.getInstance();
+    private final DAS datosDAS = DAS.getInstance();
     private final Operador datosOperador = Operador.getInstance();
     private final LineaProduccion lineaProduccion = LineaProduccion.getInstance();
     int idDAS = 0;
@@ -85,7 +86,6 @@ public class RegistroRBPModel {
             cst.executeQuery();
             idDAS = cst.getInt(1);
             if (idDAS != 0) {
-                DAS datosDAS = DAS.getInstance();
                 datosDAS.setIdDAS(idDAS);
             }
         } catch (SQLException ex) {
@@ -107,8 +107,7 @@ public class RegistroRBPModel {
             cst.executeQuery();
             idDAS = cst.getInt(2);
 
-            if (idDAS != 0) {
-                DAS datosDAS = DAS.getInstance();
+            if (idDAS != 0){
                 datosDAS.setIdDAS(idDAS);
             }
         } catch (SQLException ex) {
@@ -156,7 +155,7 @@ public class RegistroRBPModel {
         
         int piezasProcesadas = piezasFila * filas * niveles * canastas;
         try (Connection con = conexion.conexionMySQL();
-                CallableStatement cst = con.prepareCall("{call insertar_piezas_procesadas_maquinado(?,?,?,?,?,?,?,?,?,?,?,?,?)}")) {
+                CallableStatement cst = con.prepareCall("{call insertar_piezas_procesadas_maquinado(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}")) {
             cst.setInt(1, datosRBP.getId());
             cst.setString(2, lineaProduccion.getLinea());
             cst.setInt(3, piezasProcesadas);
@@ -170,6 +169,7 @@ public class RegistroRBPModel {
             cst.setInt(11, sobrante);
             cst.setInt(12, rangoCanasta1);
             cst.setInt(13, rangoCanasta2);
+            cst.setInt(14, datosDAS.getIdDAS());
 
             cst.executeQuery();
         } catch (SQLException ex) {

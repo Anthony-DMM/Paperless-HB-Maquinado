@@ -26,6 +26,7 @@ public class RenderizarTablaColor extends DefaultTableCellRenderer {
         Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         int columna_total = 10;
         int ultima_fila = table.getRowCount() - 1;
+        int ultima_columna_total = table.getColumnCount() - 1;
         if (column == columna_amarilla && row != ultima_fila ) {
             c.setBackground(Color.YELLOW);
             return c;
@@ -49,6 +50,11 @@ public class RenderizarTablaColor extends DefaultTableCellRenderer {
             }
         } else {
             c.setBackground(Color.LIGHT_GRAY);
+            c.setForeground(Color.BLACK);
+        }
+        
+        if (row == ultima_fila && column == ultima_columna_total) {
+            c.setBackground(Color.WHITE);
             c.setForeground(Color.BLACK);
         }
 

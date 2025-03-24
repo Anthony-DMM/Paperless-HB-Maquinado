@@ -53,9 +53,12 @@ public class RegistroScrapController implements ActionListener {
                 hacer_columna_editable();
                 setear_total_por_razon();
                 colorear_campos(registroScrapView.tblScrap, columna_amarilla);
+                calcularTotal();
             }
         });
     }
+    
+    
     
     private void llenar_tabla_razones() {
         for (RazonRechazo razon_rechazo : razones_rechazo) {
@@ -104,6 +107,7 @@ public class RegistroScrapController implements ActionListener {
 
     private void inicializar_escuchadores() {
         registroScrapView.btnSiguiente.addActionListener(this);
+        registroScrapView.btnRegresar.addActionListener(this);
     }
 
     private void colorear_campos(JTable tabla, int columna_amarilla) {
@@ -225,6 +229,19 @@ private void hacer_columna_editable() {
             }
         }
         return sumatoria;
+    }
+    
+    private void calcularTotal() {
+        int columnaTotalIndex = modelo.getColumnCount() - 1;
+        int totalColumnaTotal = 0;
+
+        for (int i = 0; i < modelo.getRowCount() - 1; i++) {
+            try {
+                totalColumnaTotal += (int) modelo.getValueAt(i, columnaTotalIndex);
+            } catch (Exception e) {
+            }
+        }
+        modelo.setValueAt(totalColumnaTotal, modelo.getRowCount() - 1, modelo.getColumnCount() - 1);
     }
 
     public void registrar_scrap() {

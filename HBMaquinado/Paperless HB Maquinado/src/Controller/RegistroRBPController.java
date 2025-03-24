@@ -272,6 +272,10 @@ public class RegistroRBPController implements ActionListener, ItemListener {
 
             int canastas = Integer.parseInt(registroRBPView.txtCanastas.getText());
             try {
+                if (!dasModel.buscarDASExistente(datosDAS.getTurno())) {
+                    Operador datosOperador = Operador.getInstance();
+                    dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
+                }
                 registroRBPModel.registrarPiezasProcesadas(piezasxFila, filas, niveles, canastas, filasCompletas, nivelesCompletos, sobrante);
                 MostrarMensaje.mostrarInfo("Se han registrado las piezas producidas con éxito");
                 navegador.avanzar(registroScrapView, registroRBPView);
