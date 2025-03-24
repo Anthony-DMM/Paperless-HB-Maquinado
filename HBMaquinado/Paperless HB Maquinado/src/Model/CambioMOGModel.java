@@ -146,7 +146,7 @@ public class CambioMOGModel {
             int idMOGObtenido = cst.getInt(8);
             if (idMOGObtenido != 0) {
                 datosMOGHija.setIdMogHija(idMOGObtenido);
-                insertarCambioMOG(); // Puede lanzar SQLException
+                insertarCambioMOG();
             }
             return idMOGObtenido;
         }
