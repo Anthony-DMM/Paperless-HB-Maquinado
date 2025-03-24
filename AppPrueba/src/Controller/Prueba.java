@@ -40,7 +40,7 @@ public class Prueba {
         PreviewsMaquinadoRBPSecond preview_maquinado_rbp_second = new PreviewsMaquinadoRBPSecond();
         StopView stop_view = new StopView();
         
-        
+        previews_maquinado_das.setVisible(true);
         // Se iniciazliza las clases de modelos
         
         Metods metods = new Metods();
