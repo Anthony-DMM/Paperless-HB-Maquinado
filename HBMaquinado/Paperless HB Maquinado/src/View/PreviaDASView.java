@@ -6,6 +6,7 @@ package View;
 
 import Config.VistaSingleton;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -37,7 +38,7 @@ public class PreviaDASView extends javax.swing.JFrame {
         header.setFont(new Font("Arial", Font.BOLD, 16));
         header.setBackground(Color.WHITE);
         header.setForeground(Color.BLACK);
-
+        header.setPreferredSize(new Dimension(header.getWidth(), 44));
     
         DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) header.getDefaultRenderer();
         headerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -79,6 +80,7 @@ public class PreviaDASView extends javax.swing.JFrame {
         header3.setFont(new Font("Arial", Font.BOLD, 16));
         header3.setBackground(Color.WHITE);
         header3.setForeground(Color.BLACK);
+        header3.setPreferredSize(new Dimension(header.getWidth(), 40));
 
     
         DefaultTableCellRenderer headerRenderer3 = (DefaultTableCellRenderer) header3.getDefaultRenderer();
@@ -100,6 +102,7 @@ public class PreviaDASView extends javax.swing.JFrame {
         header4.setFont(new Font("Arial", Font.BOLD, 16));
         header4.setBackground(Color.WHITE);
         header4.setForeground(Color.BLACK);
+        header4.setPreferredSize(new Dimension(header.getWidth(), 40));
 
     
         DefaultTableCellRenderer headerRenderer4 = (DefaultTableCellRenderer) header4.getDefaultRenderer();
@@ -121,6 +124,7 @@ public class PreviaDASView extends javax.swing.JFrame {
         header5.setFont(new Font("Arial", Font.BOLD, 16));
         header5.setBackground(Color.WHITE);
         header5.setForeground(Color.BLACK);
+        header5.setPreferredSize(new Dimension(header.getWidth(), 40));
 
     
         DefaultTableCellRenderer headerRenderer5 = (DefaultTableCellRenderer) header5.getDefaultRenderer();
@@ -175,14 +179,14 @@ public class PreviaDASView extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         lblPiezasMetaNombre = new javax.swing.JLabel();
         lblCantidadPiezasMeta = new javax.swing.JLabel();
-        lblCantidadPiezasMeta1 = new javax.swing.JLabel();
+        lblCantidadProcesada = new javax.swing.JLabel();
         lblCantidadProcesadaNombre = new javax.swing.JLabel();
-        lblCantidadPiezasMeta2 = new javax.swing.JLabel();
+        lblCantidadPzsBuenas = new javax.swing.JLabel();
         lblPiezasBuenasNombre = new javax.swing.JLabel();
         lblPiezasRechazadasNombre = new javax.swing.JLabel();
-        lblCantidadPiezasMeta3 = new javax.swing.JLabel();
+        lblCantidadPzsRechazadas = new javax.swing.JLabel();
         lblDesempeñoNombre = new javax.swing.JLabel();
-        lblCantidadPiezasMeta4 = new javax.swing.JLabel();
+        lblDesempeño = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblRegistroProduccion1 = new javax.swing.JTable();
@@ -198,9 +202,6 @@ public class PreviaDASView extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblParos = new javax.swing.JTable();
-        jLabel75 = new javax.swing.JLabel();
-        jTextFieldtotalpzas = new javax.swing.JTextField();
-        jTextFieldtototalacumulado = new javax.swing.JTextField();
         btnRegresar = new javax.swing.JButton();
         btnSiguiente = new javax.swing.JButton();
 
@@ -219,6 +220,7 @@ public class PreviaDASView extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Línea");
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel7.setOpaque(true);
 
         lblLinea.setBackground(new java.awt.Color(255, 255, 255));
         lblLinea.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -235,12 +237,14 @@ public class PreviaDASView extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Grupo");
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel8.setOpaque(true);
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Día");
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel9.setOpaque(true);
 
         lblDia.setBackground(new java.awt.Color(255, 255, 255));
         lblDia.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -252,6 +256,7 @@ public class PreviaDASView extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Mes");
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel10.setOpaque(true);
 
         lblMes.setBackground(new java.awt.Color(255, 255, 255));
         lblMes.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -263,6 +268,7 @@ public class PreviaDASView extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Año");
         jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel11.setOpaque(true);
 
         lblAnio.setBackground(new java.awt.Color(255, 255, 255));
         lblAnio.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -279,12 +285,14 @@ public class PreviaDASView extends javax.swing.JFrame {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Circular el Turno Trabajado");
         jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel12.setOpaque(true);
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Nombre Keeper");
         jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel13.setOpaque(true);
 
         lblNombreKeeper.setBackground(new java.awt.Color(255, 255, 255));
         lblNombreKeeper.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -296,6 +304,7 @@ public class PreviaDASView extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Nombre Inspector");
         jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel14.setOpaque(true);
 
         lblNombreInspector.setBackground(new java.awt.Color(255, 255, 255));
         lblNombreInspector.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -312,6 +321,7 @@ public class PreviaDASView extends javax.swing.JFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Nombre Operador");
         jLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel15.setOpaque(true);
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -322,55 +332,60 @@ public class PreviaDASView extends javax.swing.JFrame {
         lblPiezasMetaNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPiezasMetaNombre.setToolTipText("");
         lblPiezasMetaNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblPiezasMetaNombre.setOpaque(true);
 
         lblCantidadPiezasMeta.setBackground(new java.awt.Color(255, 255, 255));
         lblCantidadPiezasMeta.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         lblCantidadPiezasMeta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCantidadPiezasMeta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        lblCantidadPiezasMeta1.setBackground(new java.awt.Color(255, 255, 255));
-        lblCantidadPiezasMeta1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        lblCantidadPiezasMeta1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCantidadPiezasMeta1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblCantidadProcesada.setBackground(new java.awt.Color(255, 255, 255));
+        lblCantidadProcesada.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        lblCantidadProcesada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCantidadProcesada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lblCantidadProcesadaNombre.setBackground(new java.awt.Color(255, 255, 255));
         lblCantidadProcesadaNombre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblCantidadProcesadaNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCantidadProcesadaNombre.setToolTipText("");
         lblCantidadProcesadaNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblCantidadProcesadaNombre.setOpaque(true);
 
-        lblCantidadPiezasMeta2.setBackground(new java.awt.Color(255, 255, 255));
-        lblCantidadPiezasMeta2.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        lblCantidadPiezasMeta2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCantidadPiezasMeta2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblCantidadPzsBuenas.setBackground(new java.awt.Color(255, 255, 255));
+        lblCantidadPzsBuenas.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        lblCantidadPzsBuenas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCantidadPzsBuenas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lblPiezasBuenasNombre.setBackground(new java.awt.Color(255, 255, 255));
         lblPiezasBuenasNombre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblPiezasBuenasNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPiezasBuenasNombre.setToolTipText("");
         lblPiezasBuenasNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblPiezasBuenasNombre.setOpaque(true);
 
         lblPiezasRechazadasNombre.setBackground(new java.awt.Color(255, 255, 255));
         lblPiezasRechazadasNombre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblPiezasRechazadasNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPiezasRechazadasNombre.setToolTipText("");
         lblPiezasRechazadasNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblPiezasRechazadasNombre.setOpaque(true);
 
-        lblCantidadPiezasMeta3.setBackground(new java.awt.Color(255, 255, 255));
-        lblCantidadPiezasMeta3.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        lblCantidadPiezasMeta3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCantidadPiezasMeta3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblCantidadPzsRechazadas.setBackground(new java.awt.Color(255, 255, 255));
+        lblCantidadPzsRechazadas.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        lblCantidadPzsRechazadas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCantidadPzsRechazadas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lblDesempeñoNombre.setBackground(new java.awt.Color(255, 255, 255));
         lblDesempeñoNombre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblDesempeñoNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDesempeñoNombre.setToolTipText("");
         lblDesempeñoNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblDesempeñoNombre.setOpaque(true);
 
-        lblCantidadPiezasMeta4.setBackground(new java.awt.Color(255, 255, 255));
-        lblCantidadPiezasMeta4.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        lblCantidadPiezasMeta4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCantidadPiezasMeta4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblDesempeño.setBackground(new java.awt.Color(255, 255, 255));
+        lblDesempeño.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        lblDesempeño.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDesempeño.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -486,26 +501,6 @@ public class PreviaDASView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblParos);
 
-        jLabel75.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel75.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel75.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel75.setText("Total");
-        jLabel75.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(138, 162, 145)));
-
-        jTextFieldtotalpzas.setEditable(false);
-        jTextFieldtotalpzas.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldtotalpzas.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextFieldtotalpzas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldtotalpzas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(138, 162, 145)));
-        jTextFieldtotalpzas.setDisabledTextColor(new java.awt.Color(240, 240, 240));
-
-        jTextFieldtototalacumulado.setEditable(false);
-        jTextFieldtototalacumulado.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldtototalacumulado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextFieldtototalacumulado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldtototalacumulado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(138, 162, 145)));
-        jTextFieldtototalacumulado.setDisabledTextColor(new java.awt.Color(240, 240, 240));
-
         btnRegresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegresar.setText("Regresar");
@@ -526,86 +521,78 @@ public class PreviaDASView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                                .addComponent(lblLinea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(40, 40, 40)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                                .addComponent(lblGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(40, 40, 40)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
-                            .addGap(0, 0, 0)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(0, 0, 0)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
-                            .addGap(50, 50, 50)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lblNombreKeeper, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
-                            .addGap(0, 0, 0)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                                .addComponent(lblNombreOperador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(0, 0, 0)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblNombreInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lblCantidadPiezasMeta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblPiezasMetaNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, 0)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lblCantidadPiezasMeta1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblCantidadProcesadaNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, 0)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lblCantidadPiezasMeta2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblPiezasBuenasNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, 0)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lblCantidadPiezasMeta3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblPiezasRechazadasNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, 0)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lblCantidadPiezasMeta4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblDesempeñoNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(0, 0, 0)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(0, 0, 0)
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(jScrollPane6)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1)
-                        .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(lblLinea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(lblGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
                         .addGap(0, 0, 0)
-                        .addComponent(jTextFieldtotalpzas, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, 0)
-                        .addComponent(jTextFieldtototalacumulado, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblNombreKeeper, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                            .addComponent(lblNombreOperador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNombreInspector, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblCantidadPiezasMeta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPiezasMetaNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblCantidadProcesada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblCantidadProcesadaNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblCantidadPzsBuenas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPiezasBuenasNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblCantidadPzsRechazadas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPiezasRechazadasNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblDesempeño, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDesempeñoNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane6)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -671,20 +658,20 @@ public class PreviaDASView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblCantidadProcesadaNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
-                        .addComponent(lblCantidadPiezasMeta1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblCantidadProcesada, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblPiezasBuenasNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
-                        .addComponent(lblCantidadPiezasMeta2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblCantidadPzsBuenas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(lblDesempeñoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
-                        .addComponent(lblCantidadPiezasMeta4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblDesempeño, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(lblPiezasRechazadasNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
-                        .addComponent(lblCantidadPiezasMeta3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
+                        .addComponent(lblCantidadPzsRechazadas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -697,16 +684,11 @@ public class PreviaDASView extends javax.swing.JFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldtotalpzas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldtototalacumulado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -789,7 +771,6 @@ public class PreviaDASView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -798,15 +779,13 @@ public class PreviaDASView extends javax.swing.JFrame {
     public javax.swing.JScrollPane jScrollPane4;
     public javax.swing.JScrollPane jScrollPane5;
     public javax.swing.JScrollPane jScrollPane6;
-    public javax.swing.JTextField jTextFieldtotalpzas;
-    public javax.swing.JTextField jTextFieldtototalacumulado;
     public javax.swing.JLabel lblAnio;
     public javax.swing.JLabel lblCantidadPiezasMeta;
-    public javax.swing.JLabel lblCantidadPiezasMeta1;
-    public javax.swing.JLabel lblCantidadPiezasMeta2;
-    public javax.swing.JLabel lblCantidadPiezasMeta3;
-    public javax.swing.JLabel lblCantidadPiezasMeta4;
+    public javax.swing.JLabel lblCantidadProcesada;
     private javax.swing.JLabel lblCantidadProcesadaNombre;
+    public javax.swing.JLabel lblCantidadPzsBuenas;
+    public javax.swing.JLabel lblCantidadPzsRechazadas;
+    public javax.swing.JLabel lblDesempeño;
     private javax.swing.JLabel lblDesempeñoNombre;
     public javax.swing.JLabel lblDia;
     public javax.swing.JLabel lblGrupo;
