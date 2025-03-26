@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @Builder
 public class PiezasProducidas {
-    int idRegistro, piezasTotales, piezasBuenas, piezasRechazadas;
+    int idRegistro, piezasTotales, piezasBuenas, piezasRechazadas, columnaTurno;
     
     private static PiezasProducidas instance;
     

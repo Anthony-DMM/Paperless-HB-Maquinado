@@ -5,6 +5,7 @@
 package Controller;
 
 import Components.CeldaEditable;
+import Entities.PiezasProducidas;
 import Entities.RazonRechazo;
 import Entities.Scrap;
 import Model.RegistroScrapModel;
@@ -43,6 +44,7 @@ public class RegistroScrapController implements ActionListener {
     private Map<Integer, Integer> scrap_por_razon = new HashMap<>();
     private List<RazonRechazo> razones_rechazo = new ArrayList<>();
     private List<Scrap> scraps = new ArrayList<>();
+    private final PiezasProducidas datosPiezasProducidas = PiezasProducidas.getInstance();
     
     public RegistroScrapController() {
         registroScrapView.addWindowListener(new WindowAdapter() {
@@ -253,6 +255,7 @@ private void hacer_columna_editable() {
             Integer cantidad = entry.getValue();
 
             registroScrapModel.llenarRazonRechazo(cantidad, id_razon, columna_amarilla - 1);
+            datosPiezasProducidas.setColumnaTurno(columna_amarilla - 1);
         }
         MostrarMensaje.mostrarInfo("Se ha registrado el scrap de manera exitosa");
         navegador.avanzar(previaDASView, registroScrapView);

@@ -155,7 +155,9 @@ public class RegistroRBPModel {
             rangoCanasta2 = rangoCanasta1 + canastas;
         }
         
-        int piezasProcesadas = piezasFila * filas * niveles * canastas;
+        int piezasPorFilasCompletas = filasCompletas * piezasFila;
+        int piezasPorNivelesCompletos = nivelesCompletos * (filas * piezasFila);
+        int piezasProcesadas = piezasFila * filas * niveles * canastas + piezasPorFilasCompletas + piezasPorNivelesCompletos + sobrante;
         try (Connection con = conexion.conexionMySQL();
                 CallableStatement cst = con.prepareCall("{call insertar_piezas_procesadas_maquinado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}")) {
             cst.setInt(1, datosRBP.getId());
@@ -174,6 +176,8 @@ public class RegistroRBPModel {
             cst.setInt(14, datosDAS.getIdDAS());
             cst.registerOutParameter(15, java.sql.Types.INTEGER);
             cst.executeQuery();
+            
+            datosPiezasProducidas.setPiezasTotales(piezasProcesadas);
             
             int idRegistroPiezas = cst.getInt(15);
             if (idRegistroPiezas != 0) {
@@ -199,7 +203,9 @@ public class RegistroRBPModel {
             rangoCanasta2 = rangoCanasta1 + canastas;
         }
         
-        int piezasProcesadas = piezasFila * filas * niveles * canastas;
+        int piezasPorFilasCompletas = filasCompletas * piezasFila;
+        int piezasPorNivelesCompletos = nivelesCompletos * (filas * piezasFila);
+        int piezasProcesadas = piezasFila * filas * niveles * canastas + piezasPorFilasCompletas + piezasPorNivelesCompletos + sobrante;
         try (Connection con = conexion.conexionMySQL();
                 CallableStatement cst = con.prepareCall("{call actualizar_piezas_procesadas_maquinado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}")) {
             cst.setInt(1, datosRBP.getId());
@@ -218,6 +224,8 @@ public class RegistroRBPModel {
             cst.setInt(14, datosDAS.getIdDAS());
             cst.setInt(15, datosPiezasProducidas.getIdRegistro());
             cst.executeQuery();
+            
+            datosPiezasProducidas.setPiezasTotales(piezasProcesadas);
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al registrar la producción por hora", ex);
             throw ex;
