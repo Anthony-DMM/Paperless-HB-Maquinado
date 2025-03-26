@@ -20,6 +20,7 @@ import View.ParoProcesoView;
 import View.RegistroHoraxHoraView;
 import View.RegistroRBPView;
 import View.RegistroScrapView;
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -56,6 +57,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
     
     private final DASModel dasModel;
     private boolean turnoValido = false;
+    private boolean registroRealizado = false;
 
     LocalTime inicioTurno = LocalTime.parse("07:00:00");
     LocalTime finTurno = LocalTime.parse("18:59:59");
@@ -117,14 +119,18 @@ public class RegistroRBPController implements ActionListener, ItemListener {
             MostrarMensaje.mostrarError("Favor de seleccionar un turno de trabajo");
         } else {
             if (turnoValido == false) {
-                int opcion = JOptionPane.showConfirmDialog(null, "<html>¿Seguro que quieres elegir el turno "+datosDAS.getTurno()+"?<br>Una vez confirmado, no podrás modificarlo</html>");
+                int opcion = JOptionPane.showConfirmDialog(null, "<html><font size='10' color='red'>¿Seguro que quieres elegir el turno "+datosDAS.getTurno()+"?<br>Una vez confirmado, no podrás modificarlo</font></html>");
                 if (opcion == JOptionPane.YES_OPTION) {
                     try {
                         if(!dasModel.buscarDASExistente(datosDAS.getTurno())) {
                             Operador datosOperador = Operador.getInstance();
                             dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
-                            navegador.avanzar(ventanaDestino, registroRBPView);
                         }
+                        registroRBPView.cbxTurno.setEnabled(false);
+                        registroRBPView.cbxTurno.setFocusable(false);
+                        registroRBPView.cbxTurno.setBackground(new Color(240, 240, 240));
+                        registroRBPView.cbxTurno.setForeground(Color.BLACK);
+                        navegador.avanzar(ventanaDestino, registroRBPView);
                         turnoValido = true;
                     } catch (SQLException ex) {
                         Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
@@ -233,14 +239,15 @@ public class RegistroRBPController implements ActionListener, ItemListener {
         int niveles = Integer.parseInt(registroRBPView.txtNiveles.getText());
         int filasCompletas = Integer.parseInt(registroRBPView.txtFilasCompletas.getText());
         int nivelesCompletos = Integer.parseInt(registroRBPView.txtNivelesCompletos.getText());
+        int sobrante = Integer.parseInt(registroRBPView.txtSobrante.getText());
 
         // Asegurar que los valores 0 se conviertan en 1 SOLO para el total de la canasta completa
         int piezasxFilaCanastaCompleta = (piezasxFila == 0) ? 1 : piezasxFila;
         int filasCanastaCompleta = (filas == 0) ? 1 : filas;
         int nivelesCanastaCompleta = (niveles == 0) ? 1 : niveles;
 
-        int totalPiezasCanasta = piezasxFilaCanastaCompleta * filasCanastaCompleta * nivelesCanastaCompleta;
-        int totalPiezasCanastaIncompleta = piezasxFila * filasCompletas * nivelesCompletos;
+        //int totalPiezasCanasta = piezasxFilaCanastaCompleta * filasCanastaCompleta * nivelesCanastaCompleta;
+        //int totalPiezasCanastaIncompleta = piezasxFila * filasCompletas * nivelesCompletos;
 
         if (registroRBPView.txtPiezasxFila.getText().isEmpty()
                 || registroRBPView.txtFilas.getText().isEmpty()
@@ -250,34 +257,26 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                 || registroRBPView.txtNivelesCompletos.getText().isEmpty()
                 || registroRBPView.txtSobrante.getText().isEmpty()) {
             MostrarMensaje.mostrarAdvertencia("Para continuar ingrese todos los datos en las secciones de Canastas completas y Canastas incompletas.");
-        } else if (filasCompletas > filas) {
-            MostrarMensaje.mostrarError("El número de filas en canastas incompletas no puede ser mayor al de canastas completas. Revise los datos.");
-        } else if (nivelesCompletos > niveles) {
-            MostrarMensaje.mostrarError("El número de niveles en canastas incompletas no puede ser mayor al de canastas completas. Revise los datos.");
-        } else if (nivelesCompletos > filasCompletas) {
-            MostrarMensaje.mostrarError("El número de niveles completos en canastas incompletas no puede ser mayor a las filas completas. Revise los datos.");
-        } else if (Integer.parseInt(registroRBPView.txtSobrante.getText()) >= totalPiezasCanasta) {
-            MostrarMensaje.mostrarError("La cantidad de piezas sobrantes no puede ser mayor o igual a las piezas necesarias para completar una canasta. Revise los datos.");
+        } else if (filasCompletas >= filas) {
+            MostrarMensaje.mostrarError("El número de filas completas no puede ser igual o mayor al de filas. Revise los datos.");
+        } else if (nivelesCompletos >= niveles) {
+            MostrarMensaje.mostrarError("El número de niveles completos no puede ser igual o mayor al de niveles. Revise los datos.");
+        } else if (Integer.parseInt(registroRBPView.txtSobrante.getText()) >= piezasxFila) {
+            MostrarMensaje.mostrarError("El sobrante no puede ser igual o mayor a las piezas por fila. Revise los datos.");
         } else {
-            int sobrante = Integer.parseInt(registroRBPView.txtSobrante.getText());
-            if (filasCompletas > 0 || nivelesCompletos > 0) {
-                if (sobrante < piezasxFila) {
-                    MostrarMensaje.mostrarError("<html>La cantidad de piezas sobrantes debe ser igual o mayor a las piezas por fila (" + piezasxFila + ") si hay filas o niveles completos. Revisa los datos.</html>");
-                    return; // Salir del método si hay error
-                }
-            } else if (sobrante < totalPiezasCanastaIncompleta) {
-                MostrarMensaje.mostrarError("<html>La cantidad de piezas sobrantes debe ser igual o mayor a las piezas ya colocadas en la canasta incompleta.<br>Por ejemplo, si tienes 25 piezas por fila, 2 filas y 1 nivel, necesitas al menos 50 piezas (25 x 2 x 1). Revisa los datos.</html>");
-                return; // Salir del método si hay error
-            }
-
             int canastas = Integer.parseInt(registroRBPView.txtCanastas.getText());
             try {
                 if (!dasModel.buscarDASExistente(datosDAS.getTurno())) {
-                    Operador datosOperador = Operador.getInstance();
                     dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
                 }
-                registroRBPModel.registrarPiezasProcesadas(piezasxFila, filas, niveles, canastas, filasCompletas, nivelesCompletos, sobrante);
-                MostrarMensaje.mostrarInfo("Se han registrado las piezas producidas con éxito");
+                if(registroRealizado == false){
+                    registroRBPModel.registrarPiezasProcesadas(piezasxFila, filas, niveles, canastas, filasCompletas, nivelesCompletos, sobrante);
+                    MostrarMensaje.mostrarInfo("Se han registrado las piezas producidas con éxito");
+                    registroRealizado = true;
+                } else {
+                    registroRBPModel.actualizarPiezasProcesadas(piezasxFila, filas, niveles, canastas, filasCompletas, nivelesCompletos, sobrante);
+                    MostrarMensaje.mostrarInfo("Se han modificado las piezas producidas con éxito");
+                }
                 navegador.avanzar(registroScrapView, registroRBPView);
             } catch (SQLException ex) {
                 Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);

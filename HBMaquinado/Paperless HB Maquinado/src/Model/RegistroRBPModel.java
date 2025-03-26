@@ -6,6 +6,7 @@ package Model;
 
 import Entities.Operador;
 import Entities.DAS;
+import Entities.PiezasProducidas;
 import Interfaces.LineaProduccion;
 import Entities.RBP;
 import Utils.MostrarMensaje;
@@ -28,6 +29,7 @@ public class RegistroRBPModel {
     private final LocalDate fechaF;
     private final RBP datosRBP = RBP.getInstance();
     private final DAS datosDAS = DAS.getInstance();
+    private final PiezasProducidas datosPiezasProducidas = PiezasProducidas.getInstance();
     private final Operador datosOperador = Operador.getInstance();
     private final LineaProduccion lineaProduccion = LineaProduccion.getInstance();
     int idDAS = 0;
@@ -155,7 +157,7 @@ public class RegistroRBPModel {
         
         int piezasProcesadas = piezasFila * filas * niveles * canastas;
         try (Connection con = conexion.conexionMySQL();
-                CallableStatement cst = con.prepareCall("{call insertar_piezas_procesadas_maquinado(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}")) {
+                CallableStatement cst = con.prepareCall("{call insertar_piezas_procesadas_maquinado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}")) {
             cst.setInt(1, datosRBP.getId());
             cst.setString(2, lineaProduccion.getLinea());
             cst.setInt(3, piezasProcesadas);
@@ -170,7 +172,51 @@ public class RegistroRBPModel {
             cst.setInt(12, rangoCanasta1);
             cst.setInt(13, rangoCanasta2);
             cst.setInt(14, datosDAS.getIdDAS());
-
+            cst.registerOutParameter(15, java.sql.Types.INTEGER);
+            cst.executeQuery();
+            
+            int idRegistroPiezas = cst.getInt(15);
+            if (idRegistroPiezas != 0) {
+                datosPiezasProducidas.setIdRegistro(idRegistroPiezas);
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al registrar la producción por hora", ex);
+            throw ex;
+        }
+    }
+    
+    public void actualizarPiezasProcesadas(int piezasFila, int filas, int niveles, int canastas, int filasCompletas, int nivelesCompletos, int sobrante) throws SQLException {
+        if(obtenerPiezasProcesadasMaquinado()){
+            if(filasCompletasAnterior == 0 && nivelesCompletosAnterior == 0 && sobranteAnterior == 0){
+                rangoCanasta1 = rangoCanasta2 + 1;
+                rangoCanasta2 = rangoCanasta1 + canastas - 1;
+            } else {
+                rangoCanasta1 = rangoCanasta2;
+                rangoCanasta2 = rangoCanasta1 + canastas;
+            }
+        } else {
+            rangoCanasta1 = 1;
+            rangoCanasta2 = rangoCanasta1 + canastas;
+        }
+        
+        int piezasProcesadas = piezasFila * filas * niveles * canastas;
+        try (Connection con = conexion.conexionMySQL();
+                CallableStatement cst = con.prepareCall("{call actualizar_piezas_procesadas_maquinado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}")) {
+            cst.setInt(1, datosRBP.getId());
+            cst.setString(2, lineaProduccion.getLinea());
+            cst.setInt(3, piezasProcesadas);
+            cst.setInt(4, piezasFila);
+            cst.setInt(5, filas);
+            cst.setInt(6, niveles);
+            cst.setInt(7, canastas);
+            cst.setInt(8, nivelesCompletos);
+            cst.setInt(9, filasCompletas);
+            cst.setInt(10, 0);
+            cst.setInt(11, sobrante);
+            cst.setInt(12, rangoCanasta1);
+            cst.setInt(13, rangoCanasta2);
+            cst.setInt(14, datosDAS.getIdDAS());
+            cst.setInt(15, datosPiezasProducidas.getIdRegistro());
             cst.executeQuery();
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al registrar la producción por hora", ex);

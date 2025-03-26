@@ -15,6 +15,7 @@ import Model.PreviaDASModel;
 import Model.RegistroHoraxHoraModel;
 import Utils.Navegador;
 import View.PreviaDASView;
+import View.PreviaRBPView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -38,6 +39,7 @@ public class PreviaDASController implements ActionListener{
     
     private final PreviaDASView previaDASView = PreviaDASView.getInstance();
     private final PreviaDASModel previaDASModel = new PreviaDASModel();
+    private final PreviaRBPView previaRBPView = PreviaRBPView.getInstance();
     private final RegistroHoraxHoraModel registroHoraxHoraModel = new RegistroHoraxHoraModel();
     private final ParoProcesoModel paroProcesoModel = new ParoProcesoModel();
     
@@ -60,7 +62,7 @@ public class PreviaDASController implements ActionListener{
         Object source = e.getSource();
         
         if (source == previaDASView.btnSiguiente) {
-            navegador.avanzar(previaDASView, previaDASView);
+            navegador.avanzar(previaRBPView, previaDASView);
         } else if (source == previaDASView.btnRegresar) {
             navegador.regresar(previaDASView);
         }

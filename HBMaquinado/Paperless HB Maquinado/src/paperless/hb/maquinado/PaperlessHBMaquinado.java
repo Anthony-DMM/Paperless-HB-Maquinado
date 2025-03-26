@@ -24,7 +24,6 @@ public class PaperlessHBMaquinado {
     public static void main(String[] args) {
         ValidarLineaView validarLineaView = ValidarLineaView.getInstance();
         ValidarLineaController validarLineaController = new ValidarLineaController(validarLineaView);
-        PreviaRBPView previaRBPView = PreviaRBPView.getInstance(); 
-        previaRBPView.setVisible(true);
+        validarLineaView.setVisible(true);
     }
 }
