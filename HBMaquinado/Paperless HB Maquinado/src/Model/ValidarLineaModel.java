@@ -20,6 +20,7 @@ public class ValidarLineaModel {
 
     private static final Logger LOGGER = Logger.getLogger(ValidarLineaModel.class.getName());
     private final DBConexion conexion;
+    LineaProduccion linea = LineaProduccion.getInstance();
 
     public ValidarLineaModel() {
         this.conexion = new DBConexion();
@@ -46,7 +47,6 @@ public class ValidarLineaModel {
 
                     int grupoAsignado = cst2.getInt(2);
 
-                    LineaProduccion linea = LineaProduccion.getInstance();
                     linea.setLinea(lineaProduccion);
                     linea.setSupervisor(supervisorAsignado);
                     linea.setProceso(procesoMaquina);

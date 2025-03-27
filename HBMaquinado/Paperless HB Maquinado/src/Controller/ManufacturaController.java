@@ -23,13 +23,12 @@ public class ManufacturaController implements ActionListener {
     private static final Logger LOGGER = Logger.getLogger(ManufacturaController.class.getName());
     
     private final ManufacturaModel manufacturaModel = new ManufacturaModel();
-    private final ManufacturaView manufacturaView;
+    private final ManufacturaView manufacturaView = ManufacturaView.getInstance();
     private final Navegador navegador = Navegador.getInstance();
     private final RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
     private final RegistroRBPController registroRBPController = new RegistroRBPController(registroRBPView);
     
-    public ManufacturaController(ManufacturaView manufacturaView) {
-        this.manufacturaView = manufacturaView;
+    public ManufacturaController() {
         addListeners();
     }
     

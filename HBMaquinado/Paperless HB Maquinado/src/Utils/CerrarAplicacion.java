@@ -15,7 +15,7 @@ public class CerrarAplicacion {
     public static void cerrar() {
         int confirmacion = JOptionPane.showConfirmDialog(
                 null,
-                "¿Está seguro que desea salir?",
+                "¿Está seguro que desea cerrar la aplicación?",
                 "Cerrar aplicación",
                 JOptionPane.YES_NO_OPTION
         );

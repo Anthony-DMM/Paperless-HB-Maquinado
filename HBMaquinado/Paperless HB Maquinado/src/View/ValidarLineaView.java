@@ -202,6 +202,6 @@ public class ValidarLineaView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_bienvenido;
     private javax.swing.JLabel lbl_codigo_supervisor;
-    private javax.swing.JTextField txtLineaProduccion;
+    public javax.swing.JTextField txtLineaProduccion;
     // End of variables declaration//GEN-END:variables
 }
