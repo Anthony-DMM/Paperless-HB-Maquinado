@@ -40,7 +40,6 @@ public class CambioMOGModel {
             cst.execute();
             ResultSet rs = cst.getResultSet();
             if (rs.next()) {
-                MostrarMensaje.mostrarError("Esta MOG ya ha sido registrada, no se puede volver a capturar");
                 return false;
             } else {
                 obtenerDatosOrden(mog);
@@ -94,13 +93,9 @@ public class CambioMOGModel {
             datosMOGHija.setStd(limpiarEstandar(res.getString(9)));
             numeroParte = procesarNumeroParte(res.getString(1));
             datosMOGHija.setNo_parte(numeroParte);
-            
-            System.out.println(datosMOGHija.getOrden_manufactura());
-            System.out.println(numeroParte);
         }
 
         if (!ordenEncontrada) {
-            MostrarMensaje.mostrarError("No se encontró la orden de manufactura de la MOG");
             return false;
         } else if (!datosMOGHija.getOrden_manufactura().contains(PROCESO_VALIDO)) {
             MostrarMensaje.mostrarError("La orden de manufactura de la MOG no pertenece al proceso de MAQUINADO");

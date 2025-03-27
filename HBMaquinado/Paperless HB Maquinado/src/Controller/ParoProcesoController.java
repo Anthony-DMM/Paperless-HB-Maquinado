@@ -158,6 +158,8 @@ public class ParoProcesoController implements ActionListener {
     }
     
     public void reiniciarContador() throws SQLException {
+        String horaInicioFormateada = fechaHora.horaActual();
+        registroParoProcesoView.txtHoraInicio.setText(horaInicioFormateada);
         horaInicio = fechaHora.obtenerTimestampActual();
         registroParoProcesoView.txtTiempo.setText("00:00:00");
     }
@@ -188,8 +190,8 @@ public class ParoProcesoController implements ActionListener {
             MostrarMensaje.mostrarError("Para registrar un paro de línea debes seleccionar al menos una categoría y una causa");
         } else {
             int minutosTranscurridos = obtenerMinutosTranscurridos(tiempoTranscurrido);
-            if (minutosTranscurridos < 0) {
-                MostrarMensaje.mostrarInfo("El paro en proceso no se registrará ya que su duración es menor a 5 minutos");
+            if (minutosTranscurridos < 5) {
+                MostrarMensaje.mostrarInfo("El paro no se registrará ya que duró menos de 5 minutos");
                 Navegador.getInstance().regresar(registroParoProcesoView);
             } else {
                 String causaSeleccionada = (String) registroParoProcesoView.cboxCausa.getSelectedItem();

@@ -5,11 +5,13 @@
 package View;
 
 import Config.VistaSingleton;
+import Utils.FiltroCampos;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
+import javax.swing.text.AbstractDocument;
 
 /**
  *
@@ -26,6 +28,8 @@ public class CambioMOGView extends javax.swing.JFrame {
         btnConfirmarCambio.setText("<html><center>Registrar<br>Cambio de MOG</center></html>");
         btnConfirmarCambio.setBackground(new Color(0,0,195));
         btnRegresar.setBackground(Color.black);
+        
+        ((AbstractDocument) txtMOG.getDocument()).setDocumentFilter(new FiltroCampos.FiltroNumerosYLetras());
         
         JTableHeader header = tblCambios.getTableHeader();
         header.setFont(new Font("Arial", Font.BOLD, 16));
@@ -91,6 +95,11 @@ public class CambioMOGView extends javax.swing.JFrame {
         txtMOG.setBackground(new java.awt.Color(255, 255, 0));
         txtMOG.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         txtMOG.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtMOG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMOGKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -203,6 +212,13 @@ public class CambioMOGView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtMOGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMOGKeyTyped
+        if(txtMOG.getText().length() >= 9)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMOGKeyTyped
 
     /**
      * @param args the command line arguments

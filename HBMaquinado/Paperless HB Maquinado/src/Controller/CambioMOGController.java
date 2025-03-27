@@ -90,11 +90,17 @@ public class CambioMOGController implements ActionListener {
             MostrarMensaje.mostrarError("Ingrese la MOG a la que se transferirán las piezas");
         }
         
+        String texto = cambioMOGView.txtMOG.getText();
+        
         try {
-            if (cambioMOGModel.buscarMOGExistente(MOGIngresada)) {
-                cambioMOGView.txtPiezas.setText(String.valueOf(datosMOGHija.getCantidad_planeada()));
-            } else {
+            if (cambioMOGModel.buscarMOGExistente(MOGIngresada) == false) {
+                MostrarMensaje.mostrarError("Esta MOG ya ha sido registrada, no se puede volver a capturar");
                 LimpiarCampos.limpiarCampo(cambioMOGView.txtMOG);
+            } else if (!texto.contains("MOG")) {
+                MostrarMensaje.mostrarError("El código ingresado no pertenece a una MOG");
+                LimpiarCampos.limpiarCampo(cambioMOGView.txtMOG);
+            } else {
+                cambioMOGView.txtPiezas.setText(String.valueOf(datosMOGHija.getCantidad_planeada()));
             }
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al obtener datos de la orden", ex);

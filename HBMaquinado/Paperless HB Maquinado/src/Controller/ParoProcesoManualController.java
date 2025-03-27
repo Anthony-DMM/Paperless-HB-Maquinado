@@ -202,10 +202,8 @@ public class ParoProcesoManualController implements ActionListener {
         if (hayCamposVacios()) {
             MostrarMensaje.mostrarError("Para registrar un paro de línea debes capturar la hora de inicio, hora de fin y duración del paro, además debes seleccionar al menos una categoría y una causa");
         } else {
-            int minutosTranscurridos = 5;//obtenerMinutosTranscurridos(tiempoTranscurrido);
-            if (minutosTranscurridos < 0) {
-                MostrarMensaje.mostrarInfo("El paro en proceso no se registrará ya que su duración es menor a 5 minutos");
-                Navegador.getInstance().regresar(registroParoProcesoManualView);
+            if (duracionEnMinutos <= 0) {
+                MostrarMensaje.mostrarInfo("El paro en proceso debe durar al menos 1 minuto");
             } else {
                 String causaSeleccionada = (String) registroParoProcesoManualView.cboxCausa.getSelectedItem();
                 int idCausaSeleccionada = causasMap.get(causaSeleccionada);

@@ -28,7 +28,7 @@ public class RegistroHoraxHoraView extends javax.swing.JFrame {
     private RegistroHoraxHoraView() {
         initComponents();
         setLocationRelativeTo(null);
-        btnRegistrarProduccion.setBackground(Color.BLACK);
+        btnRegistrarProduccion.setBackground(new Color(0,0,195));
         btnRegresar.setBackground(Color.BLACK);
         btnDibujo.setBackground(Color.BLACK);
         lblDAS.setText("<html><center>HORA x HORA<br>''HB MAQUINADO''</center></html>");
@@ -37,9 +37,9 @@ public class RegistroHoraxHoraView extends javax.swing.JFrame {
         
         ((AbstractDocument) txtCodigoSoporte.getDocument()).setDocumentFilter(new FiltroCampos.FiltroNumerosYSignoNumeral());
         ((AbstractDocument) txtCodigoInspector.getDocument()).setDocumentFilter(new FiltroCampos.FiltroNumerosYSignoNumeral());
-        //((AbstractDocument) txtNumeroEmpleado.getDocument()).setDocumentFilter(new FiltroCampos.FiltroNumerosYSignoNumeral());
         ((AbstractDocument) txtLote.getDocument()).setDocumentFilter(new FiltroCampos.FiltroNumerosYLetras());
         ((AbstractDocument) txtAcumulado.getDocument()).setDocumentFilter(new FiltroCampos.FiltroSoloNumeros());
+        ((AbstractDocument) txtPiezasMeta.getDocument()).setDocumentFilter(new FiltroCampos.FiltroSoloNumeros());
         
         JTableHeader header = tblHoraxHora.getTableHeader();
         header.setFont(new Font("Arial", Font.BOLD, 16));
@@ -272,6 +272,11 @@ public class RegistroHoraxHoraView extends javax.swing.JFrame {
         txtLote.setBackground(new java.awt.Color(255, 255, 0));
         txtLote.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         txtLote.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtLote.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLoteKeyTyped(evt);
+            }
+        });
 
         jLabel20.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel20.setText(" Hora:");
@@ -289,6 +294,11 @@ public class RegistroHoraxHoraView extends javax.swing.JFrame {
         txtAcumulado.setBackground(new java.awt.Color(255, 255, 0));
         txtAcumulado.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         txtAcumulado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtAcumulado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAcumuladoKeyTyped(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel22.setText(" Calidad:");
@@ -407,6 +417,11 @@ public class RegistroHoraxHoraView extends javax.swing.JFrame {
         txtPiezasMeta.setBackground(new java.awt.Color(255, 255, 0));
         txtPiezasMeta.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         txtPiezasMeta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtPiezasMeta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPiezasMetaKeyTyped(evt);
+            }
+        });
 
         jLabel26.setFont(new java.awt.Font("Arial", 0, 26)); // NOI18N
         jLabel26.setText(" Piezas (Meta):");
@@ -624,6 +639,27 @@ public class RegistroHoraxHoraView extends javax.swing.JFrame {
     private void cbxNGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNGActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxNGActionPerformed
+
+    private void txtPiezasMetaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPiezasMetaKeyTyped
+        if(txtPiezasMeta.getText().length() >= 6)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPiezasMetaKeyTyped
+
+    private void txtLoteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoteKeyTyped
+        if(txtLote.getText().length() >= 12)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtLoteKeyTyped
+
+    private void txtAcumuladoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAcumuladoKeyTyped
+        if(txtAcumulado.getText().length() >= 6)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAcumuladoKeyTyped
 
     /**
      * @param args the command line arguments

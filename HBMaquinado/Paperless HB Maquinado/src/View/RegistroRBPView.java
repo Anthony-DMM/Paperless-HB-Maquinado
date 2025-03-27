@@ -5,7 +5,9 @@
 package View;
 
 import Config.VistaSingleton;
+import Utils.FiltroCampos;
 import java.awt.Color;
+import javax.swing.text.AbstractDocument;
 
 /**
  *
@@ -36,6 +38,16 @@ public class RegistroRBPView extends javax.swing.JFrame {
         cbxTurno.setBackground(Color.YELLOW);
         btnParoLinea.setText("<html><center>Paro<br>de Línea</center></html>");
         btnCambioMOG.setText("<html><center>Cambio<br>de MOG</center></html>");
+        
+        ((AbstractDocument) txtNumeroEmpleado.getDocument()).setDocumentFilter(new FiltroCampos.FiltroNumerosYSignoNumeral());
+        ((AbstractDocument) txtPiezasxFila.getDocument()).setDocumentFilter(new FiltroCampos.FiltroSoloNumeros());
+        ((AbstractDocument) txtFilas.getDocument()).setDocumentFilter(new FiltroCampos.FiltroSoloNumeros());
+        ((AbstractDocument) txtNiveles.getDocument()).setDocumentFilter(new FiltroCampos.FiltroSoloNumeros());
+        ((AbstractDocument) txtCanastas.getDocument()).setDocumentFilter(new FiltroCampos.FiltroSoloNumeros());
+        ((AbstractDocument) txtFilasCompletas.getDocument()).setDocumentFilter(new FiltroCampos.FiltroSoloNumeros());
+        ((AbstractDocument) txtNivelesCompletos.getDocument()).setDocumentFilter(new FiltroCampos.FiltroSoloNumeros());
+        ((AbstractDocument) txtSobrante.getDocument()).setDocumentFilter(new FiltroCampos.FiltroSoloNumeros());
+        
     }
     
     public static RegistroRBPView getInstance() {
@@ -105,6 +117,7 @@ public class RegistroRBPView extends javax.swing.JFrame {
         txtNombreEmpleado.setEditable(false);
         txtNombreEmpleado.setBackground(new java.awt.Color(204, 204, 204));
         txtNombreEmpleado.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtNombreEmpleado.setFocusable(false);
 
         lblTituloRBP.setFont(new java.awt.Font("Arial", 1, 44)); // NOI18N
         lblTituloRBP.setForeground(new java.awt.Color(0, 102, 0));
@@ -113,10 +126,12 @@ public class RegistroRBPView extends javax.swing.JFrame {
         txtFecha.setEditable(false);
         txtFecha.setBackground(new java.awt.Color(204, 204, 204));
         txtFecha.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtFecha.setFocusable(false);
 
         btnDibujo.setBackground(new java.awt.Color(0, 0, 0));
         btnDibujo.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btnDibujo.setForeground(new java.awt.Color(255, 255, 255));
+        btnDibujo.setFocusable(false);
 
         jLabelCanastasCom.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabelCanastasCom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -128,6 +143,11 @@ public class RegistroRBPView extends javax.swing.JFrame {
         txtPiezasxFila.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         txtPiezasxFila.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPiezasxFila.setFocusable(false);
+        txtPiezasxFila.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPiezasxFilaKeyTyped(evt);
+            }
+        });
 
         lblPiezasxFila.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         lblPiezasxFila.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -142,12 +162,22 @@ public class RegistroRBPView extends javax.swing.JFrame {
         txtFilas.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         txtFilas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtFilas.setFocusable(false);
+        txtFilas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFilasKeyTyped(evt);
+            }
+        });
 
         txtNiveles.setEditable(false);
         txtNiveles.setBackground(new java.awt.Color(204, 204, 204));
         txtNiveles.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         txtNiveles.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNiveles.setFocusable(false);
+        txtNiveles.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNivelesKeyTyped(evt);
+            }
+        });
 
         jLabel212.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel212.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -162,6 +192,11 @@ public class RegistroRBPView extends javax.swing.JFrame {
         txtCanastas.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         txtCanastas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCanastas.setFocusable(false);
+        txtCanastas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCanastasKeyTyped(evt);
+            }
+        });
 
         jLabelCanastasCom1.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabelCanastasCom1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -173,6 +208,11 @@ public class RegistroRBPView extends javax.swing.JFrame {
         txtFilasCompletas.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         txtFilasCompletas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtFilasCompletas.setFocusable(false);
+        txtFilasCompletas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFilasCompletasKeyTyped(evt);
+            }
+        });
 
         lblFilasCompletas.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         lblFilasCompletas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -186,12 +226,22 @@ public class RegistroRBPView extends javax.swing.JFrame {
         txtNivelesCompletos.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         txtNivelesCompletos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNivelesCompletos.setFocusable(false);
+        txtNivelesCompletos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNivelesCompletosKeyTyped(evt);
+            }
+        });
 
         txtSobrante.setEditable(false);
         txtSobrante.setBackground(new java.awt.Color(204, 204, 204));
         txtSobrante.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         txtSobrante.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSobrante.setFocusable(false);
+        txtSobrante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSobranteKeyTyped(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -200,6 +250,7 @@ public class RegistroRBPView extends javax.swing.JFrame {
         btnRegresar.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegresar.setText("Regresar");
+        btnRegresar.setFocusable(false);
         btnRegresar.setMaximumSize(new java.awt.Dimension(120, 60));
         btnRegresar.setMinimumSize(new java.awt.Dimension(120, 60));
         btnRegresar.setPreferredSize(new java.awt.Dimension(350, 80));
@@ -207,12 +258,14 @@ public class RegistroRBPView extends javax.swing.JFrame {
         btnSiguiente.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         btnSiguiente.setForeground(new java.awt.Color(255, 255, 255));
         btnSiguiente.setText("Siguiente");
+        btnSiguiente.setFocusable(false);
         btnSiguiente.setMaximumSize(new java.awt.Dimension(120, 60));
         btnSiguiente.setMinimumSize(new java.awt.Dimension(120, 60));
         btnSiguiente.setPreferredSize(new java.awt.Dimension(120, 80));
 
         btnDAS.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         btnDAS.setForeground(new java.awt.Color(255, 255, 255));
+        btnDAS.setFocusable(false);
         btnDAS.setMaximumSize(new java.awt.Dimension(120, 60));
         btnDAS.setMinimumSize(new java.awt.Dimension(120, 60));
         btnDAS.setPreferredSize(new java.awt.Dimension(350, 80));
@@ -225,6 +278,7 @@ public class RegistroRBPView extends javax.swing.JFrame {
         btnParoLinea.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         btnParoLinea.setForeground(new java.awt.Color(255, 255, 255));
         btnParoLinea.setText("PARO DE LÍNEA");
+        btnParoLinea.setFocusable(false);
         btnParoLinea.setMaximumSize(new java.awt.Dimension(120, 60));
         btnParoLinea.setMinimumSize(new java.awt.Dimension(120, 60));
         btnParoLinea.setPreferredSize(new java.awt.Dimension(350, 80));
@@ -232,6 +286,7 @@ public class RegistroRBPView extends javax.swing.JFrame {
         btnCambioMOG.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         btnCambioMOG.setForeground(new java.awt.Color(255, 255, 255));
         btnCambioMOG.setText("Cambio de MOG");
+        btnCambioMOG.setFocusable(false);
         btnCambioMOG.setMaximumSize(new java.awt.Dimension(120, 60));
         btnCambioMOG.setMinimumSize(new java.awt.Dimension(120, 60));
         btnCambioMOG.setPreferredSize(new java.awt.Dimension(350, 80));
@@ -243,6 +298,11 @@ public class RegistroRBPView extends javax.swing.JFrame {
 
         txtNumeroEmpleado.setBackground(new java.awt.Color(255, 255, 0));
         txtNumeroEmpleado.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtNumeroEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroEmpleadoKeyTyped(evt);
+            }
+        });
 
         lblAvisoTurno.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         lblAvisoTurno.setForeground(new java.awt.Color(255, 51, 0));
@@ -256,6 +316,7 @@ public class RegistroRBPView extends javax.swing.JFrame {
         txtHoraInicio.setEditable(false);
         txtHoraInicio.setBackground(new java.awt.Color(204, 204, 204));
         txtHoraInicio.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtHoraInicio.setFocusable(false);
 
         cbxTurno.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         cbxTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar turno", "1", "2" }));
@@ -267,10 +328,12 @@ public class RegistroRBPView extends javax.swing.JFrame {
         txtNombreEmpleado2.setEditable(false);
         txtNombreEmpleado2.setBackground(new java.awt.Color(204, 204, 204));
         txtNombreEmpleado2.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtNombreEmpleado2.setFocusable(false);
 
         txtNombreEmpleado3.setEditable(false);
         txtNombreEmpleado3.setBackground(new java.awt.Color(204, 204, 204));
         txtNombreEmpleado3.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtNombreEmpleado3.setFocusable(false);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel7.setText("Piezas recibidas:");
@@ -458,6 +521,62 @@ public class RegistroRBPView extends javax.swing.JFrame {
     private void btnCambioMOGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambioMOGActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCambioMOGActionPerformed
+
+    private void txtNumeroEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroEmpleadoKeyTyped
+        if(txtNumeroEmpleado.getText().length() >= 12)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNumeroEmpleadoKeyTyped
+
+    private void txtPiezasxFilaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPiezasxFilaKeyTyped
+        if(txtPiezasxFila.getText().length() >= 3)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPiezasxFilaKeyTyped
+
+    private void txtFilasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFilasKeyTyped
+        if(txtFilas.getText().length() >= 2)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtFilasKeyTyped
+
+    private void txtNivelesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNivelesKeyTyped
+        if(txtNiveles.getText().length() >= 2)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNivelesKeyTyped
+
+    private void txtCanastasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCanastasKeyTyped
+        if(txtCanastas.getText().length() >= 3)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCanastasKeyTyped
+
+    private void txtFilasCompletasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFilasCompletasKeyTyped
+        if(txtFilasCompletas.getText().length() >= 2)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtFilasCompletasKeyTyped
+
+    private void txtNivelesCompletosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNivelesCompletosKeyTyped
+        if(txtNivelesCompletos.getText().length() >= 2)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNivelesCompletosKeyTyped
+
+    private void txtSobranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSobranteKeyTyped
+        if(txtSobrante.getText().length() >= 3)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtSobranteKeyTyped
 
     /**
      * @param args the command line arguments
