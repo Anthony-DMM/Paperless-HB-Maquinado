@@ -47,17 +47,18 @@ public class ValidarLineaController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == validarLineaView.getBtnSalir()) CerrarAplicacion.cerrar();
+        if (e.getSource() == validarLineaView.btnSalir) CerrarAplicacion.cerrar();
     }
 
     private void validarLinea() {
-        if (ValidarCampos.esCampoVacio(validarLineaView.getTxtLineaProduccion(), "Ingrese una línea de producción")) return;
+        if (ValidarCampos.esCampoVacio(validarLineaView.txtLineaProduccion, "Ingrese una línea de producción")) return;
 
-        String lineaProduccion = validarLineaView.getTxtLineaProduccion().getText().trim();
+        String lineaProduccion = validarLineaView.txtLineaProduccion.getText().trim();
         LineaProduccion linea = validarLineaModel.validarLinea(lineaProduccion, "MAQUINADO");
 
         if (linea == null) {
             MostrarMensaje.mostrarError("La línea de producción no existe o no pertenece al área de MAQUINADO.");
+            LimpiarCampos.limpiarCampo(validarLineaView.txtLineaProduccion);
             return;
         }
         navegador.avanzar(manufacturaView, validarLineaView);

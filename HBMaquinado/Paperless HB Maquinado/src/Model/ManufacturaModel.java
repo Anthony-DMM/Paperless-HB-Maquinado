@@ -8,6 +8,7 @@ import Interfaces.LineaProduccion;
 import Entities.MOG;
 import Entities.RBP;
 import Utils.FechaHora;
+import Utils.MostrarMensaje;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -29,14 +30,14 @@ public class ManufacturaModel {
     private static final String PROCESO_VALIDO = "HBL";
     FechaHora fechaHora = new FechaHora();
     MOG datosMOG = MOG.getInstance();
-    RBP rbp = RBP.getInstance();
-    LineaProduccion lineaProduccion = LineaProduccion.getInstance();
+    RBP datosRBP = RBP.getInstance();
+    LineaProduccion datosLineaProduccion = LineaProduccion.getInstance();
 
     public ManufacturaModel() {
         this.conexion = new DBConexion();
     }
 
-    public boolean obtenerDatosOrden(String ordenManufactura) throws SQLException {
+    public boolean obtenerDatosOrden(String ordenManufactura) {
         try (Connection cone = conexion.oracle(); Statement sen = cone.createStatement()) {
 
             // Configurar esquema y ejecutar consulta
@@ -44,16 +45,12 @@ public class ManufacturaModel {
             String query = buildQuery(ordenManufactura);
             ResultSet res = sen.executeQuery(query);
 
-            if (!procesarResultadoConsulta(res, datosMOG, ordenManufactura)) {
-                return false;
-            }
-
-            return true;
+            return procesarResultadoConsulta(res, datosMOG, ordenManufactura);
 
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al obtener datos de la orden", ex);
-            throw ex;
         }
+        return false;
     }
 
     private String buildQuery(String ordenManufactura) {
@@ -112,12 +109,14 @@ public class ManufacturaModel {
         return estandar.trim();
     }
 
-    public void ejecutarTransacciones() throws SQLException {
+    public void ejecutarTransacciones() {
         try (Connection con = conexion.conexionMySQL()) {
             int id = insertarDatosMog(con, datosMOG);
-            insertarDatosRbp(con, datosMOG, lineaProduccion, id);
+            insertarDatosRbp(con, datosMOG, datosLineaProduccion, id);
             actualizarTm(con, datosMOG);
-            insertarCorriendo(con, datosMOG, lineaProduccion);
+            insertarCorriendo(con, datosMOG, datosLineaProduccion);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManufacturaModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -148,7 +147,7 @@ public class ManufacturaModel {
             cs.execute();
 
             int id_rbp = cs.getInt(5);
-            rbp.setId(id_rbp);
+            datosRBP.setId(id_rbp);
         }
     }
 
@@ -172,12 +171,12 @@ public class ManufacturaModel {
             cst2.setString(5, lineaProduccion.getLinea());
             cst2.execute();
             
-            rbp.setHora(hora);
-            rbp.setFecha(fecha);
+            datosRBP.setHora(hora);
+            datosRBP.setFecha(fecha);
         }
     }
 
-    public boolean validarSupervisor(String codigoSupervisor) throws SQLException {
+    public boolean validarSupervisor(String codigoSupervisor) {
         try (Connection con = conexion.conexionMySQL(); CallableStatement cst = con.prepareCall("{call login(?,?,?,?)}")) {
 
             cst.setString(1, codigoSupervisor);
@@ -191,18 +190,19 @@ public class ManufacturaModel {
             String supervisorObtenido = cst.getString(4);
 
             if (valor == 0) {
-                JOptionPane.showMessageDialog(null, "No se encontró ningún supervisor asignado");
+                MostrarMensaje.mostrarError("No se encontró ningún supervisor asignado");
                 return false;
-            } else if (!procesoObtenido.equals(LineaProduccion.getInstance().getProceso())) {
-                JOptionPane.showMessageDialog(null, "El supervisor no pertenece al área de MAQUINADO");
+            } else if (!procesoObtenido.equals(datosLineaProduccion.getProceso())) {
+                MostrarMensaje.mostrarError("El supervisor no pertenece al área de MAQUINADO");
                 return false;
             } else {
-                LineaProduccion.getInstance().setSupervisor(supervisorObtenido);
+                datosLineaProduccion.setSupervisor(supervisorObtenido);
                 return true;
             }
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Error al validar el supervisor", ex);
-            throw ex;
+            MostrarMensaje.mostrarError("Ocurrió un error al validar la linea de producción, comunicate con el área de IT y comparte este código de error: " + ex);
         }
+        return false;
     }
 }

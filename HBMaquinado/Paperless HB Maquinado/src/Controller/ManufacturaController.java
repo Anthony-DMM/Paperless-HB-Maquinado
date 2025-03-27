@@ -11,6 +11,7 @@ import Utils.LimpiarCampos;
 import Utils.MostrarMensaje;
 import Utils.Navegador;
 import Utils.ValidarCampos;
+import View.DibujoView;
 import View.ManufacturaView;
 import View.RegistroRBPView;
 import java.awt.event.*;
@@ -19,26 +20,27 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ManufacturaController implements ActionListener {
-    
+
     private static final Logger LOGGER = Logger.getLogger(ManufacturaController.class.getName());
-    
-    private final ManufacturaModel manufacturaModel = new ManufacturaModel();
+
     private final ManufacturaView manufacturaView = ManufacturaView.getInstance();
-    private final Navegador navegador = Navegador.getInstance();
+    private final ManufacturaModel manufacturaModel = new ManufacturaModel();
     private final RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
-    private final RegistroRBPController registroRBPController = new RegistroRBPController(registroRBPView);
-    
+    private final RegistroRBPController registroRBPController = new RegistroRBPController();
+
+    private final Navegador navegador = Navegador.getInstance();
+    private final LineaProduccion datosLineaProduccion = LineaProduccion.getInstance();
+
     public ManufacturaController() {
         addListeners();
     }
-    
+
     private void addListeners() {
-        manufacturaView.txtMogCapturada.addActionListener(this);
         manufacturaView.btnSiguiente.addActionListener(this);
         manufacturaView.btnRegresar.addActionListener(this);
         manufacturaView.btnCorregir.addActionListener(this);
-        
-        manufacturaView.getTxtCodigoSupervisor().addKeyListener(new KeyAdapter() {
+
+        manufacturaView.txtCodigoSupervisor.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -46,23 +48,31 @@ public class ManufacturaController implements ActionListener {
                 }
             }
         });
+        
+        manufacturaView.txtMogCapturada.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    handleMogCapturada();
+                }
+            }
+        });
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        
-        if (source == manufacturaView.txtMogCapturada) {
-            handleMogCapturada();
-        } else if (source == manufacturaView.btnSiguiente) {
+
+        if (source == manufacturaView.btnSiguiente) {
             handleSiguienteButton();
         } else if (source == manufacturaView.btnRegresar) {
             navegador.regresar(manufacturaView);
+            handleCorregirDatos();
         } else if (source == manufacturaView.btnCorregir) {
             handleCorregirDatos();
         }
     }
-    
+
     private void handleMogCapturada() {
         String ordenIngresada = manufacturaView.txtMogCapturada.getText().trim();
         if (ordenIngresada.isEmpty()) {
@@ -70,19 +80,14 @@ public class ManufacturaController implements ActionListener {
             return;
         }
 
-        try {
-            if (manufacturaModel.obtenerDatosOrden(ordenIngresada)) {
-                ValidarCampos.bloquearCampo(manufacturaView.txtMogCapturada);
-                llenarCamposMOG();
-                manufacturaView.btnSiguiente.requestFocusInWindow();
-            } else {
-                limpiarCamposMOG();
-            }
-        } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, "Error al obtener datos de la orden", ex);
+        if (manufacturaModel.obtenerDatosOrden(ordenIngresada)) {
+            ValidarCampos.bloquearCampo(manufacturaView.txtMogCapturada);
+            llenarCamposMOG();
+        } else {
+            limpiarCamposMOG();
         }
     }
-    
+
     private void handleCodigoSupervisorCapturado() {
         String codigoIngresado = new String(manufacturaView.getTxtCodigoSupervisor().getPassword()).trim();
 
@@ -91,39 +96,34 @@ public class ManufacturaController implements ActionListener {
             return;
         }
 
-        try {
-            if (manufacturaModel.validarSupervisor(codigoIngresado)) {
-                manufacturaView.txtSupervisorAsignado.setText(LineaProduccion.getInstance().getSupervisor());
-                ValidarCampos.activarCampo(manufacturaView.txtMogCapturada);
-                ValidarCampos.bloquearCampo(manufacturaView.txtCodigoSupervisor);
-            } else {
-                LimpiarCampos.limpiarCampo(manufacturaView.txtSupervisorAsignado);
-            }
-        } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, "Error al validar el código del supervisor", ex);
+        if (manufacturaModel.validarSupervisor(codigoIngresado)) {
+            manufacturaView.txtSupervisorAsignado.setText(datosLineaProduccion.getSupervisor());
+            ValidarCampos.activarCampoFocus(manufacturaView.txtMogCapturada);
+            ValidarCampos.bloquearCampo(manufacturaView.txtCodigoSupervisor);
+        } else {
+            LimpiarCampos.limpiarCampo(manufacturaView.txtCodigoSupervisor);
+            LimpiarCampos.limpiarCampo(manufacturaView.txtSupervisorAsignado);
         }
     }
-    
+
     private void handleCorregirDatos() {
         LimpiarCampos.limpiarCampos(manufacturaView.txtCodigoSupervisor, manufacturaView.txtSupervisorAsignado);
         limpiarCamposMOG();
-        ValidarCampos.activarCampo(manufacturaView.txtCodigoSupervisor);
+        ValidarCampos.activarCampoFocus(manufacturaView.txtCodigoSupervisor);
         ValidarCampos.bloquearCampo(manufacturaView.txtMogCapturada);
     }
-    
+
     private void handleSiguienteButton() {
         if (areFieldsEmpty()) {
             MostrarMensaje.mostrarError("Por favor, complete todos los campos para continuar");
             return;
         }
-        try {
-            manufacturaModel.ejecutarTransacciones();
-            navegador.avanzar(registroRBPView, manufacturaView);
-        } catch (SQLException ex) {
-            Logger.getLogger(ManufacturaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }  
-    
+        
+        manufacturaModel.ejecutarTransacciones();
+        navegador.avanzar(registroRBPView, manufacturaView);
+        handleCorregirDatos();
+    }
+
     private boolean areFieldsEmpty() {
         return new String(manufacturaView.getTxtCodigoSupervisor().getPassword()).trim().isEmpty()
                 || manufacturaView.getTxtMogCapturada().getText().trim().isEmpty()

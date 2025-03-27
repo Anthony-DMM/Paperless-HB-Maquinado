@@ -57,6 +57,10 @@ public class DibujoView extends javax.swing.JFrame {
     public static DibujoView getInstance() {
         return VistaSingleton.getInstance(DibujoView.class);
     }
+    
+    public void reiniciarInstancia() {
+        VistaSingleton.resetInstance(DibujoView.class);
+    }
 
     public JButton getBtnRegresar() {
         return btnRegresar;

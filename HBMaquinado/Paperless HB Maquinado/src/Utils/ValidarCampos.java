@@ -33,6 +33,13 @@ public class ValidarCampos {
     
     public static void activarCampo(JTextField textField) {
         textField.setEditable(true);
+        textField.setFocusable(true);
+        textField.setBackground(Color.YELLOW);
+    }
+    
+    public static void activarCampoFocus(JTextField textField) {
+        textField.setEditable(true);
+        textField.setFocusable(true);
         textField.setBackground(Color.YELLOW);
         textField.requestFocusInWindow();
     }

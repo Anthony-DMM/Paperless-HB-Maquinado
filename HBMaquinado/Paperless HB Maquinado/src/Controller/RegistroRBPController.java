@@ -43,10 +43,10 @@ import javax.swing.JOptionPane;
  */
 public class RegistroRBPController implements ActionListener, ItemListener {
 
+    private final RegistroRBPView registroRBPView = RegistroRBPView.getInstance();
     private final RegistroRBPModel registroRBPModel = new RegistroRBPModel();
-    private final RegistroRBPView registroRBPView;
-    private final RegistroHoraxHoraView registroDASView = RegistroHoraxHoraView.getInstance();
-    private final RegistroHoraxHoraController registroDASController = new RegistroHoraxHoraController(registroDASView);
+    private final RegistroHoraxHoraView registroHoraxHoraView = RegistroHoraxHoraView.getInstance();
+    private final RegistroHoraxHoraController registroDASController = new RegistroHoraxHoraController(registroHoraxHoraView);
     private final CambioMOGView cambioMOGView = CambioMOGView.getInstance();
     private final CambioMOGController cambioMOGController = new CambioMOGController(cambioMOGView);
     private final DibujoView dibujoView = DibujoView.getInstance();
@@ -71,8 +71,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
 
     private static final Logger LOGGER = Logger.getLogger(ManufacturaController.class.getName());
 
-    public RegistroRBPController(RegistroRBPView registroRBPView) {
-        this.registroRBPView = registroRBPView;
+    public RegistroRBPController() {
         this.dasModel = new DASModel();
         addListeners();
 
@@ -167,7 +166,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
     private void handleButtonAction(AccionBoton accion) {
         switch (accion) {
             case DAS:
-                validarDAS(registroDASView);
+                validarDAS(registroHoraxHoraView);
                 break;
             case PARO_LINEA:
                 ParoProcesoView paroProcesoView = new ParoProcesoView();
@@ -181,6 +180,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                 validarDAS(dibujoView);
                 break;
             case REGRESAR:
+                dibujoView.reiniciarInstancia();
                 navegador.regresar(registroRBPView);
                 break;
             case SIGUIENTE:
