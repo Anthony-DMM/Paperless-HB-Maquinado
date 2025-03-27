@@ -233,14 +233,7 @@ public class PreviaRBPView extends javax.swing.JFrame {
 
         tblPiezasProcesadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null, null, null, null, null, null},
-                {"2", null, null, null, null, null, null},
-                {"3", null, null, null, null, null, null},
-                {"4", null, null, null, null, null, null},
-                {"5", null, null, null, null, null, null},
-                {"6", null, null, null, null, null, null},
-                {"7", null, null, null, null, null, null},
-                {"8", null, null, null, null, null, null}
+
             },
             new String [] {
                 "No.", "Línea", "Fecha trabajada", "Horas trabajadas", "Trabajador", "Rango de canastas", "Cantidad de piezas"
@@ -479,11 +472,8 @@ public class PreviaRBPView extends javax.swing.JFrame {
                                 .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(0, 0, 0)
                                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblNota, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, 0)))
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNota, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblTituloValidacionDiferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -711,13 +701,13 @@ public class PreviaRBPView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblCantidadPlaneada;
-    private javax.swing.JLabel lblDibujo;
-    private javax.swing.JLabel lblModelo;
+    public javax.swing.JLabel lblCantidadPlaneada;
+    public javax.swing.JLabel lblDibujo;
+    public javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblNota;
-    private javax.swing.JLabel lblOrdenManufactura;
-    private javax.swing.JLabel lblOrdenRuta;
-    private javax.swing.JLabel lblParte;
+    public javax.swing.JLabel lblOrdenManufactura;
+    public javax.swing.JLabel lblOrdenRuta;
+    public javax.swing.JLabel lblParte;
     private javax.swing.JLabel lblTituloDiferenciaPiezas;
     private javax.swing.JLabel lblTituloPiezasAprobadas;
     private javax.swing.JLabel lblTituloPiezasAprobadas1;

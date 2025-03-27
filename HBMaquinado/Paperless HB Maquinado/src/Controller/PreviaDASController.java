@@ -40,6 +40,7 @@ public class PreviaDASController implements ActionListener{
     private final PreviaDASView previaDASView = PreviaDASView.getInstance();
     private final PreviaDASModel previaDASModel = new PreviaDASModel();
     private final PreviaRBPView previaRBPView = PreviaRBPView.getInstance();
+    private final PreviaRBPController previaRBPController = new PreviaRBPController();
     private final RegistroHoraxHoraModel registroHoraxHoraModel = new RegistroHoraxHoraModel();
     private final ParoProcesoModel paroProcesoModel = new ParoProcesoModel();
     

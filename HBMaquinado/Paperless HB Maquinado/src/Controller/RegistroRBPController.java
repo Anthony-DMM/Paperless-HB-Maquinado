@@ -223,7 +223,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                     String codigoEmpleado = numeroEmpleadoIngresado;
                     datosOperador.setCódigo(codigoEmpleado);
                     registroRBPView.txtNombreEmpleado.setText(datosOperador.getNombre());
-                    ValidarCampos.activarCampos(registroRBPView.txtPiezasxFila, registroRBPView.txtFilas, registroRBPView.txtNiveles, registroRBPView.txtCanastas, registroRBPView.txtFilasCompletas, registroRBPView.txtNivelesCompletos, registroRBPView.txtSobrante);
+                    ValidarCampos.activarCampos(registroRBPView.txtFilas, registroRBPView.txtNiveles, registroRBPView.txtCanastas, registroRBPView.txtFilasCompletas, registroRBPView.txtNivelesCompletos, registroRBPView.txtSobrante, registroRBPView.txtPiezasxFila);
                 } else {
                     LimpiarCampos.limpiarCampos(registroRBPView.txtNumeroEmpleado, registroRBPView.txtNumeroEmpleado);
                 }
