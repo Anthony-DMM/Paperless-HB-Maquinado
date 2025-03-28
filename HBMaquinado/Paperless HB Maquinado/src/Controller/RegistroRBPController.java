@@ -69,8 +69,6 @@ public class RegistroRBPController implements ActionListener, ItemListener {
     private final DAS datosDAS = DAS.getInstance();
     private final Operador datosOperador = Operador.getInstance();
 
-    private static final Logger LOGGER = Logger.getLogger(ManufacturaController.class.getName());
-
     public RegistroRBPController() {
         this.dasModel = new DASModel();
         addListeners();
@@ -122,7 +120,6 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                 if (opcion == JOptionPane.YES_OPTION) {
                     try {
                         if(!dasModel.buscarDASExistente(datosDAS.getTurno())) {
-                            Operador datosOperador = Operador.getInstance();
                             dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
                         }
                         registroRBPView.cbxTurno.setEnabled(false);
@@ -196,15 +193,6 @@ public class RegistroRBPController implements ActionListener, ItemListener {
         handleButtonAction(accion);
     }
 
-    private void inicializarHoraInicio() {
-        try {
-            horaInicio = LocalTime.now();
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Error al obtener la hora de inicio", e);
-            MostrarMensaje.mostrarError("Error al inicializar la hora de inicio.");
-        }
-    }
-
     private void agregarAccion(JButton boton, AccionBoton accion) {
         boton.setActionCommand(accion.toString());
         boton.addActionListener(this);
@@ -234,6 +222,44 @@ public class RegistroRBPController implements ActionListener, ItemListener {
     }
 
     private void handleRegistrarPiezasProcesadas() {
+        // Ejecuta la lógica de validarDAS
+        if (registroRBPView.txtNumeroEmpleado.getText().isEmpty() || registroRBPView.txtNombreEmpleado.getText().isEmpty()) {
+            MostrarMensaje.mostrarError("Favor de capturar los datos del empleado para continuar");
+            return;
+        } else if (registroRBPView.cbxTurno.getSelectedIndex() == 0) {
+            MostrarMensaje.mostrarError("Favor de seleccionar un turno de trabajo");
+            return;
+        } else {
+            if (turnoValido == false) {
+                int opcion = JOptionPane.showConfirmDialog(null, "<html><font size='10' color='red'>¿Seguro que quieres elegir el turno " + datosDAS.getTurno() + "?<br>Una vez confirmado, no podrás modificarlo</font></html>");
+                if (opcion == JOptionPane.YES_OPTION) {
+                    try {
+                        if (!dasModel.buscarDASExistente(datosDAS.getTurno())) {
+                            dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
+                        }
+                        registroRBPView.cbxTurno.setEnabled(false);
+                        registroRBPView.cbxTurno.setFocusable(false);
+                        registroRBPView.cbxTurno.setBackground(new Color(240, 240, 240));
+                        registroRBPView.cbxTurno.setForeground(Color.BLACK);
+                        turnoValido = true;
+                    } catch (SQLException ex) {
+                        Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
+                        return;
+                    }
+                } else {
+                    return;
+                }
+            }
+        }
+        
+        if(registroRBPView.txtPiezasxFila.getText().isEmpty() || registroRBPView.txtFilas.getText().isEmpty() || registroRBPView.txtNiveles.getText().isEmpty()
+                || registroRBPView.txtCanastas.getText().isEmpty() || registroRBPView.txtFilasCompletas.getText().isEmpty() || registroRBPView.txtNivelesCompletos.getText().isEmpty()
+                || registroRBPView.txtSobrante.getText().isEmpty()) {
+            MostrarMensaje.mostrarAdvertencia("Para continuar ingrese todos los datos de Canastas completas y Canastas incompletas.");
+            return;
+        }
+
+        // Continuar con la lógica de handleRegistrarPiezasProcesadas
         int piezasxFila = Integer.parseInt(registroRBPView.txtPiezasxFila.getText());
         int filas = Integer.parseInt(registroRBPView.txtFilas.getText());
         int niveles = Integer.parseInt(registroRBPView.txtNiveles.getText());
@@ -241,23 +267,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
         int nivelesCompletos = Integer.parseInt(registroRBPView.txtNivelesCompletos.getText());
         int sobrante = Integer.parseInt(registroRBPView.txtSobrante.getText());
 
-        // Asegurar que los valores 0 se conviertan en 1 SOLO para el total de la canasta completa
-        int piezasxFilaCanastaCompleta = (piezasxFila == 0) ? 1 : piezasxFila;
-        int filasCanastaCompleta = (filas == 0) ? 1 : filas;
-        int nivelesCanastaCompleta = (niveles == 0) ? 1 : niveles;
-
-        //int totalPiezasCanasta = piezasxFilaCanastaCompleta * filasCanastaCompleta * nivelesCanastaCompleta;
-        //int totalPiezasCanastaIncompleta = piezasxFila * filasCompletas * nivelesCompletos;
-
-        if (registroRBPView.txtPiezasxFila.getText().isEmpty()
-                || registroRBPView.txtFilas.getText().isEmpty()
-                || registroRBPView.txtNiveles.getText().isEmpty()
-                || registroRBPView.txtCanastas.getText().isEmpty()
-                || registroRBPView.txtFilasCompletas.getText().isEmpty()
-                || registroRBPView.txtNivelesCompletos.getText().isEmpty()
-                || registroRBPView.txtSobrante.getText().isEmpty()) {
-            MostrarMensaje.mostrarAdvertencia("Para continuar ingrese todos los datos en las secciones de Canastas completas y Canastas incompletas.");
-        } else if (filasCompletas >= filas) {
+        if (filasCompletas >= filas) {
             MostrarMensaje.mostrarError("El número de filas completas no puede ser igual o mayor al de filas. Revise los datos.");
         } else if (nivelesCompletos >= niveles) {
             MostrarMensaje.mostrarError("El número de niveles completos no puede ser igual o mayor al de niveles. Revise los datos.");
@@ -269,7 +279,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                 if (!dasModel.buscarDASExistente(datosDAS.getTurno())) {
                     dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
                 }
-                if(registroRealizado == false){
+                if (registroRealizado == false) {
                     registroRBPModel.registrarPiezasProcesadas(piezasxFila, filas, niveles, canastas, filasCompletas, nivelesCompletos, sobrante);
                     MostrarMensaje.mostrarInfo("Se han registrado las piezas producidas con éxito");
                     registroRealizado = true;

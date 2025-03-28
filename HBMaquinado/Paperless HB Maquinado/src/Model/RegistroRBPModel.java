@@ -9,6 +9,7 @@ import Entities.DAS;
 import Entities.PiezasProducidas;
 import Interfaces.LineaProduccion;
 import Entities.RBP;
+import Utils.FechaHora;
 import Utils.MostrarMensaje;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -32,6 +33,7 @@ public class RegistroRBPModel {
     private final PiezasProducidas datosPiezasProducidas = PiezasProducidas.getInstance();
     private final Operador datosOperador = Operador.getInstance();
     private final LineaProduccion lineaProduccion = LineaProduccion.getInstance();
+    private final FechaHora fechaHora = new FechaHora();
     int idDAS = 0;
     int rangoCanasta1;
     int rangoCanasta2;
@@ -158,8 +160,11 @@ public class RegistroRBPModel {
         int piezasPorFilasCompletas = filasCompletas * piezasFila;
         int piezasPorNivelesCompletos = nivelesCompletos * (filas * piezasFila);
         int piezasProcesadas = piezasFila * filas * niveles * canastas + piezasPorFilasCompletas + piezasPorNivelesCompletos + sobrante;
+        
+        String hora = fechaHora.horaActual();
+        
         try (Connection con = conexion.conexionMySQL();
-                CallableStatement cst = con.prepareCall("{call insertar_piezas_procesadas_maquinado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}")) {
+                CallableStatement cst = con.prepareCall("{call insertar_piezas_procesadas_maquinado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}")) {
             cst.setInt(1, datosRBP.getId());
             cst.setString(2, lineaProduccion.getLinea());
             cst.setInt(3, piezasProcesadas);
@@ -175,6 +180,8 @@ public class RegistroRBPModel {
             cst.setInt(13, rangoCanasta2);
             cst.setInt(14, datosDAS.getIdDAS());
             cst.registerOutParameter(15, java.sql.Types.INTEGER);
+            cst.setString(16, datosRBP.getHora());
+            cst.setString(17, hora);
             cst.executeQuery();
             
             datosPiezasProducidas.setPiezasTotales(piezasProcesadas);

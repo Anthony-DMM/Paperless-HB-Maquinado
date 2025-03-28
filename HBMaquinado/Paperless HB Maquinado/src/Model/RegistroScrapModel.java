@@ -12,7 +12,9 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -46,15 +48,43 @@ public class RegistroScrapModel {
         return razones_rechazo;
     }
     
-    public void llenarRazonRechazo(int cantidad, int razon_rechazo_id, int columna) {
+    public Map<Integer, Map<Integer, Integer>> llenarRazonRechazo(Map<Integer, Map<Integer, Integer>> registros, int cantidad, int razon_rechazo_id, int columna) {
         try (Connection con = conexion.conexionMySQL();
-                CallableStatement cst = con.prepareCall("{call insertar_scrap(?, ?, ?, ?)}")) {
+                CallableStatement cst = con.prepareCall("{call insertar_scrap(?,?,?,?,?)}")) {
             cst.setInt(1, cantidad);
             cst.setInt(2, razon_rechazo_id);
             cst.setInt(3, datosRBP.getId());
             cst.setInt(4, columna);
+            cst.registerOutParameter(5, java.sql.Types.INTEGER);
+            cst.execute();
+            int id_registro = cst.getInt(5);
+            Map<Integer, Integer> razon_rechazo = new HashMap<>();
+            razon_rechazo.put(razon_rechazo_id, cantidad);
+            registros.put(id_registro, razon_rechazo);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return registros;
+    }
+    
+    public void actualizarRazonRechazo(int cantidad, int id_defecto) {
+        try (Connection con = conexion.conexionMySQL();
+                CallableStatement cst = con.prepareCall("{call actualizar_defecto1(?, ?)}")) {
+            cst.setInt(1, id_defecto);
+            cst.setInt(2, cantidad);
             cst.execute();
         } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void eliminarRazonRechazo(int id_defecto) {
+        try (Connection con = conexion.conexionMySQL();
+                CallableStatement cst = con.prepareCall("{call eliminar_defecto(?)}")) {
+            cst.setInt(1, id_defecto);
+            cst.execute();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
     

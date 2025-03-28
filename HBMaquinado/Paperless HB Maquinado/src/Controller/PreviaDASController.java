@@ -36,8 +36,7 @@ public class PreviaDASController implements ActionListener{
     private final DAS datosDAS = DAS.getInstance();
     private final RBP datosRBP = RBP.getInstance();
     private final Operador datosOperador = Operador.getInstance();
-    
-    private final PreviaDASView previaDASView = PreviaDASView.getInstance();
+    private final PreviaDASView previaDASView;
     private final PreviaDASModel previaDASModel = new PreviaDASModel();
     private final PreviaRBPView previaRBPView = PreviaRBPView.getInstance();
     private final PreviaRBPController previaRBPController = new PreviaRBPController();
@@ -46,7 +45,8 @@ public class PreviaDASController implements ActionListener{
     
     private final Navegador navegador = Navegador.getInstance();
 
-    public PreviaDASController() {
+    public PreviaDASController(PreviaDASView previaDASView) {
+        this.previaDASView = previaDASView;
         previaDASView.btnSiguiente.addActionListener(this);
         previaDASView.btnRegresar.addActionListener(this);
         

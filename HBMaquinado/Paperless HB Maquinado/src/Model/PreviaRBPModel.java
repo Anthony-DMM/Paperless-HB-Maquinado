@@ -33,14 +33,16 @@ public class PreviaRBPModel {
     
     public List<Object[]> obtenerRegistroProduccion() throws SQLException {
         List<Object[]> registroPiezas = new ArrayList<>();
-
+        int indice = 1;
+        
         try (Connection con = conexion.conexionMySQL();
-             CallableStatement cst = con.prepareCall("{call obtenerPreviaDAS(?)}")) {
+             CallableStatement cst = con.prepareCall("{call obtenerPreviaRBP(?)}")) {
             cst.setInt(1, datosRBP.getId());
 
             try (ResultSet r = cst.executeQuery()) {
                 while (r.next()) {
                     Object[] rowData = {
+                            indice,
                             r.getString("linea"),
                             r.getString("fecha"),
                             r.getString("horas_trabajadas"),
@@ -49,6 +51,7 @@ public class PreviaRBPModel {
                             r.getString("cantidad_piezas_procesadas"),
                     };
                     registroPiezas.add(rowData);
+                    indice++;
                 }
             }
         } catch (SQLException ex) {

@@ -33,11 +33,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ANTHONY-MARTINEZ
  */
+
 public class RegistroScrapController implements ActionListener {
     RegistroScrapModel registroScrapModel = new RegistroScrapModel();
     RegistroScrapView registroScrapView = RegistroScrapView.getInstance();
-    PreviaDASView previaDASView = PreviaDASView.getInstance();
-    PreviaDASController previaDASController = new PreviaDASController();
     private DefaultTableModel modelo = (DefaultTableModel) registroScrapView.tblScrap.getModel();
     Navegador navegador = Navegador.getInstance();
     private int columna_amarilla;
@@ -45,6 +44,9 @@ public class RegistroScrapController implements ActionListener {
     private List<RazonRechazo> razones_rechazo = new ArrayList<>();
     private List<Scrap> scraps = new ArrayList<>();
     private final PiezasProducidas datosPiezasProducidas = PiezasProducidas.getInstance();
+    private boolean ha_registrado = false;
+    private Map<Integer, Map<Integer, Integer>> registros_rechazo = new HashMap<>();
+    private int id_registro_piezas_das = -1;
     
     public RegistroScrapController() {
         registroScrapView.addWindowListener(new WindowAdapter() {
@@ -59,13 +61,10 @@ public class RegistroScrapController implements ActionListener {
                 hacer_columna_editable();
                 setear_total_por_razon();
                 colorear_campos(registroScrapView.tblScrap, columna_amarilla);
-                calcularTotal();
             }
         });
     }
-    
-    
-    
+
     private void llenar_tabla_razones() {
         for (RazonRechazo razon_rechazo : razones_rechazo) {
             Vector<String> row = new Vector<>();
@@ -108,6 +107,7 @@ public class RegistroScrapController implements ActionListener {
                 columna_amarilla = columna_amarilla + 2;
             }
         }
+        System.out.print(columna_amarilla);
     }
 
     private void inicializar_escuchadores() {
@@ -124,33 +124,37 @@ public class RegistroScrapController implements ActionListener {
         tabla.repaint();
     }
 
-private void hacer_columna_editable() {
-    Vector<String> nombresColumnas = new Vector<>();
-    for (int i = 0; i < modelo.getColumnCount(); i++) {
-        nombresColumnas.add(modelo.getColumnName(i));
-    }
-
-    DefaultTableModel nuevoModelo = new DefaultTableModel(modelo.getDataVector(), nombresColumnas) {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            if (column == columna_amarilla && row != getRowCount() - 1) {
-                return true;
-            }
-            return false;
+    private void hacer_columna_editable() {
+        Vector<String> nombresColumnas = new Vector<>();
+        for (int i = 0; i < modelo.getColumnCount(); i++) {
+            nombresColumnas.add(modelo.getColumnName(i));
         }
-    };
-    registroScrapView.tblScrap.setModel(nuevoModelo);
-    modelo = nuevoModelo;
 
-    registroScrapView.tblScrap.getColumnModel().getColumn(columna_amarilla).setCellEditor(new CeldaEditable(this));
-}
+        DefaultTableModel nuevoModelo = new DefaultTableModel(modelo.getDataVector(), nombresColumnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == columna_amarilla && row != getRowCount() - 1;
+            }
+        };
+        registroScrapView.tblScrap.setModel(nuevoModelo);
+        modelo = nuevoModelo;
+
+        registroScrapView.tblScrap.getColumnModel().getColumn(columna_amarilla).setCellEditor(new CeldaEditable(this));
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object origen = e.getSource();
 
         if (origen == registroScrapView.btnSiguiente) {
-            registrar_scrap();
+            if (ha_registrado) {
+                actualizar_scrap();
+            } else {
+                registrar_scrap();
+            }
+            PreviaDASView previaDASView = new PreviaDASView();
+            PreviaDASController previaDASController = new PreviaDASController(previaDASView);
+            navegador.avanzar(previaDASView, registroScrapView);
         }
 
         if (origen == registroScrapView.btnRegresar) {
@@ -165,12 +169,12 @@ private void hacer_columna_editable() {
         }
 
     }
-    
+
     private void setear_total_por_razon() {
-        for(int fila = 1; fila < modelo.getRowCount() - 1; fila ++) {
+        for (int fila = 1; fila < modelo.getRowCount() - 1; fila++) {
             int sumatoria = hacer_sumatoria_fila(fila);
-            if(sumatoria > 0) {
-            modelo.setValueAt(sumatoria, fila, modelo.getColumnCount() - 1);                
+            if (sumatoria > 0) {
+                modelo.setValueAt(sumatoria, fila, modelo.getColumnCount() - 1);
             }
         }
     }
@@ -183,7 +187,7 @@ private void hacer_columna_editable() {
     public int hacer_sumatoria_columna(int columna_a_sumar) {
         int sumatoria = 0;
         int rowCount = modelo.getRowCount();
-
+        scrap_por_razon.clear();
         if (columna_a_sumar >= 0 && columna_a_sumar < modelo.getColumnCount()) {
             for (int j = 0; j < rowCount - 1; j++) {
                 String numbersString = String.valueOf(modelo.getValueAt(j, columna_a_sumar));
@@ -229,35 +233,66 @@ private void hacer_columna_editable() {
                         sumatoria += (int) modelo.getValueAt(fila_a_sumar, columna);
                     }
                 } catch (Exception e) {
-                   
+
                 }
             }
         }
         return sumatoria;
     }
-    
-    private void calcularTotal() {
-        int columnaTotalIndex = modelo.getColumnCount() - 1;
-        int totalColumnaTotal = 0;
-
-        for (int i = 0; i < modelo.getRowCount() - 1; i++) {
-            try {
-                totalColumnaTotal += (int) modelo.getValueAt(i, columnaTotalIndex);
-            } catch (Exception e) {
-            }
-        }
-        modelo.setValueAt(totalColumnaTotal, modelo.getRowCount() - 1, modelo.getColumnCount() - 1);
-    }
 
     public void registrar_scrap() {
+        int total_scrap = 0;
         for (Map.Entry<Integer, Integer> entry : scrap_por_razon.entrySet()) {
             Integer id_razon = entry.getKey();
             Integer cantidad = entry.getValue();
-
-            registroScrapModel.llenarRazonRechazo(cantidad, id_razon, columna_amarilla - 1);
+            total_scrap += cantidad;
+            registros_rechazo = registroScrapModel.llenarRazonRechazo(registros_rechazo, cantidad, id_razon, columna_amarilla - 1);
             datosPiezasProducidas.setColumnaTurno(columna_amarilla - 1);
         }
-        MostrarMensaje.mostrarInfo("Se ha registrado el scrap de manera exitosa");
-        navegador.avanzar(previaDASView, registroScrapView);
+        ha_registrado = !ha_registrado;
+        MostrarMensaje.mostrarInfo("Se ha registrado el scrap con éxito");
+    }
+
+    public void actualizar_scrap() {
+        List<Integer> registrosAEliminar = new ArrayList<>();
+        Map<Integer, Integer> registrosAActualizar = new HashMap<>();
+        Map<Integer, Integer> registrosAInsertar = new HashMap<>();
+
+        for (Map.Entry<Integer, Map<Integer, Integer>> entry : registros_rechazo.entrySet()) {
+            for (Map.Entry<Integer, Integer> value : entry.getValue().entrySet()) {
+                int idRazon = value.getKey();
+                int cantidad = scrap_por_razon.getOrDefault(idRazon, -1);
+
+                if (cantidad != -1) {
+                    registrosAActualizar.put(entry.getKey(), cantidad);
+                    scrap_por_razon.remove(idRazon);
+                } else {
+                    registrosAEliminar.add(entry.getKey());
+                }
+            }
+        }
+
+        for (Map.Entry<Integer, Integer> entry : scrap_por_razon.entrySet()) {
+            registrosAInsertar.put(entry.getKey(), entry.getValue());
+        }
+
+        for (int registro : registrosAEliminar) {
+            registroScrapModel.eliminarRazonRechazo(registro);
+            registros_rechazo.remove(registro);
+        }
+
+        int totalScrap = 0;
+        for (Map.Entry<Integer, Integer> entry : registrosAActualizar.entrySet()) {
+            registroScrapModel.actualizarRazonRechazo(entry.getValue(), entry.getKey());
+            totalScrap += entry.getValue();
+        }
+
+        for (Map.Entry<Integer, Integer> entry : registrosAInsertar.entrySet()) {
+            int idRazon = entry.getKey();
+            int cantidad = entry.getValue();
+            totalScrap += cantidad;
+            registros_rechazo = registroScrapModel.llenarRazonRechazo(registros_rechazo, cantidad, idRazon, columna_amarilla - 1);
+        }
+        MostrarMensaje.mostrarInfo("Se ha actualizado el scrap con éxito");
     }
 }

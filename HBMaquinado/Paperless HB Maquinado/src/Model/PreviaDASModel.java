@@ -35,10 +35,9 @@ public class PreviaDASModel {
         List<Object[]> registroProduccion = new ArrayList<>();
 
         try (Connection con = conexion.conexionMySQL();
-             CallableStatement cst = con.prepareCall("{call obtener_Registro_Produccion_Maquinado(?,?,?)}")) {
+             CallableStatement cst = con.prepareCall("{call obtener_Registro_Produccion_Maquinado(?,?)}")) {
             cst.setInt(1, datosDAS.getIdDAS());
-            cst.setInt(2, datosRBP.getId());
-            cst.setInt(3, datosPiezasProducidas.getColumnaTurno());
+            cst.setInt(2, datosPiezasProducidas.getColumnaTurno());
 
             try (ResultSet r = cst.executeQuery()) {
                 while (r.next()) {
@@ -63,18 +62,15 @@ public class PreviaDASModel {
         List<Object[]> registroProduccion = new ArrayList<>();
 
         try (Connection con = conexion.conexionMySQL();
-             CallableStatement cst = con.prepareCall("{call obtener_Registro_Produccion_Maquinado(?,?,?)}")) {
+             CallableStatement cst = con.prepareCall("{call obtener_Registro_Produccion_Maquinado(?,?)}")) {
             cst.setInt(1, datosDAS.getIdDAS());
-            cst.setInt(2, datosRBP.getId());
-            cst.setInt(3, datosPiezasProducidas.getColumnaTurno());
+            cst.setInt(2, datosPiezasProducidas.getColumnaTurno());
 
             try (ResultSet r = cst.executeQuery()) {
                 while (r.next()) {
                     Object[] rowData = {
-                            r.getString("hri_cambio_modelo"),
-                            r.getString("hrf_cambio_modelo"),
-                            r.getString("hri_proceso"),
-                            r.getString("hrf_proceso"),
+                            r.getString("inicio_tp"),
+                            r.getString("fin_tp"),
                     };
                     registroProduccion.add(rowData);
                 }
@@ -91,15 +87,14 @@ public class PreviaDASModel {
         List<Object[]> registroProduccion = new ArrayList<>();
 
         try (Connection con = conexion.conexionMySQL();
-             CallableStatement cst = con.prepareCall("{call obtener_Registro_Produccion_Maquinado(?,?,?)}")) {
+             CallableStatement cst = con.prepareCall("{call obtener_Registro_Produccion_Maquinado(?,?)}")) {
             cst.setInt(1, datosDAS.getIdDAS());
-            cst.setInt(2, datosRBP.getId());
-            cst.setInt(3, datosPiezasProducidas.getColumnaTurno());
+            cst.setInt(2, datosPiezasProducidas.getColumnaTurno());
 
             try (ResultSet r = cst.executeQuery()) {
                 while (r.next()) {
                     Object[] rowData = {
-                            r.getString("piezas_procesadas"),
+                            r.getString("cantidad_piezas_procesadas"),
                             r.getString("piezas_buenas"),
                             r.getString("piezas_rechazadas"),
                     };
