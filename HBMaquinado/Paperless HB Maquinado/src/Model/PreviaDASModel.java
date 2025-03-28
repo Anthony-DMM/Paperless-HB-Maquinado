@@ -46,6 +46,8 @@ public class PreviaDASModel {
                             r.getString("modelo"),
                             r.getString("std"),
                             r.getString("lote"),
+                            r.getString("inicio_tp"),
+                            r.getString("fin_tp"),
                     };
                     registroProduccion.add(rowData);
                 }

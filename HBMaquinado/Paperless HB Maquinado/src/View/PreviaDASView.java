@@ -24,7 +24,6 @@ public class PreviaDASView extends javax.swing.JFrame {
     public PreviaDASView() {
         initComponents();
         setLocationRelativeTo(null);
-        jLabel18.setOpaque(true);
         btnRegresar.setBackground(Color.BLACK);
         btnSiguiente.setBackground(Color.BLACK);
         lblCantidadProcesadaNombre.setText("<html><center>Cantidad<br>Procesada</center></html>");
@@ -53,27 +52,6 @@ public class PreviaDASView extends javax.swing.JFrame {
         }
 
         tblRegistroProduccion1.setRowHeight(35);
-        
-        JTableHeader header2 = tblRegistroProduccion2.getTableHeader();
-        header2.setFont(new Font("Arial", Font.BOLD, 16));
-        header2.setBackground(Color.WHITE);
-        header2.setForeground(Color.BLACK);
-
-    
-        DefaultTableCellRenderer headerRenderer2 = (DefaultTableCellRenderer) header2.getDefaultRenderer();
-        headerRenderer2.setHorizontalAlignment(JLabel.CENTER);
-
-        
-        DefaultTableCellRenderer renderer2 = new DefaultTableCellRenderer();
-        renderer2.setFont(new Font("Arial", Font.PLAIN, 14));
-        renderer2.setHorizontalAlignment(JLabel.CENTER);
-
-        
-        for (int i = 0; i < tblRegistroProduccion2.getColumnCount(); i++) {
-            tblRegistroProduccion2.getColumnModel().getColumn(i).setCellRenderer(renderer2);
-        }
-
-        tblRegistroProduccion2.setRowHeight(35);
         
         JTableHeader header3 = tblRegistroProduccion3.getTableHeader();
         header3.setFont(new Font("Arial", Font.BOLD, 16));
@@ -189,11 +167,8 @@ public class PreviaDASView extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblRegistroProduccion1 = new javax.swing.JTable();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tblRegistroProduccion2 = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblRegistroProduccion3 = new javax.swing.JTable();
-        jLabel18 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblHoraxHora = new javax.swing.JTable();
@@ -394,11 +369,11 @@ public class PreviaDASView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No. MOG", "Modelo", "STD", "Lote"
+                "No. MOG", "Modelo", "STD", "Lote", "Hora Inicio Proceso", "Hora Fin Proceso"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -406,24 +381,6 @@ public class PreviaDASView extends javax.swing.JFrame {
             }
         });
         jScrollPane4.setViewportView(tblRegistroProduccion1);
-
-        tblRegistroProduccion2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Hora Inicio", "Hora Fin"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane5.setViewportView(tblRegistroProduccion2);
 
         tblRegistroProduccion3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -442,12 +399,6 @@ public class PreviaDASView extends javax.swing.JFrame {
             }
         });
         jScrollPane6.setViewportView(tblRegistroProduccion3);
-
-        jLabel18.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel18.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Tiempo de Proceso");
-        jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(138, 162, 145)));
 
         jLabel20.setBackground(new java.awt.Color(255, 255, 255));
         jLabel20.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -572,16 +523,12 @@ public class PreviaDASView extends javax.swing.JFrame {
                             .addComponent(lblDesempeño, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblDesempeñoNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane6)
                     .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane4))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -663,12 +610,7 @@ public class PreviaDASView extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addGap(0, 0, 0)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
@@ -753,7 +695,6 @@ public class PreviaDASView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel7;
@@ -763,7 +704,6 @@ public class PreviaDASView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JScrollPane jScrollPane4;
-    public javax.swing.JScrollPane jScrollPane5;
     public javax.swing.JScrollPane jScrollPane6;
     public javax.swing.JLabel lblAnio;
     public javax.swing.JLabel lblCantidadPiezasMeta;
@@ -787,7 +727,6 @@ public class PreviaDASView extends javax.swing.JFrame {
     public javax.swing.JTable tblHoraxHora;
     public javax.swing.JTable tblParos;
     public javax.swing.JTable tblRegistroProduccion1;
-    public javax.swing.JTable tblRegistroProduccion2;
     public javax.swing.JTable tblRegistroProduccion3;
     // End of variables declaration//GEN-END:variables
 }

@@ -102,14 +102,6 @@ public class PreviaDASController implements ActionListener{
         }
         actualizarTabla(registroProduccion1);
         
-        List<Object[]> registroProduccion2 = null;
-        try {
-            registroProduccion2 = previaDASModel.obtenerRegistroProduccion2();
-        } catch (SQLException ex) {
-            Logger.getLogger(CambioMOGController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        actualizarTabla2(registroProduccion2);
-        
         try {
             List<Object[]> registroProduccion3 = previaDASModel.obtenerRegistroProduccion3();
                 String pzasProcesadas = (registroProduccion3.get(0)[0] != null) ? registroProduccion3.get(0)[0].toString() : "0";
@@ -159,15 +151,6 @@ public class PreviaDASController implements ActionListener{
         dtm.setRowCount(0);
 
         for (Object[] rowData : registroProduccion1) {
-            dtm.addRow(rowData);
-        }
-    }
-    
-    private void actualizarTabla2(List<Object[]> registroProduccion2) {
-        DefaultTableModel dtm = (DefaultTableModel) previaDASView.tblRegistroProduccion2.getModel();
-        dtm.setRowCount(0);
-
-        for (Object[] rowData : registroProduccion2) {
             dtm.addRow(rowData);
         }
     }
