@@ -147,7 +147,7 @@ public class CambioMOGModel {
         }
     }
 
-    public void insertarCambioMOG() throws SQLException { // Cambiado a void, ya que no devuelve un booleano, y relanza la excepción.
+    public void insertarCambioMOG() throws SQLException {
         try (Connection con = conexion.conexionMySQL();
              CallableStatement cst = con.prepareCall("{call insertar_cambio_mog(?,?)}")) {
             cst.setInt(1, datosRBP.getId());

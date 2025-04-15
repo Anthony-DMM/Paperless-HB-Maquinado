@@ -16,7 +16,7 @@ import lombok.Data;
 public class RBP {
 
     private static RBP instance;
-    private int id;
+    private int id, piezasProcesadas, piezasRecibidas, piezasWcCompletos, wcCompletos, piezasWcIncompletos, piezasCambioMOG, scrap;
     private String hora, fecha;
 
     public static RBP getInstance() {
