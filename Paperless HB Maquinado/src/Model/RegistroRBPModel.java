@@ -6,6 +6,7 @@ package Model;
 
 import Entities.Operador;
 import Entities.DAS;
+import Entities.MOG;
 import Entities.PiezasProducidas;
 import Interfaces.LineaProduccion;
 import Entities.RBP;
@@ -30,6 +31,7 @@ public class RegistroRBPModel {
     private final LocalDate fechaF;
     private final RBP datosRBP = RBP.getInstance();
     private final DAS datosDAS = DAS.getInstance();
+    private final MOG datosMOG = MOG.getInstance();
     private final PiezasProducidas datosPiezasProducidas = PiezasProducidas.getInstance();
     private final Operador datosOperador = Operador.getInstance();
     private final LineaProduccion lineaProduccion = LineaProduccion.getInstance();
@@ -119,6 +121,48 @@ public class RegistroRBPModel {
             throw ex;
         }
         return idDAS;
+    }
+    
+    public void obtenerScrapTotalRBP() {
+        try (Connection con = conexion.conexionMySQL();
+                CallableStatement cst = con.prepareCall("{call obtenerScrapTotalRBP(?)}")) {
+            
+            cst.setInt(1, datosRBP.getId());
+            
+            try (ResultSet r = cst.executeQuery()) {
+                while (r.next()) {
+                    datosRBP.setScrap(r.getInt("total_scrap"));
+                }
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al buscar DAS existente", ex);
+        }
+    }
+    
+    public void obtenerDatosCanastasRBP() {
+        try (Connection con = conexion.conexionMySQL();
+                CallableStatement cst = con.prepareCall("{call obtenerDatosCanastasRBP(?,?)}")) {
+            
+            cst.setInt(1, datosRBP.getId());
+            cst.setInt(2, datosDAS.getIdDAS());
+            
+            try (ResultSet r = cst.executeQuery()) {
+                while (r.next()) {
+                    datosRBP.setScrap(r.getInt("total_scrap"));
+                    datosRBP.setPiezasRecibidas(r.getInt("piezas_recibidas"));
+                    datosPiezasProducidas.setIdRegistro(r.getInt("id_piezas"));
+                    datosRBP.setPiezasFila(r.getInt("piezasxfila"));
+                    datosRBP.setFilas(r.getInt("filas"));
+                    datosRBP.setNiveles(r.getInt("niveles"));
+                    datosRBP.setCanastas(r.getInt("canastas"));
+                    datosRBP.setNivelesCompletos(r.getInt("niveles_completos"));
+                    datosRBP.setFilasCompletas(r.getInt("filas_completas"));
+                    datosRBP.setPiezasSobrantes(r.getInt("sobrante"));
+                }
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Error al buscar DAS existente", ex);
+        }
     }
     
     public boolean obtenerPiezasProcesadasMaquinado() throws SQLException {

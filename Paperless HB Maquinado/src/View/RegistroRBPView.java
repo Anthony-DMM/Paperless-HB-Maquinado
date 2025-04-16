@@ -24,12 +24,12 @@ public class RegistroRBPView extends javax.swing.JFrame {
         lblTituloRBP.setText("<html><center>RBP - REGISTRO BÁSICO DE<br> PRODUCCIÓN ''HB MAQUINADO''</center></html>");
         lblNumeroEmpleado.setText("<html>Número<br>empleado:</html>");
         lblEmpleado.setText("<html>Nombre<br>empleado:</html>");
+        lblAvisoTurno.setText("<html>Antes de continuar, revise el turno seleccionado.<br>Si no es su turno, por favor, cámbielo.</html>");
         btnDAS.setText("<html><center>Hora<br>x Hora</center></html>");
         btnDibujo.setText("<html><center>Ver<br>Dibujo</center></html>");
         lblPiezasxFila.setText("<html><center>Piezas<br>por fila</center></html>");
         lblFilasCompletas.setText("<html><center>Filas<br>completas</center></html>");
         lblNivelesCompletos.setText("<html><center>Niveles<br>completos</center></html>");
-        lblAvisoTurno.setText("<html>Revise el turno que aparece en la pantalla. ¿Es el turno en el que está trabajando?<br>Si no lo es, seleccione el turno correcto.</html>");
         btnRegresar.setBackground(Color.BLACK);
         btnSiguiente.setBackground(Color.BLACK);
         btnDAS.setBackground(Color.BLACK);
@@ -93,19 +93,19 @@ public class RegistroRBPView extends javax.swing.JFrame {
         btnParoLinea = new javax.swing.JButton();
         btnCambioMOG = new javax.swing.JButton();
         txtNumeroEmpleado = new javax.swing.JPasswordField();
-        lblAvisoTurno = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtHoraInicio = new javax.swing.JTextField();
         cbxTurno = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        txtNombreEmpleado2 = new javax.swing.JTextField();
-        txtNombreEmpleado3 = new javax.swing.JTextField();
+        txtScrap = new javax.swing.JTextField();
+        txtPiezasRecibidas = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtPiezasProducidas = new javax.swing.JTextField();
+        lblAvisoTurno = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setPreferredSize(new java.awt.Dimension(900, 1500));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel3.setText("Fecha:");
@@ -304,9 +304,6 @@ public class RegistroRBPView extends javax.swing.JFrame {
             }
         });
 
-        lblAvisoTurno.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        lblAvisoTurno.setForeground(new java.awt.Color(255, 51, 0));
-
         jLabel4.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel4.setText("Hora inicio:");
 
@@ -325,18 +322,29 @@ public class RegistroRBPView extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel6.setText("Scrap total:");
 
-        txtNombreEmpleado2.setEditable(false);
-        txtNombreEmpleado2.setBackground(new java.awt.Color(204, 204, 204));
-        txtNombreEmpleado2.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtNombreEmpleado2.setFocusable(false);
+        txtScrap.setEditable(false);
+        txtScrap.setBackground(new java.awt.Color(204, 204, 204));
+        txtScrap.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtScrap.setFocusable(false);
 
-        txtNombreEmpleado3.setEditable(false);
-        txtNombreEmpleado3.setBackground(new java.awt.Color(204, 204, 204));
-        txtNombreEmpleado3.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
-        txtNombreEmpleado3.setFocusable(false);
+        txtPiezasRecibidas.setEditable(false);
+        txtPiezasRecibidas.setBackground(new java.awt.Color(204, 204, 204));
+        txtPiezasRecibidas.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtPiezasRecibidas.setFocusable(false);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel7.setText("Piezas recibidas:");
+
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
+        jLabel8.setText("Piezas producidas:");
+
+        txtPiezasProducidas.setEditable(false);
+        txtPiezasProducidas.setBackground(new java.awt.Color(204, 204, 204));
+        txtPiezasProducidas.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
+        txtPiezasProducidas.setFocusable(false);
+
+        lblAvisoTurno.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblAvisoTurno.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -355,7 +363,7 @@ public class RegistroRBPView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtNiveles)
                     .addComponent(jLabel212, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(txtCanastas, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
@@ -363,7 +371,7 @@ public class RegistroRBPView extends javax.swing.JFrame {
             .addComponent(jLabelCanastasCom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
                 .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -377,44 +385,43 @@ public class RegistroRBPView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtSobrante, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCambioMOG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnParoLinea, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(btnDAS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lblNumeroEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(lblEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtHoraInicio)
-                    .addComponent(cbxTurno, 0, 261, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtFecha)
+                    .addComponent(txtNumeroEmpleado)
+                    .addComponent(txtNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(btnDibujo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNombreEmpleado2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(txtNombreEmpleado3, javax.swing.GroupLayout.Alignment.TRAILING)))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblNumeroEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(lblEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtFecha)
-                            .addComponent(txtNumeroEmpleado)
-                            .addComponent(txtNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lblAvisoTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtHoraInicio)
+                            .addComponent(cbxTurno, 0, 261, Short.MAX_VALUE)))
+                    .addComponent(lblAvisoTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPiezasProducidas, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                    .addComponent(txtPiezasRecibidas, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtScrap)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,18 +449,22 @@ public class RegistroRBPView extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombreEmpleado2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtScrap, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombreEmpleado3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPiezasRecibidas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbxTurno)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
-                .addComponent(lblAvisoTurno)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPiezasProducidas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblAvisoTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(50, 50, 50)
                 .addComponent(jLabelCanastasCom)
                 .addGap(15, 15, 15)
@@ -488,10 +499,11 @@ public class RegistroRBPView extends javax.swing.JFrame {
                         .addComponent(btnParoLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15)
                 .addComponent(btnCambioMOG, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -630,6 +642,7 @@ public class RegistroRBPView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     public javax.swing.JLabel jLabel9;
     public javax.swing.JLabel jLabelCanastasCom;
     public javax.swing.JLabel jLabelCanastasCom1;
@@ -649,10 +662,11 @@ public class RegistroRBPView extends javax.swing.JFrame {
     public javax.swing.JTextField txtNiveles;
     public javax.swing.JTextField txtNivelesCompletos;
     public javax.swing.JTextField txtNombreEmpleado;
-    public javax.swing.JTextField txtNombreEmpleado2;
-    public javax.swing.JTextField txtNombreEmpleado3;
     public javax.swing.JPasswordField txtNumeroEmpleado;
+    public javax.swing.JTextField txtPiezasProducidas;
+    public javax.swing.JTextField txtPiezasRecibidas;
     public javax.swing.JTextField txtPiezasxFila;
+    public javax.swing.JTextField txtScrap;
     public javax.swing.JTextField txtSobrante;
     // End of variables declaration//GEN-END:variables
 }

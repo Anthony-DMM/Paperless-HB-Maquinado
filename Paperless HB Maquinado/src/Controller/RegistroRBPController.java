@@ -6,6 +6,7 @@ package Controller;
 
 import Entities.DAS;
 import Entities.Operador;
+import Entities.PiezasProducidas;
 import Entities.RBP;
 import Model.DASModel;
 import Model.RegistroRBPModel;
@@ -54,10 +55,11 @@ public class RegistroRBPController implements ActionListener, ItemListener {
     private final RegistroScrapView registroScrapView = RegistroScrapView.getInstance();
     private final RegistroScrapController registroScrapController = new RegistroScrapController();
     private final Navegador navegador = Navegador.getInstance();
-    
+
     private final DASModel dasModel;
     private boolean turnoValido = false;
     private boolean registroRealizado = false;
+    private boolean listenerHabilitado = false;
 
     LocalTime inicioTurno = LocalTime.parse("07:00:00");
     LocalTime finTurno = LocalTime.parse("18:59:59");
@@ -68,6 +70,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
     private final RBP datosRBP = RBP.getInstance();
     private final DAS datosDAS = DAS.getInstance();
     private final Operador datosOperador = Operador.getInstance();
+    private final PiezasProducidas datosPiezasProducidas = PiezasProducidas.getInstance();
 
     public RegistroRBPController() {
         this.dasModel = new DASModel();
@@ -77,6 +80,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
             @Override
             public void windowOpened(WindowEvent e) {
                 cargarDatos();
+                listenerHabilitado = true;
             }
         });
     }
@@ -108,7 +112,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
             Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void validarDAS(Frame ventanaDestino) {
         if (registroRBPView.txtNumeroEmpleado.getText().isEmpty() || registroRBPView.txtNombreEmpleado.getText().isEmpty()) {
             MostrarMensaje.mostrarError("Favor de capturar los datos del empleado para continuar");
@@ -116,12 +120,24 @@ public class RegistroRBPController implements ActionListener, ItemListener {
             MostrarMensaje.mostrarError("Favor de seleccionar un turno de trabajo");
         } else {
             if (turnoValido == false) {
-                int opcion = JOptionPane.showConfirmDialog(null, "<html><font size='10' color='red'>¿Seguro que quieres elegir el turno "+datosDAS.getTurno()+"?<br>Una vez confirmado, no podrás modificarlo</font></html>");
+                int opcion = JOptionPane.showConfirmDialog(null, "<html><font size='10' color='red'>¿Seguro que quieres elegir el turno " + datosDAS.getTurno() + "?<br>Una vez confirmado, no podrás modificarlo</font></html>");
                 if (opcion == JOptionPane.YES_OPTION) {
                     try {
-                        if(!dasModel.buscarDASExistente(datosDAS.getTurno())) {
+                        if (!dasModel.buscarDASExistente(datosDAS.getTurno())) {
                             dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
                         }
+                        registroRBPModel.obtenerScrapTotalRBP();
+                        registroRBPModel.obtenerDatosCanastasRBP();
+                        registroRBPView.txtScrap.setText(String.valueOf(datosRBP.getScrap()));
+                        registroRBPView.txtPiezasRecibidas.setText(String.valueOf(datosRBP.getPiezasRecibidas()));
+                        registroRBPView.txtPiezasxFila.setText(String.valueOf(datosRBP.getPiezasFila()));
+                        registroRBPView.txtFilas.setText(String.valueOf(datosRBP.getFilas()));
+                        registroRBPView.txtNiveles.setText(String.valueOf(datosRBP.getNiveles()));
+                        registroRBPView.txtCanastas.setText(String.valueOf(datosRBP.getCanastas()));
+                        registroRBPView.txtFilasCompletas.setText(String.valueOf(datosRBP.getFilasCompletas()));
+                        registroRBPView.txtNivelesCompletos.setText(String.valueOf(datosRBP.getNivelesCompletos()));
+                        registroRBPView.txtSobrante.setText(String.valueOf(datosRBP.getPiezasSobrantes()));
+                        ValidarCampos.activarCampos(registroRBPView.txtPiezasProducidas, registroRBPView.txtFilas, registroRBPView.txtNiveles, registroRBPView.txtCanastas, registroRBPView.txtFilasCompletas, registroRBPView.txtNivelesCompletos, registroRBPView.txtSobrante, registroRBPView.txtPiezasxFila);
                         registroRBPView.cbxTurno.setEnabled(false);
                         registroRBPView.cbxTurno.setFocusable(false);
                         registroRBPView.cbxTurno.setBackground(new Color(240, 240, 240));
@@ -135,7 +151,7 @@ public class RegistroRBPController implements ActionListener, ItemListener {
             } else {
                 navegador.avanzar(ventanaDestino, registroRBPView);
             }
-        }    
+        }
     }
 
     private void turno() {
@@ -147,8 +163,45 @@ public class RegistroRBPController implements ActionListener, ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        int turnoSeleccionado = registroRBPView.cbxTurno.getSelectedIndex();
-        datosDAS.setTurno(turnoSeleccionado);
+        if (listenerHabilitado && e.getStateChange() == ItemEvent.SELECTED) {
+            int turnoSeleccionado = registroRBPView.cbxTurno.getSelectedIndex();
+            datosDAS.setTurno(turnoSeleccionado);
+            if (registroRBPView.txtNumeroEmpleado.getText().isEmpty() || registroRBPView.txtNombreEmpleado.getText().isEmpty()) {
+                MostrarMensaje.mostrarError("Favor de capturar los datos del empleado para continuar");
+            } else if (registroRBPView.cbxTurno.getSelectedIndex() == 0) {
+                MostrarMensaje.mostrarError("Favor de seleccionar un turno de trabajo");
+            } else {
+                if (turnoValido == false) {
+                    int opcion = JOptionPane.showConfirmDialog(null, "<html><font size='10' color='red'>¿Seguro que quieres elegir el turno " + datosDAS.getTurno() + "?<br>Una vez confirmado, no podrás modificarlo</font></html>");
+                    if (opcion == JOptionPane.YES_OPTION) {
+                        try {
+                            if (!dasModel.buscarDASExistente(datosDAS.getTurno())) {
+                                dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
+                            }
+                            registroRBPModel.obtenerScrapTotalRBP();
+                            registroRBPModel.obtenerDatosCanastasRBP();
+                            registroRBPView.txtScrap.setText(String.valueOf(datosRBP.getScrap()));
+                            registroRBPView.txtPiezasRecibidas.setText(String.valueOf(datosRBP.getPiezasRecibidas()));
+                            registroRBPView.txtPiezasxFila.setText(String.valueOf(datosRBP.getPiezasFila()));
+                            registroRBPView.txtFilas.setText(String.valueOf(datosRBP.getFilas()));
+                            registroRBPView.txtNiveles.setText(String.valueOf(datosRBP.getNiveles()));
+                            registroRBPView.txtCanastas.setText(String.valueOf(datosRBP.getCanastas()));
+                            registroRBPView.txtFilasCompletas.setText(String.valueOf(datosRBP.getFilasCompletas()));
+                            registroRBPView.txtNivelesCompletos.setText(String.valueOf(datosRBP.getNivelesCompletos()));
+                            registroRBPView.txtSobrante.setText(String.valueOf(datosRBP.getPiezasSobrantes()));
+                            ValidarCampos.activarCampos(registroRBPView.txtPiezasProducidas, registroRBPView.txtFilas, registroRBPView.txtNiveles, registroRBPView.txtCanastas, registroRBPView.txtFilasCompletas, registroRBPView.txtNivelesCompletos, registroRBPView.txtSobrante, registroRBPView.txtPiezasxFila);
+                            registroRBPView.cbxTurno.setEnabled(false);
+                            registroRBPView.cbxTurno.setFocusable(false);
+                            registroRBPView.cbxTurno.setBackground(new Color(240, 240, 240));
+                            registroRBPView.cbxTurno.setForeground(Color.BLACK);
+                            turnoValido = true;
+                        } catch (SQLException ex) {
+                            Logger.getLogger(RegistroRBPController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public enum AccionBoton {
@@ -211,7 +264,6 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                     String codigoEmpleado = numeroEmpleadoIngresado;
                     datosOperador.setCódigo(codigoEmpleado);
                     registroRBPView.txtNombreEmpleado.setText(datosOperador.getNombre());
-                    ValidarCampos.activarCampos(registroRBPView.txtFilas, registroRBPView.txtNiveles, registroRBPView.txtCanastas, registroRBPView.txtFilasCompletas, registroRBPView.txtNivelesCompletos, registroRBPView.txtSobrante, registroRBPView.txtPiezasxFila);
                 } else {
                     LimpiarCampos.limpiarCampos(registroRBPView.txtNumeroEmpleado, registroRBPView.txtNumeroEmpleado);
                 }
@@ -237,6 +289,18 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                         if (!dasModel.buscarDASExistente(datosDAS.getTurno())) {
                             dasModel.registrarDAS(datosOperador.getCódigo(), datosOperador.getCódigo(), datosOperador.getCódigo(), datosDAS.getTurno());
                         }
+                        registroRBPModel.obtenerScrapTotalRBP();
+                            registroRBPModel.obtenerDatosCanastasRBP();
+                        registroRBPView.txtScrap.setText(String.valueOf(datosRBP.getScrap()));
+                        registroRBPView.txtPiezasRecibidas.setText(String.valueOf(datosRBP.getPiezasRecibidas()));
+                        registroRBPView.txtPiezasxFila.setText(String.valueOf(datosRBP.getPiezasFila()));
+                        registroRBPView.txtFilas.setText(String.valueOf(datosRBP.getFilas()));
+                        registroRBPView.txtNiveles.setText(String.valueOf(datosRBP.getNiveles()));
+                        registroRBPView.txtCanastas.setText(String.valueOf(datosRBP.getCanastas()));
+                        registroRBPView.txtFilasCompletas.setText(String.valueOf(datosRBP.getFilasCompletas()));
+                        registroRBPView.txtNivelesCompletos.setText(String.valueOf(datosRBP.getNivelesCompletos()));
+                        registroRBPView.txtSobrante.setText(String.valueOf(datosRBP.getPiezasSobrantes()));
+                        ValidarCampos.activarCampos(registroRBPView.txtPiezasProducidas, registroRBPView.txtFilas, registroRBPView.txtNiveles, registroRBPView.txtCanastas, registroRBPView.txtFilasCompletas, registroRBPView.txtNivelesCompletos, registroRBPView.txtSobrante, registroRBPView.txtPiezasxFila);
                         registroRBPView.cbxTurno.setEnabled(false);
                         registroRBPView.cbxTurno.setFocusable(false);
                         registroRBPView.cbxTurno.setBackground(new Color(240, 240, 240));
@@ -251,8 +315,8 @@ public class RegistroRBPController implements ActionListener, ItemListener {
                 }
             }
         }
-        
-        if(registroRBPView.txtPiezasxFila.getText().isEmpty() || registroRBPView.txtFilas.getText().isEmpty() || registroRBPView.txtNiveles.getText().isEmpty()
+
+        if (registroRBPView.txtPiezasxFila.getText().isEmpty() || registroRBPView.txtFilas.getText().isEmpty() || registroRBPView.txtNiveles.getText().isEmpty()
                 || registroRBPView.txtCanastas.getText().isEmpty() || registroRBPView.txtFilasCompletas.getText().isEmpty() || registroRBPView.txtNivelesCompletos.getText().isEmpty()
                 || registroRBPView.txtSobrante.getText().isEmpty()) {
             MostrarMensaje.mostrarAdvertencia("Para continuar ingrese todos los datos de Canastas completas y Canastas incompletas.");

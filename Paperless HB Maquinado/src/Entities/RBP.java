@@ -17,6 +17,7 @@ public class RBP {
 
     private static RBP instance;
     private int id, piezasProcesadas, piezasRecibidas, piezasWcCompletos, wcCompletos, piezasWcIncompletos, piezasCambioMOG, scrap;
+    private int idRegistroPiezas, piezasFila, filas, niveles, canastas, nivelesCompletos, filasCompletas, piezasSobrantes;
     private String hora, fecha;
 
     public static RBP getInstance() {
